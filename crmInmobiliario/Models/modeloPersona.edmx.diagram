@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6b719af9416417d8f99e61b2763f9df" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Estados" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.MediosContacto" Width="1.5" PointX="7.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Municipios" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Paises" Width="1.5" PointX="1" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Personas" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasGenero" Width="1.5" PointX="5.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasTipo" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_MediosContacto" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_Municipios" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_Paises" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_PersonasGenero" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_PersonasTipo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

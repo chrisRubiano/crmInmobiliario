@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="IdEstado" />
+    </Key>
+    <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Abreviacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_Estados" FromRole="Estados" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="MediosContacto">
+    <Key>
+      <PropertyRef Name="IdMedioContacto" />
+    </Key>
+    <Property Name="IdMedioContacto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedioContacto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_MediosContacto" FromRole="MediosContacto" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="Municipios">
+    <Key>
+      <PropertyRef Name="IdMunicipio" />
+    </Key>
+    <Property Name="IdMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="CveMunicipio" Type="Int32" />
+    <Property Name="Municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_Municipios" FromRole="Municipios" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="Paises">
+    <Key>
+      <PropertyRef Name="IdPais" />
+    </Key>
+    <Property Name="IdPais" Type="Int32" Nullable="false" />
+    <Property Name="Pais" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_Paises" FromRole="Paises" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Paterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Materno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Genero" Type="Int32" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Email2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Celular" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="NumExterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NumInterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntreEsquina" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="YCalle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Colonia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CP" Type="Int32" />
+    <Property Name="Localidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Municipio" Type="Int32" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Pais" Type="Int32" />
+    <Property Name="MedioContacto" Type="Int32" />
+    <NavigationProperty Name="Estados" Relationship="Self.FK_Personas_Estados" FromRole="Personas" ToRole="Estados" />
+    <NavigationProperty Name="MediosContacto" Relationship="Self.FK_Personas_MediosContacto" FromRole="Personas" ToRole="MediosContacto" />
+    <NavigationProperty Name="Municipios" Relationship="Self.FK_Personas_Municipios" FromRole="Personas" ToRole="Municipios" />
+    <NavigationProperty Name="Paises" Relationship="Self.FK_Personas_Paises" FromRole="Personas" ToRole="Paises" />
+    <NavigationProperty Name="PersonasGenero" Relationship="Self.FK_Personas_PersonasGenero" FromRole="Personas" ToRole="PersonasGenero" />
+    <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
+  </EntityType>
+  <EntityType Name="PersonasGenero">
+    <Key>
+      <PropertyRef Name="IdGenero" />
+    </Key>
+    <Property Name="IdGenero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Genero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PersonasGenero" FromRole="PersonasGenero" ToRole="Personas" />
+  </EntityType>
+  <EntityType Name="PersonasTipo">
+    <Key>
+      <PropertyRef Name="IdTipoPersona" />
+    </Key>
+    <Property Name="IdTipoPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PersonasTipo" FromRole="PersonasTipo" ToRole="Personas" />
+  </EntityType>
+  <Association Name="FK_Personas_Estados">
+    <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="IdEstado" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personas_MediosContacto">
+    <End Role="MediosContacto" Type="Self.MediosContacto" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MediosContacto">
+        <PropertyRef Name="IdMedioContacto" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="MedioContacto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personas_Municipios">
+    <End Role="Municipios" Type="Self.Municipios" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipios">
+        <PropertyRef Name="IdMunicipio" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Municipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personas_Paises">
+    <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paises">
+        <PropertyRef Name="IdPais" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Pais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personas_PersonasGenero">
+    <End Role="PersonasGenero" Type="Self.PersonasGenero" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonasGenero">
+        <PropertyRef Name="IdGenero" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Genero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Personas_PersonasTipo">
+    <End Role="PersonasTipo" Type="Self.PersonasTipo" Multiplicity="1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonasTipo">
+        <PropertyRef Name="IdTipoPersona" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRMINMOBILIARIOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Estados" EntityType="Self.Estados" />
+    <EntitySet Name="MediosContacto" EntityType="Self.MediosContacto" />
+    <EntitySet Name="Municipios" EntityType="Self.Municipios" />
+    <EntitySet Name="Paises" EntityType="Self.Paises" />
+    <EntitySet Name="Personas" EntityType="Self.Personas" />
+    <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" />
+    <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" />
+    <AssociationSet Name="FK_Personas_Estados" Association="Self.FK_Personas_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personas_MediosContacto" Association="Self.FK_Personas_MediosContacto">
+      <End Role="MediosContacto" EntitySet="MediosContacto" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personas_Municipios" Association="Self.FK_Personas_Municipios">
+      <End Role="Municipios" EntitySet="Municipios" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personas_Paises" Association="Self.FK_Personas_Paises">
+      <End Role="Paises" EntitySet="Paises" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personas_PersonasGenero" Association="Self.FK_Personas_PersonasGenero">
+      <End Role="PersonasGenero" EntitySet="PersonasGenero" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personas_PersonasTipo" Association="Self.FK_Personas_PersonasTipo">
+      <End Role="PersonasTipo" EntitySet="PersonasTipo" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,196 @@
+﻿@model crmInmobiliario.Models.Personas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Personas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Celular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumExterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumExterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumInterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumInterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntreEsquina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntreEsquina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YCalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YCalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Colonia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colonia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estados.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estados.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediosContacto.MedioContacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediosContacto.MedioContacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipios.Municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipios.Municipio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paises.Pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paises.Pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonasGenero.Genero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonasTipo.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonasTipo.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Personas")';return false;"><i class="fa fa-pencil"></i> Editar</button>
+
+
+</p>
