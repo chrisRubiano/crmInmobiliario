@@ -11,31 +11,54 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Personas
     {
         public int IdPersona { get; set; }
         public int Tipo { get; set; }
         public string Nombre { get; set; }
+
+        [Display(Name = "Apellido Paterno")]
         public string Paterno { get; set; }
+
+        [Display(Name = "Apellido Materno")]
         public string Materno { get; set; }
         public Nullable<int> Genero { get; set; }
+
+        [Display(Name = "Fecha de Nacimiento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
+
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Display(Name = "Segundo Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email2 { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public string Calle { get; set; }
         public string NumExterior { get; set; }
         public string NumInterior { get; set; }
+
+        [Display(Name = "Entre Calle/ Esquina con")]
         public string EntreEsquina { get; set; }
+
+        [Display(Name = "Y Calle")]
         public string YCalle { get; set; }
+
         public string Colonia { get; set; }
+
+        [Display(Name = "Código Postal")]
         public Nullable<int> CP { get; set; }
         public string Localidad { get; set; }
         public Nullable<int> Municipio { get; set; }
         public Nullable<int> Estado { get; set; }
         public Nullable<int> Pais { get; set; }
+
+        [Display(Name = "Medio de Contacto")]
         public Nullable<int> MedioContacto { get; set; }
     
         public virtual Estados Estados { get; set; }
