@@ -16,9 +16,14 @@ namespace crmInmobiliario.Models
     public partial class Personas
     {
         public int IdPersona { get; set; }
+
+        [Required]
         public int Tipo { get; set; }
+
+        [Required]
         public string Nombre { get; set; }
 
+        [Required]
         [Display(Name = "Apellido Paterno")]
         public string Paterno { get; set; }
 
@@ -37,6 +42,7 @@ namespace crmInmobiliario.Models
         [Display(Name = "Segundo Email")]
         [DataType(DataType.EmailAddress)]
         public string Email2 { get; set; }
+
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public string Calle { get; set; }
@@ -56,6 +62,8 @@ namespace crmInmobiliario.Models
         public string Localidad { get; set; }
         public Nullable<int> Municipio { get; set; }
         public Nullable<int> Estado { get; set; }
+
+        [Display(Name = "País")]
         public Nullable<int> Pais { get; set; }
 
         [Display(Name = "Medio de Contacto")]

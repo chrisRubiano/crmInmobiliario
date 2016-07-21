@@ -15,9 +15,40 @@ namespace crmInmobiliario.Controllers
         private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
 
         // GET: Personas
-        public ActionResult Index()
+        public ActionResult Index(string tipoCliente, string nombre)
         {
-            var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
+            var nombreCompleto = new List<string>();
+            var nombreQry = from d in db.Personas
+                            orderby d.Paterno
+                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
+            nombreCompleto.AddRange(nombreQry);
+            ViewBag.nombre = new SelectList(nombreCompleto);
+
+
+            var tiposCliente = new List<string>();
+            var tipoQry = from d in db.PersonasTipo
+                          orderby d.Tipo
+                          select d.Tipo.ToString();
+
+            tiposCliente.AddRange(tipoQry.Distinct());
+            ViewBag.tipoCliente = new SelectList(tiposCliente);
+
+            var personas = from p in db.Personas
+                         select p;
+
+            if (!string.IsNullOrEmpty(tipoCliente))
+            {
+                personas = personas.Where(s => s.PersonasTipo.Tipo.ToString().Contains(tipoCliente));
+            }
+
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                personas = from p in db.Personas select p;
+                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
+            }
+
+
+            //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
             return View(personas.ToList());
         }
 

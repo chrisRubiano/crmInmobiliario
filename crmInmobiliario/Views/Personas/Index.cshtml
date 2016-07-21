@@ -1,13 +1,28 @@
 ﻿@model IEnumerable<crmInmobiliario.Models.Personas>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Indice";
 }
 
-<h2>Index</h2>
+<h2>Indice</h2>
 
 <p>
     <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Personas")'"><i class="fa fa-plus"></i> Registrar persona</button>
+
+    <hr />
+
+    @using (Html.BeginForm("Index", "Personas", FormMethod.Get, new { @class="form-inline" }))
+    {
+        <div class="form-group">
+            <label for="tipoCliente"> Tipo:</label> @Html.DropDownList("tipoCliente", null, "Todos", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="tipoCliente"> Nombre:</label> @Html.DropDownList("nombre", null, "Todos", new { @class = "form-control chosen-select" })
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
+        </div>
+    }
 </p>
 <table class="table table-hover table-condensed">
     <tr>
@@ -148,10 +163,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.PersonasTipo.Tipo)
         </td>
-        <td>
-            <button class="btn btn-primary btn-tblsolc" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-success btn-tblsolc" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-eye"></i></button>
-            <button class="btn btn-danger btn-tblsolc" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-trash-o"></i></button>
+        <td class="">
+            <div class="list-inline">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
         </td>
     </tr>
 }
