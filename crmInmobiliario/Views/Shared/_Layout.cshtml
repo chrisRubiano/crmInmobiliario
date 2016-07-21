@@ -19,14 +19,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">CRM Inmobiliario</a>
+                <a href="/" class="navbar-brand"><i class="fa fa-home"></i> CRM Inmobiliario</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Personas", "Index", "Personas")</li>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <!--li>@Html.ActionLink("Home", "Index", "Home")</li-->
+                    <!--li>@Html.ActionLink("About", "About", "Home")</li-->
+                    <!--li>@Html.ActionLink("Contact", "Contact", "Home")</li-->
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -50,11 +50,11 @@
     <script src="~/Scripts/chosen.jquery.js"></script>
     <script>
         var config = {
-            '.chosen-select': {},
+            '.chosen-select': { search_contains: true },
             '.chosen-select-deselect': { allow_single_deselect: true },
             '.chosen-select-no-single': { disable_search_threshold: 10 },
             '.chosen-select-no-results': { no_results_text: 'no se encuentran resultados!' },
-            '.chosen-select-width': { width: "95%" }
+            '.chosen-select-width': { width: "95%" },
         }
         for (var selector in config) {
             $(selector).chosen(config[selector]);
