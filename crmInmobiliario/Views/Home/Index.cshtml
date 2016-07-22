@@ -1,11 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio";
 }
 
 <div class="jumbotron">
     <h1>CRM Inmobiliario  <i class="fa fa-home fa-lg fa-2x"></i></h1>
     <p class="lead"></p>
-    <button class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Login", "Account")';return false;"><i class="fa fa-sign-in"></i> Iniciar Sesión</button>
+    @if (!Request.IsAuthenticated)
+    {
+        <button class="btn btn-primary btn-lg" onclick="location.href='@Url.Action("Login", "Account")';return false;"><i class="fa fa-sign-in"></i> Iniciar Sesión</button>
+    }
 
 </div>
 

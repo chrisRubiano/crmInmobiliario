@@ -26,6 +26,7 @@
 </p>
 <table class="table table-hover table-condensed">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
@@ -49,6 +50,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MediosContacto.MedioContacto)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Calle)
@@ -78,9 +82,6 @@
             @Html.DisplayNameFor(model => model.Estados.Estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MediosContacto.MedioContacto)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Municipios.Municipio)
         </th>
         <th>
@@ -92,11 +93,17 @@
         <th>
             @Html.DisplayNameFor(model => model.PersonasTipo.Tipo)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td class="">
+            <div class="list-inline">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
@@ -120,6 +127,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Celular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MediosContacto.MedioContacto)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Calle)
@@ -149,9 +159,6 @@
             @Html.DisplayFor(modelItem => item.Estados.Estado)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MediosContacto.MedioContacto)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Municipios.Municipio)
         </td>
         <td>
@@ -162,13 +169,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PersonasTipo.Tipo)
-        </td>
-        <td class="">
-            <div class="list-inline">
-                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="left" title="Editar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-            </div>
         </td>
     </tr>
 }
