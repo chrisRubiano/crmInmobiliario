@@ -69,8 +69,11 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Create
-        public ActionResult Create()
+        public ActionResult Create(string categoria)
         {
+
+            ViewBag.tipoPersona = categoria;
+
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado");
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio");

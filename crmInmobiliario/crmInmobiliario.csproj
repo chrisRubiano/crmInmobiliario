@@ -212,6 +212,7 @@
     <Compile Include="Models\Paises.cs">
       <DependentUpon>modeloPersona.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Personas.cs">
       <DependentUpon>modeloPersona.tt</DependentUpon>
     </Compile>
