@@ -32,5 +32,6 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<PersonasGenero> PersonasGenero { get; set; }
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
+        public virtual DbSet<PersonasCategoria> PersonasCategoria { get; set; }
     }
 }

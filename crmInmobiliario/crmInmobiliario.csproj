@@ -216,6 +216,9 @@
     <Compile Include="Models\Personas.cs">
       <DependentUpon>modeloPersona.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PersonasCategoria.cs">
+      <DependentUpon>modeloPersona.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PersonasGenero.cs">
       <DependentUpon>modeloPersona.tt</DependentUpon>
     </Compile>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Estados">
           <Key>
             <PropertyRef Name="IdEstado" />
@@ -41,12 +41,15 @@
             <PropertyRef Name="IdPersona" />
           </Key>
           <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categoria" Type="int" />
           <Property Name="Tipo" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="Paterno" Type="varchar" MaxLength="100" />
           <Property Name="Materno" Type="varchar" MaxLength="100" />
           <Property Name="Genero" Type="int" />
           <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="255" />
+          <Property Name="RFC" Type="varchar" MaxLength="13" />
           <Property Name="Email" Type="varchar" MaxLength="255" />
           <Property Name="Email2" Type="varchar" MaxLength="255" />
           <Property Name="Telefono" Type="varchar" MaxLength="20" />
@@ -63,6 +66,14 @@
           <Property Name="Estado" Type="int" />
           <Property Name="Pais" Type="int" />
           <Property Name="MedioContacto" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonasCategoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="PersonasGenero">
           <Key>
@@ -127,6 +138,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Personas_PersonasCategoria">
+          <End Role="PersonasCategoria" Type="Self.PersonasCategoria" Multiplicity="0..1" />
+          <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonasCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Personas_PersonasGenero">
           <End Role="PersonasGenero" Type="Self.PersonasGenero" Multiplicity="0..1" />
           <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
@@ -157,6 +180,7 @@
           <EntitySet Name="Municipios" EntityType="Self.Municipios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonasCategoria" EntityType="Self.PersonasCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Personas_Estados" Association="Self.FK_Personas_Estados">
@@ -175,6 +199,10 @@
             <End Role="Paises" EntitySet="Paises" />
             <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Personas_PersonasCategoria" Association="Self.FK_Personas_PersonasCategoria">
+            <End Role="PersonasCategoria" EntitySet="PersonasCategoria" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
           <AssociationSet Name="FK_Personas_PersonasGenero" Association="Self.FK_Personas_PersonasGenero">
             <End Role="PersonasGenero" EntitySet="PersonasGenero" />
             <End Role="Personas" EntitySet="Personas" />
@@ -184,8 +212,7 @@
             <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -257,6 +284,10 @@
           <NavigationProperty Name="Paises" Relationship="Self.FK_Personas_Paises" FromRole="Personas" ToRole="Paises" />
           <NavigationProperty Name="PersonasGenero" Relationship="Self.FK_Personas_PersonasGenero" FromRole="Personas" ToRole="PersonasGenero" />
           <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
+          <Property Name="Categoria" Type="Int32" />
+          <Property Name="RazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PersonasCategoria" Relationship="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria" FromRole="Personas" ToRole="PersonasCategoria" />
         </EntityType>
         <EntityType Name="PersonasGenero">
           <Key>
@@ -379,7 +410,33 @@
             <End Role="PersonasTipo" EntitySet="PersonasTipo" />
             <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
+          <EntitySet Name="PersonasCategoria" EntityType="CRMINMOBILIARIOModel.PersonasCategoria" />
+          <AssociationSet Name="FK_Personas_PersonasCategoria" Association="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria">
+            <End Role="PersonasCategoria" EntitySet="PersonasCategoria" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PersonasCategoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria" FromRole="PersonasCategoria" ToRole="Personas" />
+        </EntityType>
+        <Association Name="FK_Personas_PersonasCategoria">
+          <End Type="CRMINMOBILIARIOModel.PersonasCategoria" Role="PersonasCategoria" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Personas" Role="Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonasCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -424,6 +481,9 @@
           <EntitySetMapping Name="Personas">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Personas">
               <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -464,6 +524,15 @@
                 <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasCategoria">
+              <MappingFragment StoreEntitySet="PersonasCategoria">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

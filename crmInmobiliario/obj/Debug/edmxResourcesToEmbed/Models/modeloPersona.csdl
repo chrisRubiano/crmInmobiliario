@@ -68,6 +68,10 @@
     <NavigationProperty Name="Paises" Relationship="Self.FK_Personas_Paises" FromRole="Personas" ToRole="Paises" />
     <NavigationProperty Name="PersonasGenero" Relationship="Self.FK_Personas_PersonasGenero" FromRole="Personas" ToRole="PersonasGenero" />
     <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
+    <Property Name="Categoria" Type="Int32" />
+    <Property Name="RazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PersonasCategoria" Relationship="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria" FromRole="Personas" ToRole="PersonasCategoria" />
   </EntityType>
   <EntityType Name="PersonasGenero">
     <Key>
@@ -190,5 +194,31 @@
       <End Role="PersonasTipo" EntitySet="PersonasTipo" />
       <End Role="Personas" EntitySet="Personas" />
     </AssociationSet>
+    <EntitySet Name="PersonasCategoria" EntityType="CRMINMOBILIARIOModel.PersonasCategoria" />
+    <AssociationSet Name="FK_Personas_PersonasCategoria" Association="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria">
+      <End Role="PersonasCategoria" EntitySet="PersonasCategoria" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="PersonasCategoria">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria" FromRole="PersonasCategoria" ToRole="Personas" />
+  </EntityType>
+  <Association Name="FK_Personas_PersonasCategoria">
+    <End Type="CRMINMOBILIARIOModel.PersonasCategoria" Role="PersonasCategoria" Multiplicity="0..1" />
+    <End Type="CRMINMOBILIARIOModel.Personas" Role="Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonasCategoria">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

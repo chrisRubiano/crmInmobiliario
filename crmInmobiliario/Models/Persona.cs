@@ -6,10 +6,8 @@ using System.Web;
 
 namespace crmInmobiliario.Models
 {
-    [MetadataType(typeof(Personas))]
     public partial class Persona
     {
-        public class Personas { 
             [Required]
             public int Tipo { get; set; }
 
@@ -50,8 +48,5 @@ namespace crmInmobiliario.Models
 
             [Display(Name = "Medio de Contacto")]
             public Nullable<int> MedioContacto { get; set; }
-
-            public string noexiste { get; set; }
-        }
     }
 }

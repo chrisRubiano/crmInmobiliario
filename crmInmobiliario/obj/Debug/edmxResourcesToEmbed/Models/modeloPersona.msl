@@ -39,6 +39,9 @@
     <EntitySetMapping Name="Personas">
       <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Personas">
         <MappingFragment StoreEntitySet="Personas">
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
           <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -79,6 +82,15 @@
           <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonasCategoria">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasCategoria">
+        <MappingFragment StoreEntitySet="PersonasCategoria">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

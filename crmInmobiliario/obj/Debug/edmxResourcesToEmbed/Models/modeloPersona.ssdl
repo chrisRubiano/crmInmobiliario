@@ -36,12 +36,15 @@
       <PropertyRef Name="IdPersona" />
     </Key>
     <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categoria" Type="int" />
     <Property Name="Tipo" Type="int" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="Paterno" Type="varchar" MaxLength="100" />
     <Property Name="Materno" Type="varchar" MaxLength="100" />
     <Property Name="Genero" Type="int" />
     <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="RazonSocial" Type="varchar" MaxLength="255" />
+    <Property Name="RFC" Type="varchar" MaxLength="13" />
     <Property Name="Email" Type="varchar" MaxLength="255" />
     <Property Name="Email2" Type="varchar" MaxLength="255" />
     <Property Name="Telefono" Type="varchar" MaxLength="20" />
@@ -58,6 +61,14 @@
     <Property Name="Estado" Type="int" />
     <Property Name="Pais" Type="int" />
     <Property Name="MedioContacto" Type="int" />
+  </EntityType>
+  <EntityType Name="PersonasCategoria">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categoria" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="PersonasGenero">
     <Key>
@@ -122,6 +133,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Personas_PersonasCategoria">
+    <End Role="PersonasCategoria" Type="Self.PersonasCategoria" Multiplicity="0..1" />
+    <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonasCategoria">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Personas">
+        <PropertyRef Name="Categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Personas_PersonasGenero">
     <End Role="PersonasGenero" Type="Self.PersonasGenero" Multiplicity="0..1" />
     <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
@@ -152,6 +175,7 @@
     <EntitySet Name="Municipios" EntityType="Self.Municipios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonasCategoria" EntityType="Self.PersonasCategoria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Personas_Estados" Association="Self.FK_Personas_Estados">
@@ -168,6 +192,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Personas_Paises" Association="Self.FK_Personas_Paises">
       <End Role="Paises" EntitySet="Paises" />
+      <End Role="Personas" EntitySet="Personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Personas_PersonasCategoria" Association="Self.FK_Personas_PersonasCategoria">
+      <End Role="PersonasCategoria" EntitySet="PersonasCategoria" />
       <End Role="Personas" EntitySet="Personas" />
     </AssociationSet>
     <AssociationSet Name="FK_Personas_PersonasGenero" Association="Self.FK_Personas_PersonasGenero">

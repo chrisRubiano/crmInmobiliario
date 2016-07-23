@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRMINMOBILIARIOModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Notas">
+    <Key>
+      <PropertyRef Name="IdNota" />
+    </Key>
+    <Property Name="IdNota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Persona" Type="Int32" />
+    <Property Name="Nota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Notas1" Relationship="Self.FK_Notas_Notas" FromRole="Notas" ToRole="Notas1" />
+    <NavigationProperty Name="Notas2" Relationship="Self.FK_Notas_Notas" FromRole="Notas1" ToRole="Notas" />
+  </EntityType>
+  <Association Name="FK_Notas_Notas">
+    <End Role="Notas" Type="Self.Notas" Multiplicity="1" />
+    <End Role="Notas1" Type="Self.Notas" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Notas">
+        <PropertyRef Name="IdNota" />
+      </Principal>
+      <Dependent Role="Notas1">
+        <PropertyRef Name="IdNota" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRMINMOBILIARIOEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Notas" EntityType="Self.Notas" />
+    <AssociationSet Name="FK_Notas_Notas" Association="Self.FK_Notas_Notas">
+      <End Role="Notas" EntitySet="Notas" />
+      <End Role="Notas1" EntitySet="Notas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
