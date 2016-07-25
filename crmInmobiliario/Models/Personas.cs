@@ -12,17 +12,25 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     [MetadataType(typeof(Persona))]
     public partial class Personas
     {
+        public Personas()
+        {
+            this.Notas = new HashSet<Notas>();
+        }
+    
         public int IdPersona { get; set; }
+        public Nullable<int> Categoria { get; set; }
         public int Tipo { get; set; }
         public string Nombre { get; set; }
         public string Paterno { get; set; }
         public string Materno { get; set; }
         public Nullable<int> Genero { get; set; }
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
+        public string RazonSocial { get; set; }
+        public string RFC { get; set; }
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Telefono { get; set; }
@@ -39,16 +47,14 @@ namespace crmInmobiliario.Models
         public Nullable<int> Estado { get; set; }
         public Nullable<int> Pais { get; set; }
         public Nullable<int> MedioContacto { get; set; }
-        public Nullable<int> Categoria { get; set; }
-        public string RazonSocial { get; set; }
-        public string RFC { get; set; }
     
+        public virtual ICollection<Notas> Notas { get; set; }
         public virtual Estados Estados { get; set; }
         public virtual MediosContacto MediosContacto { get; set; }
         public virtual Municipios Municipios { get; set; }
         public virtual Paises Paises { get; set; }
+        public virtual PersonasCategoria PersonasCategoria { get; set; }
         public virtual PersonasGenero PersonasGenero { get; set; }
         public virtual PersonasTipo PersonasTipo { get; set; }
-        public virtual PersonasCategoria PersonasCategoria { get; set; }
     }
 }

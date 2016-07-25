@@ -11,19 +11,10 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class MediosContacto
+    public partial class PropiedadesTipo
     {
-        public MediosContacto()
-        {
-            this.Personas = new HashSet<Personas>();
-        }
-    
-        public int IdMedioContacto { get; set; }
-        [Display(Name="Medio de contacto")]
-        public string MedioContacto { get; set; }
-    
-        public virtual ICollection<Personas> Personas { get; set; }
+        public int IdTipoPropiedad { get; set; }
+        public string Tipo { get; set; }
     }
 }

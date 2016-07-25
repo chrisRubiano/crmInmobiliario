@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities : DbContext
+    public partial class CRMINMOBILIARIOEntities2 : DbContext
     {
-        public CRMINMOBILIARIOEntities()
-            : base("name=CRMINMOBILIARIOEntities")
+        public CRMINMOBILIARIOEntities2()
+            : base("name=CRMINMOBILIARIOEntities2")
         {
         }
     
@@ -25,14 +25,15 @@ namespace crmInmobiliario.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Notas> Notas { get; set; }
+        public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<MediosContacto> MediosContacto { get; set; }
         public virtual DbSet<Municipios> Municipios { get; set; }
         public virtual DbSet<Paises> Paises { get; set; }
-        public virtual DbSet<Personas> Personas { get; set; }
+        public virtual DbSet<PersonasCategoria> PersonasCategoria { get; set; }
         public virtual DbSet<PersonasGenero> PersonasGenero { get; set; }
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
-        public virtual DbSet<PersonasCategoria> PersonasCategoria { get; set; }
-        public virtual DbSet<Notas> Notas { get; set; }
+        public virtual DbSet<PropiedadesTipo> PropiedadesTipo { get; set; }
     }
 }

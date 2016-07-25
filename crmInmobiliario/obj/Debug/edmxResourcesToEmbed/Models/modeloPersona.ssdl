@@ -24,6 +24,16 @@
     <Property Name="CveMunicipio" Type="int" />
     <Property Name="Municipio" Type="varchar" MaxLength="150" />
   </EntityType>
+  <EntityType Name="Notas">
+    <Key>
+      <PropertyRef Name="IdNota" />
+    </Key>
+    <Property Name="IdNota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Persona" Type="int" />
+    <Property Name="Nota" Type="varchar(max)" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Usuario" Type="nvarchar" MaxLength="128" />
+  </EntityType>
   <EntityType Name="Paises">
     <Key>
       <PropertyRef Name="IdPais" />
@@ -85,6 +95,18 @@
     <Property Name="Tipo" Type="varchar" MaxLength="50" />
     <Property Name="Descripcion" Type="varchar(max)" />
   </EntityType>
+  <Association Name="FK_Notas_Personas">
+    <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
+    <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="Persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Personas_Estados">
     <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
     <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
@@ -173,11 +195,16 @@
     <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MediosContacto" EntityType="Self.MediosContacto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Municipios" EntityType="Self.Municipios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PersonasCategoria" EntityType="Self.PersonasCategoria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Notas_Personas" Association="Self.FK_Notas_Personas">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
     <AssociationSet Name="FK_Personas_Estados" Association="Self.FK_Personas_Estados">
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Personas" EntitySet="Personas" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModel1StoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities1">
+  <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModel1StoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities2">
     <EntitySetMapping Name="Notas">
       <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Notas">
         <MappingFragment StoreEntitySet="Notas">
@@ -9,6 +9,107 @@
           <ScalarProperty Name="Nota" ColumnName="Nota" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personas">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Personas">
+        <MappingFragment StoreEntitySet="Personas">
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Paterno" ColumnName="Paterno" />
+          <ScalarProperty Name="Materno" ColumnName="Materno" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Calle" ColumnName="Calle" />
+          <ScalarProperty Name="NumExterior" ColumnName="NumExterior" />
+          <ScalarProperty Name="NumInterior" ColumnName="NumInterior" />
+          <ScalarProperty Name="EntreEsquina" ColumnName="EntreEsquina" />
+          <ScalarProperty Name="YCalle" ColumnName="YCalle" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="MedioContacto" ColumnName="MedioContacto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Estados">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MediosContacto">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.MediosContacto">
+        <MappingFragment StoreEntitySet="MediosContacto">
+          <ScalarProperty Name="MedioContacto" ColumnName="MedioContacto" />
+          <ScalarProperty Name="IdMedioContacto" ColumnName="IdMedioContacto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Municipios">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Municipios">
+        <MappingFragment StoreEntitySet="Municipios">
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="CveMunicipio" ColumnName="CveMunicipio" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paises">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Paises">
+        <MappingFragment StoreEntitySet="Paises">
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonasCategoria">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasCategoria">
+        <MappingFragment StoreEntitySet="PersonasCategoria">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonasGenero">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasGenero">
+        <MappingFragment StoreEntitySet="PersonasGenero">
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonasTipo">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasTipo">
+        <MappingFragment StoreEntitySet="PersonasTipo">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropiedadesTipo">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesTipo">
+        <MappingFragment StoreEntitySet="PropiedadesTipo">
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="IdTipoPropiedad" ColumnName="IdTipoPropiedad" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

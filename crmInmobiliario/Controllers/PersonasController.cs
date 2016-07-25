@@ -65,6 +65,12 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+    
+            var notasQry = from d in db.Notas where d.Persona == id select d.Nota;
+            var fechasQry = from d in db.Notas where d.Persona == id select d.Fecha;
+            ViewBag.notas = notasQry;
+            ViewBag.notasfecha = fechasQry;
+
             return View(personas);
         }
 

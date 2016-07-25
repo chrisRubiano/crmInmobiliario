@@ -178,18 +178,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotasController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Estados.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MediosContacto.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\modeloPersona.Context.cs">
       <AutoGen>True</AutoGen>
@@ -207,23 +208,44 @@
       <DependentUpon>modeloPersona.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Municipios.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notas.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Notas.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notas.cs">
+      <DependentUpon>Notas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Notas.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notas1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Paises.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Personas.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasCategoria.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasGenero.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasTipo.cs">
-      <DependentUpon>modeloPersona.tt</DependentUpon>
+      <DependentUpon>Notas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropiedadesTipo.cs">
+      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -278,6 +300,23 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
+    <EntityDeploy Include="Models\Notas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Notas.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Notas.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Notas.edmx</DependentUpon>
+      <LastGenOutput>Notas.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Notas.edmx.diagram">
+      <DependentUpon>Notas.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Notas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Notas.edmx</DependentUpon>
+      <LastGenOutput>Notas1.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -337,6 +376,11 @@
     <Content Include="Views\Personas\Details.cshtml" />
     <Content Include="Views\Personas\Edit.cshtml" />
     <Content Include="Views\Personas\Index.cshtml" />
+    <Content Include="Views\Notas\Create.cshtml" />
+    <Content Include="Views\Notas\Delete.cshtml" />
+    <Content Include="Views\Notas\Details.cshtml" />
+    <Content Include="Views\Notas\Edit.cshtml" />
+    <Content Include="Views\Notas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="58043a9f99a74513bcc52ec982f72680" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Notas" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Personas" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Notas_Personas" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Estados" Width="1.5" PointX="0.75" PointY="17.25" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.MediosContacto" Width="1.5" PointX="0.75" PointY="14.875" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Municipios" Width="1.5" PointX="0.75" PointY="19.875" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Paises" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasCategoria" Width="1.5" PointX="0.75" PointY="24.875" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasGenero" Width="1.5" PointX="0.75" PointY="22.5" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasTipo" Width="1.5" PointX="0.75" PointY="12.375" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesTipo" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_Estados" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_MediosContacto" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_Municipios" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_Paises" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasCategoria" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasGenero" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasTipo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

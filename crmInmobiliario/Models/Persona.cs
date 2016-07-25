@@ -6,7 +6,7 @@ using System.Web;
 
 namespace crmInmobiliario.Models
 {
-    public partial class Persona
+    public class Persona
     {
             [Required]
             public int Tipo { get; set; }
@@ -48,5 +48,10 @@ namespace crmInmobiliario.Models
 
             [Display(Name = "Medio de Contacto")]
             public Nullable<int> MedioContacto { get; set; }
+
+            public string nombreCompleto()
+            {
+                return Nombre + " " + Paterno + " " + Materno;
+            }
     }
 }

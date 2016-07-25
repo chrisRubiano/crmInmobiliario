@@ -72,6 +72,7 @@
     <Property Name="RazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="PersonasCategoria" Relationship="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria" FromRole="Personas" ToRole="PersonasCategoria" />
+    <NavigationProperty Name="Notas" Relationship="CRMINMOBILIARIOModel.FK_Notas_Personas" FromRole="Personas" ToRole="Notas" />
   </EntityType>
   <EntityType Name="PersonasGenero">
     <Key>
@@ -199,6 +200,11 @@
       <End Role="PersonasCategoria" EntitySet="PersonasCategoria" />
       <End Role="Personas" EntitySet="Personas" />
     </AssociationSet>
+    <EntitySet Name="Notas" EntityType="CRMINMOBILIARIOModel.Notas" />
+    <AssociationSet Name="FK_Notas_Personas" Association="CRMINMOBILIARIOModel.FK_Notas_Personas">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="PersonasCategoria">
     <Key>
@@ -218,6 +224,29 @@
       </Principal>
       <Dependent Role="Personas">
         <PropertyRef Name="Categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Notas">
+    <Key>
+      <PropertyRef Name="IdNota" />
+    </Key>
+    <Property Name="IdNota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Persona" Type="Int32" />
+    <Property Name="Nota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel.FK_Notas_Personas" FromRole="Notas" ToRole="Personas" />
+  </EntityType>
+  <Association Name="FK_Notas_Personas">
+    <End Type="CRMINMOBILIARIOModel.Personas" Role="Personas" Multiplicity="0..1" />
+    <End Type="CRMINMOBILIARIOModel.Notas" Role="Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="Persona" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
