@@ -10,6 +10,7 @@ using crmInmobiliario.Models;
 
 namespace crmInmobiliario.Controllers
 {
+    [Authorize]
     public class NotasController : Controller
     {
         private CRMINMOBILIARIOEntities2 db = new CRMINMOBILIARIOEntities2();
@@ -42,9 +43,10 @@ namespace crmInmobiliario.Controllers
             var personasList = new List<string>();
             var notaPersonaQry = from d in db.Personas where d.IdPersona == idPersona select d.Nombre+" "+d.Paterno+" "+d.Materno;
             personasList.AddRange(notaPersonaQry);
-
             ViewBag.Persona = personasList[0];
-            return View();
+            Notas notas = new Notas();
+            notas.Fecha = DateTime.Today;
+            return View(notas);
         }
 
         // POST: Notas/Create
@@ -57,6 +59,7 @@ namespace crmInmobiliario.Controllers
             if (ModelState.IsValid)
             {
                 notas.Persona = idPersona;
+                notas.Fecha = DateTime.Today;
                 db.Notas.Add(notas);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,6 +94,7 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
+                notas.Fecha = DateTime.Today;
                 db.Entry(notas).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

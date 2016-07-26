@@ -11,7 +11,6 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class MediosContacto
     {
@@ -21,7 +20,6 @@ namespace crmInmobiliario.Models
         }
     
         public int IdMedioContacto { get; set; }
-        [Display(Name="Medio de contacto")]
         public string MedioContacto { get; set; }
     
         public virtual ICollection<Personas> Personas { get; set; }

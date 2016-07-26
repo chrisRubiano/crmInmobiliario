@@ -11,12 +11,18 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Notas
     {
         public int IdNota { get; set; }
         public Nullable<int> Persona { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string Nota { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
         public string Usuario { get; set; }
     

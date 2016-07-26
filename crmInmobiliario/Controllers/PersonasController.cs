@@ -16,7 +16,7 @@ namespace crmInmobiliario.Controllers
         private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
 
         // GET: Personas
-        public ActionResult Index(string tipoCliente, string nombre)
+        public ActionResult Index(string categoria, string nombre)
         {
             var nombreCompleto = new List<string>();
             var nombreQry = from d in db.Personas
@@ -26,20 +26,20 @@ namespace crmInmobiliario.Controllers
             ViewBag.nombre = new SelectList(nombreCompleto);
 
 
-            var tiposCliente = new List<string>();
-            var tipoQry = from d in db.PersonasTipo
-                          orderby d.Tipo
-                          select d.Tipo.ToString();
+            var categorias = new List<string>();
+            var categoriaQry = from d in db.PersonasCategoria
+                          orderby d.Categoria
+                          select d.Categoria.ToString();
 
-            tiposCliente.AddRange(tipoQry.Distinct());
-            ViewBag.tipoCliente = new SelectList(tiposCliente);
+            categorias.AddRange(categoriaQry.Distinct());
+            ViewBag.categoria = new SelectList(categorias);
 
             var personas = from p in db.Personas
                          select p;
 
-            if (!string.IsNullOrEmpty(tipoCliente))
+            if (!string.IsNullOrEmpty(categoria))
             {
-                personas = personas.Where(s => s.PersonasTipo.Tipo.ToString().Contains(tipoCliente));
+                personas = personas.Where(s => s.PersonasCategoria.Categoria.ToString().Contains(categoria));
             }
 
             if (!string.IsNullOrEmpty(nombre))
@@ -56,29 +56,30 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Details/5
         public ActionResult Details(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            VariosModelos vModelos = new VariosModelos();
             Personas personas = db.Personas.Find(id);
             if (personas == null)
             {
                 return HttpNotFound();
             }
-    
-            var notasQry = from d in db.Notas where d.Persona == id select d.Nota;
-            var fechasQry = from d in db.Notas where d.Persona == id select d.Fecha;
-            ViewBag.notas = notasQry;
-            ViewBag.notasfecha = fechasQry;
+            vModelos.personas = personas;
+            var notas = db.Notas.Where(d => d.Persona == id).OrderByDescending(d => d.Fecha);
+            vModelos.notas = notas;
 
-            return View(personas);
+            return View(vModelos);
         }
 
         // GET: Personas/Create
         public ActionResult Create(string categoria)
         {
 
-            ViewBag.tipoPersona = categoria;
+            ViewBag.categoria = categoria;
 
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado");
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");

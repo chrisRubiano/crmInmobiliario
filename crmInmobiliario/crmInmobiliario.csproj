@@ -184,6 +184,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Notas1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Notas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VariosModelos.cs" />
     <Compile Include="Models\Estados.cs">
       <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
@@ -222,11 +228,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Notas.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Notas1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Notas.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Paises.cs">
       <DependentUpon>Notas.tt</DependentUpon>

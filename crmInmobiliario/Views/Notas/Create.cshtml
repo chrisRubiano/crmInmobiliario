@@ -1,10 +1,10 @@
 ﻿@model crmInmobiliario.Models.Notas
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Guardar";
 }
 
-<h2>Create</h2>
+<h2>Guardar</h2>
 
 
 @using (Html.BeginForm()) 
@@ -24,32 +24,32 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista de personas</button>
 </div>
 
 @section Scripts {
