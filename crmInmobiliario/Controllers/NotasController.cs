@@ -59,18 +59,19 @@ namespace crmInmobiliario.Controllers
             if (ModelState.IsValid)
             {
                 notas.Persona = idPersona;
-                notas.Fecha = DateTime.Today;
+                notas.Fecha = DateTime.Now;
                 db.Notas.Add(notas);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index", "Personas");
+                return Redirect("/Personas/Details/" + idPersona.ToString());
             }
 
             //ViewBag.Persona = db.Personas.Find(idPersona);
-            return View(notas);
+            return Redirect("/Personas/Details/"+idPersona.ToString());
         }
 
         // GET: Notas/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int idPersona)
         {
             if (id == null)
             {
@@ -90,17 +91,18 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdNota,Persona,Nota,Fecha,Usuario")] Notas notas)
+        public ActionResult Edit([Bind(Include = "IdNota,Persona,Nota,Fecha,Usuario")] Notas notas, int idPersona)
         {
             if (ModelState.IsValid)
             {
-                notas.Fecha = DateTime.Today;
+                notas.Fecha = DateTime.Now;
+                notas.Persona = idPersona;
                 db.Entry(notas).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Personas/Details/" + idPersona.ToString());
             }
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", notas.Persona);
-            return View(notas);
+            return Redirect("/Personas/Details/" + idPersona.ToString());
         }
 
         // GET: Notas/Delete/5
@@ -124,9 +126,10 @@ namespace crmInmobiliario.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Notas notas = db.Notas.Find(id);
+            var persona = notas.Persona;
             db.Notas.Remove(notas);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Personas/Details/" + persona.ToString());
         }
 
         protected override void Dispose(bool disposing)

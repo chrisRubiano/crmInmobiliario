@@ -49,6 +49,9 @@ namespace crmInmobiliario.Models
             [Display(Name = "Medio de Contacto")]
             public Nullable<int> MedioContacto { get; set; }
 
+            [Display(Name="Razón Social")]
+            public string RazonSocial { get; set; }
+
             public string nombreCompleto()
             {
                 return Nombre + " " + Paterno + " " + Materno;

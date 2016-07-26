@@ -76,17 +76,15 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Create
-        public ActionResult Create(string categoria)
+        public ActionResult Create(int categoria)
         {
-
-            ViewBag.categoria = categoria;
-
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado");
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio");
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
+            ViewBag.Categoria = categoria;
             return View();
         }
 
@@ -95,10 +93,11 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto")] Personas personas)
+        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto")] Personas personas, int categoria)
         {
             if (ModelState.IsValid)
             {
+                personas.Categoria = categoria;
                 db.Personas.Add(personas);
                 db.SaveChanges();
                 return RedirectToAction("Index");

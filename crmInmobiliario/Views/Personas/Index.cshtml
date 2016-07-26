@@ -7,8 +7,8 @@
 <h2>Indice</h2>
 
 <p>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Personas", new { categoria = "Cliente"})'"><i class="fa fa-user-plus"></i> Registrar Cliente</button>
-    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Personas", new { categoria = "Prospecto" })'"><i class="fa fa-user-plus"></i> Registrar Prospecto</button>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Personas", new { categoria = 2 })'"><i class="fa fa-user-plus"></i> Registrar Cliente</button>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Personas", new { categoria = 1 })'"><i class="fa fa-user-plus"></i> Registrar Prospecto</button>
  
     <hr />
 
@@ -54,6 +54,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MediosContacto.MedioContacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RazonSocial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RFC)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Calle)
@@ -131,6 +137,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MediosContacto.MedioContacto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RazonSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RFC)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Calle)

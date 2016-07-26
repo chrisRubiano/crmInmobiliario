@@ -58,7 +58,7 @@
 }
 
 <div>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista de personas</button>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Personas", new { id = Model.Persona })';return false;"><i class="fa fa-chevron-left"></i> Volver a detalles</button>
 </div>
 
 @section Scripts {
