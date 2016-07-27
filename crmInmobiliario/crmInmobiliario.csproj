@@ -184,70 +184,119 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Notas1.cs">
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CaracteristicasPropiedades.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\crm.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\VariosModelos.cs" />
+    <Compile Include="Models\crm.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\crm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crm.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Desarrollos.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Domicilios.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DomiciliosTipo.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Estados.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MediosContacto.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\modeloPersona.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>modeloPersona.Context.tt</DependentUpon>
+    <Compile Include="Models\MediosEnterarse.cs">
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\modeloPersona.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>modeloPersona.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\modeloPersona.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>modeloPersona.edmx</DependentUpon>
+    <Compile Include="Models\Monedas.cs">
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Municipios.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Notas.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Notas.Context.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\Notas.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Notas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Notas.edmx</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Paises.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\Personas.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasCategoria.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasGenero.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasTipo.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Propiedades.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropiedadesAntiguedad.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropiedadesCaracteristicas.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropiedadesCaracteristicasCategorias.cs">
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesTipo.cs">
-      <DependentUpon>Notas.tt</DependentUpon>
+      <DependentUpon>crm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PropiedadesTiposOperacion.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProspectosPropiedades.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tareas.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TareasCategorias.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TareasEstatus.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VariosModelos.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -277,23 +326,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\modeloPersona.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>modeloPersona.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\modeloPersona.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modeloPersona.edmx</DependentUpon>
-      <LastGenOutput>modeloPersona.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\modeloPersona.edmx.diagram">
-      <DependentUpon>modeloPersona.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\modeloPersona.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modeloPersona.edmx</DependentUpon>
-      <LastGenOutput>modeloPersona.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -301,22 +333,22 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
-    <EntityDeploy Include="Models\Notas.edmx">
+    <EntityDeploy Include="Models\crm.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Notas.Designer.cs</LastGenOutput>
+      <LastGenOutput>crm.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Notas.Context.tt">
+    <Content Include="Models\crm.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Notas.edmx</DependentUpon>
-      <LastGenOutput>Notas.Context.cs</LastGenOutput>
+      <DependentUpon>crm.edmx</DependentUpon>
+      <LastGenOutput>crm.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Notas.edmx.diagram">
-      <DependentUpon>Notas.edmx</DependentUpon>
+    <Content Include="Models\crm.edmx.diagram">
+      <DependentUpon>crm.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Notas.tt">
+    <Content Include="Models\crm.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Notas.edmx</DependentUpon>
-      <LastGenOutput>Notas1.cs</LastGenOutput>
+      <DependentUpon>crm.edmx</DependentUpon>
+      <LastGenOutput>crm.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />

@@ -13,7 +13,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PersonasController : Controller
     {
-        private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
+        private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
         // GET: Personas
         public ActionResult Index(string categoria, string nombre)
@@ -103,10 +103,7 @@ namespace crmInmobiliario.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", personas.Estado);
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
-            ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", personas.Municipio);
-            ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", personas.Pais);
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             return View(personas);
@@ -124,10 +121,8 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", personas.Estado);
+
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
-            ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", personas.Municipio);
-            ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", personas.Pais);
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             return View(personas);
@@ -146,10 +141,8 @@ namespace crmInmobiliario.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", personas.Estado);
+
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
-            ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", personas.Municipio);
-            ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", personas.Pais);
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             return View(personas);

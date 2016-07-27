@@ -11,10 +11,8 @@ namespace crmInmobiliario.Models
             [Required]
             public int Tipo { get; set; }
 
-            [Required]
             public string Nombre { get; set; }
 
-            [Required]
             [Display(Name = "Apellido Paterno")]
             public string Paterno { get; set; }
 
@@ -33,18 +31,6 @@ namespace crmInmobiliario.Models
             [Display(Name = "Segundo Email")]
             [DataType(DataType.EmailAddress)]
             public string Email2 { get; set; }
-
-            [Display(Name = "Entre Calle/ Esquina con")]
-            public string EntreEsquina { get; set; }
-
-            [Display(Name = "Y Calle")]
-            public string YCalle { get; set; }
-
-            [Display(Name = "Código Postal")]
-            public Nullable<int> CP { get; set; }
-
-            [Display(Name = "País")]
-            public Nullable<int> Pais { get; set; }
 
             [Display(Name = "Medio de Contacto")]
             public Nullable<int> MedioContacto { get; set; }

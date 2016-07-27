@@ -52,6 +52,10 @@ table {
     padding-right: 10px;
 }
 
+.uppercase{
+    text-transform: uppercase;
+}
+
 /*Ajustes de iconos font awesome*/
 
 button.navbar-toggle {

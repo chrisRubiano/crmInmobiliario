@@ -12,18 +12,11 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PropiedadesTipo
+    public partial class C__MigrationHistory
     {
-        public PropiedadesTipo()
-        {
-            this.Propiedades = new HashSet<Propiedades>();
-        }
-    
-        public int IdTipoPropiedad { get; set; }
-        public string TipoPropiedad { get; set; }
-        public string Clave { get; set; }
-        public Nullable<bool> Activo { get; set; }
-    
-        public virtual ICollection<Propiedades> Propiedades { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

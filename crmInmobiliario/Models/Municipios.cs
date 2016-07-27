@@ -16,7 +16,7 @@ namespace crmInmobiliario.Models
     {
         public Municipios()
         {
-            this.Personas = new HashSet<Personas>();
+            this.Domicilios = new HashSet<Domicilios>();
         }
     
         public int IdMunicipio { get; set; }
@@ -24,6 +24,6 @@ namespace crmInmobiliario.Models
         public Nullable<int> CveMunicipio { get; set; }
         public string Municipio { get; set; }
     
-        public virtual ICollection<Personas> Personas { get; set; }
+        public virtual ICollection<Domicilios> Domicilios { get; set; }
     }
 }

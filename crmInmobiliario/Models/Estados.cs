@@ -16,13 +16,13 @@ namespace crmInmobiliario.Models
     {
         public Estados()
         {
-            this.Personas = new HashSet<Personas>();
+            this.Domicilios = new HashSet<Domicilios>();
         }
     
         public int IdEstado { get; set; }
         public string Estado { get; set; }
         public string Abreviacion { get; set; }
     
-        public virtual ICollection<Personas> Personas { get; set; }
+        public virtual ICollection<Domicilios> Domicilios { get; set; }
     }
 }

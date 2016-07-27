@@ -12,17 +12,15 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PropiedadesTipo
+    public partial class PropiedadesTiposOperacion
     {
-        public PropiedadesTipo()
+        public PropiedadesTiposOperacion()
         {
             this.Propiedades = new HashSet<Propiedades>();
         }
     
-        public int IdTipoPropiedad { get; set; }
-        public string TipoPropiedad { get; set; }
-        public string Clave { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public int IdTipoOperacion { get; set; }
+        public string TipoOperacion { get; set; }
     
         public virtual ICollection<Propiedades> Propiedades { get; set; }
     }
