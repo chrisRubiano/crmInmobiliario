@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -176,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DomiciliosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
@@ -414,9 +416,15 @@
     <Content Include="Views\Notas\Details.cshtml" />
     <Content Include="Views\Notas\Edit.cshtml" />
     <Content Include="Views\Notas\Index.cshtml" />
+    <Content Include="Views\Domicilios\Create.cshtml" />
+    <Content Include="Views\Domicilios\Delete.cshtml" />
+    <Content Include="Views\Domicilios\Details.cshtml" />
+    <Content Include="Views\Domicilios\Edit.cshtml" />
+    <Content Include="Views\Domicilios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

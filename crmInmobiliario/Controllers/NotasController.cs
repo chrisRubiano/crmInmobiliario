@@ -45,7 +45,7 @@ namespace crmInmobiliario.Controllers
             personasList.AddRange(notaPersonaQry);
             ViewBag.Persona = personasList[0];
             Notas notas = new Notas();
-            notas.Fecha = DateTime.Today;
+            notas.Fecha = DateTime.Now;
             return View(notas);
         }
 
@@ -67,7 +67,7 @@ namespace crmInmobiliario.Controllers
             }
 
             //ViewBag.Persona = db.Personas.Find(idPersona);
-            return Redirect("/Personas/Details/"+idPersona.ToString());
+            return View(notas);
         }
 
         // GET: Notas/Edit/5
@@ -102,7 +102,7 @@ namespace crmInmobiliario.Controllers
                 return Redirect("/Personas/Details/" + idPersona.ToString());
             }
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", notas.Persona);
-            return Redirect("/Personas/Details/" + idPersona.ToString());
+            return View(notas);
         }
 
         // GET: Notas/Delete/5

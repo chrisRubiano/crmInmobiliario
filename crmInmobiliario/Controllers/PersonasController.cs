@@ -69,8 +69,12 @@ namespace crmInmobiliario.Controllers
                 return HttpNotFound();
             }
             vModelos.personas = personas;
+
             var notas = db.Notas.Where(d => d.Persona == id).OrderByDescending(d => d.Fecha);
             vModelos.notas = notas;
+
+            var domicilios = db.Domicilios.Where(d => d.IdPersona == id).OrderByDescending(d => d.IdDomicilio);
+            vModelos.domicilios = domicilios;
 
             return View(vModelos);
         }
@@ -122,6 +126,7 @@ namespace crmInmobiliario.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);

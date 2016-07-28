@@ -1,0 +1,123 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Domicilios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumExterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumInterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntreEsquina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YCalle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Colonia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DomiciliosTipo.TipoDomicilio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estados.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Municipios.Municipio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paises.Pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumExterior)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumInterior)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntreEsquina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YCalle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Colonia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DomiciliosTipo.TipoDomicilio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estados.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Municipios.Municipio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paises.Pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personas.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Propiedades.Titulo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdDomicilio }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdDomicilio }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdDomicilio })
+        </td>
+    </tr>
+}
+
+</table>

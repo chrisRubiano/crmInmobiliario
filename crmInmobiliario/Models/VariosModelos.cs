@@ -9,5 +9,6 @@ namespace crmInmobiliario.Models
     {
         public Personas personas { get; set; }
         public IEnumerable<crmInmobiliario.Models.Notas> notas { get; set; }
+        public IEnumerable<crmInmobiliario.Models.Domicilios> domicilios { get; set; }
     }
 }

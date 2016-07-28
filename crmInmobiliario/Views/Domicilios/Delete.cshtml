@@ -1,0 +1,151 @@
+﻿@model crmInmobiliario.Models.Domicilios
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<div>
+    <h4>Domicilios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumExterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumExterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumInterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumInterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntreEsquina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntreEsquina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YCalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YCalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Colonia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colonia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DomiciliosTipo.TipoDomicilio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DomiciliosTipo.TipoDomicilio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estados.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estados.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipios.Municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipios.Municipio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paises.Pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paises.Pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedades.Titulo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Personas", new { id = Model.IdPersona })';return false;"><i class="fa fa-chevron-left"></i> Volver a detalles</button>
+            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Eliminar</button>
+        </div>
+    }
+</div>

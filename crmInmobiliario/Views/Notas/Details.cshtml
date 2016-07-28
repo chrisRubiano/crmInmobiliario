@@ -1,10 +1,10 @@
 ﻿@model crmInmobiliario.Models.Notas
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>Notas</h4>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Personas.Nombre)
+            @Html.DisplayFor(model => model.Personas.Nombre) @Html.DisplayFor(model => model.Personas.Paterno)
         </dd>
 
     </dl>
