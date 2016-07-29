@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class PropiedadesAntiguedad
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PropiedadesAntiguedad()
         {
             this.Propiedades = new HashSet<Propiedades>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdAntiguedad { get; set; }
         public string Antiguedad { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Propiedades> Propiedades { get; set; }
     }
 }

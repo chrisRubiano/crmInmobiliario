@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class Estados
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estados()
         {
             this.Domicilios = new HashSet<Domicilios>();
@@ -23,6 +24,7 @@ namespace crmInmobiliario.Models
         public string Estado { get; set; }
         public string Abreviacion { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Domicilios> Domicilios { get; set; }
     }
 }

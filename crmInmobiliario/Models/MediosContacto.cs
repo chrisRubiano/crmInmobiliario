@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class MediosContacto
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MediosContacto()
         {
             this.Personas = new HashSet<Personas>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdMedioContacto { get; set; }
         public string MedioContacto { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Personas> Personas { get; set; }
     }
 }

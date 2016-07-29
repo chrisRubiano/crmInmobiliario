@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities3 : DbContext
+    public partial class CRMINMOBILIARIOEntities4 : DbContext
     {
-        public CRMINMOBILIARIOEntities3()
-            : base("name=CRMINMOBILIARIOEntities3")
+        public CRMINMOBILIARIOEntities4()
+            : base("name=CRMINMOBILIARIOEntities4")
         {
         }
     
@@ -33,6 +33,7 @@ namespace crmInmobiliario.Models
         public virtual DbSet<CaracteristicasPropiedades> CaracteristicasPropiedades { get; set; }
         public virtual DbSet<Desarrollos> Desarrollos { get; set; }
         public virtual DbSet<Domicilios> Domicilios { get; set; }
+        public virtual DbSet<DomiciliosCategoria> DomiciliosCategoria { get; set; }
         public virtual DbSet<DomiciliosTipo> DomiciliosTipo { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<MediosContacto> MediosContacto { get; set; }
@@ -44,8 +45,10 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<PersonasCategoria> PersonasCategoria { get; set; }
         public virtual DbSet<PersonasGenero> PersonasGenero { get; set; }
+        public virtual DbSet<PersonasIntereses> PersonasIntereses { get; set; }
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
         public virtual DbSet<Propiedades> Propiedades { get; set; }
+        public virtual DbSet<PropiedadesAcabados> PropiedadesAcabados { get; set; }
         public virtual DbSet<PropiedadesAntiguedad> PropiedadesAntiguedad { get; set; }
         public virtual DbSet<PropiedadesCaracteristicas> PropiedadesCaracteristicas { get; set; }
         public virtual DbSet<PropiedadesCaracteristicasCategorias> PropiedadesCaracteristicasCategorias { get; set; }

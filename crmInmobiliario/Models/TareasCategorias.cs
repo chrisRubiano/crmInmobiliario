@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class TareasCategorias
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TareasCategorias()
         {
             this.Tareas = new HashSet<Tareas>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdCategoria { get; set; }
         public string Categoria { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tareas> Tareas { get; set; }
     }
 }

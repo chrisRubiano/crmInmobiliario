@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class Paises
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Paises()
         {
             this.Domicilios = new HashSet<Domicilios>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdPais { get; set; }
         public string Pais { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Domicilios> Domicilios { get; set; }
     }
 }

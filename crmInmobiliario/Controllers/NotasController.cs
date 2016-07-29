@@ -13,7 +13,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class NotasController : Controller
     {
-        private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
+        private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
 
         // GET: Notas
         public ActionResult Index()

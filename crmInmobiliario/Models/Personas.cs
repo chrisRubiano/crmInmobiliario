@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class Personas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Personas()
         {
             this.Domicilios = new HashSet<Domicilios>();
@@ -31,15 +32,26 @@ namespace crmInmobiliario.Models
         public string RazonSocial { get; set; }
         public string RFC { get; set; }
         public string Email { get; set; }
+        public string Email2 { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public Nullable<int> MedioContacto { get; set; }
+        public Nullable<int> Interes { get; set; }
+        public Nullable<int> CategoriaInteres { get; set; }
+        public string Usuario { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public string UsuarioUA { get; set; }
+        public Nullable<System.DateTime> FechaUA { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Domicilios> Domicilios { get; set; }
         public virtual MediosContacto MediosContacto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notas> Notas { get; set; }
         public virtual PersonasCategoria PersonasCategoria { get; set; }
         public virtual PersonasGenero PersonasGenero { get; set; }
+        public virtual PersonasIntereses PersonasIntereses { get; set; }
         public virtual PersonasTipo PersonasTipo { get; set; }
+        public virtual PropiedadesTipo PropiedadesTipo { get; set; }
     }
 }

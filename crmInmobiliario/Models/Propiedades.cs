@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class Propiedades
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Propiedades()
         {
             this.CaracteristicasPropiedades = new HashSet<CaracteristicasPropiedades>();
@@ -34,6 +35,8 @@ namespace crmInmobiliario.Models
         public string Descripcion { get; set; }
         public Nullable<int> Moneda { get; set; }
         public Nullable<int> Recamaras { get; set; }
+        public Nullable<int> PreparacionBanio { get; set; }
+        public Nullable<bool> IncluyeInstalacionBanio { get; set; }
         public Nullable<int> Banios { get; set; }
         public Nullable<int> MedioBanios { get; set; }
         public Nullable<int> Estacionamientos { get; set; }
@@ -41,19 +44,26 @@ namespace crmInmobiliario.Models
         public Nullable<decimal> Terreno { get; set; }
         public Nullable<decimal> LargoTerreno { get; set; }
         public Nullable<decimal> FrenteTerreno { get; set; }
+        public Nullable<int> Acabados { get; set; }
+        public string AcabadosEspecifique { get; set; }
         public Nullable<int> Antiguedad { get; set; }
+        public Nullable<int> PisoEnQueSeEncuentra { get; set; }
         public Nullable<int> CantidadPisos { get; set; }
-        public string PisoEnQueSeEncuentra { get; set; }
         public string MantenimientoMensual { get; set; }
         public string Codigo { get; set; }
-        public Nullable<System.DateTime> FechaRegistro { get; set; }
-        public Nullable<int> UsuarioRegistro { get; set; }
         public string Observaciones { get; set; }
+        public string Usuario { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public string UsuarioUA { get; set; }
+        public Nullable<System.DateTime> FechaUA { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaracteristicasPropiedades> CaracteristicasPropiedades { get; set; }
         public virtual Desarrollos Desarrollos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Domicilios> Domicilios { get; set; }
         public virtual Monedas Monedas { get; set; }
+        public virtual PropiedadesAcabados PropiedadesAcabados { get; set; }
         public virtual PropiedadesAntiguedad PropiedadesAntiguedad { get; set; }
         public virtual PropiedadesTipo PropiedadesTipo { get; set; }
         public virtual PropiedadesTiposOperacion PropiedadesTiposOperacion { get; set; }

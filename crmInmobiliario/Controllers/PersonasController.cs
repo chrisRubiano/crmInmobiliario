@@ -7,13 +7,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using crmInmobiliario.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace crmInmobiliario.Controllers
 {
     [Authorize]
     public class PersonasController : Controller
     {
-        private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
+        private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
+        
 
         // GET: Personas
         public ActionResult Index(string categoria, string nombre)
@@ -53,6 +56,49 @@ namespace crmInmobiliario.Controllers
             return View(personas.ToList());
         }
 
+
+        public ActionResult ListaProspectos(string nombre)
+        {
+            var nombreCompleto = new List<string>();
+            var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
+                            orderby d.Paterno
+                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
+            nombreCompleto.AddRange(nombreQry);
+            ViewBag.nombre = new SelectList(nombreCompleto);
+
+            var personas = from p in db.Personas.Where(p => p.Categoria == 1)
+                           select p;
+
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                personas = from p in db.Personas select p;
+                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
+            }
+
+            return View(personas.ToList());
+        }
+
+        public ActionResult ListaClientes(string nombre)
+        {
+            var nombreCompleto = new List<string>();
+            var nombreQry = from d in db.Personas.Where(p => p.Categoria == 2)
+                            orderby d.Paterno
+                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
+            nombreCompleto.AddRange(nombreQry);
+            ViewBag.nombre = new SelectList(nombreCompleto);
+
+            var personas = from p in db.Personas.Where(p => p.Categoria == 2)
+                           select p;
+
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                personas = from p in db.Personas select p;
+                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
+            }
+
+            return View(personas.ToList());
+        }
+
         // GET: Personas/Details/5
         public ActionResult Details(int? id)
         {
@@ -82,12 +128,11 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Create
         public ActionResult Create(int categoria)
         {
-            ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado");
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
-            ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio");
-            ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
+            ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
             ViewBag.Categoria = categoria;
             return View();
         }
@@ -97,10 +142,12 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto")] Personas personas, int categoria)
+        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,Interes,CategoriaInteres,Usuario,FechaRegistro")] Personas personas, int categoria)
         {
             if (ModelState.IsValid)
             {
+                personas.Usuario = User.Identity.GetUserId().ToString();
+                personas.FechaRegistro = DateTime.Now;
                 personas.Categoria = categoria;
                 db.Personas.Add(personas);
                 db.SaveChanges();
@@ -110,6 +157,8 @@ namespace crmInmobiliario.Controllers
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+            ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
             return View(personas);
         }
 
@@ -138,7 +187,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto")] Personas personas)
+        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto")] Personas personas)
         {
             if (ModelState.IsValid)
             {

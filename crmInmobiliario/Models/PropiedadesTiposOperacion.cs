@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class PropiedadesTiposOperacion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PropiedadesTiposOperacion()
         {
             this.Propiedades = new HashSet<Propiedades>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdTipoOperacion { get; set; }
         public string TipoOperacion { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Propiedades> Propiedades { get; set; }
     }
 }

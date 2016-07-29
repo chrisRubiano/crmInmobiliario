@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class PersonasGenero
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PersonasGenero()
         {
             this.Personas = new HashSet<Personas>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdGenero { get; set; }
         public string Genero { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Personas> Personas { get; set; }
     }
 }

@@ -100,7 +100,14 @@
         @foreach (var d in Model.domicilios)
         {
             <hr />
-            
+            <dt class="text-info">
+                <i class="fa fa-map-marker"></i> Domicilio
+            </dt>
+            <dd>
+                
+            </dd>
+
+
             <dt>
                 @Html.DisplayNameFor(model => d.Calle)
             </dt>
@@ -146,7 +153,9 @@
         }
     </dl>
 
-<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Domicilios", new { idPersona = Model.personas.IdPersona, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-map-marker"></i> Agregar Domicilio</button>
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Domicilios", new { idPersona = Model.personas.IdPersona, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-map-marker"></i> Agregar Domicilio</button>
+</p>
 
 </div>
 <div class="col-md-6">

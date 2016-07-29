@@ -16,6 +16,7 @@ namespace crmInmobiliario.Models
     {
         public int IdDomicilio { get; set; }
         public Nullable<int> TipoDomicilio { get; set; }
+        public Nullable<int> Categoria { get; set; }
         public Nullable<int> IdPersona { get; set; }
         public Nullable<int> IdPropiedad { get; set; }
         public string Calle { get; set; }
@@ -31,7 +32,12 @@ namespace crmInmobiliario.Models
         public Nullable<int> Pais { get; set; }
         public Nullable<decimal> Longitud { get; set; }
         public Nullable<decimal> Latitud { get; set; }
+        public string Usuario { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public string UsuarioUA { get; set; }
+        public Nullable<System.DateTime> FechaUA { get; set; }
     
+        public virtual DomiciliosCategoria DomiciliosCategoria { get; set; }
         public virtual DomiciliosTipo DomiciliosTipo { get; set; }
         public virtual Estados Estados { get; set; }
         public virtual Municipios Municipios { get; set; }

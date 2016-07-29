@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
     
     public partial class MediosEnterarse
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MediosEnterarse()
         {
             this.ProspectosPropiedades = new HashSet<ProspectosPropiedades>();
@@ -22,6 +23,7 @@ namespace crmInmobiliario.Models
         public int IdMedio { get; set; }
         public string Medio { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProspectosPropiedades> ProspectosPropiedades { get; set; }
     }
 }

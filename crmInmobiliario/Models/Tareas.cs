@@ -22,6 +22,10 @@ namespace crmInmobiliario.Models
         public Nullable<System.TimeSpan> Hora { get; set; }
         public string AsignadoA { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public string Usuario { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
+        public string UsuarioUA { get; set; }
+        public Nullable<System.DateTime> FechaUA { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual TareasCategorias TareasCategorias { get; set; }

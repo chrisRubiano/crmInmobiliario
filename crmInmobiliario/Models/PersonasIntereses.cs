@@ -12,18 +12,18 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRoles
+    public partial class PersonasIntereses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRoles()
+        public PersonasIntereses()
         {
-            this.AspNetUsers = new HashSet<AspNetUsers>();
+            this.Personas = new HashSet<Personas>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int IdInteres { get; set; }
+        public string Interes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public virtual ICollection<Personas> Personas { get; set; }
     }
 }
