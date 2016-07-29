@@ -1,0 +1,231 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Propiedades>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VentaPrecio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaPrecio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaTarifaDiaria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaTarifaSemanal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaTarifaMensual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaEstadiaMinima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recamaras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreparacionBanio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncluyeInstalacionBanio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Banios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedioBanios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estacionamientos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Construccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Terreno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LargoTerreno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrenteTerreno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcabadosEspecifique)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PisoEnQueSeEncuentra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadPisos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MantenimientoMensual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monedas.Moneda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesAcabados.Acabado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesAntiguedad.Antiguedad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesTipo.TipoPropiedad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VentaPrecio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentaPrecio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentaTarifaDiaria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentaTarifaSemanal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentaTarifaMensual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentaEstadiaMinima)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recamaras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreparacionBanio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncluyeInstalacionBanio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Banios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedioBanios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estacionamientos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Construccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Terreno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LargoTerreno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenteTerreno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcabadosEspecifique)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PisoEnQueSeEncuentra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadPisos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MantenimientoMensual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioUA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaUA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desarrollos.Desarrollo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monedas.Moneda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropiedadesAcabados.Acabado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropiedadesAntiguedad.Antiguedad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropiedadesTipo.TipoPropiedad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropiedadesTiposOperacion.TipoOperacion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPropiedad }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPropiedad }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPropiedad })
+        </td>
+    </tr>
+}
+
+</table>

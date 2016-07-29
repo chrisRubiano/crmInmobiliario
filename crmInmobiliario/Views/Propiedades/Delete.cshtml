@@ -1,0 +1,296 @@
+﻿@model crmInmobiliario.Models.Propiedades
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Propiedades</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VentaPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VentaPrecio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentaPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentaPrecio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentaTarifaDiaria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentaTarifaDiaria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentaTarifaSemanal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentaTarifaSemanal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentaTarifaMensual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentaTarifaMensual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentaEstadiaMinima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentaEstadiaMinima)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recamaras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recamaras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreparacionBanio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreparacionBanio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncluyeInstalacionBanio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncluyeInstalacionBanio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Banios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Banios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedioBanios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedioBanios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estacionamientos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estacionamientos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Construccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Construccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Terreno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Terreno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LargoTerreno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LargoTerreno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenteTerreno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenteTerreno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcabadosEspecifique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AcabadosEspecifique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PisoEnQueSeEncuentra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PisoEnQueSeEncuentra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadPisos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadPisos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MantenimientoMensual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MantenimientoMensual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioUA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioUA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaUA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaUA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monedas.Moneda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monedas.Moneda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropiedadesAcabados.Acabado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropiedadesAcabados.Acabado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropiedadesAntiguedad.Antiguedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropiedadesAntiguedad.Antiguedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropiedadesTipo.TipoPropiedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropiedadesTipo.TipoPropiedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
