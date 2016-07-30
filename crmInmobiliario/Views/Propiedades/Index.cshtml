@@ -4,13 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Indice</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.VentaPrecio)
         </th>
@@ -113,11 +114,17 @@
         <th>
             @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td class="">
+            <div class="list-inline">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VentaPrecio)
         </td>
@@ -219,11 +226,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PropiedadesTiposOperacion.TipoOperacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdPropiedad }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdPropiedad }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdPropiedad })
         </td>
     </tr>
 }
