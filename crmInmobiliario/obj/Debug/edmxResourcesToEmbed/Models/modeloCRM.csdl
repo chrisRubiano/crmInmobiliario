@@ -284,7 +284,6 @@
     <Property Name="IncluyeInstalacionBanio" Type="Boolean" />
     <Property Name="Banios" Type="Int32" />
     <Property Name="MedioBanios" Type="Int32" />
-    <Property Name="Estacionamientos" Type="Int32" />
     <Property Name="Construccion" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Terreno" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="LargoTerreno" Type="Decimal" Precision="18" Scale="2" />
@@ -292,8 +291,6 @@
     <Property Name="Acabados" Type="Int32" />
     <Property Name="AcabadosEspecifique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Antiguedad" Type="Int32" />
-    <Property Name="PisoEnQueSeEncuentra" Type="Int32" />
-    <Property Name="CantidadPisos" Type="Int32" />
     <Property Name="MantenimientoMensual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -309,6 +306,18 @@
     <NavigationProperty Name="PropiedadesAntiguedad" Relationship="Self.FK_Propiedades_PropiedadesAntiguedad" FromRole="Propiedades" ToRole="PropiedadesAntiguedad" />
     <NavigationProperty Name="PropiedadesTipo" Relationship="Self.FK_Propiedades_PropiedadesTipo" FromRole="Propiedades" ToRole="PropiedadesTipo" />
     <NavigationProperty Name="PropiedadesTiposOperacion" Relationship="Self.FK_Propiedades_PropiedadesTiposOperacion" FromRole="Propiedades" ToRole="PropiedadesTiposOperacion" />
+    <Property Name="Estacionamiento" Type="Boolean" />
+    <Property Name="CajonesEstacionamiento" Type="Int32" />
+    <Property Name="M2Interiores" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="M2Terraza" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="M2Bodega" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FrenteLocal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Nivel" Type="Int32" />
+    <Property Name="Niveles" Type="Int32" />
+    <Property Name="SistemaAC" Type="Int32" />
+    <Property Name="Reglamento" Type="Boolean" />
+    <Property Name="URLReglamento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="LargoLocal" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="PropiedadesAcabados">
     <Key>

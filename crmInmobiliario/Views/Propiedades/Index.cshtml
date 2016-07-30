@@ -4,14 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Indice</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.VentaPrecio)
         </th>
@@ -52,9 +51,6 @@
             @Html.DisplayNameFor(model => model.MedioBanios)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estacionamientos)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Construccion)
         </th>
         <th>
@@ -68,12 +64,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AcabadosEspecifique)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PisoEnQueSeEncuentra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CantidadPisos)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MantenimientoMensual)
@@ -97,6 +87,42 @@
             @Html.DisplayNameFor(model => model.FechaUA)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Estacionamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2Interiores)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2Terraza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2Bodega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrenteLocal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LargoLocal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Niveles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SistemaAC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reglamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URLReglamento)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
         </th>
         <th>
@@ -114,17 +140,11 @@
         <th>
             @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td class="">
-            <div class="list-inline">
-                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-            </div>
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VentaPrecio)
         </td>
@@ -156,16 +176,20 @@
             @Html.DisplayFor(modelItem => item.PreparacionBanio)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IncluyeInstalacionBanio)
+            @if (item.IncluyeInstalacionBanio.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Banios)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MedioBanios)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estacionamientos)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Construccion)
@@ -181,12 +205,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AcabadosEspecifique)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PisoEnQueSeEncuentra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CantidadPisos)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MantenimientoMensual)
@@ -210,6 +228,56 @@
             @Html.DisplayFor(modelItem => item.FechaUA)
         </td>
         <td>
+            @if (item.Estacionamiento.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M2Interiores)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M2Terraza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.M2Bodega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenteLocal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LargoLocal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nivel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Niveles)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SistemaAC)
+        </td>
+        <td>
+            @if (item.Reglamento.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URLReglamento)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Desarrollos.Desarrollo)
         </td>
         <td>
@@ -226,6 +294,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PropiedadesTiposOperacion.TipoOperacion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPropiedad }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPropiedad }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPropiedad })
         </td>
     </tr>
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRMINMOBILIARIOModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CRMINMOBILIARIOModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -259,17 +259,26 @@
           <Property Name="IncluyeInstalacionBanio" Type="bit" />
           <Property Name="Banios" Type="int" />
           <Property Name="MedioBanios" Type="int" />
-          <Property Name="Estacionamientos" Type="int" />
-          <Property Name="Construccion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Estacionamiento" Type="bit" />
+          <Property Name="CajonesEstacionamiento" Type="int" />
           <Property Name="Terreno" Type="decimal" Precision="18" Scale="2" />
           <Property Name="LargoTerreno" Type="decimal" Precision="18" Scale="2" />
           <Property Name="FrenteTerreno" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Construccion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="M2Interiores" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="M2Terraza" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="M2Bodega" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FrenteLocal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LargoLocal" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Acabados" Type="int" />
           <Property Name="AcabadosEspecifique" Type="varchar(max)" />
           <Property Name="Antiguedad" Type="int" />
-          <Property Name="PisoEnQueSeEncuentra" Type="int" />
-          <Property Name="CantidadPisos" Type="int" />
+          <Property Name="Nivel" Type="int" />
+          <Property Name="Niveles" Type="int" />
+          <Property Name="SistemaAC" Type="int" />
           <Property Name="MantenimientoMensual" Type="varchar" MaxLength="50" />
+          <Property Name="Reglamento" Type="bit" />
+          <Property Name="URLReglamento" Type="varchar" MaxLength="1000" />
           <Property Name="Codigo" Type="varchar" MaxLength="50" />
           <Property Name="Observaciones" Type="varchar(max)" />
           <Property Name="Usuario" Type="nvarchar" MaxLength="128" />
@@ -914,8 +923,7 @@
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRMINMOBILIARIOModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1203,7 +1211,6 @@
           <Property Name="IncluyeInstalacionBanio" Type="Boolean" />
           <Property Name="Banios" Type="Int32" />
           <Property Name="MedioBanios" Type="Int32" />
-          <Property Name="Estacionamientos" Type="Int32" />
           <Property Name="Construccion" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Terreno" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="LargoTerreno" Type="Decimal" Precision="18" Scale="2" />
@@ -1211,8 +1218,6 @@
           <Property Name="Acabados" Type="Int32" />
           <Property Name="AcabadosEspecifique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Antiguedad" Type="Int32" />
-          <Property Name="PisoEnQueSeEncuentra" Type="Int32" />
-          <Property Name="CantidadPisos" Type="Int32" />
           <Property Name="MantenimientoMensual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -1228,6 +1233,18 @@
           <NavigationProperty Name="PropiedadesAntiguedad" Relationship="Self.FK_Propiedades_PropiedadesAntiguedad" FromRole="Propiedades" ToRole="PropiedadesAntiguedad" />
           <NavigationProperty Name="PropiedadesTipo" Relationship="Self.FK_Propiedades_PropiedadesTipo" FromRole="Propiedades" ToRole="PropiedadesTipo" />
           <NavigationProperty Name="PropiedadesTiposOperacion" Relationship="Self.FK_Propiedades_PropiedadesTiposOperacion" FromRole="Propiedades" ToRole="PropiedadesTiposOperacion" />
+          <Property Name="Estacionamiento" Type="Boolean" />
+          <Property Name="CajonesEstacionamiento" Type="Int32" />
+          <Property Name="M2Interiores" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="M2Terraza" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="M2Bodega" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FrenteLocal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Nivel" Type="Int32" />
+          <Property Name="Niveles" Type="Int32" />
+          <Property Name="SistemaAC" Type="Int32" />
+          <Property Name="Reglamento" Type="Boolean" />
+          <Property Name="URLReglamento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="LargoLocal" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PropiedadesAcabados">
           <Key>
@@ -2103,6 +2120,18 @@
           <EntitySetMapping Name="Propiedades">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Propiedades">
               <MappingFragment StoreEntitySet="Propiedades">
+                <ScalarProperty Name="LargoLocal" ColumnName="LargoLocal" />
+                <ScalarProperty Name="URLReglamento" ColumnName="URLReglamento" />
+                <ScalarProperty Name="Reglamento" ColumnName="Reglamento" />
+                <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
+                <ScalarProperty Name="Niveles" ColumnName="Niveles" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="FrenteLocal" ColumnName="FrenteLocal" />
+                <ScalarProperty Name="M2Bodega" ColumnName="M2Bodega" />
+                <ScalarProperty Name="M2Terraza" ColumnName="M2Terraza" />
+                <ScalarProperty Name="M2Interiores" ColumnName="M2Interiores" />
+                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
+                <ScalarProperty Name="Estacionamiento" ColumnName="Estacionamiento" />
                 <ScalarProperty Name="IdPropiedad" ColumnName="IdPropiedad" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
                 <ScalarProperty Name="TipoPropiedad" ColumnName="TipoPropiedad" />
@@ -2121,7 +2150,6 @@
                 <ScalarProperty Name="IncluyeInstalacionBanio" ColumnName="IncluyeInstalacionBanio" />
                 <ScalarProperty Name="Banios" ColumnName="Banios" />
                 <ScalarProperty Name="MedioBanios" ColumnName="MedioBanios" />
-                <ScalarProperty Name="Estacionamientos" ColumnName="Estacionamientos" />
                 <ScalarProperty Name="Construccion" ColumnName="Construccion" />
                 <ScalarProperty Name="Terreno" ColumnName="Terreno" />
                 <ScalarProperty Name="LargoTerreno" ColumnName="LargoTerreno" />
@@ -2129,8 +2157,6 @@
                 <ScalarProperty Name="Acabados" ColumnName="Acabados" />
                 <ScalarProperty Name="AcabadosEspecifique" ColumnName="AcabadosEspecifique" />
                 <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
-                <ScalarProperty Name="PisoEnQueSeEncuentra" ColumnName="PisoEnQueSeEncuentra" />
-                <ScalarProperty Name="CantidadPisos" ColumnName="CantidadPisos" />
                 <ScalarProperty Name="MantenimientoMensual" ColumnName="MantenimientoMensual" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />

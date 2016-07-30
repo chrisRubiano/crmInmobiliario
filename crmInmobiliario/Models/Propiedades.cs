@@ -39,7 +39,6 @@ namespace crmInmobiliario.Models
         public Nullable<bool> IncluyeInstalacionBanio { get; set; }
         public Nullable<int> Banios { get; set; }
         public Nullable<int> MedioBanios { get; set; }
-        public Nullable<int> Estacionamientos { get; set; }
         public Nullable<decimal> Construccion { get; set; }
         public Nullable<decimal> Terreno { get; set; }
         public Nullable<decimal> LargoTerreno { get; set; }
@@ -47,8 +46,6 @@ namespace crmInmobiliario.Models
         public Nullable<int> Acabados { get; set; }
         public string AcabadosEspecifique { get; set; }
         public Nullable<int> Antiguedad { get; set; }
-        public Nullable<int> PisoEnQueSeEncuentra { get; set; }
-        public Nullable<int> CantidadPisos { get; set; }
         public string MantenimientoMensual { get; set; }
         public string Codigo { get; set; }
         public string Observaciones { get; set; }
@@ -56,6 +53,18 @@ namespace crmInmobiliario.Models
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string UsuarioUA { get; set; }
         public Nullable<System.DateTime> FechaUA { get; set; }
+        public Nullable<bool> Estacionamiento { get; set; }
+        public Nullable<int> CajonesEstacionamiento { get; set; }
+        public Nullable<decimal> M2Interiores { get; set; }
+        public Nullable<decimal> M2Terraza { get; set; }
+        public Nullable<decimal> M2Bodega { get; set; }
+        public Nullable<decimal> FrenteLocal { get; set; }
+        public Nullable<int> Nivel { get; set; }
+        public Nullable<int> Niveles { get; set; }
+        public Nullable<int> SistemaAC { get; set; }
+        public Nullable<bool> Reglamento { get; set; }
+        public string URLReglamento { get; set; }
+        public Nullable<decimal> LargoLocal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaracteristicasPropiedades> CaracteristicasPropiedades { get; set; }

@@ -247,6 +247,18 @@
     <EntitySetMapping Name="Propiedades">
       <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Propiedades">
         <MappingFragment StoreEntitySet="Propiedades">
+          <ScalarProperty Name="LargoLocal" ColumnName="LargoLocal" />
+          <ScalarProperty Name="URLReglamento" ColumnName="URLReglamento" />
+          <ScalarProperty Name="Reglamento" ColumnName="Reglamento" />
+          <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
+          <ScalarProperty Name="Niveles" ColumnName="Niveles" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="FrenteLocal" ColumnName="FrenteLocal" />
+          <ScalarProperty Name="M2Bodega" ColumnName="M2Bodega" />
+          <ScalarProperty Name="M2Terraza" ColumnName="M2Terraza" />
+          <ScalarProperty Name="M2Interiores" ColumnName="M2Interiores" />
+          <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
+          <ScalarProperty Name="Estacionamiento" ColumnName="Estacionamiento" />
           <ScalarProperty Name="IdPropiedad" ColumnName="IdPropiedad" />
           <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
           <ScalarProperty Name="TipoPropiedad" ColumnName="TipoPropiedad" />
@@ -265,7 +277,6 @@
           <ScalarProperty Name="IncluyeInstalacionBanio" ColumnName="IncluyeInstalacionBanio" />
           <ScalarProperty Name="Banios" ColumnName="Banios" />
           <ScalarProperty Name="MedioBanios" ColumnName="MedioBanios" />
-          <ScalarProperty Name="Estacionamientos" ColumnName="Estacionamientos" />
           <ScalarProperty Name="Construccion" ColumnName="Construccion" />
           <ScalarProperty Name="Terreno" ColumnName="Terreno" />
           <ScalarProperty Name="LargoTerreno" ColumnName="LargoTerreno" />
@@ -273,8 +284,6 @@
           <ScalarProperty Name="Acabados" ColumnName="Acabados" />
           <ScalarProperty Name="AcabadosEspecifique" ColumnName="AcabadosEspecifique" />
           <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
-          <ScalarProperty Name="PisoEnQueSeEncuentra" ColumnName="PisoEnQueSeEncuentra" />
-          <ScalarProperty Name="CantidadPisos" ColumnName="CantidadPisos" />
           <ScalarProperty Name="MantenimientoMensual" ColumnName="MantenimientoMensual" />
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
           <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />

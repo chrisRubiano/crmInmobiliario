@@ -254,17 +254,26 @@
     <Property Name="IncluyeInstalacionBanio" Type="bit" />
     <Property Name="Banios" Type="int" />
     <Property Name="MedioBanios" Type="int" />
-    <Property Name="Estacionamientos" Type="int" />
-    <Property Name="Construccion" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Estacionamiento" Type="bit" />
+    <Property Name="CajonesEstacionamiento" Type="int" />
     <Property Name="Terreno" Type="decimal" Precision="18" Scale="2" />
     <Property Name="LargoTerreno" Type="decimal" Precision="18" Scale="2" />
     <Property Name="FrenteTerreno" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Construccion" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="M2Interiores" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="M2Terraza" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="M2Bodega" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FrenteLocal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="LargoLocal" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Acabados" Type="int" />
     <Property Name="AcabadosEspecifique" Type="varchar(max)" />
     <Property Name="Antiguedad" Type="int" />
-    <Property Name="PisoEnQueSeEncuentra" Type="int" />
-    <Property Name="CantidadPisos" Type="int" />
+    <Property Name="Nivel" Type="int" />
+    <Property Name="Niveles" Type="int" />
+    <Property Name="SistemaAC" Type="int" />
     <Property Name="MantenimientoMensual" Type="varchar" MaxLength="50" />
+    <Property Name="Reglamento" Type="bit" />
+    <Property Name="URLReglamento" Type="varchar" MaxLength="1000" />
     <Property Name="Codigo" Type="varchar" MaxLength="50" />
     <Property Name="Observaciones" Type="varchar(max)" />
     <Property Name="Usuario" Type="nvarchar" MaxLength="128" />

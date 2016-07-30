@@ -1,13 +1,13 @@
 ﻿@model crmInmobiliario.Models.Propiedades
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Details";
 }
 
-<h2>Detalles</h2>
+<h2>Details</h2>
 
 <div>
-    <h4><i class="fa fa-building-o"></i>Propiedad</h4>
+    <h4>Propiedades</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -115,14 +115,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Estacionamientos)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estacionamientos)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Construccion)
         </dt>
 
@@ -160,22 +152,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.AcabadosEspecifique)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PisoEnQueSeEncuentra)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PisoEnQueSeEncuentra)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CantidadPisos)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CantidadPisos)
         </dd>
 
         <dt>
@@ -235,6 +211,102 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Estacionamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estacionamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CajonesEstacionamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M2Interiores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M2Interiores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M2Terraza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M2Terraza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M2Bodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M2Bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenteLocal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenteLocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LargoLocal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LargoLocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nivel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niveles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Niveles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SistemaAC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SistemaAC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reglamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reglamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URLReglamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URLReglamento)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
         </dt>
 
@@ -284,11 +356,7 @@
 
     </dl>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <p>
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
-            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Propiedades", new { id = Model.IdPropiedad })';return false;"><i class="fa fa-pencil"></i> Editar</button>
-        </p>
-    </div>
-</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPropiedad }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
