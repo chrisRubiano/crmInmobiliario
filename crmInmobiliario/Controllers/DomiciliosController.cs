@@ -66,12 +66,21 @@ namespace crmInmobiliario.Controllers
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio");
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais");
             //ViewBag.IdPersona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            ViewBag.IdPersona = idPersona;
+            
             ViewBag.TipoDomicilio = tipoDom;
             ViewBag.IdPropiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             Domicilios domicilios = new Domicilios();
-            domicilios.IdPersona = idPersona;
+            
             domicilios.TipoDomicilio = tipoDom;
+            if (idPersona != 3)
+            {
+                domicilios.IdPersona = idPersona;
+                ViewBag.IdPersona = idPersona;
+            }
+            {
+                domicilios.IdPropiedad = idPersona;
+                ViewBag.idPropiedad = idPersona;
+            }
             return View(domicilios);
         }
 
@@ -84,12 +93,30 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
-                domicilios.IdPersona = idPersona;
-                domicilios.TipoDomicilio = tipo;
+                if (tipo != 3)
+                {
+                    domicilios.IdPropiedad = null;
+                    domicilios.IdPersona = idPersona;
+                    domicilios.TipoDomicilio = tipo;
+                }
+                else
+                {
+                    domicilios.IdPersona = null;
+                    domicilios.IdPropiedad = idPersona;
+                    domicilios.TipoDomicilio = tipo;
+                }
+                
             
                 db.Domicilios.Add(domicilios);
                 db.SaveChanges();
-                return Redirect("/Personas/Details/" + idPersona.ToString());
+                if (tipo!=3)
+                {
+                    return Redirect("/Personas/Details/" + idPersona.ToString());
+                }else
+                {
+                    return Redirect("/Propiedades/Details/" + idPersona.ToString());
+                }
+                
             }
 
             ViewBag.IdPersona = idPersona;
@@ -103,7 +130,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Domicilios/Edit/5
-        public ActionResult Edit(int? id, int idPersona)
+        public ActionResult Edit(int? id, int idPersona, int tipo)
         {
             if (id == null)
             {
@@ -118,8 +145,6 @@ namespace crmInmobiliario.Controllers
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", domicilios.Estado);
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", domicilios.Municipio);
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", domicilios.Pais);
-            ViewBag.IdPersona = new SelectList(db.Personas, "IdPersona", "Nombre", domicilios.IdPersona);
-            ViewBag.IdPropiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", domicilios.IdPropiedad);
             return View(domicilios);
         }
 
@@ -128,13 +153,35 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDomicilio,TipoDomicilio,IdPersona,IdPropiedad,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,Longitud,Latitud")] Domicilios domicilios, int idPersona)
+        public ActionResult Edit([Bind(Include = "IdDomicilio,TipoDomicilio,IdPersona,IdPropiedad,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,Longitud,Latitud")] Domicilios domicilios, int idPersona, int tipo)
         {
             if (ModelState.IsValid)
             {
+                if (tipo != 3)
+                {
+                    domicilios.IdPropiedad = null;
+                    domicilios.IdPersona = idPersona;
+                    domicilios.TipoDomicilio = tipo;
+                }
+                else
+                {
+                    domicilios.IdPersona = null;
+                    domicilios.IdPropiedad = idPersona;
+                    domicilios.TipoDomicilio = tipo;
+                }
+
+
                 db.Entry(domicilios).State = EntityState.Modified;
                 db.SaveChanges();
-                return Redirect("/Personas/Details/" + idPersona.ToString());
+                if (tipo != 3)
+                {
+                    return Redirect("/Personas/Details/" + idPersona.ToString());
+                }
+                else
+                {
+                    return Redirect("/Propiedades/Details/" + idPersona.ToString());
+                }
+                
             }
             ViewBag.TipoDomicilio = new SelectList(db.DomiciliosTipo, "IdTipoDomicilio", "TipoDomicilio", domicilios.TipoDomicilio);
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", domicilios.Estado);
@@ -146,7 +193,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Domicilios/Delete/5
-        public ActionResult Delete(int? id, int idPersona)
+        public ActionResult Delete(int? id, int idPersona, int tipo)
         {
             if (id == null)
             {
@@ -163,12 +210,20 @@ namespace crmInmobiliario.Controllers
         // POST: Domicilios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, int idPersona)
+        public ActionResult DeleteConfirmed(int id, int idPersona, int tipo)
         {
             Domicilios domicilios = db.Domicilios.Find(id);
             db.Domicilios.Remove(domicilios);
             db.SaveChanges();
-            return Redirect("/Personas/Details/" + idPersona.ToString());
+            if (tipo != 3)
+            {
+                return Redirect("/Personas/Details/" + idPersona.ToString());
+            }
+            else
+            {
+                return Redirect("/Propiedades/Details/" + idPersona.ToString());
+            }
+
         }
 
         protected override void Dispose(bool disposing)

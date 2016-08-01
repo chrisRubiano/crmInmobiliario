@@ -28,12 +28,19 @@ namespace crmInmobiliario.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            VariosModelos vModelos = new VariosModelos();
             Propiedades propiedades = db.Propiedades.Find(id);
             if (propiedades == null)
             {
                 return HttpNotFound();
             }
-            return View(propiedades);
+            vModelos.propiedades = propiedades;
+
+            var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
+            vModelos.domicilios = domicilios;
+
+            return View(vModelos);
         }
 
         // GET: Propiedades/Create

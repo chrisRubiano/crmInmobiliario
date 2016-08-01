@@ -96,7 +96,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IncluyeInstalacionBanio)
+            @if (@Model.IncluyeInstalacionBanio.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
         </dd>
 
         <dt>
@@ -216,7 +223,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Estacionamiento)
+            @if (@Model.Estacionamiento.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
         </dd>
 
         <dt>
@@ -296,7 +310,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Reglamento)
+            @if (@Model.Reglamento.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
         </dd>
 
         <dt>
