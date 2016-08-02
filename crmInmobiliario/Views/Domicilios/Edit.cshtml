@@ -1,10 +1,10 @@
 ﻿@model crmInmobiliario.Models.Domicilios
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Domicilios</h4>
+        <h4>Domicilio</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdDomicilio)
@@ -154,7 +154,14 @@
 }
 
 <div>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Personas", new { id = Model.IdPersona })';return false;"><i class="fa fa-chevron-left"></i> Volver a detalles</button>
+    @if (ViewBag.tipo == 3)
+    {
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = Model.IdPropiedad })';return false;"><i class="fa fa-chevron-left"></i> Volver a detalles de propiedad</button>
+    }
+    else
+    {
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Details", "Personas", new { id = Model.IdPersona })';return false;"><i class="fa fa-chevron-left"></i> Volver a detalles de persona</button>
+    }
 </div>
 
 @section Scripts {

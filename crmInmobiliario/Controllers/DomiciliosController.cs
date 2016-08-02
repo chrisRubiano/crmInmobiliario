@@ -22,7 +22,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Domicilios/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int idPersona, int tipo)
         {
             if (id == null)
             {
@@ -33,6 +33,8 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.tipo = tipo;
             return View(domicilios);
         }
 
@@ -145,6 +147,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", domicilios.Estado);
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", domicilios.Municipio);
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", domicilios.Pais);
+            ViewBag.tipo = tipo;
             return View(domicilios);
         }
 
@@ -204,6 +207,7 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.tipo = tipo;
             return View(domicilios);
         }
 
