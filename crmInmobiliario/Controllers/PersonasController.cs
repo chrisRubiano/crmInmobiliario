@@ -16,7 +16,7 @@ namespace crmInmobiliario.Controllers
     public class PersonasController : Controller
     {
         private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
-        
+
 
         // GET: Personas
         public ActionResult Index(string categoria, string nombre)
@@ -31,14 +31,14 @@ namespace crmInmobiliario.Controllers
 
             var categorias = new List<string>();
             var categoriaQry = from d in db.PersonasCategoria
-                          orderby d.Categoria
-                          select d.Categoria.ToString();
+                               orderby d.Categoria
+                               select d.Categoria.ToString();
 
             categorias.AddRange(categoriaQry.Distinct());
             ViewBag.categoria = new SelectList(categorias);
 
             var personas = from p in db.Personas
-                         select p;
+                           select p;
 
             if (!string.IsNullOrEmpty(categoria))
             {
@@ -102,7 +102,7 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Details/5
         public ActionResult Details(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -144,14 +144,21 @@ namespace crmInmobiliario.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,Interes,CategoriaInteres,Usuario,FechaRegistro")] Personas personas, int categoria)
         {
-            if (ModelState.IsValid)
+            try
             {
-                personas.Usuario = User.Identity.GetUserId().ToString();
-                personas.FechaRegistro = DateTime.Now;
-                personas.Categoria = categoria;
-                db.Personas.Add(personas);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    personas.Usuario = User.Identity.GetUserId().ToString();
+                    personas.FechaRegistro = DateTime.Now;
+                    personas.Categoria = categoria;
+                    db.Personas.Add(personas);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los cambios persisten favor de contactarse con un adminsitrador");
             }
 
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
@@ -202,7 +209,7 @@ namespace crmInmobiliario.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("","No es posible guardar los cambios, intente mas tarde. Si los cambios persisten favor de contactarse con un adminsitrador");
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los cambios persisten favor de contactarse con un adminsitrador");
             }
 
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);

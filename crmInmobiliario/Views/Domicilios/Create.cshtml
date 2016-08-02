@@ -98,7 +98,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Municipio, "Municipio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Municipio", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Municipio", null, htmlAttributes: new { @class = "form-control chosen-select municipio" })
                 @Html.ValidationMessageFor(model => model.Municipio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -106,7 +106,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Estado", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Estado", null, htmlAttributes: new { @class = "form-control chosen-select estado" })
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -114,7 +114,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Pais, "Pais", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Pais", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Pais", null, htmlAttributes: new { @class = "form-control chosen-select pais" })
                 @Html.ValidationMessageFor(model => model.Pais, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -149,4 +149,14 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('.pais').val(42);
+            $('.estado').val(19);
+            $('.municipio').val(986);
+            $('.pais').trigger("chosen:updated");
+            $('.estado').trigger("chosen:updated");
+            $('.municipio').trigger("chosen:updated");
+        });
+    </script>
 }
