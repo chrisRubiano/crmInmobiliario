@@ -144,9 +144,9 @@
             </dd>
             <dt>
                 <div class="btn-group" role="group">
-                    <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                    <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                    <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                    <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
                 </div>
             </dt>
             <dd></dd>
@@ -179,7 +179,14 @@
 <div class="row">
     <div class="col-md-12">
         <p>
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+            @if (ViewBag.categoriap == 1)
+            {
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("ListaProspectos", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+            }
+            else if (ViewBag.categoriap == 2)
+            {
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("ListaClientes", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+            }
             <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Personas", new { id = Model.personas.IdPersona })';return false;"><i class="fa fa-pencil"></i> Editar</button>
         </p>
     </div>

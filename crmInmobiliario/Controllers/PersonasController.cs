@@ -100,7 +100,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int categoriap)
         {
 
             if (id == null)
@@ -122,18 +122,19 @@ namespace crmInmobiliario.Controllers
             var domicilios = db.Domicilios.Where(d => d.IdPersona == id).OrderByDescending(d => d.IdDomicilio);
             vModelos.domicilios = domicilios;
 
+            ViewBag.Categoriap = categoriap;
             return View(vModelos);
         }
 
         // GET: Personas/Create
-        public ActionResult Create(int categoria)
+        public ActionResult Create(int categoriap)
         {
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
             ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
-            ViewBag.Categoria = categoria;
+            ViewBag.Categoriap = categoriap;
             return View();
         }
 
@@ -170,7 +171,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int categoriap)
         {
             if (id == null)
             {
@@ -186,6 +187,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+            ViewBag.categoriap = categoriap;
             return View(personas);
         }
 
@@ -219,7 +221,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int categoriap)
         {
             if (id == null)
             {
@@ -230,6 +232,7 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.categoriap = categoriap;
             return View(personas);
         }
 

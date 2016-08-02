@@ -22,7 +22,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Domicilios/Details/5
-        public ActionResult Details(int? id, int idPersona, int tipo)
+        public ActionResult Details(int? id, int idPersona, int tipo, int? categoriap)
         {
             if (id == null)
             {
@@ -35,11 +35,16 @@ namespace crmInmobiliario.Controllers
             }
 
             ViewBag.tipo = tipo;
+
+            if (categoriap!=null)
+            {
+                ViewBag.categoriap = categoriap;
+            }
             return View(domicilios);
         }
 
         // GET: Domicilios/Create
-        public ActionResult Create(int? idPersona, int tipo)
+        public ActionResult Create(int? idPersona, int tipo, int? categoriap)
         {
 
             /*
@@ -82,6 +87,11 @@ namespace crmInmobiliario.Controllers
             {
                 domicilios.IdPropiedad = idPersona;
                 ViewBag.idPropiedad = idPersona;
+            }
+
+            if (categoriap!=null)
+            {
+                ViewBag.categoriap = categoriap;
             }
             return View(domicilios);
         }
@@ -132,7 +142,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Domicilios/Edit/5
-        public ActionResult Edit(int? id, int idPersona, int tipo)
+        public ActionResult Edit(int? id, int idPersona, int tipo, int? categoriap)
         {
             if (id == null)
             {
@@ -148,6 +158,10 @@ namespace crmInmobiliario.Controllers
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", domicilios.Municipio);
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", domicilios.Pais);
             ViewBag.tipo = tipo;
+            if (categoriap!=null)
+            {
+                ViewBag.categoriap = categoriap;
+            }
             return View(domicilios);
         }
 
@@ -196,7 +210,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Domicilios/Delete/5
-        public ActionResult Delete(int? id, int idPersona, int tipo)
+        public ActionResult Delete(int? id, int idPersona, int tipo, int? categoriap)
         {
             if (id == null)
             {
@@ -208,6 +222,10 @@ namespace crmInmobiliario.Controllers
                 return HttpNotFound();
             }
             ViewBag.tipo = tipo;
+            if (categoriap != null)
+            {
+                ViewBag.categoriap = categoriap;
+            }
             return View(domicilios);
         }
 

@@ -158,7 +158,14 @@
 }
 
 <div>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+    @if (ViewBag.categoriap == 1)
+    {
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("ListaProspectos", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+    }
+    else if (ViewBag.categoriap == 2)
+    {
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("ListaClientes", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+    }
 </div>
 
 @section Scripts {
