@@ -247,7 +247,7 @@
     <Compile Include="Models\Municipios.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Nota.cs" />
+    <Compile Include="Models\NotaMeta.cs" />
     <Compile Include="Models\Notas.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
