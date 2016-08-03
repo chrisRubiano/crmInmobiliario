@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace crmInmobiliario.Controllers
 {
+    [Authorize]
     public class PropiedadesController : Controller
     {
         private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
