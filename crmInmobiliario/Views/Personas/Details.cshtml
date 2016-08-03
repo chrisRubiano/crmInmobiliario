@@ -144,9 +144,9 @@
             </dd>
             <dt>
                 <div class="btn-group" role="group">
-                    <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                    <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                    <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                    <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
                 </div>
             </dt>
             <dd></dd>
