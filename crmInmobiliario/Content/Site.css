@@ -64,6 +64,10 @@ button.navbar-toggle {
     font-size: 1.8em;
 }
 
+.btn-lista{
+    max-width: 45px;
+}
+
 /*Custom css para navbar collapse*/
 
 @media (max-width: 982px) {
