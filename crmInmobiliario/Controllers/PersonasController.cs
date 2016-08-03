@@ -100,7 +100,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Details/5
-        public ActionResult Details(int? id, int categoriap)
+        public ActionResult Details(int? id, int? categoriap)
         {
 
             if (id == null)
