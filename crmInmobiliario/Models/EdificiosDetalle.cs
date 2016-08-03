@@ -12,14 +12,13 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Notas
+    public partial class EdificiosDetalle
     {
-        public int IdNota { get; set; }
-        public Nullable<int> Persona { get; set; }
-        public string Nota { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public string Usuario { get; set; }
+        public int IdEdificioDetalle { get; set; }
+        public Nullable<int> Edificio { get; set; }
+        public string Nivel { get; set; }
+        public Nullable<decimal> M2 { get; set; }
     
-        public virtual Personas Personas { get; set; }
+        public virtual Edificios Edificios { get; set; }
     }
 }

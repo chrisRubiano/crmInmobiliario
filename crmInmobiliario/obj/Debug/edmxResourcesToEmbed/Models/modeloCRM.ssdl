@@ -78,6 +78,7 @@
     <Property Name="Desarrollo" Type="varchar" MaxLength="150" />
     <Property Name="Clave" Type="varchar" MaxLength="2" />
     <Property Name="Activo" Type="bit" />
+    <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="Domicilios">
     <Key>
@@ -119,6 +120,25 @@
     </Key>
     <Property Name="IdTipoDomicilio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TipoDomicilio" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Edificios">
+    <Key>
+      <PropertyRef Name="IdEdificio" />
+    </Key>
+    <Property Name="IdEdificio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Desarrollo" Type="int" />
+    <Property Name="Edificio" Type="varchar" MaxLength="100" />
+    <Property Name="NumeroPisos" Type="int" />
+    <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="EdificiosDetalle">
+    <Key>
+      <PropertyRef Name="IdEdificioDetalle" />
+    </Key>
+    <Property Name="IdEdificioDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Edificio" Type="int" />
+    <Property Name="Nivel" Type="varchar" MaxLength="3" />
+    <Property Name="M2" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -238,6 +258,7 @@
     </Key>
     <Property Name="IdPropiedad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Desarrollo" Type="int" />
+    <Property Name="Edificio" Type="int" />
     <Property Name="TipoPropiedad" Type="int" />
     <Property Name="TipoOperacion" Type="int" />
     <Property Name="VentaPrecio" Type="money" />
@@ -280,6 +301,7 @@
     <Property Name="FechaRegistro" Type="datetime" />
     <Property Name="UsuarioUA" Type="nvarchar" MaxLength="128" />
     <Property Name="FechaUA" Type="datetime" />
+    <Property Name="Estatus" Type="int" />
   </EntityType>
   <EntityType Name="PropiedadesAcabados">
     <Key>
@@ -541,6 +563,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Edificios_Desarrollos">
+    <End Role="Desarrollos" Type="Self.Desarrollos" Multiplicity="0..1" />
+    <End Role="Edificios" Type="Self.Edificios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Desarrollos">
+        <PropertyRef Name="IdDesarrollo" />
+      </Principal>
+      <Dependent Role="Edificios">
+        <PropertyRef Name="Desarrollo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EdificiosDetalle_Edificios">
+    <End Role="Edificios" Type="Self.Edificios" Multiplicity="0..1" />
+    <End Role="EdificiosDetalle" Type="Self.EdificiosDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edificios">
+        <PropertyRef Name="IdEdificio" />
+      </Principal>
+      <Dependent Role="EdificiosDetalle">
+        <PropertyRef Name="Edificio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Notas_Personas">
     <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
     <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
@@ -634,6 +680,18 @@
       </Principal>
       <Dependent Role="Propiedades">
         <PropertyRef Name="Desarrollo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Propiedades_Edificios">
+    <End Role="Edificios" Type="Self.Edificios" Multiplicity="0..1" />
+    <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edificios">
+        <PropertyRef Name="IdEdificio" />
+      </Principal>
+      <Dependent Role="Propiedades">
+        <PropertyRef Name="Edificio" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -769,6 +827,8 @@
     <EntitySet Name="Domicilios" EntityType="Self.Domicilios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DomiciliosCategoria" EntityType="Self.DomiciliosCategoria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DomiciliosTipo" EntityType="Self.DomiciliosTipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Edificios" EntityType="Self.Edificios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EdificiosDetalle" EntityType="Self.EdificiosDetalle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MediosContacto" EntityType="Self.MediosContacto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MediosEnterarse" EntityType="Self.MediosEnterarse" Schema="dbo" store:Type="Tables" />
@@ -845,6 +905,14 @@
       <End Role="Propiedades" EntitySet="Propiedades" />
       <End Role="Domicilios" EntitySet="Domicilios" />
     </AssociationSet>
+    <AssociationSet Name="FK_Edificios_Desarrollos" Association="Self.FK_Edificios_Desarrollos">
+      <End Role="Desarrollos" EntitySet="Desarrollos" />
+      <End Role="Edificios" EntitySet="Edificios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EdificiosDetalle_Edificios" Association="Self.FK_EdificiosDetalle_Edificios">
+      <End Role="Edificios" EntitySet="Edificios" />
+      <End Role="EdificiosDetalle" EntitySet="EdificiosDetalle" />
+    </AssociationSet>
     <AssociationSet Name="FK_Notas_Personas" Association="Self.FK_Notas_Personas">
       <End Role="Personas" EntitySet="Personas" />
       <End Role="Notas" EntitySet="Notas" />
@@ -875,6 +943,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Propiedades_Desarrollos" Association="Self.FK_Propiedades_Desarrollos">
       <End Role="Desarrollos" EntitySet="Desarrollos" />
+      <End Role="Propiedades" EntitySet="Propiedades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Propiedades_Edificios" Association="Self.FK_Propiedades_Edificios">
+      <End Role="Edificios" EntitySet="Edificios" />
       <End Role="Propiedades" EntitySet="Propiedades" />
     </AssociationSet>
     <AssociationSet Name="FK_Propiedades_Monedas" Association="Self.FK_Propiedades_Monedas">

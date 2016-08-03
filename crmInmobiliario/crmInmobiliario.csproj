@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DesarrollosController.cs" />
     <Compile Include="Controllers\DomiciliosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -215,6 +216,12 @@
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DomiciliosTipo.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Edificios.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EdificiosDetalle.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estados.cs">
@@ -438,6 +445,11 @@
     <Content Include="Views\Propiedades\Details.cshtml" />
     <Content Include="Views\Propiedades\Edit.cshtml" />
     <Content Include="Views\Propiedades\Index.cshtml" />
+    <Content Include="Views\Desarrollos\Create.cshtml" />
+    <Content Include="Views\Desarrollos\Delete.cshtml" />
+    <Content Include="Views\Desarrollos\Details.cshtml" />
+    <Content Include="Views\Desarrollos\Edit.cshtml" />
+    <Content Include="Views\Desarrollos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

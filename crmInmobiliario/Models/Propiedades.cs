@@ -65,6 +65,8 @@ namespace crmInmobiliario.Models
         public Nullable<bool> Reglamento { get; set; }
         public string URLReglamento { get; set; }
         public Nullable<decimal> LargoLocal { get; set; }
+        public Nullable<int> Edificio { get; set; }
+        public Nullable<int> Estatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaracteristicasPropiedades> CaracteristicasPropiedades { get; set; }
@@ -76,5 +78,6 @@ namespace crmInmobiliario.Models
         public virtual PropiedadesAntiguedad PropiedadesAntiguedad { get; set; }
         public virtual PropiedadesTipo PropiedadesTipo { get; set; }
         public virtual PropiedadesTiposOperacion PropiedadesTiposOperacion { get; set; }
+        public virtual Edificios Edificios { get; set; }
     }
 }

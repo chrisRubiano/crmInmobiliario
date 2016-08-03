@@ -69,6 +69,11 @@
         <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Tareas_TareasCategorias" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Tareas_TareasEstatus" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel1.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Edificios" Width="1.5" PointX="6" PointY="34.625" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.EdificiosDetalle" Width="1.5" PointX="8.25" PointY="35" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
