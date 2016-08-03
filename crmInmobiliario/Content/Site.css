@@ -40,6 +40,10 @@ table {
     max-width: auto;
 }
 
+.nota{
+    min-width: 40%;
+}
+
 .logo{
     max-height: 30px;
 }
