@@ -69,6 +69,7 @@
     <EntitySetMapping Name="Desarrollos">
       <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Desarrollos">
         <MappingFragment StoreEntitySet="Desarrollos">
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
           <ScalarProperty Name="IdDesarrollo" ColumnName="IdDesarrollo" />
           <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
           <ScalarProperty Name="Clave" ColumnName="Clave" />
@@ -247,6 +248,8 @@
     <EntitySetMapping Name="Propiedades">
       <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Propiedades">
         <MappingFragment StoreEntitySet="Propiedades">
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="Edificio" ColumnName="Edificio" />
           <ScalarProperty Name="LargoLocal" ColumnName="LargoLocal" />
           <ScalarProperty Name="URLReglamento" ColumnName="URLReglamento" />
           <ScalarProperty Name="Reglamento" ColumnName="Reglamento" />
@@ -409,5 +412,26 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Edificios">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Edificios">
+        <MappingFragment StoreEntitySet="Edificios">
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="NumeroPisos" ColumnName="NumeroPisos" />
+          <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+          <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
+          <ScalarProperty Name="IdEdificio" ColumnName="IdEdificio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EdificiosDetalle">
+      <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.EdificiosDetalle">
+        <MappingFragment StoreEntitySet="EdificiosDetalle">
+          <ScalarProperty Name="M2" ColumnName="M2" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+          <ScalarProperty Name="IdEdificioDetalle" ColumnName="IdEdificioDetalle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

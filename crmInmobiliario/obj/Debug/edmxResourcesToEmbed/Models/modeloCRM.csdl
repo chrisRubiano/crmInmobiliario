@@ -80,6 +80,8 @@
     <Property Name="Clave" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
     <Property Name="Activo" Type="Boolean" />
     <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
   </EntityType>
   <EntityType Name="Domicilios">
     <Key>
@@ -318,6 +320,9 @@
     <Property Name="Reglamento" Type="Boolean" />
     <Property Name="URLReglamento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <Property Name="LargoLocal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Edificio" Type="Int32" />
+    <Property Name="Estatus" Type="Int32" />
+    <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" FromRole="Propiedades" ToRole="Edificios" />
   </EntityType>
   <EntityType Name="PropiedadesAcabados">
     <Key>
@@ -940,5 +945,78 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Edificios" EntityType="CRMINMOBILIARIOModel1.Edificios" />
+    <EntitySet Name="EdificiosDetalle" EntityType="CRMINMOBILIARIOModel1.EdificiosDetalle" />
+    <AssociationSet Name="FK_Edificios_Desarrollos" Association="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos">
+      <End Role="Desarrollos" EntitySet="Desarrollos" />
+      <End Role="Edificios" EntitySet="Edificios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EdificiosDetalle_Edificios" Association="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios">
+      <End Role="Edificios" EntitySet="Edificios" />
+      <End Role="EdificiosDetalle" EntitySet="EdificiosDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Propiedades_Edificios" Association="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios">
+      <End Role="Edificios" EntitySet="Edificios" />
+      <End Role="Propiedades" EntitySet="Propiedades" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Edificios">
+    <Key>
+      <PropertyRef Name="IdEdificio" />
+    </Key>
+    <Property Name="IdEdificio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Desarrollo" Type="Int32" />
+    <Property Name="Edificio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroPisos" Type="Int32" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Desarrollos" Relationship="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" FromRole="Edificios" ToRole="Desarrollos" />
+    <NavigationProperty Name="EdificiosDetalle" Relationship="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" FromRole="Edificios" ToRole="EdificiosDetalle" />
+    <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" FromRole="Edificios" ToRole="Propiedades" />
+  </EntityType>
+  <EntityType Name="EdificiosDetalle">
+    <Key>
+      <PropertyRef Name="IdEdificioDetalle" />
+    </Key>
+    <Property Name="IdEdificioDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Edificio" Type="Int32" />
+    <Property Name="Nivel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="M2" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" FromRole="EdificiosDetalle" ToRole="Edificios" />
+  </EntityType>
+  <Association Name="FK_Edificios_Desarrollos">
+    <End Type="CRMINMOBILIARIOModel1.Desarrollos" Role="Desarrollos" Multiplicity="0..1" />
+    <End Type="CRMINMOBILIARIOModel1.Edificios" Role="Edificios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Desarrollos">
+        <PropertyRef Name="IdDesarrollo" />
+      </Principal>
+      <Dependent Role="Edificios">
+        <PropertyRef Name="Desarrollo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EdificiosDetalle_Edificios">
+    <End Type="CRMINMOBILIARIOModel1.Edificios" Role="Edificios" Multiplicity="0..1" />
+    <End Type="CRMINMOBILIARIOModel1.EdificiosDetalle" Role="EdificiosDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edificios">
+        <PropertyRef Name="IdEdificio" />
+      </Principal>
+      <Dependent Role="EdificiosDetalle">
+        <PropertyRef Name="Edificio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Propiedades_Edificios">
+    <End Type="CRMINMOBILIARIOModel1.Edificios" Role="Edificios" Multiplicity="0..1" />
+    <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Edificios">
+        <PropertyRef Name="IdEdificio" />
+      </Principal>
+      <Dependent Role="Propiedades">
+        <PropertyRef Name="Edificio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
