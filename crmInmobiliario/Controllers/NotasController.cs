@@ -23,7 +23,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Notas/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? categoriap)
         {
             if (id == null)
             {
@@ -34,11 +34,13 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.categoriap = categoriap;
             return View(notas);
         }
 
         // GET: Notas/Create
-        public ActionResult Create(int ? idPersona)
+        public ActionResult Create(int ? idPersona, int? categoriap)
         {
             var personasList = new List<string>();
             var notaPersonaQry = from d in db.Personas where d.IdPersona == idPersona select d.Nombre+" "+d.Paterno+" "+d.Materno;
@@ -46,6 +48,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Persona = personasList[0];
             Notas notas = new Notas();
             notas.Fecha = DateTime.Now;
+            ViewBag.categoriap = categoriap;
             return View(notas);
         }
 
@@ -71,7 +74,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Notas/Edit/5
-        public ActionResult Edit(int? id, int idPersona)
+        public ActionResult Edit(int? id, int idPersona, int? categoriap)
         {
             if (id == null)
             {
@@ -82,7 +85,8 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", notas.Persona);
+            ViewBag.Persona = idPersona;
+            ViewBag.categoriap = categoriap;
             return View(notas);
         }
 
@@ -101,12 +105,12 @@ namespace crmInmobiliario.Controllers
                 db.SaveChanges();
                 return Redirect("/Personas/Details/" + idPersona.ToString());
             }
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", notas.Persona);
+            ViewBag.Persona = idPersona;
             return View(notas);
         }
 
         // GET: Notas/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int? categoriap)
         {
             if (id == null)
             {
@@ -117,6 +121,7 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.categoriap = categoriap;
             return View(notas);
         }
 
