@@ -47,7 +47,6 @@ namespace crmInmobiliario.Models
         public virtual DbSet<PersonasGenero> PersonasGenero { get; set; }
         public virtual DbSet<PersonasIntereses> PersonasIntereses { get; set; }
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
-        public virtual DbSet<Propiedades> Propiedades { get; set; }
         public virtual DbSet<PropiedadesAcabados> PropiedadesAcabados { get; set; }
         public virtual DbSet<PropiedadesAntiguedad> PropiedadesAntiguedad { get; set; }
         public virtual DbSet<PropiedadesCaracteristicas> PropiedadesCaracteristicas { get; set; }
@@ -61,5 +60,12 @@ namespace crmInmobiliario.Models
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
         public virtual DbSet<Edificios> Edificios { get; set; }
         public virtual DbSet<EdificiosDetalle> EdificiosDetalle { get; set; }
+        public virtual DbSet<Configuraciones> Configuraciones { get; set; }
+        public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
+        public virtual DbSet<Documentos> Documentos { get; set; }
+        public virtual DbSet<Fotografias> Fotografias { get; set; }
+        public virtual DbSet<PropiedadesEstatus> PropiedadesEstatus { get; set; }
+        public virtual DbSet<PropiedadesSistemaAC> PropiedadesSistemaAC { get; set; }
+        public virtual DbSet<Propiedades> Propiedades { get; set; }
     }
 }

@@ -12,14 +12,16 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CaracteristicasPropiedades
+    public partial class Fotografias
     {
-        public int IdCaracteristicaPropiedad { get; set; }
+        public int IdFotografia { get; set; }
         public Nullable<int> Propiedad { get; set; }
-        public Nullable<int> Caracteristica { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public byte[] Fotografia { get; set; }
+        public Nullable<bool> Principal { get; set; }
+        public string Titulo { get; set; }
+        public string Descripcion { get; set; }
+        public string Usuario { get; set; }
     
-        public virtual PropiedadesCaracteristicas PropiedadesCaracteristicas { get; set; }
         public virtual Propiedades Propiedades { get; set; }
     }
 }

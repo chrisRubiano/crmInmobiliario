@@ -204,6 +204,12 @@
     <Compile Include="Models\CaracteristicasPropiedades.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Configuraciones.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cotizaciones.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -211,6 +217,9 @@
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DesarrollosMeta.cs" />
+    <Compile Include="Models\Documentos.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Domicilios.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -228,6 +237,9 @@
     </Compile>
     <Compile Include="Models\EdificiosMeta.cs" />
     <Compile Include="Models\Estados.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fotografias.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MediosContacto.cs">
@@ -292,6 +304,12 @@
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesCaracteristicasCategorias.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropiedadesEstatus.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropiedadesSistemaAC.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesTipo.cs">
