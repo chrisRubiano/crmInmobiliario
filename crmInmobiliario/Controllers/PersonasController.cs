@@ -154,7 +154,15 @@ namespace crmInmobiliario.Controllers
                     personas.Categoria = categoria;
                     db.Personas.Add(personas);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (personas.Categoria == 1)
+                    {
+                        return RedirectToAction("ListaProspectos");
+                    }
+                    else if (personas.Categoria == 2)
+                    {
+                        return RedirectToAction("ListaClientes");
+                    }
+                    
                 }
             }
             catch (DataException)
@@ -196,7 +204,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro")] Personas personas)
+        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro")] Personas personas, int? categoriap)
         {
             try
             {
@@ -206,7 +214,15 @@ namespace crmInmobiliario.Controllers
                     personas.FechaUA = DateTime.Now;
                     db.Entry(personas).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (categoriap.Value == 1)
+                    {
+                        return RedirectToAction("ListaProspectos");
+                    }
+                    else if (categoriap.Value == 2)
+                    {
+                        return RedirectToAction("ListaClientes");
+                    }
+
                 }
             }
             catch (DataException)
@@ -239,12 +255,31 @@ namespace crmInmobiliario.Controllers
         // POST: Personas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int Categoriap)
         {
             Personas personas = db.Personas.Find(id);
+            try
+            {
+                eliminarNotas(id);
+                eliminarDomicilios(id, 1);
+            }
+            catch (Exception)
+            {
+
+            }
             db.Personas.Remove(personas);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Categoriap == 1)
+            {
+                return RedirectToAction("ListaProspectos");
+            }
+            else if (Categoriap == 2)
+            {
+                return RedirectToAction("ListaClientes");
+            }
+            else {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -255,5 +290,43 @@ namespace crmInmobiliario.Controllers
             }
             base.Dispose(disposing);
         }
+
+        /*---------------------------------*/
+
+       public void eliminarNotas(int id)
+        {
+            IEnumerable<Notas> listaNotas = db.Notas.Where(i => i.Persona == id);
+            foreach (var item in listaNotas)
+            {
+                db.Notas.Remove(item);
+            }
+            db.SaveChanges();
+        }
+
+        /*Tipo 1 = personas, Tipo 2 = Propiedades*/
+        public void eliminarDomicilios(int id, int tipo)
+        {
+            if (tipo == 1)
+            {
+                IEnumerable<Domicilios> listaDomicilios = db.Domicilios.Where(i => i.IdPersona == id);
+                foreach (var item in listaDomicilios)
+                {
+                    db.Domicilios.Remove(item);
+                }
+            }
+            else if (tipo == 2)
+            {
+                IEnumerable<Domicilios> listaDomicilios = db.Domicilios.Where(i => i.IdPropiedad == id);
+                foreach (var item in listaDomicilios)
+                {
+                    db.Domicilios.Remove(item);
+                }
+            }
+            db.SaveChanges();
+
+        }
+
+
+        /*-------------------------------*/
     }
 }

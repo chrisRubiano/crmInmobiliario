@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "pruebas";
+}
+
+<h2>pruebas</h2>
+
+<div id='gameModal' class='modal fade in' data-url='@Url.Action("Create","Propiedades")' style="background-color: #fff;">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            <div id='gameContainer'>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id='showGame'>Demo</button>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#showGame').click(function () {
+                var url = $('#gameModal').data('url');
+
+                $.get(url, function (data) {
+                    $('#gameContainer').html(data);
+
+                    $('#gameModal').modal('show');
+                });
+            });
+        });
+    </script>
+}

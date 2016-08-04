@@ -10,9 +10,11 @@ namespace crmInmobiliario.Models
     {
             [Required]
             public int Tipo { get; set; }
-
+            
+            [Required]
             public string Nombre { get; set; }
-
+            
+            [Required]
             [Display(Name = "Apellido Paterno")]
             public string Paterno { get; set; }
 

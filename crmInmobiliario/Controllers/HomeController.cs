@@ -26,5 +26,12 @@ namespace crmInmobiliario.Controllers
 
             return View();
         }
+
+        /*--------------------------------------------------*/
+        public ActionResult Pruebas()
+        {
+            return View();
+        }
+        /*-------------------------------------------------*/
     }
 }
