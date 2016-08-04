@@ -80,10 +80,11 @@
             <PropertyRef Name="IdDesarrollo" />
           </Key>
           <Property Name="IdDesarrollo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Desarrollo" Type="varchar" MaxLength="150" />
-          <Property Name="Clave" Type="varchar" MaxLength="2" />
+          <Property Name="Desarrollo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Activo" Type="bit" />
           <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CajonesEstacionamiento" Type="int" />
         </EntityType>
         <EntityType Name="Domicilios">
           <Key>
@@ -133,8 +134,9 @@
           <Property Name="IdEdificio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Desarrollo" Type="int" />
           <Property Name="Edificio" Type="varchar" MaxLength="100" />
-          <Property Name="NumeroPisos" Type="int" />
+          <Property Name="Niveles" Type="int" />
           <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CajonesEstacionamiento" Type="int" />
         </EntityType>
         <EntityType Name="EdificiosDetalle">
           <Key>
@@ -1075,12 +1077,13 @@
             <PropertyRef Name="IdDesarrollo" />
           </Key>
           <Property Name="IdDesarrollo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Desarrollo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Clave" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Desarrollo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
           <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
+          <Property Name="CajonesEstacionamiento" Type="Int32" />
         </EntityType>
         <EntityType Name="Domicilios">
           <Key>
@@ -1966,11 +1969,12 @@
           <Property Name="IdEdificio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Desarrollo" Type="Int32" />
           <Property Name="Edificio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="NumeroPisos" Type="Int32" />
           <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Desarrollos" Relationship="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" FromRole="Edificios" ToRole="Desarrollos" />
           <NavigationProperty Name="EdificiosDetalle" Relationship="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" FromRole="Edificios" ToRole="EdificiosDetalle" />
           <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" FromRole="Edificios" ToRole="Propiedades" />
+          <Property Name="Niveles" Type="Int32" />
+          <Property Name="CajonesEstacionamiento" Type="Int32" />
         </EntityType>
         <EntityType Name="EdificiosDetalle">
           <Key>
@@ -2092,6 +2096,7 @@
           <EntitySetMapping Name="Desarrollos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Desarrollos">
               <MappingFragment StoreEntitySet="Desarrollos">
+                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdDesarrollo" ColumnName="IdDesarrollo" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
@@ -2438,8 +2443,9 @@
           <EntitySetMapping Name="Edificios">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Edificios">
               <MappingFragment StoreEntitySet="Edificios">
+                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
+                <ScalarProperty Name="Niveles" ColumnName="Niveles" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="NumeroPisos" ColumnName="NumeroPisos" />
                 <ScalarProperty Name="Edificio" ColumnName="Edificio" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
                 <ScalarProperty Name="IdEdificio" ColumnName="IdEdificio" />
