@@ -11,9 +11,6 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(DesarrollosMeta))]
     
     public partial class Desarrollos
     {
@@ -29,7 +26,6 @@ namespace crmInmobiliario.Models
         public string Clave { get; set; }
         public Nullable<bool> Activo { get; set; }
         public Nullable<decimal> Descuento { get; set; }
-        public Nullable<int> CajonesEstacionamiento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Propiedades> Propiedades { get; set; }
