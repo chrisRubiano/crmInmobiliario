@@ -1,12 +1,12 @@
-﻿@model crmInmobiliario.Models.Desarrollos
+﻿@model crmInmobiliario.Models.Edificios
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Registrar Desarrollo</h2>
+<h2>Editar Datos de Edificio</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -14,40 +14,37 @@
         
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdEdificio)
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Desarrollo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Desarrollo, "Desarrollo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Desarrollo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Desarrollo", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Desarrollo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edificio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Edificio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Edificio, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    Si @Html.RadioButtonFor(model => model.Activo, true, new { @checked = "checked" })
-                    No @Html.RadioButtonFor(model => model.Activo, false)
-                    @Html.ValidationMessageFor(model => model.Activo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>*@
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Descuento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Descuento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descuento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Niveles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Niveles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Niveles, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -59,22 +56,14 @@
             </div>
         </div>
 
- 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
             </div>
         </div>
-
     </div>
 }
 
-
 <div>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Desarrollos")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Edificios")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
 </div>
-
-
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@

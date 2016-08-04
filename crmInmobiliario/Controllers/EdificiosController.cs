@@ -10,134 +10,112 @@ using crmInmobiliario.Models;
 
 namespace crmInmobiliario.Controllers
 {
-    public class DesarrollosController : Controller
+    public class EdificiosController : Controller
     {
         private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
 
-        // GET: Desarrollos
+        // GET: Edificios
         public ActionResult Index()
         {
-            return View(db.Desarrollos.ToList());
+            var edificios = db.Edificios.Include(e => e.Desarrollos);
+            return View(edificios.ToList());
         }
 
-        // GET: Desarrollos/Details/5
+        // GET: Edificios/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            if (desarrollos == null)
+            Edificios edificios = db.Edificios.Find(id);
+            if (edificios == null)
             {
                 return HttpNotFound();
             }
-            return View(desarrollos);
+            return View(edificios);
         }
 
-        // GET: Desarrollos/Create
+        // GET: Edificios/Create
         public ActionResult Create()
         {
+            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
             return View();
         }
 
-        // POST: Desarrollos/Create
+        // POST: Edificios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Descuento,CajonesEstacionamiento")] Desarrollos desarrollos)
+        public ActionResult Create([Bind(Include = "IdEdificio,Desarrollo,Edificio,Descuento,Niveles,CajonesEstacionamiento")] Edificios edificios)
         {
             if (ModelState.IsValid)
             {
-                db.Desarrollos.Add(desarrollos);
+                db.Edificios.Add(edificios);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(desarrollos);
+            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", edificios.Desarrollo);
+            return View(edificios);
         }
 
-
-
-        //public ActionResult ListaDesarrollos(string desarrollo)
-        //{
-        //    var desarrolloList = new List<string>();
-        //    var desarrolloQry = from d in db.Desarrollos.Where(d => d.Activo == true)
-        //                        orderby d.Desarrollo
-        //                        select d.Desarrollo;
-
-        //    desarrolloList.AddRange(desarrolloQry);
-
-        //    ViewBag.desarrollo = new SelectList(desarrolloList);
-
-        //    var desarrollos = from d in db.Desarrollos
-        //                      select d;
-
-        //    if (!string.IsNullOrEmpty(desarrollo))
-        //    {
-        //        desarrollos = from d in db.Desarrollos
-        //                      select d;
-        //        desarrollos = desarrollos.Where(s => s.Desarrollo == desarrollo);
-        //    }
-
-        //    return View(desarrollos.ToList());
-        //}
-
-
-        // GET: Desarrollos/Edit/5
+        // GET: Edificios/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            if (desarrollos == null)
+            Edificios edificios = db.Edificios.Find(id);
+            if (edificios == null)
             {
                 return HttpNotFound();
             }
-            return View(desarrollos);
+            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", edificios.Desarrollo);
+            return View(edificios);
         }
 
-        // POST: Desarrollos/Edit/5
+        // POST: Edificios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Activo,Descuento,CajonesEstacionamiento")] Desarrollos desarrollos)
+        public ActionResult Edit([Bind(Include = "IdEdificio,Desarrollo,Edificio,Descuento,Niveles,CajonesEstacionamiento")] Edificios edificios)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(desarrollos).State = EntityState.Modified;
+                db.Entry(edificios).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(desarrollos);
+            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", edificios.Desarrollo);
+            return View(edificios);
         }
 
-        // GET: Desarrollos/Delete/5
+        // GET: Edificios/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            if (desarrollos == null)
+            Edificios edificios = db.Edificios.Find(id);
+            if (edificios == null)
             {
                 return HttpNotFound();
             }
-            return View(desarrollos);
+            return View(edificios);
         }
 
-        // POST: Desarrollos/Delete/5
+        // POST: Edificios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            db.Desarrollos.Remove(desarrollos);
+            Edificios edificios = db.Edificios.Find(id);
+            db.Edificios.Remove(edificios);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

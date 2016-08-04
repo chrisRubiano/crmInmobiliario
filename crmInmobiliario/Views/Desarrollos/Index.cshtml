@@ -10,7 +10,7 @@
     @*@Html.ActionLink("Create New", "Create")*@
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Desarrollos")'"><i class="fa fa-user-plus"></i> Registrar Desarrollo</button>
 
-    <hr />
+    @*<hr />
     @using (Html.BeginForm("ListaDesarrollos", "Desarrollos", FormMethod.Get, new { @class = "form-inline" }))
     {
         <div class="form-group">
@@ -19,7 +19,7 @@
         <div class="form-group">
             <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
         </div>
-    }
+    }*@
 
 </p>
 <table class="table">
@@ -37,6 +37,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Descuento)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,18 +56,24 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Clave)
-        </td>
+        </td>        
         <td>
-            @Html.DisplayFor(modelItem => item.Activo)
+            @if (item.Activo.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descuento)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdDesarrollo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdDesarrollo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdDesarrollo })
-        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
+        </td>
+       
     </tr>
 }
 
