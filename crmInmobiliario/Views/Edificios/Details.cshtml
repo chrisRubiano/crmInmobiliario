@@ -1,0 +1,66 @@
+﻿@model crmInmobiliario.Models.Edificios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Datos del Edificio</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edificio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edificio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niveles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Niveles)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CajonesEstacionamiento)
+        </dd>
+
+        
+
+    </dl>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Edificios")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Edificios", new { id = Model.IdEdificio })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>

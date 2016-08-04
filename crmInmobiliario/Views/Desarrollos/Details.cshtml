@@ -4,13 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Datos del Desarrollo</h2>
 
 <div>
-    <h4>Desarrollos</h4>
+    
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt >
             @Html.DisplayNameFor(model => model.Desarrollo)
         </dt>
 
@@ -25,18 +25,49 @@
         <dd>
             @Html.DisplayFor(model => model.Clave)
         </dd>
-
+                     
         <dt>
             @Html.DisplayNameFor(model => model.Activo)
         </dt>
+           
+        <dd>
+            @if (@Model.Activo.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Activo)
+            @Html.DisplayFor(model => model.Descuento)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CajonesEstacionamiento)
+        </dd>
+
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdDesarrollo }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Desarrollos")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Desarrollos", new { id = Model.IdDesarrollo })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>
+

@@ -11,7 +11,9 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(EdificiosMeta))]
     public partial class Edificios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,8 +26,9 @@ namespace crmInmobiliario.Models
         public int IdEdificio { get; set; }
         public Nullable<int> Desarrollo { get; set; }
         public string Edificio { get; set; }
-        public Nullable<int> NumeroPisos { get; set; }
         public Nullable<decimal> Descuento { get; set; }
+        public Nullable<int> Niveles { get; set; }
+        public Nullable<int> CajonesEstacionamiento { get; set; }
     
         public virtual Desarrollos Desarrollos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

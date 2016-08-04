@@ -179,6 +179,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DesarrollosController.cs" />
     <Compile Include="Controllers\DomiciliosController.cs" />
+    <Compile Include="Controllers\EdificiosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Models\Desarrollos.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DesarrollosMeta.cs" />
     <Compile Include="Models\Domicilios.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -224,6 +226,7 @@
     <Compile Include="Models\EdificiosDetalle.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EdificiosMeta.cs" />
     <Compile Include="Models\Estados.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -450,6 +453,11 @@
     <Content Include="Views\Desarrollos\Details.cshtml" />
     <Content Include="Views\Desarrollos\Edit.cshtml" />
     <Content Include="Views\Desarrollos\Index.cshtml" />
+    <Content Include="Views\Edificios\Create.cshtml" />
+    <Content Include="Views\Edificios\Delete.cshtml" />
+    <Content Include="Views\Edificios\Details.cshtml" />
+    <Content Include="Views\Edificios\Edit.cshtml" />
+    <Content Include="Views\Edificios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

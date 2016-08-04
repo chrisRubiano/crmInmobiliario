@@ -1,0 +1,110 @@
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\crmInmobiliario.dll.config
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\crmInmobiliario.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\crmInmobiliario.pdb
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Antlr3.Runtime.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\EntityFramework.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\EntityFramework.SqlServer.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Newtonsoft.Json.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Owin.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Helpers.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Mvc.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Optimization.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Razor.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Deployment.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Razor.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\WebGrease.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Antlr3.Runtime.pdb
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\EntityFramework.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\EntityFramework.SqlServer.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\Newtonsoft.Json.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Helpers.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Mvc.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Razor.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Deployment.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Razor.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\bin\System.Web.Optimization.xml
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\obj\Debug\crmInmobiliario.csprojResolveAssemblyReference.cache
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\obj\Debug\crmInmobiliario.dll
+C:\Users\cristian\git\crmInmobiliario\crmInmobiliario\obj\Debug\crmInmobiliario.pdb
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\crmInmobiliario.dll.config
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\crmInmobiliario.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\crmInmobiliario.pdb
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Antlr3.Runtime.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\EntityFramework.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\EntityFramework.SqlServer.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Newtonsoft.Json.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Owin.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Helpers.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Mvc.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Optimization.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Razor.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Razor.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\WebGrease.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Antlr3.Runtime.pdb
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\EntityFramework.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\EntityFramework.SqlServer.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\Newtonsoft.Json.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Helpers.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Mvc.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Razor.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.WebPages.Razor.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\bin\System.Web.Optimization.xml
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\obj\Debug\crmInmobiliario.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\obj\Debug\crmInmobiliario.dll
+C:\Users\Miguel\documents\visual studio 2013\Projects\crmInmobiliario\crmInmobiliario\obj\Debug\crmInmobiliario.pdb
