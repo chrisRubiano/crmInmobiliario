@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(Persona))]
+    
     public partial class Personas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +19,8 @@ namespace crmInmobiliario.Models
         {
             this.Domicilios = new HashSet<Domicilios>();
             this.Notas = new HashSet<Notas>();
+            this.Cotizaciones = new HashSet<Cotizaciones>();
+            this.Documentos = new HashSet<Documentos>();
         }
     
         public int IdPersona { get; set; }
@@ -55,5 +55,9 @@ namespace crmInmobiliario.Models
         public virtual PersonasIntereses PersonasIntereses { get; set; }
         public virtual PersonasTipo PersonasTipo { get; set; }
         public virtual PropiedadesTipo PropiedadesTipo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cotizaciones> Cotizaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Documentos> Documentos { get; set; }
     }
 }
