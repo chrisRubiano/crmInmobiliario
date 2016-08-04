@@ -127,14 +127,14 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas/Create
-        public ActionResult Create(int categoriap)
+        public ActionResult Create(int? categoria)
         {
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
             ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
-            ViewBag.Categoriap = categoriap;
+            ViewBag.Categoriap = categoria;
             return View();
         }
 
