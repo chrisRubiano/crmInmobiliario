@@ -47,7 +47,7 @@ namespace crmInmobiliario.Controllers
             personasList.AddRange(notaPersonaQry);
             ViewBag.Persona = personasList[0];
             Notas notas = new Notas();
-            notas.Fecha = DateTime.Now;
+            ViewBag.idPersona = idPersona;
             ViewBag.categoriap = categoriap;
             return View(notas);
         }
