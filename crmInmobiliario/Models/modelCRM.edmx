@@ -330,9 +330,9 @@
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Moneda" Type="int" />
           <Property Name="Recamaras" Type="int" />
-          <Property Name="PreparacionBanio" Type="int" />
+          <Property Name="PreparacionBanio" Type="bit" />
           <Property Name="IncluyeInstalacionBanio" Type="bit" />
-          <Property Name="Banios" Type="int" />
+          <Property Name="Banios" Type="bit" />
           <Property Name="MedioBanios" Type="int" />
           <Property Name="Estacionamiento" Type="bit" />
           <Property Name="PrecioEstacionamiento" Type="money" />
@@ -1572,9 +1572,9 @@
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Moneda" Type="Int32" />
           <Property Name="Recamaras" Type="Int32" />
-          <Property Name="PreparacionBanio" Type="Int32" />
+          <Property Name="PreparacionBanio" Type="Boolean" />
           <Property Name="IncluyeInstalacionBanio" Type="Boolean" />
-          <Property Name="Banios" Type="Int32" />
+          <Property Name="Banios" Type="Boolean" />
           <Property Name="MedioBanios" Type="Int32" />
           <Property Name="Estacionamiento" Type="Boolean" />
           <Property Name="PrecioEstacionamiento" Type="Decimal" Precision="19" Scale="4" />
@@ -2239,7 +2239,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CRMINMOBILIARIOEntities6" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -2448,7 +2448,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities5">
+        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities6">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
