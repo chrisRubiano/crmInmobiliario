@@ -12,7 +12,7 @@ namespace crmInmobiliario.Controllers
 {
     public class DesarrollosController : Controller
     {
-        private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
+        private CRMINMOBILIARIOEntities5 db = new CRMINMOBILIARIOEntities5();
 
         // GET: Desarrollos
         public ActionResult Index()

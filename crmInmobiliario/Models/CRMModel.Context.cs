@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities4 : DbContext
+    public partial class CRMINMOBILIARIOEntities5 : DbContext
     {
-        public CRMINMOBILIARIOEntities4()
-            : base("name=CRMINMOBILIARIOEntities4")
+        public CRMINMOBILIARIOEntities5()
+            : base("name=CRMINMOBILIARIOEntities5")
         {
         }
     
@@ -31,11 +31,17 @@ namespace crmInmobiliario.Models
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CaracteristicasPropiedades> CaracteristicasPropiedades { get; set; }
+        public virtual DbSet<Configuraciones> Configuraciones { get; set; }
+        public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
         public virtual DbSet<Desarrollos> Desarrollos { get; set; }
+        public virtual DbSet<Documentos> Documentos { get; set; }
         public virtual DbSet<Domicilios> Domicilios { get; set; }
         public virtual DbSet<DomiciliosCategoria> DomiciliosCategoria { get; set; }
         public virtual DbSet<DomiciliosTipo> DomiciliosTipo { get; set; }
+        public virtual DbSet<Edificios> Edificios { get; set; }
+        public virtual DbSet<EdificiosDetalle> EdificiosDetalle { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
+        public virtual DbSet<Fotografias> Fotografias { get; set; }
         public virtual DbSet<MediosContacto> MediosContacto { get; set; }
         public virtual DbSet<MediosEnterarse> MediosEnterarse { get; set; }
         public virtual DbSet<Monedas> Monedas { get; set; }
@@ -47,10 +53,13 @@ namespace crmInmobiliario.Models
         public virtual DbSet<PersonasGenero> PersonasGenero { get; set; }
         public virtual DbSet<PersonasIntereses> PersonasIntereses { get; set; }
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
+        public virtual DbSet<Propiedades> Propiedades { get; set; }
         public virtual DbSet<PropiedadesAcabados> PropiedadesAcabados { get; set; }
         public virtual DbSet<PropiedadesAntiguedad> PropiedadesAntiguedad { get; set; }
         public virtual DbSet<PropiedadesCaracteristicas> PropiedadesCaracteristicas { get; set; }
         public virtual DbSet<PropiedadesCaracteristicasCategorias> PropiedadesCaracteristicasCategorias { get; set; }
+        public virtual DbSet<PropiedadesEstatus> PropiedadesEstatus { get; set; }
+        public virtual DbSet<PropiedadesSistemaAC> PropiedadesSistemaAC { get; set; }
         public virtual DbSet<PropiedadesTipo> PropiedadesTipo { get; set; }
         public virtual DbSet<PropiedadesTiposOperacion> PropiedadesTiposOperacion { get; set; }
         public virtual DbSet<ProspectosPropiedades> ProspectosPropiedades { get; set; }
@@ -58,14 +67,5 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Tareas> Tareas { get; set; }
         public virtual DbSet<TareasCategorias> TareasCategorias { get; set; }
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
-        public virtual DbSet<Edificios> Edificios { get; set; }
-        public virtual DbSet<EdificiosDetalle> EdificiosDetalle { get; set; }
-        public virtual DbSet<Configuraciones> Configuraciones { get; set; }
-        public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
-        public virtual DbSet<Documentos> Documentos { get; set; }
-        public virtual DbSet<Fotografias> Fotografias { get; set; }
-        public virtual DbSet<PropiedadesEstatus> PropiedadesEstatus { get; set; }
-        public virtual DbSet<PropiedadesSistemaAC> PropiedadesSistemaAC { get; set; }
-        public virtual DbSet<Propiedades> Propiedades { get; set; }
     }
 }

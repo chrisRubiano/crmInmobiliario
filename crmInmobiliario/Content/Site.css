@@ -60,6 +60,15 @@ table {
     text-transform: uppercase;
 }
 
+.groupform{
+    margin-bottom: 15px;
+}
+
+.panel{
+    padding: 15px;
+    background-color: #f5f6f8; 
+}
+
 /*Ajustes de iconos font awesome*/
 
 button.navbar-toggle {

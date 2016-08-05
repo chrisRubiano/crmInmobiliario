@@ -17,10 +17,10 @@ namespace crmInmobiliario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Personas()
         {
-            this.Domicilios = new HashSet<Domicilios>();
-            this.Notas = new HashSet<Notas>();
             this.Cotizaciones = new HashSet<Cotizaciones>();
             this.Documentos = new HashSet<Documentos>();
+            this.Domicilios = new HashSet<Domicilios>();
+            this.Notas = new HashSet<Notas>();
         }
     
         public int IdPersona { get; set; }
@@ -46,6 +46,10 @@ namespace crmInmobiliario.Models
         public Nullable<System.DateTime> FechaUA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cotizaciones> Cotizaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Documentos> Documentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Domicilios> Domicilios { get; set; }
         public virtual MediosContacto MediosContacto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -55,9 +59,5 @@ namespace crmInmobiliario.Models
         public virtual PersonasIntereses PersonasIntereses { get; set; }
         public virtual PersonasTipo PersonasTipo { get; set; }
         public virtual PropiedadesTipo PropiedadesTipo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cotizaciones> Cotizaciones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Documentos> Documentos { get; set; }
     }
 }

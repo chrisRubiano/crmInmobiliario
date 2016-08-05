@@ -76,6 +76,8 @@ namespace crmInmobiliario.Models
         public string MantenimientoMensual { get; set; }
         public Nullable<bool> Reglamento { get; set; }
         public string URLReglamento { get; set; }
+        public Nullable<int> Consecutivo { get; set; }
+        public string Codigo { get; set; }
         public string Observaciones { get; set; }
         public string Usuario { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }

@@ -24,8 +24,8 @@ namespace crmInmobiliario.Models
         public int IdEdificio { get; set; }
         public Nullable<int> Desarrollo { get; set; }
         public string Edificio { get; set; }
-        public Nullable<decimal> Descuento { get; set; }
         public Nullable<int> Niveles { get; set; }
+        public Nullable<decimal> Descuento { get; set; }
         public Nullable<int> CajonesEstacionamiento { get; set; }
         public Nullable<System.DateTime> FechaEntrega { get; set; }
     

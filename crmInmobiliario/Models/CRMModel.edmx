@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CRMINMOBILIARIOModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -991,7 +991,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOModel1StoreContainer">
+        <EntityContainer Name="CRMINMOBILIARIOModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -1200,10 +1200,11 @@
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CRMINMOBILIARIOModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -1272,8 +1273,33 @@
           <Property Name="Propiedad" Type="Int32" />
           <Property Name="Caracteristica" Type="Int32" />
           <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_CaracteristicasPropiedades_Propiedades" FromRole="CaracteristicasPropiedades" ToRole="Propiedades" />
           <NavigationProperty Name="PropiedadesCaracteristicas" Relationship="Self.FK_CaracteristicasPropiedades_PropiedadesCaracteristicas" FromRole="CaracteristicasPropiedades" ToRole="PropiedadesCaracteristicas" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_CaracteristicasPropiedades_Propiedades" FromRole="CaracteristicasPropiedades" ToRole="Propiedades" />
+        </EntityType>
+        <EntityType Name="Configuraciones">
+          <Key>
+            <PropertyRef Name="IdConfiguracion" />
+          </Key>
+          <Property Name="IdConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescuentoGlobal" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Cotizaciones">
+          <Key>
+            <PropertyRef Name="IdCotizacion" />
+          </Key>
+          <Property Name="IdCotizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Propiedad" Type="Int32" />
+          <Property Name="Persona" Type="Int32" />
+          <Property Name="FechaCotizacion" Type="DateTime" Precision="3" />
+          <Property Name="PrecioFinalVenta" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PorcentajeEnganche" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Enganche" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Parcialidades" Type="Int32" />
+          <Property Name="PorcentajeMensualidades" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PagoMensual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Vendedor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Cotizaciones_Personas1" FromRole="Cotizaciones" ToRole="Personas" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Cotizaciones_Propiedades" FromRole="Cotizaciones" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="Desarrollos">
           <Key>
@@ -1284,9 +1310,27 @@
           <Property Name="Clave" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Activo" Type="Boolean" />
           <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
           <Property Name="CajonesEstacionamiento" Type="Int32" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
+          <NavigationProperty Name="Edificios" Relationship="Self.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
+        </EntityType>
+        <EntityType Name="Documentos">
+          <Key>
+            <PropertyRef Name="IdDocumento" />
+          </Key>
+          <Property Name="IdDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Propiedad" Type="Int32" />
+          <Property Name="Persona" Type="Int32" Nullable="false" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Documentos_Personas" FromRole="Documentos" ToRole="Personas" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Documentos_Propiedades" FromRole="Documentos" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="Domicilios">
           <Key>
@@ -1320,7 +1364,7 @@
           <NavigationProperty Name="Municipios" Relationship="Self.FK_Domicilios_Municipios" FromRole="Domicilios" ToRole="Municipios" />
           <NavigationProperty Name="Paises" Relationship="Self.FK_Domicilios_Paises" FromRole="Domicilios" ToRole="Paises" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Domicilios_Personas" FromRole="Domicilios" ToRole="Personas" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Domicilios_Propiedades" FromRole="Domicilios" ToRole="Propiedades" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Domicilios_Propiedades" FromRole="Domicilios" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="DomiciliosCategoria">
           <Key>
@@ -1338,6 +1382,31 @@
           <Property Name="TipoDomicilio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Domicilios" Relationship="Self.FK_Domicilios_DomiciliosTipo" FromRole="DomiciliosTipo" ToRole="Domicilios" />
         </EntityType>
+        <EntityType Name="Edificios">
+          <Key>
+            <PropertyRef Name="IdEdificio" />
+          </Key>
+          <Property Name="IdEdificio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desarrollo" Type="Int32" />
+          <Property Name="Edificio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Niveles" Type="Int32" />
+          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CajonesEstacionamiento" Type="Int32" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Desarrollos" Relationship="Self.FK_Edificios_Desarrollos" FromRole="Edificios" ToRole="Desarrollos" />
+          <NavigationProperty Name="EdificiosDetalle" Relationship="Self.FK_EdificiosDetalle_Edificios" FromRole="Edificios" ToRole="EdificiosDetalle" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Edificios" FromRole="Edificios" ToRole="Propiedades" />
+        </EntityType>
+        <EntityType Name="EdificiosDetalle">
+          <Key>
+            <PropertyRef Name="IdEdificioDetalle" />
+          </Key>
+          <Property Name="IdEdificioDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Edificio" Type="Int32" />
+          <Property Name="Nivel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="M2" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Edificios" Relationship="Self.FK_EdificiosDetalle_Edificios" FromRole="EdificiosDetalle" ToRole="Edificios" />
+        </EntityType>
         <EntityType Name="Estados">
           <Key>
             <PropertyRef Name="IdEstado" />
@@ -1346,6 +1415,19 @@
           <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Abreviacion" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Domicilios" Relationship="Self.FK_Domicilios_Estados" FromRole="Estados" ToRole="Domicilios" />
+        </EntityType>
+        <EntityType Name="Fotografias">
+          <Key>
+            <PropertyRef Name="IdFotografia" />
+          </Key>
+          <Property Name="IdFotografia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Propiedad" Type="Int32" />
+          <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Principal" Type="Boolean" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Fotografias_Propiedades" FromRole="Fotografias" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="MediosContacto">
           <Key>
@@ -1370,7 +1452,7 @@
           <Property Name="IdMoneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Moneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Abreviatura" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Monedas" FromRole="Monedas" ToRole="Propiedades" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Monedas" FromRole="Monedas" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="Municipios">
           <Key>
@@ -1426,6 +1508,8 @@
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
           <Property Name="UsuarioUA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="FechaUA" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cotizaciones" Relationship="Self.FK_Cotizaciones_Personas1" FromRole="Personas" ToRole="Cotizaciones" />
+          <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_Personas" FromRole="Personas" ToRole="Documentos" />
           <NavigationProperty Name="Domicilios" Relationship="Self.FK_Domicilios_Personas" FromRole="Personas" ToRole="Domicilios" />
           <NavigationProperty Name="MediosContacto" Relationship="Self.FK_Personas_MediosContacto" FromRole="Personas" ToRole="MediosContacto" />
           <NavigationProperty Name="Notas" Relationship="Self.FK_Notas_Personas" FromRole="Personas" ToRole="Notas" />
@@ -1434,8 +1518,6 @@
           <NavigationProperty Name="PersonasIntereses" Relationship="Self.FK_Personas_PersonasIntereses" FromRole="Personas" ToRole="PersonasIntereses" />
           <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
           <NavigationProperty Name="PropiedadesTipo" Relationship="Self.FK_Personas_PropiedadesTipo" FromRole="Personas" ToRole="PropiedadesTipo" />
-          <NavigationProperty Name="Cotizaciones" Relationship="CRMINMOBILIARIOModel1.FK_Cotizaciones_Personas1" FromRole="Personas" ToRole="Cotizaciones" />
-          <NavigationProperty Name="Documentos" Relationship="CRMINMOBILIARIOModel1.FK_Documentos_Personas" FromRole="Personas" ToRole="Documentos" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -1471,13 +1553,97 @@
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PersonasTipo" FromRole="PersonasTipo" ToRole="Personas" />
         </EntityType>
+        <EntityType Name="Propiedades">
+          <Key>
+            <PropertyRef Name="IdPropiedad" />
+          </Key>
+          <Property Name="IdPropiedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desarrollo" Type="Int32" />
+          <Property Name="Edificio" Type="Int32" />
+          <Property Name="TipoPropiedad" Type="Int32" />
+          <Property Name="TipoOperacion" Type="Int32" />
+          <Property Name="VentaPrecio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RentaPrecio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RentaTarifaDiaria" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RentaTarifaSemanal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RentaTarifaMensual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RentaEstadiaMinima" Type="Int32" />
+          <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Moneda" Type="Int32" />
+          <Property Name="Recamaras" Type="Int32" />
+          <Property Name="PreparacionBanio" Type="Int32" />
+          <Property Name="IncluyeInstalacionBanio" Type="Boolean" />
+          <Property Name="Banios" Type="Int32" />
+          <Property Name="MedioBanios" Type="Int32" />
+          <Property Name="Estacionamiento" Type="Boolean" />
+          <Property Name="PrecioEstacionamiento" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="M2Estacionamiento" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioM2Estacionamiento" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CajonesEstacionamiento" Type="Int32" />
+          <Property Name="CajonesAdicionales" Type="Int32" />
+          <Property Name="M2CajonAdicional" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioM2CajonAdicional" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Terreno" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="M2Terreno" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioM2Terreno" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LargoTerreno" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FrenteTerreno" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Construccion" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="M2Interiores" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioM2Interiores" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Terraza" Type="Boolean" />
+          <Property Name="M2Terraza" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioM2Terraza" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Bodega" Type="Boolean" />
+          <Property Name="M2Bodega" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioM2Bodega" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FrenteLocal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LargoLocal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Acabados" Type="Int32" />
+          <Property Name="AcabadosEspecifique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Antiguedad" Type="Int32" />
+          <Property Name="Nivel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Niveles" Type="Int32" />
+          <Property Name="SistemaAC" Type="Int32" />
+          <Property Name="MantenimientoMensual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reglamento" Type="Boolean" />
+          <Property Name="URLReglamento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Consecutivo" Type="Int32" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioUA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FechaUA" Type="DateTime" Precision="3" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="Uso1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Uso2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Uso3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Uso4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Uso5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CaracteristicasPropiedades" Relationship="Self.FK_CaracteristicasPropiedades_Propiedades" FromRole="Propiedades" ToRole="CaracteristicasPropiedades" />
+          <NavigationProperty Name="Cotizaciones" Relationship="Self.FK_Cotizaciones_Propiedades" FromRole="Propiedades" ToRole="Cotizaciones" />
+          <NavigationProperty Name="Desarrollos" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Propiedades" ToRole="Desarrollos" />
+          <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_Propiedades" FromRole="Propiedades" ToRole="Documentos" />
+          <NavigationProperty Name="Domicilios" Relationship="Self.FK_Domicilios_Propiedades" FromRole="Propiedades" ToRole="Domicilios" />
+          <NavigationProperty Name="Edificios" Relationship="Self.FK_Propiedades_Edificios" FromRole="Propiedades" ToRole="Edificios" />
+          <NavigationProperty Name="Fotografias" Relationship="Self.FK_Fotografias_Propiedades" FromRole="Propiedades" ToRole="Fotografias" />
+          <NavigationProperty Name="Monedas" Relationship="Self.FK_Propiedades_Monedas" FromRole="Propiedades" ToRole="Monedas" />
+          <NavigationProperty Name="PropiedadesAcabados" Relationship="Self.FK_Propiedades_PropiedadesAcabados" FromRole="Propiedades" ToRole="PropiedadesAcabados" />
+          <NavigationProperty Name="PropiedadesAntiguedad" Relationship="Self.FK_Propiedades_PropiedadesAntiguedad" FromRole="Propiedades" ToRole="PropiedadesAntiguedad" />
+          <NavigationProperty Name="PropiedadesEstatus" Relationship="Self.FK_Propiedades_PropiedadesEstatus" FromRole="Propiedades" ToRole="PropiedadesEstatus" />
+          <NavigationProperty Name="PropiedadesSistemaAC" Relationship="Self.FK_Propiedades_PropiedadesSistemaAC" FromRole="Propiedades" ToRole="PropiedadesSistemaAC" />
+          <NavigationProperty Name="PropiedadesTipo" Relationship="Self.FK_Propiedades_PropiedadesTipo" FromRole="Propiedades" ToRole="PropiedadesTipo" />
+          <NavigationProperty Name="PropiedadesTiposOperacion" Relationship="Self.FK_Propiedades_PropiedadesTiposOperacion" FromRole="Propiedades" ToRole="PropiedadesTiposOperacion" />
+        </EntityType>
         <EntityType Name="PropiedadesAcabados">
           <Key>
             <PropertyRef Name="IdAcabado" />
           </Key>
           <Property Name="IdAcabado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Acabado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAcabados" FromRole="PropiedadesAcabados" ToRole="Propiedades" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesAcabados" FromRole="PropiedadesAcabados" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="PropiedadesAntiguedad">
           <Key>
@@ -1485,7 +1651,7 @@
           </Key>
           <Property Name="IdAntiguedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Antiguedad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAntiguedad" FromRole="PropiedadesAntiguedad" ToRole="Propiedades" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesAntiguedad" FromRole="PropiedadesAntiguedad" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="PropiedadesCaracteristicas">
           <Key>
@@ -1506,6 +1672,22 @@
           <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PropiedadesCaracteristicas" Relationship="Self.FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias" FromRole="PropiedadesCaracteristicasCategorias" ToRole="PropiedadesCaracteristicas" />
         </EntityType>
+        <EntityType Name="PropiedadesEstatus">
+          <Key>
+            <PropertyRef Name="IdEstatus" />
+          </Key>
+          <Property Name="IdEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesEstatus" FromRole="PropiedadesEstatus" ToRole="Propiedades" />
+        </EntityType>
+        <EntityType Name="PropiedadesSistemaAC">
+          <Key>
+            <PropertyRef Name="IdSistemaAC" />
+          </Key>
+          <Property Name="IdSistemaAC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SistemaAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesSistemaAC" FromRole="PropiedadesSistemaAC" ToRole="Propiedades" />
+        </EntityType>
         <EntityType Name="PropiedadesTipo">
           <Key>
             <PropertyRef Name="IdTipoPropiedad" />
@@ -1515,7 +1697,7 @@
           <Property Name="Clave" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PropiedadesTipo" FromRole="PropiedadesTipo" ToRole="Personas" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTipo" FromRole="PropiedadesTipo" ToRole="Propiedades" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesTipo" FromRole="PropiedadesTipo" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="PropiedadesTiposOperacion">
           <Key>
@@ -1523,7 +1705,7 @@
           </Key>
           <Property Name="IdTipoOperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TipoOperacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTiposOperacion" FromRole="PropiedadesTiposOperacion" ToRole="Propiedades" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesTiposOperacion" FromRole="PropiedadesTiposOperacion" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="ProspectosPropiedades">
           <Key>
@@ -1621,6 +1803,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CaracteristicasPropiedades_Propiedades">
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
+          <End Role="CaracteristicasPropiedades" Type="Self.CaracteristicasPropiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="CaracteristicasPropiedades">
+              <PropertyRef Name="Propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CaracteristicasPropiedades_PropiedadesCaracteristicas">
           <End Role="PropiedadesCaracteristicas" Type="Self.PropiedadesCaracteristicas" Multiplicity="0..1" />
           <End Role="CaracteristicasPropiedades" Type="Self.CaracteristicasPropiedades" Multiplicity="*" />
@@ -1630,6 +1824,78 @@
             </Principal>
             <Dependent Role="CaracteristicasPropiedades">
               <PropertyRef Name="Caracteristica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotizaciones_Personas1">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
+          <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="Cotizaciones">
+              <PropertyRef Name="Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotizaciones_Propiedades">
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
+          <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="Cotizaciones">
+              <PropertyRef Name="Propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Edificios_Desarrollos">
+          <End Role="Desarrollos" Type="Self.Desarrollos" Multiplicity="0..1" />
+          <End Role="Edificios" Type="Self.Edificios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Desarrollos">
+              <PropertyRef Name="IdDesarrollo" />
+            </Principal>
+            <Dependent Role="Edificios">
+              <PropertyRef Name="Desarrollo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_Desarrollos">
+          <End Role="Desarrollos" Type="Self.Desarrollos" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Desarrollos">
+              <PropertyRef Name="IdDesarrollo" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="Desarrollo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documentos_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documentos_Propiedades">
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="Propiedad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1705,6 +1971,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Domicilios_Propiedades">
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
+          <End Role="Domicilios" Type="Self.Domicilios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="Domicilios">
+              <PropertyRef Name="IdPropiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EdificiosDetalle_Edificios">
+          <End Role="Edificios" Type="Self.Edificios" Multiplicity="0..1" />
+          <End Role="EdificiosDetalle" Type="Self.EdificiosDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edificios">
+              <PropertyRef Name="IdEdificio" />
+            </Principal>
+            <Dependent Role="EdificiosDetalle">
+              <PropertyRef Name="Edificio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_Edificios">
+          <End Role="Edificios" Type="Self.Edificios" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edificios">
+              <PropertyRef Name="IdEdificio" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="Edificio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fotografias_Propiedades">
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
+          <End Role="Fotografias" Type="Self.Fotografias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="Fotografias">
+              <PropertyRef Name="Propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Personas_MediosContacto">
           <End Role="MediosContacto" Type="Self.MediosContacto" Multiplicity="0..1" />
           <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
@@ -1726,6 +2040,18 @@
             </Principal>
             <Dependent Role="ProspectosPropiedades">
               <PropertyRef Name="MedioEnterarse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_Monedas">
+          <End Role="Monedas" Type="Self.Monedas" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monedas">
+              <PropertyRef Name="IdMoneda" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="Moneda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1801,6 +2127,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Propiedades_PropiedadesAcabados">
+          <End Role="PropiedadesAcabados" Type="Self.PropiedadesAcabados" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropiedadesAcabados">
+              <PropertyRef Name="IdAcabado" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="Acabados" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_PropiedadesAntiguedad">
+          <End Role="PropiedadesAntiguedad" Type="Self.PropiedadesAntiguedad" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropiedadesAntiguedad">
+              <PropertyRef Name="IdAntiguedad" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="Antiguedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_PropiedadesEstatus">
+          <End Role="PropiedadesEstatus" Type="Self.PropiedadesEstatus" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropiedadesEstatus">
+              <PropertyRef Name="IdEstatus" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="Estatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_PropiedadesSistemaAC">
+          <End Role="PropiedadesSistemaAC" Type="Self.PropiedadesSistemaAC" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropiedadesSistemaAC">
+              <PropertyRef Name="IdSistemaAC" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="SistemaAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_PropiedadesTipo">
+          <End Role="PropiedadesTipo" Type="Self.PropiedadesTipo" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropiedadesTipo">
+              <PropertyRef Name="IdTipoPropiedad" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="TipoPropiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Propiedades_PropiedadesTiposOperacion">
+          <End Role="PropiedadesTiposOperacion" Type="Self.PropiedadesTiposOperacion" Multiplicity="0..1" />
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropiedadesTiposOperacion">
+              <PropertyRef Name="IdTipoOperacion" />
+            </Principal>
+            <Dependent Role="Propiedades">
+              <PropertyRef Name="TipoOperacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias">
           <End Role="PropiedadesCaracteristicasCategorias" Type="Self.PropiedadesCaracteristicasCategorias" Multiplicity="0..1" />
           <End Role="PropiedadesCaracteristicas" Type="Self.PropiedadesCaracteristicas" Multiplicity="*" />
@@ -1841,18 +2239,24 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOEntities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CRMINMOBILIARIOEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="CaracteristicasPropiedades" EntityType="Self.CaracteristicasPropiedades" />
+          <EntitySet Name="Configuraciones" EntityType="Self.Configuraciones" />
+          <EntitySet Name="Cotizaciones" EntityType="Self.Cotizaciones" />
           <EntitySet Name="Desarrollos" EntityType="Self.Desarrollos" />
+          <EntitySet Name="Documentos" EntityType="Self.Documentos" />
           <EntitySet Name="Domicilios" EntityType="Self.Domicilios" />
           <EntitySet Name="DomiciliosCategoria" EntityType="Self.DomiciliosCategoria" />
           <EntitySet Name="DomiciliosTipo" EntityType="Self.DomiciliosTipo" />
+          <EntitySet Name="Edificios" EntityType="Self.Edificios" />
+          <EntitySet Name="EdificiosDetalle" EntityType="Self.EdificiosDetalle" />
           <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="Fotografias" EntityType="Self.Fotografias" />
           <EntitySet Name="MediosContacto" EntityType="Self.MediosContacto" />
           <EntitySet Name="MediosEnterarse" EntityType="Self.MediosEnterarse" />
           <EntitySet Name="Monedas" EntityType="Self.Monedas" />
@@ -1864,10 +2268,13 @@
           <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" />
           <EntitySet Name="PersonasIntereses" EntityType="Self.PersonasIntereses" />
           <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" />
+          <EntitySet Name="Propiedades" EntityType="Self.Propiedades" />
           <EntitySet Name="PropiedadesAcabados" EntityType="Self.PropiedadesAcabados" />
           <EntitySet Name="PropiedadesAntiguedad" EntityType="Self.PropiedadesAntiguedad" />
           <EntitySet Name="PropiedadesCaracteristicas" EntityType="Self.PropiedadesCaracteristicas" />
           <EntitySet Name="PropiedadesCaracteristicasCategorias" EntityType="Self.PropiedadesCaracteristicasCategorias" />
+          <EntitySet Name="PropiedadesEstatus" EntityType="Self.PropiedadesEstatus" />
+          <EntitySet Name="PropiedadesSistemaAC" EntityType="Self.PropiedadesSistemaAC" />
           <EntitySet Name="PropiedadesTipo" EntityType="Self.PropiedadesTipo" />
           <EntitySet Name="PropiedadesTiposOperacion" EntityType="Self.PropiedadesTiposOperacion" />
           <EntitySet Name="ProspectosPropiedades" EntityType="Self.ProspectosPropiedades" />
@@ -1887,9 +2294,37 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
+          <AssociationSet Name="FK_CaracteristicasPropiedades_Propiedades" Association="Self.FK_CaracteristicasPropiedades_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="CaracteristicasPropiedades" EntitySet="CaracteristicasPropiedades" />
+          </AssociationSet>
           <AssociationSet Name="FK_CaracteristicasPropiedades_PropiedadesCaracteristicas" Association="Self.FK_CaracteristicasPropiedades_PropiedadesCaracteristicas">
             <End Role="PropiedadesCaracteristicas" EntitySet="PropiedadesCaracteristicas" />
             <End Role="CaracteristicasPropiedades" EntitySet="CaracteristicasPropiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cotizaciones_Personas1" Association="Self.FK_Cotizaciones_Personas1">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cotizaciones_Propiedades" Association="Self.FK_Cotizaciones_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Edificios_Desarrollos" Association="Self.FK_Edificios_Desarrollos">
+            <End Role="Desarrollos" EntitySet="Desarrollos" />
+            <End Role="Edificios" EntitySet="Edificios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_Desarrollos" Association="Self.FK_Propiedades_Desarrollos">
+            <End Role="Desarrollos" EntitySet="Desarrollos" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documentos_Personas" Association="Self.FK_Documentos_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Documentos" EntitySet="Documentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documentos_Propiedades" Association="Self.FK_Documentos_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
           <AssociationSet Name="FK_Domicilios_DomiciliosCategoria" Association="Self.FK_Domicilios_DomiciliosCategoria">
             <End Role="DomiciliosCategoria" EntitySet="DomiciliosCategoria" />
@@ -1915,6 +2350,22 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="Domicilios" EntitySet="Domicilios" />
           </AssociationSet>
+          <AssociationSet Name="FK_Domicilios_Propiedades" Association="Self.FK_Domicilios_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="Domicilios" EntitySet="Domicilios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EdificiosDetalle_Edificios" Association="Self.FK_EdificiosDetalle_Edificios">
+            <End Role="Edificios" EntitySet="Edificios" />
+            <End Role="EdificiosDetalle" EntitySet="EdificiosDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_Edificios" Association="Self.FK_Propiedades_Edificios">
+            <End Role="Edificios" EntitySet="Edificios" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fotografias_Propiedades" Association="Self.FK_Fotografias_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="Fotografias" EntitySet="Fotografias" />
+          </AssociationSet>
           <AssociationSet Name="FK_Personas_MediosContacto" Association="Self.FK_Personas_MediosContacto">
             <End Role="MediosContacto" EntitySet="MediosContacto" />
             <End Role="Personas" EntitySet="Personas" />
@@ -1922,6 +2373,10 @@
           <AssociationSet Name="FK_ProspectosPropiedades_MediosEnterarse" Association="Self.FK_ProspectosPropiedades_MediosEnterarse">
             <End Role="MediosEnterarse" EntitySet="MediosEnterarse" />
             <End Role="ProspectosPropiedades" EntitySet="ProspectosPropiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_Monedas" Association="Self.FK_Propiedades_Monedas">
+            <End Role="Monedas" EntitySet="Monedas" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
           </AssociationSet>
           <AssociationSet Name="FK_Notas_Personas" Association="Self.FK_Notas_Personas">
             <End Role="Personas" EntitySet="Personas" />
@@ -1947,6 +2402,30 @@
             <End Role="PropiedadesTipo" EntitySet="PropiedadesTipo" />
             <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_PropiedadesAcabados" Association="Self.FK_Propiedades_PropiedadesAcabados">
+            <End Role="PropiedadesAcabados" EntitySet="PropiedadesAcabados" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_PropiedadesAntiguedad" Association="Self.FK_Propiedades_PropiedadesAntiguedad">
+            <End Role="PropiedadesAntiguedad" EntitySet="PropiedadesAntiguedad" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_PropiedadesEstatus" Association="Self.FK_Propiedades_PropiedadesEstatus">
+            <End Role="PropiedadesEstatus" EntitySet="PropiedadesEstatus" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_PropiedadesSistemaAC" Association="Self.FK_Propiedades_PropiedadesSistemaAC">
+            <End Role="PropiedadesSistemaAC" EntitySet="PropiedadesSistemaAC" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_PropiedadesTipo" Association="Self.FK_Propiedades_PropiedadesTipo">
+            <End Role="PropiedadesTipo" EntitySet="PropiedadesTipo" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Propiedades_PropiedadesTiposOperacion" Association="Self.FK_Propiedades_PropiedadesTiposOperacion">
+            <End Role="PropiedadesTiposOperacion" EntitySet="PropiedadesTiposOperacion" />
+            <End Role="Propiedades" EntitySet="Propiedades" />
+          </AssociationSet>
           <AssociationSet Name="FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias" Association="Self.FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias">
             <End Role="PropiedadesCaracteristicasCategorias" EntitySet="PropiedadesCaracteristicasCategorias" />
             <End Role="PropiedadesCaracteristicas" EntitySet="PropiedadesCaracteristicas" />
@@ -1963,491 +2442,15 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Edificios" EntityType="CRMINMOBILIARIOModel1.Edificios" />
-          <EntitySet Name="EdificiosDetalle" EntityType="CRMINMOBILIARIOModel1.EdificiosDetalle" />
-          <AssociationSet Name="FK_Edificios_Desarrollos" Association="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos">
-            <End Role="Desarrollos" EntitySet="Desarrollos" />
-            <End Role="Edificios" EntitySet="Edificios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EdificiosDetalle_Edificios" Association="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios">
-            <End Role="Edificios" EntitySet="Edificios" />
-            <End Role="EdificiosDetalle" EntitySet="EdificiosDetalle" />
-          </AssociationSet>
-          <EntitySet Name="Configuraciones" EntityType="CRMINMOBILIARIOModel1.Configuraciones" />
-          <EntitySet Name="Cotizaciones" EntityType="CRMINMOBILIARIOModel1.Cotizaciones" />
-          <EntitySet Name="Documentos" EntityType="CRMINMOBILIARIOModel1.Documentos" />
-          <EntitySet Name="Fotografias" EntityType="CRMINMOBILIARIOModel1.Fotografias" />
-          <EntitySet Name="PropiedadesEstatus" EntityType="CRMINMOBILIARIOModel1.PropiedadesEstatus" />
-          <EntitySet Name="PropiedadesSistemaAC" EntityType="CRMINMOBILIARIOModel1.PropiedadesSistemaAC" />
-          <AssociationSet Name="FK_Cotizaciones_Personas1" Association="CRMINMOBILIARIOModel1.FK_Cotizaciones_Personas1">
-            <End Role="Personas" EntitySet="Personas" />
-            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Documentos_Personas" Association="CRMINMOBILIARIOModel1.FK_Documentos_Personas">
-            <End Role="Personas" EntitySet="Personas" />
-            <End Role="Documentos" EntitySet="Documentos" />
-          </AssociationSet>
-          <EntitySet Name="Propiedades" EntityType="CRMINMOBILIARIOModel1.Propiedades" />
-          <AssociationSet Name="FK_CaracteristicasPropiedades_Propiedades" Association="CRMINMOBILIARIOModel1.FK_CaracteristicasPropiedades_Propiedades">
-            <End Role="Propiedades" EntitySet="Propiedades" />
-            <End Role="CaracteristicasPropiedades" EntitySet="CaracteristicasPropiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cotizaciones_Propiedades" Association="CRMINMOBILIARIOModel1.FK_Cotizaciones_Propiedades">
-            <End Role="Propiedades" EntitySet="Propiedades" />
-            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_Desarrollos" Association="CRMINMOBILIARIOModel1.FK_Propiedades_Desarrollos">
-            <End Role="Desarrollos" EntitySet="Desarrollos" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Documentos_Propiedades" Association="CRMINMOBILIARIOModel1.FK_Documentos_Propiedades">
-            <End Role="Propiedades" EntitySet="Propiedades" />
-            <End Role="Documentos" EntitySet="Documentos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Domicilios_Propiedades" Association="CRMINMOBILIARIOModel1.FK_Domicilios_Propiedades">
-            <End Role="Propiedades" EntitySet="Propiedades" />
-            <End Role="Domicilios" EntitySet="Domicilios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_Edificios" Association="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios">
-            <End Role="Edificios" EntitySet="Edificios" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Fotografias_Propiedades" Association="CRMINMOBILIARIOModel1.FK_Fotografias_Propiedades">
-            <End Role="Propiedades" EntitySet="Propiedades" />
-            <End Role="Fotografias" EntitySet="Fotografias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_Monedas" Association="CRMINMOBILIARIOModel1.FK_Propiedades_Monedas">
-            <End Role="Monedas" EntitySet="Monedas" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesAcabados" Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAcabados">
-            <End Role="PropiedadesAcabados" EntitySet="PropiedadesAcabados" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesAntiguedad" Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAntiguedad">
-            <End Role="PropiedadesAntiguedad" EntitySet="PropiedadesAntiguedad" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesEstatus" Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesEstatus">
-            <End Role="PropiedadesEstatus" EntitySet="PropiedadesEstatus" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesSistemaAC" Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesSistemaAC">
-            <End Role="PropiedadesSistemaAC" EntitySet="PropiedadesSistemaAC" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesTipo" Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTipo">
-            <End Role="PropiedadesTipo" EntitySet="PropiedadesTipo" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesTiposOperacion" Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTiposOperacion">
-            <End Role="PropiedadesTiposOperacion" EntitySet="PropiedadesTiposOperacion" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Edificios">
-          <Key>
-            <PropertyRef Name="IdEdificio" />
-          </Key>
-          <Property Name="IdEdificio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Desarrollo" Type="Int32" />
-          <Property Name="Edificio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Desarrollos" Relationship="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" FromRole="Edificios" ToRole="Desarrollos" />
-          <NavigationProperty Name="EdificiosDetalle" Relationship="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" FromRole="Edificios" ToRole="EdificiosDetalle" />
-          <Property Name="Niveles" Type="Int32" />
-          <Property Name="CajonesEstacionamiento" Type="Int32" />
-          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" FromRole="Edificios" ToRole="Propiedades" />
-        </EntityType>
-        <EntityType Name="EdificiosDetalle">
-          <Key>
-            <PropertyRef Name="IdEdificioDetalle" />
-          </Key>
-          <Property Name="IdEdificioDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Edificio" Type="Int32" />
-          <Property Name="Nivel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="M2" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" FromRole="EdificiosDetalle" ToRole="Edificios" />
-        </EntityType>
-        <Association Name="FK_Edificios_Desarrollos">
-          <End Type="CRMINMOBILIARIOModel1.Desarrollos" Role="Desarrollos" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Edificios" Role="Edificios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Desarrollos">
-              <PropertyRef Name="IdDesarrollo" />
-            </Principal>
-            <Dependent Role="Edificios">
-              <PropertyRef Name="Desarrollo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EdificiosDetalle_Edificios">
-          <End Type="CRMINMOBILIARIOModel1.Edificios" Role="Edificios" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.EdificiosDetalle" Role="EdificiosDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Edificios">
-              <PropertyRef Name="IdEdificio" />
-            </Principal>
-            <Dependent Role="EdificiosDetalle">
-              <PropertyRef Name="Edificio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Configuraciones">
-          <Key>
-            <PropertyRef Name="IdConfiguracion" />
-          </Key>
-          <Property Name="IdConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DescuentoGlobal" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="Cotizaciones">
-          <Key>
-            <PropertyRef Name="IdCotizacion" />
-          </Key>
-          <Property Name="IdCotizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Propiedad" Type="Int32" />
-          <Property Name="Persona" Type="Int32" />
-          <Property Name="FechaCotizacion" Type="DateTime" Precision="3" />
-          <Property Name="PrecioFinalVenta" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="PorcentajeEnganche" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Enganche" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Parcialidades" Type="Int32" />
-          <Property Name="PorcentajeMensualidades" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="PagoMensual" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Vendedor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel1.FK_Cotizaciones_Personas1" FromRole="Cotizaciones" ToRole="Personas" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Cotizaciones_Propiedades" FromRole="Cotizaciones" ToRole="Propiedades" />
-        </EntityType>
-        <EntityType Name="Documentos">
-          <Key>
-            <PropertyRef Name="IdDocumento" />
-          </Key>
-          <Property Name="IdDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Propiedad" Type="Int32" />
-          <Property Name="Persona" Type="Int32" Nullable="false" />
-          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Archivo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
-          <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel1.FK_Documentos_Personas" FromRole="Documentos" ToRole="Personas" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Documentos_Propiedades" FromRole="Documentos" ToRole="Propiedades" />
-        </EntityType>
-        <EntityType Name="Fotografias">
-          <Key>
-            <PropertyRef Name="IdFotografia" />
-          </Key>
-          <Property Name="IdFotografia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Propiedad" Type="Int32" />
-          <Property Name="Fotografia" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Principal" Type="Boolean" />
-          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Fotografias_Propiedades" FromRole="Fotografias" ToRole="Propiedades" />
-        </EntityType>
-        <EntityType Name="PropiedadesEstatus">
-          <Key>
-            <PropertyRef Name="IdEstatus" />
-          </Key>
-          <Property Name="IdEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesEstatus" FromRole="PropiedadesEstatus" ToRole="Propiedades" />
-        </EntityType>
-        <EntityType Name="PropiedadesSistemaAC">
-          <Key>
-            <PropertyRef Name="IdSistemaAC" />
-          </Key>
-          <Property Name="IdSistemaAC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SistemaAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesSistemaAC" FromRole="PropiedadesSistemaAC" ToRole="Propiedades" />
-        </EntityType>
-        <Association Name="FK_Cotizaciones_Personas1">
-          <End Type="CRMINMOBILIARIOModel1.Personas" Role="Personas" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Cotizaciones" Role="Cotizaciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personas">
-              <PropertyRef Name="IdPersona" />
-            </Principal>
-            <Dependent Role="Cotizaciones">
-              <PropertyRef Name="Persona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Documentos_Personas">
-          <End Type="CRMINMOBILIARIOModel1.Personas" Role="Personas" Multiplicity="1" />
-          <End Type="CRMINMOBILIARIOModel1.Documentos" Role="Documentos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personas">
-              <PropertyRef Name="IdPersona" />
-            </Principal>
-            <Dependent Role="Documentos">
-              <PropertyRef Name="Persona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Propiedades">
-          <Key>
-            <PropertyRef Name="IdPropiedad" />
-          </Key>
-          <Property Name="IdPropiedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Desarrollo" Type="Int32" />
-          <Property Name="Edificio" Type="Int32" />
-          <Property Name="TipoPropiedad" Type="Int32" />
-          <Property Name="TipoOperacion" Type="Int32" />
-          <Property Name="VentaPrecio" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RentaPrecio" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RentaTarifaDiaria" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RentaTarifaSemanal" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RentaTarifaMensual" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="RentaEstadiaMinima" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Moneda" Type="Int32" />
-          <Property Name="Recamaras" Type="Int32" />
-          <Property Name="PreparacionBanio" Type="Int32" />
-          <Property Name="IncluyeInstalacionBanio" Type="Boolean" />
-          <Property Name="Banios" Type="Int32" />
-          <Property Name="MedioBanios" Type="Int32" />
-          <Property Name="Estacionamiento" Type="Boolean" />
-          <Property Name="PrecioEstacionamiento" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="M2Estacionamiento" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PrecioM2Estacionamiento" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CajonesEstacionamiento" Type="Int32" />
-          <Property Name="CajonesAdicionales" Type="Int32" />
-          <Property Name="M2CajonAdicional" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PrecioM2CajonAdicional" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Terreno" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="M2Terreno" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PrecioM2Terreno" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="LargoTerreno" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="FrenteTerreno" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Construccion" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="M2Interiores" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PrecioM2Interiores" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Terraza" Type="Boolean" />
-          <Property Name="M2Terraza" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PrecioM2Terraza" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Bodega" Type="Boolean" />
-          <Property Name="M2Bodega" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="PrecioM2Bodega" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="FrenteLocal" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="LargoLocal" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Acabados" Type="Int32" />
-          <Property Name="AcabadosEspecifique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Antiguedad" Type="Int32" />
-          <Property Name="Nivel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="Niveles" Type="Int32" />
-          <Property Name="SistemaAC" Type="Int32" />
-          <Property Name="MantenimientoMensual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Reglamento" Type="Boolean" />
-          <Property Name="URLReglamento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
-          <Property Name="UsuarioUA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="FechaUA" Type="DateTime" Precision="3" />
-          <Property Name="Estatus" Type="Int32" />
-          <Property Name="Uso1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Uso2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Uso3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Uso4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Uso5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CaracteristicasPropiedades" Relationship="CRMINMOBILIARIOModel1.FK_CaracteristicasPropiedades_Propiedades" FromRole="Propiedades" ToRole="CaracteristicasPropiedades" />
-          <NavigationProperty Name="Cotizaciones" Relationship="CRMINMOBILIARIOModel1.FK_Cotizaciones_Propiedades" FromRole="Propiedades" ToRole="Cotizaciones" />
-          <NavigationProperty Name="Desarrollos" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Desarrollos" FromRole="Propiedades" ToRole="Desarrollos" />
-          <NavigationProperty Name="Documentos" Relationship="CRMINMOBILIARIOModel1.FK_Documentos_Propiedades" FromRole="Propiedades" ToRole="Documentos" />
-          <NavigationProperty Name="Domicilios" Relationship="CRMINMOBILIARIOModel1.FK_Domicilios_Propiedades" FromRole="Propiedades" ToRole="Domicilios" />
-          <NavigationProperty Name="Edificios" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" FromRole="Propiedades" ToRole="Edificios" />
-          <NavigationProperty Name="Fotografias" Relationship="CRMINMOBILIARIOModel1.FK_Fotografias_Propiedades" FromRole="Propiedades" ToRole="Fotografias" />
-          <NavigationProperty Name="Monedas" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_Monedas" FromRole="Propiedades" ToRole="Monedas" />
-          <NavigationProperty Name="PropiedadesAcabados" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAcabados" FromRole="Propiedades" ToRole="PropiedadesAcabados" />
-          <NavigationProperty Name="PropiedadesAntiguedad" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAntiguedad" FromRole="Propiedades" ToRole="PropiedadesAntiguedad" />
-          <NavigationProperty Name="PropiedadesEstatus" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesEstatus" FromRole="Propiedades" ToRole="PropiedadesEstatus" />
-          <NavigationProperty Name="PropiedadesSistemaAC" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesSistemaAC" FromRole="Propiedades" ToRole="PropiedadesSistemaAC" />
-          <NavigationProperty Name="PropiedadesTipo" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTipo" FromRole="Propiedades" ToRole="PropiedadesTipo" />
-          <NavigationProperty Name="PropiedadesTiposOperacion" Relationship="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTiposOperacion" FromRole="Propiedades" ToRole="PropiedadesTiposOperacion" />
-        </EntityType>
-        <Association Name="FK_CaracteristicasPropiedades_Propiedades">
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.CaracteristicasPropiedades" Role="CaracteristicasPropiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Propiedades">
-              <PropertyRef Name="IdPropiedad" />
-            </Principal>
-            <Dependent Role="CaracteristicasPropiedades">
-              <PropertyRef Name="Propiedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cotizaciones_Propiedades">
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Cotizaciones" Role="Cotizaciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Propiedades">
-              <PropertyRef Name="IdPropiedad" />
-            </Principal>
-            <Dependent Role="Cotizaciones">
-              <PropertyRef Name="Propiedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_Desarrollos">
-          <End Type="CRMINMOBILIARIOModel1.Desarrollos" Role="Desarrollos" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Desarrollos">
-              <PropertyRef Name="IdDesarrollo" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Desarrollo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Documentos_Propiedades">
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Documentos" Role="Documentos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Propiedades">
-              <PropertyRef Name="IdPropiedad" />
-            </Principal>
-            <Dependent Role="Documentos">
-              <PropertyRef Name="Propiedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Domicilios_Propiedades">
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Domicilios" Role="Domicilios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Propiedades">
-              <PropertyRef Name="IdPropiedad" />
-            </Principal>
-            <Dependent Role="Domicilios">
-              <PropertyRef Name="IdPropiedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_Edificios">
-          <End Type="CRMINMOBILIARIOModel1.Edificios" Role="Edificios" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Edificios">
-              <PropertyRef Name="IdEdificio" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Edificio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Fotografias_Propiedades">
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Fotografias" Role="Fotografias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Propiedades">
-              <PropertyRef Name="IdPropiedad" />
-            </Principal>
-            <Dependent Role="Fotografias">
-              <PropertyRef Name="Propiedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_Monedas">
-          <End Type="CRMINMOBILIARIOModel1.Monedas" Role="Monedas" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Monedas">
-              <PropertyRef Name="IdMoneda" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Moneda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_PropiedadesAcabados">
-          <End Type="CRMINMOBILIARIOModel1.PropiedadesAcabados" Role="PropiedadesAcabados" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PropiedadesAcabados">
-              <PropertyRef Name="IdAcabado" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Acabados" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_PropiedadesAntiguedad">
-          <End Type="CRMINMOBILIARIOModel1.PropiedadesAntiguedad" Role="PropiedadesAntiguedad" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PropiedadesAntiguedad">
-              <PropertyRef Name="IdAntiguedad" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Antiguedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_PropiedadesEstatus">
-          <End Type="CRMINMOBILIARIOModel1.PropiedadesEstatus" Role="PropiedadesEstatus" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PropiedadesEstatus">
-              <PropertyRef Name="IdEstatus" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Estatus" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_PropiedadesSistemaAC">
-          <End Type="CRMINMOBILIARIOModel1.PropiedadesSistemaAC" Role="PropiedadesSistemaAC" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PropiedadesSistemaAC">
-              <PropertyRef Name="IdSistemaAC" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="SistemaAC" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_PropiedadesTipo">
-          <End Type="CRMINMOBILIARIOModel1.PropiedadesTipo" Role="PropiedadesTipo" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PropiedadesTipo">
-              <PropertyRef Name="IdTipoPropiedad" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="TipoPropiedad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_PropiedadesTiposOperacion">
-          <End Type="CRMINMOBILIARIOModel1.PropiedadesTiposOperacion" Role="PropiedadesTiposOperacion" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel1.Propiedades" Role="Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PropiedadesTiposOperacion">
-              <PropertyRef Name="IdTipoOperacion" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="TipoOperacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModel1StoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities4">
+        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities5">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.C__MigrationHistory">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -2457,7 +2460,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetRoles">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2465,7 +2468,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetUserClaims">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -2475,7 +2478,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetUserLogins">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -2484,7 +2487,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetUsers">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -2502,7 +2505,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CaracteristicasPropiedades">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.CaracteristicasPropiedades">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.CaracteristicasPropiedades">
               <MappingFragment StoreEntitySet="CaracteristicasPropiedades">
                 <ScalarProperty Name="IdCaracteristicaPropiedad" ColumnName="IdCaracteristicaPropiedad" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
@@ -2511,20 +2514,62 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Configuraciones">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Configuraciones">
+              <MappingFragment StoreEntitySet="Configuraciones">
+                <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
+                <ScalarProperty Name="DescuentoGlobal" ColumnName="DescuentoGlobal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cotizaciones">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Cotizaciones">
+              <MappingFragment StoreEntitySet="Cotizaciones">
+                <ScalarProperty Name="IdCotizacion" ColumnName="IdCotizacion" />
+                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+                <ScalarProperty Name="FechaCotizacion" ColumnName="FechaCotizacion" />
+                <ScalarProperty Name="PrecioFinalVenta" ColumnName="PrecioFinalVenta" />
+                <ScalarProperty Name="PorcentajeEnganche" ColumnName="PorcentajeEnganche" />
+                <ScalarProperty Name="Enganche" ColumnName="Enganche" />
+                <ScalarProperty Name="Parcialidades" ColumnName="Parcialidades" />
+                <ScalarProperty Name="PorcentajeMensualidades" ColumnName="PorcentajeMensualidades" />
+                <ScalarProperty Name="PagoMensual" ColumnName="PagoMensual" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Desarrollos">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Desarrollos">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Desarrollos">
               <MappingFragment StoreEntitySet="Desarrollos">
-                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdDesarrollo" ColumnName="IdDesarrollo" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documentos">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Documentos">
+              <MappingFragment StoreEntitySet="Documentos">
+                <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
+                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Domicilios">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Domicilios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Domicilios">
               <MappingFragment StoreEntitySet="Domicilios">
                 <ScalarProperty Name="IdDomicilio" ColumnName="IdDomicilio" />
                 <ScalarProperty Name="TipoDomicilio" ColumnName="TipoDomicilio" />
@@ -2552,7 +2597,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DomiciliosCategoria">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.DomiciliosCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DomiciliosCategoria">
               <MappingFragment StoreEntitySet="DomiciliosCategoria">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2560,15 +2605,38 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DomiciliosTipo">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.DomiciliosTipo">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DomiciliosTipo">
               <MappingFragment StoreEntitySet="DomiciliosTipo">
                 <ScalarProperty Name="IdTipoDomicilio" ColumnName="IdTipoDomicilio" />
                 <ScalarProperty Name="TipoDomicilio" ColumnName="TipoDomicilio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Edificios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Edificios">
+              <MappingFragment StoreEntitySet="Edificios">
+                <ScalarProperty Name="IdEdificio" ColumnName="IdEdificio" />
+                <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Niveles" ColumnName="Niveles" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EdificiosDetalle">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.EdificiosDetalle">
+              <MappingFragment StoreEntitySet="EdificiosDetalle">
+                <ScalarProperty Name="IdEdificioDetalle" ColumnName="IdEdificioDetalle" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="M2" ColumnName="M2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Estados">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Estados">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Estados">
               <MappingFragment StoreEntitySet="Estados">
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -2576,8 +2644,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Fotografias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Fotografias">
+              <MappingFragment StoreEntitySet="Fotografias">
+                <ScalarProperty Name="IdFotografia" ColumnName="IdFotografia" />
+                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
+                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
+                <ScalarProperty Name="Principal" ColumnName="Principal" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MediosContacto">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.MediosContacto">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.MediosContacto">
               <MappingFragment StoreEntitySet="MediosContacto">
                 <ScalarProperty Name="IdMedioContacto" ColumnName="IdMedioContacto" />
                 <ScalarProperty Name="MedioContacto" ColumnName="MedioContacto" />
@@ -2585,7 +2666,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MediosEnterarse">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.MediosEnterarse">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.MediosEnterarse">
               <MappingFragment StoreEntitySet="MediosEnterarse">
                 <ScalarProperty Name="IdMedio" ColumnName="IdMedio" />
                 <ScalarProperty Name="Medio" ColumnName="Medio" />
@@ -2593,7 +2674,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Monedas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Monedas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Monedas">
               <MappingFragment StoreEntitySet="Monedas">
                 <ScalarProperty Name="IdMoneda" ColumnName="IdMoneda" />
                 <ScalarProperty Name="Moneda" ColumnName="Moneda" />
@@ -2602,7 +2683,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Municipios">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Municipios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Municipios">
               <MappingFragment StoreEntitySet="Municipios">
                 <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -2612,7 +2693,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Notas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Notas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Notas">
               <MappingFragment StoreEntitySet="Notas">
                 <ScalarProperty Name="IdNota" ColumnName="IdNota" />
                 <ScalarProperty Name="Persona" ColumnName="Persona" />
@@ -2623,7 +2704,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Paises">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Paises">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Paises">
               <MappingFragment StoreEntitySet="Paises">
                 <ScalarProperty Name="IdPais" ColumnName="IdPais" />
                 <ScalarProperty Name="Pais" ColumnName="Pais" />
@@ -2631,7 +2712,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Personas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Personas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Personas">
               <MappingFragment StoreEntitySet="Personas">
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2658,7 +2739,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasCategoria">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasCategoria">
               <MappingFragment StoreEntitySet="PersonasCategoria">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2667,7 +2748,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasGenero">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasGenero">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasGenero">
               <MappingFragment StoreEntitySet="PersonasGenero">
                 <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
                 <ScalarProperty Name="Genero" ColumnName="Genero" />
@@ -2675,7 +2756,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasIntereses">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasIntereses">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasIntereses">
               <MappingFragment StoreEntitySet="PersonasIntereses">
                 <ScalarProperty Name="IdInteres" ColumnName="IdInteres" />
                 <ScalarProperty Name="Interes" ColumnName="Interes" />
@@ -2683,7 +2764,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasTipo">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasTipo">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasTipo">
               <MappingFragment StoreEntitySet="PersonasTipo">
                 <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
@@ -2691,8 +2772,79 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Propiedades">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Propiedades">
+              <MappingFragment StoreEntitySet="Propiedades">
+                <ScalarProperty Name="IdPropiedad" ColumnName="IdPropiedad" />
+                <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="TipoPropiedad" ColumnName="TipoPropiedad" />
+                <ScalarProperty Name="TipoOperacion" ColumnName="TipoOperacion" />
+                <ScalarProperty Name="VentaPrecio" ColumnName="VentaPrecio" />
+                <ScalarProperty Name="RentaPrecio" ColumnName="RentaPrecio" />
+                <ScalarProperty Name="RentaTarifaDiaria" ColumnName="RentaTarifaDiaria" />
+                <ScalarProperty Name="RentaTarifaSemanal" ColumnName="RentaTarifaSemanal" />
+                <ScalarProperty Name="RentaTarifaMensual" ColumnName="RentaTarifaMensual" />
+                <ScalarProperty Name="RentaEstadiaMinima" ColumnName="RentaEstadiaMinima" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="Recamaras" ColumnName="Recamaras" />
+                <ScalarProperty Name="PreparacionBanio" ColumnName="PreparacionBanio" />
+                <ScalarProperty Name="IncluyeInstalacionBanio" ColumnName="IncluyeInstalacionBanio" />
+                <ScalarProperty Name="Banios" ColumnName="Banios" />
+                <ScalarProperty Name="MedioBanios" ColumnName="MedioBanios" />
+                <ScalarProperty Name="Estacionamiento" ColumnName="Estacionamiento" />
+                <ScalarProperty Name="PrecioEstacionamiento" ColumnName="PrecioEstacionamiento" />
+                <ScalarProperty Name="M2Estacionamiento" ColumnName="M2Estacionamiento" />
+                <ScalarProperty Name="PrecioM2Estacionamiento" ColumnName="PrecioM2Estacionamiento" />
+                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
+                <ScalarProperty Name="CajonesAdicionales" ColumnName="CajonesAdicionales" />
+                <ScalarProperty Name="M2CajonAdicional" ColumnName="M2CajonAdicional" />
+                <ScalarProperty Name="PrecioM2CajonAdicional" ColumnName="PrecioM2CajonAdicional" />
+                <ScalarProperty Name="Terreno" ColumnName="Terreno" />
+                <ScalarProperty Name="M2Terreno" ColumnName="M2Terreno" />
+                <ScalarProperty Name="PrecioM2Terreno" ColumnName="PrecioM2Terreno" />
+                <ScalarProperty Name="LargoTerreno" ColumnName="LargoTerreno" />
+                <ScalarProperty Name="FrenteTerreno" ColumnName="FrenteTerreno" />
+                <ScalarProperty Name="Construccion" ColumnName="Construccion" />
+                <ScalarProperty Name="M2Interiores" ColumnName="M2Interiores" />
+                <ScalarProperty Name="PrecioM2Interiores" ColumnName="PrecioM2Interiores" />
+                <ScalarProperty Name="Terraza" ColumnName="Terraza" />
+                <ScalarProperty Name="M2Terraza" ColumnName="M2Terraza" />
+                <ScalarProperty Name="PrecioM2Terraza" ColumnName="PrecioM2Terraza" />
+                <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+                <ScalarProperty Name="M2Bodega" ColumnName="M2Bodega" />
+                <ScalarProperty Name="PrecioM2Bodega" ColumnName="PrecioM2Bodega" />
+                <ScalarProperty Name="FrenteLocal" ColumnName="FrenteLocal" />
+                <ScalarProperty Name="LargoLocal" ColumnName="LargoLocal" />
+                <ScalarProperty Name="Acabados" ColumnName="Acabados" />
+                <ScalarProperty Name="AcabadosEspecifique" ColumnName="AcabadosEspecifique" />
+                <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Niveles" ColumnName="Niveles" />
+                <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
+                <ScalarProperty Name="MantenimientoMensual" ColumnName="MantenimientoMensual" />
+                <ScalarProperty Name="Reglamento" ColumnName="Reglamento" />
+                <ScalarProperty Name="URLReglamento" ColumnName="URLReglamento" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="UsuarioUA" ColumnName="UsuarioUA" />
+                <ScalarProperty Name="FechaUA" ColumnName="FechaUA" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Uso1" ColumnName="Uso1" />
+                <ScalarProperty Name="Uso2" ColumnName="Uso2" />
+                <ScalarProperty Name="Uso3" ColumnName="Uso3" />
+                <ScalarProperty Name="Uso4" ColumnName="Uso4" />
+                <ScalarProperty Name="Uso5" ColumnName="Uso5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesAcabados">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesAcabados">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesAcabados">
               <MappingFragment StoreEntitySet="PropiedadesAcabados">
                 <ScalarProperty Name="IdAcabado" ColumnName="IdAcabado" />
                 <ScalarProperty Name="Acabado" ColumnName="Acabado" />
@@ -2700,7 +2852,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesAntiguedad">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesAntiguedad">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesAntiguedad">
               <MappingFragment StoreEntitySet="PropiedadesAntiguedad">
                 <ScalarProperty Name="IdAntiguedad" ColumnName="IdAntiguedad" />
                 <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
@@ -2708,7 +2860,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesCaracteristicas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesCaracteristicas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesCaracteristicas">
               <MappingFragment StoreEntitySet="PropiedadesCaracteristicas">
                 <ScalarProperty Name="IdCaracteristica" ColumnName="IdCaracteristica" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2718,15 +2870,31 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesCaracteristicasCategorias">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesCaracteristicasCategorias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesCaracteristicasCategorias">
               <MappingFragment StoreEntitySet="PropiedadesCaracteristicasCategorias">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PropiedadesEstatus">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesEstatus">
+              <MappingFragment StoreEntitySet="PropiedadesEstatus">
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropiedadesSistemaAC">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesSistemaAC">
+              <MappingFragment StoreEntitySet="PropiedadesSistemaAC">
+                <ScalarProperty Name="IdSistemaAC" ColumnName="IdSistemaAC" />
+                <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesTipo">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesTipo">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesTipo">
               <MappingFragment StoreEntitySet="PropiedadesTipo">
                 <ScalarProperty Name="IdTipoPropiedad" ColumnName="IdTipoPropiedad" />
                 <ScalarProperty Name="TipoPropiedad" ColumnName="TipoPropiedad" />
@@ -2736,7 +2904,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesTiposOperacion">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesTiposOperacion">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesTiposOperacion">
               <MappingFragment StoreEntitySet="PropiedadesTiposOperacion">
                 <ScalarProperty Name="IdTipoOperacion" ColumnName="IdTipoOperacion" />
                 <ScalarProperty Name="TipoOperacion" ColumnName="TipoOperacion" />
@@ -2744,7 +2912,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProspectosPropiedades">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.ProspectosPropiedades">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.ProspectosPropiedades">
               <MappingFragment StoreEntitySet="ProspectosPropiedades">
                 <ScalarProperty Name="IdProspectoPRopiedad" ColumnName="IdProspectoPRopiedad" />
                 <ScalarProperty Name="Prospecto" ColumnName="Prospecto" />
@@ -2754,7 +2922,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.sysdiagrams">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -2765,7 +2933,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tareas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Tareas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Tareas">
               <MappingFragment StoreEntitySet="Tareas">
                 <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2783,7 +2951,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TareasCategorias">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.TareasCategorias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.TareasCategorias">
               <MappingFragment StoreEntitySet="TareasCategorias">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2791,14 +2959,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TareasEstatus">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.TareasEstatus">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.TareasEstatus">
               <MappingFragment StoreEntitySet="TareasEstatus">
                 <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CRMINMOBILIARIOModel1.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CRMINMOBILIARIOModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
@@ -2806,169 +2974,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Edificios">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Edificios">
-              <MappingFragment StoreEntitySet="Edificios">
-                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
-                <ScalarProperty Name="Niveles" ColumnName="Niveles" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
-                <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
-                <ScalarProperty Name="IdEdificio" ColumnName="IdEdificio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EdificiosDetalle">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.EdificiosDetalle">
-              <MappingFragment StoreEntitySet="EdificiosDetalle">
-                <ScalarProperty Name="M2" ColumnName="M2" />
-                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
-                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
-                <ScalarProperty Name="IdEdificioDetalle" ColumnName="IdEdificioDetalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Configuraciones">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Configuraciones">
-              <MappingFragment StoreEntitySet="Configuraciones">
-                <ScalarProperty Name="DescuentoGlobal" ColumnName="DescuentoGlobal" />
-                <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cotizaciones">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Cotizaciones">
-              <MappingFragment StoreEntitySet="Cotizaciones">
-                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
-                <ScalarProperty Name="PagoMensual" ColumnName="PagoMensual" />
-                <ScalarProperty Name="PorcentajeMensualidades" ColumnName="PorcentajeMensualidades" />
-                <ScalarProperty Name="Parcialidades" ColumnName="Parcialidades" />
-                <ScalarProperty Name="Enganche" ColumnName="Enganche" />
-                <ScalarProperty Name="PorcentajeEnganche" ColumnName="PorcentajeEnganche" />
-                <ScalarProperty Name="PrecioFinalVenta" ColumnName="PrecioFinalVenta" />
-                <ScalarProperty Name="FechaCotizacion" ColumnName="FechaCotizacion" />
-                <ScalarProperty Name="Persona" ColumnName="Persona" />
-                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
-                <ScalarProperty Name="IdCotizacion" ColumnName="IdCotizacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Documentos">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Documentos">
-              <MappingFragment StoreEntitySet="Documentos">
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="Extension" ColumnName="Extension" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Persona" ColumnName="Persona" />
-                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
-                <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Fotografias">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Fotografias">
-              <MappingFragment StoreEntitySet="Fotografias">
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Principal" ColumnName="Principal" />
-                <ScalarProperty Name="Fotografia" ColumnName="Fotografia" />
-                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
-                <ScalarProperty Name="IdFotografia" ColumnName="IdFotografia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PropiedadesEstatus">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesEstatus">
-              <MappingFragment StoreEntitySet="PropiedadesEstatus">
-                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PropiedadesSistemaAC">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesSistemaAC">
-              <MappingFragment StoreEntitySet="PropiedadesSistemaAC">
-                <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
-                <ScalarProperty Name="IdSistemaAC" ColumnName="IdSistemaAC" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Propiedades">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Propiedades">
-              <MappingFragment StoreEntitySet="Propiedades">
-                <ScalarProperty Name="Uso5" ColumnName="Uso5" />
-                <ScalarProperty Name="Uso4" ColumnName="Uso4" />
-                <ScalarProperty Name="Uso3" ColumnName="Uso3" />
-                <ScalarProperty Name="Uso2" ColumnName="Uso2" />
-                <ScalarProperty Name="Uso1" ColumnName="Uso1" />
-                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-                <ScalarProperty Name="FechaUA" ColumnName="FechaUA" />
-                <ScalarProperty Name="UsuarioUA" ColumnName="UsuarioUA" />
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="URLReglamento" ColumnName="URLReglamento" />
-                <ScalarProperty Name="Reglamento" ColumnName="Reglamento" />
-                <ScalarProperty Name="MantenimientoMensual" ColumnName="MantenimientoMensual" />
-                <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
-                <ScalarProperty Name="Niveles" ColumnName="Niveles" />
-                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
-                <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
-                <ScalarProperty Name="AcabadosEspecifique" ColumnName="AcabadosEspecifique" />
-                <ScalarProperty Name="Acabados" ColumnName="Acabados" />
-                <ScalarProperty Name="LargoLocal" ColumnName="LargoLocal" />
-                <ScalarProperty Name="FrenteLocal" ColumnName="FrenteLocal" />
-                <ScalarProperty Name="PrecioM2Bodega" ColumnName="PrecioM2Bodega" />
-                <ScalarProperty Name="M2Bodega" ColumnName="M2Bodega" />
-                <ScalarProperty Name="Bodega" ColumnName="Bodega" />
-                <ScalarProperty Name="PrecioM2Terraza" ColumnName="PrecioM2Terraza" />
-                <ScalarProperty Name="M2Terraza" ColumnName="M2Terraza" />
-                <ScalarProperty Name="Terraza" ColumnName="Terraza" />
-                <ScalarProperty Name="PrecioM2Interiores" ColumnName="PrecioM2Interiores" />
-                <ScalarProperty Name="M2Interiores" ColumnName="M2Interiores" />
-                <ScalarProperty Name="Construccion" ColumnName="Construccion" />
-                <ScalarProperty Name="FrenteTerreno" ColumnName="FrenteTerreno" />
-                <ScalarProperty Name="LargoTerreno" ColumnName="LargoTerreno" />
-                <ScalarProperty Name="PrecioM2Terreno" ColumnName="PrecioM2Terreno" />
-                <ScalarProperty Name="M2Terreno" ColumnName="M2Terreno" />
-                <ScalarProperty Name="Terreno" ColumnName="Terreno" />
-                <ScalarProperty Name="PrecioM2CajonAdicional" ColumnName="PrecioM2CajonAdicional" />
-                <ScalarProperty Name="M2CajonAdicional" ColumnName="M2CajonAdicional" />
-                <ScalarProperty Name="CajonesAdicionales" ColumnName="CajonesAdicionales" />
-                <ScalarProperty Name="CajonesEstacionamiento" ColumnName="CajonesEstacionamiento" />
-                <ScalarProperty Name="PrecioM2Estacionamiento" ColumnName="PrecioM2Estacionamiento" />
-                <ScalarProperty Name="M2Estacionamiento" ColumnName="M2Estacionamiento" />
-                <ScalarProperty Name="PrecioEstacionamiento" ColumnName="PrecioEstacionamiento" />
-                <ScalarProperty Name="Estacionamiento" ColumnName="Estacionamiento" />
-                <ScalarProperty Name="MedioBanios" ColumnName="MedioBanios" />
-                <ScalarProperty Name="Banios" ColumnName="Banios" />
-                <ScalarProperty Name="IncluyeInstalacionBanio" ColumnName="IncluyeInstalacionBanio" />
-                <ScalarProperty Name="PreparacionBanio" ColumnName="PreparacionBanio" />
-                <ScalarProperty Name="Recamaras" ColumnName="Recamaras" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="RentaEstadiaMinima" ColumnName="RentaEstadiaMinima" />
-                <ScalarProperty Name="RentaTarifaMensual" ColumnName="RentaTarifaMensual" />
-                <ScalarProperty Name="RentaTarifaSemanal" ColumnName="RentaTarifaSemanal" />
-                <ScalarProperty Name="RentaTarifaDiaria" ColumnName="RentaTarifaDiaria" />
-                <ScalarProperty Name="RentaPrecio" ColumnName="RentaPrecio" />
-                <ScalarProperty Name="VentaPrecio" ColumnName="VentaPrecio" />
-                <ScalarProperty Name="TipoOperacion" ColumnName="TipoOperacion" />
-                <ScalarProperty Name="TipoPropiedad" ColumnName="TipoPropiedad" />
-                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
-                <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
-                <ScalarProperty Name="IdPropiedad" ColumnName="IdPropiedad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
