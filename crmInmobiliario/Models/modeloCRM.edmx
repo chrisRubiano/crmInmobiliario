@@ -361,7 +361,7 @@
           <Property Name="Acabados" Type="int" />
           <Property Name="AcabadosEspecifique" Type="varchar(max)" />
           <Property Name="Antiguedad" Type="int" />
-          <Property Name="Nivel" Type="varchar" MaxLength="3" />
+          <Property Name="Nivel" Type="varchar" MaxLength="2" />
           <Property Name="Niveles" Type="int" />
           <Property Name="SistemaAC" Type="int" />
           <Property Name="MantenimientoMensual" Type="varchar" MaxLength="50" />
@@ -2240,14 +2240,12 @@
           <Property Name="Acabados" Type="Int32" />
           <Property Name="AcabadosEspecifique" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Antiguedad" Type="Int32" />
-          <Property Name="Nivel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Nivel" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Niveles" Type="Int32" />
           <Property Name="SistemaAC" Type="Int32" />
           <Property Name="MantenimientoMensual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Reglamento" Type="Boolean" />
           <Property Name="URLReglamento" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Consecutivo" Type="Int32" />
-          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
@@ -2916,8 +2914,6 @@
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
                 <ScalarProperty Name="URLReglamento" ColumnName="URLReglamento" />
                 <ScalarProperty Name="Reglamento" ColumnName="Reglamento" />
                 <ScalarProperty Name="MantenimientoMensual" ColumnName="MantenimientoMensual" />
