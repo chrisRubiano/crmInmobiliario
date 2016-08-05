@@ -19,7 +19,7 @@ namespace crmInmobiliario.Models
         public Nullable<int> Caracteristica { get; set; }
         public Nullable<bool> Activo { get; set; }
     
-        public virtual PropiedadesCaracteristicas PropiedadesCaracteristicas { get; set; }
         public virtual Propiedades Propiedades { get; set; }
+        public virtual PropiedadesCaracteristicas PropiedadesCaracteristicas { get; set; }
     }
 }

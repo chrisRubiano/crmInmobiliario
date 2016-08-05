@@ -14,7 +14,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PropiedadesController : Controller
     {
-        private CRMINMOBILIARIOEntities4 db = new CRMINMOBILIARIOEntities4();
+        private CRMINMOBILIARIOEntities5 db = new CRMINMOBILIARIOEntities5();
 
         // GET: Propiedades
         public ActionResult Index()
@@ -49,11 +49,13 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create()
         {
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
+            ViewBag.Edificios = new SelectList(db.Edificios, "IdEdificio", "Edificio");
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda");
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado");
             ViewBag.Antiguedad = new SelectList(db.PropiedadesAntiguedad, "IdAntiguedad", "Antiguedad");
             ViewBag.TipoPropiedad = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
             ViewBag.TipoOperacion = new SelectList(db.PropiedadesTiposOperacion, "IdTipoOperacion", "TipoOperacion");
+            ViewBag.SistemaAC = new SelectList(db.PropiedadesSistemaAC, "IdSistemaAC", "SistemaAC");
             return View();
         }
 
