@@ -184,6 +184,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
+    <Compile Include="Controllers\PropiedadesAcabadosController.cs" />
+    <Compile Include="Controllers\PropiedadesCaracteristicasCategoriasController.cs" />
+    <Compile Include="Controllers\PropiedadesCaracteristicasController.cs" />
     <Compile Include="Controllers\PropiedadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -477,6 +480,21 @@
     <Content Include="Views\Edificios\Edit.cshtml" />
     <Content Include="Views\Edificios\Index.cshtml" />
     <Content Include="Views\Home\Pruebas.cshtml" />
+    <Content Include="Views\PropiedadesAcabados\Create.cshtml" />
+    <Content Include="Views\PropiedadesAcabados\Delete.cshtml" />
+    <Content Include="Views\PropiedadesAcabados\Details.cshtml" />
+    <Content Include="Views\PropiedadesAcabados\Edit.cshtml" />
+    <Content Include="Views\PropiedadesAcabados\Index.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicas\Create.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicas\Delete.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicas\Details.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicas\Edit.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicas\Index.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicasCategorias\Create.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicasCategorias\Delete.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicasCategorias\Details.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicasCategorias\Edit.cshtml" />
+    <Content Include="Views\PropiedadesCaracteristicasCategorias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
