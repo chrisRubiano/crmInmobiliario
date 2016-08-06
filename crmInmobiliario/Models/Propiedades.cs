@@ -39,9 +39,9 @@ namespace crmInmobiliario.Models
         public string Descripcion { get; set; }
         public Nullable<int> Moneda { get; set; }
         public Nullable<int> Recamaras { get; set; }
-        public Nullable<int> PreparacionBanio { get; set; }
+        public Nullable<bool> PreparacionBanio { get; set; }
         public Nullable<bool> IncluyeInstalacionBanio { get; set; }
-        public Nullable<int> Banios { get; set; }
+        public Nullable<bool> Banios { get; set; }
         public Nullable<int> MedioBanios { get; set; }
         public Nullable<bool> Estacionamiento { get; set; }
         public Nullable<decimal> PrecioEstacionamiento { get; set; }

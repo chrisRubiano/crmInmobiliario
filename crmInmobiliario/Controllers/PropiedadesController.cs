@@ -14,7 +14,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PropiedadesController : Controller
     {
-        private CRMINMOBILIARIOEntities5 db = new CRMINMOBILIARIOEntities5();
+        private CRMINMOBILIARIOEntities6 db = new CRMINMOBILIARIOEntities6();
 
         // GET: Propiedades
         public ActionResult Index()
@@ -104,11 +104,13 @@ namespace crmInmobiliario.Controllers
                 return HttpNotFound();
             }
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", propiedades.Desarrollo);
+            ViewBag.Edificios = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
             ViewBag.Antiguedad = new SelectList(db.PropiedadesAntiguedad, "IdAntiguedad", "Antiguedad", propiedades.Antiguedad);
             ViewBag.TipoPropiedad = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad", propiedades.TipoPropiedad);
             ViewBag.TipoOperacion = new SelectList(db.PropiedadesTiposOperacion, "IdTipoOperacion", "TipoOperacion", propiedades.TipoOperacion);
+            ViewBag.SistemaAC = new SelectList(db.PropiedadesSistemaAC, "IdSistemaAC", "SistemaAC");
             return View(propiedades);
         }
 
@@ -117,7 +119,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPropiedad,Desarrollo,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,IncluyeInstalacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento")] Propiedades propiedades)
+        public ActionResult Edit([Bind(Include = "IdPropiedad,Desarrollo,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,IncluyeInstalacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento, PrecioM2Interiores, Bodega, M2Bodega, PrecioM2Bodega, Terraza, M2Terraza, PrecioM2Terraza, PrecioEstacionamiento, M2Estacionamiento, PrecioM2Estacionamiento, CajonesAdicionales, M2CajonAdicional, PrecioM2CajonAdicional, ")] Propiedades propiedades)
         {
             try
             {
