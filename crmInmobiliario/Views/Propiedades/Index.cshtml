@@ -117,12 +117,12 @@
         <th>
             @Html.DisplayNameFor(model => model.SistemaAC)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Reglamento)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.URLReglamento)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
         </th>
@@ -271,19 +271,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.SistemaAC)
         </td>
-        <td>
-            @if (item.Reglamento.Value)
-            {
-                <i class="fa fa-check-circle text-success text-center"></i>
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.URLReglamento)
-        </td>
+        @*<td>
+        @if (item.Reglamento.Value)
+        {
+            <i class="fa fa-check-circle text-success text-center"></i>
+        }
+        else
+        {
+            <i class="fa fa-times-circle text-danger text-center"></i>
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.URLReglamento)
+    </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Desarrollos.Desarrollo)
         </td>
