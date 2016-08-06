@@ -1,0 +1,46 @@
+﻿@model crmInmobiliario.Models.PropiedadesCaracteristicas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Datos de la Amenidad</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Caracteristica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Caracteristica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropiedadesCaracteristicasCategorias.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropiedadesCaracteristicasCategorias.Categoria)
+        </dd>
+
+    </dl>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "PropiedadesCaracteristicas")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "PropiedadesCaracteristicas", new { id = Model.IdCaracteristica })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>
