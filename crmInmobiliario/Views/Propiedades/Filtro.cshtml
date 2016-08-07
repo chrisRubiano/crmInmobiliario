@@ -1,0 +1,328 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Propiedades>
+
+@{
+    ViewBag.Title = "Indice";
+}
+
+<h2>Indice</h2>
+
+<p>
+    @using (Html.BeginForm("Filtro", "Propiedades", FormMethod.Get, new { @class = " panel panel-default" }))
+    {
+        <div class="panel-body">
+            <div class="form-group row">
+                <div class="col-md-2"><label> Terraza: </label></div><div class="col-md-10">@Html.CheckBox("Terraza")</div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2"><label> Bodega: </label></div><div class="col-md-10">@Html.CheckBox("Bodega")</div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2"><label> Estacionamiento: </label></div><div class="col-md-10">@Html.CheckBox("Estacionamiento")</div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2"><label> Baño: </label></div><div class="col-md-10">@Html.CheckBox("IncluyeInstalacionBanio")</div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
+            </div>
+        </div>
+    }
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.VentaPrecio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaPrecio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaTarifaDiaria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaTarifaSemanal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaTarifaMensual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentaEstadiaMinima)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recamaras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreparacionBanio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncluyeInstalacionBanio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Banios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedioBanios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Construccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Terreno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LargoTerreno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrenteTerreno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcabadosEspecifique)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MantenimientoMensual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estacionamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2Interiores)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2Terraza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.M2Bodega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FrenteLocal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LargoLocal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Niveles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SistemaAC)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Reglamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URLReglamento)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monedas.Moneda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesAcabados.Acabado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesAntiguedad.Antiguedad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesTipo.TipoPropiedad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="">
+                <div class="btn-lista">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VentaPrecio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentaPrecio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentaTarifaDiaria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentaTarifaSemanal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentaTarifaMensual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentaEstadiaMinima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recamaras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreparacionBanio)
+            </td>
+            <td>
+                @if (item.IncluyeInstalacionBanio.Value)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Banios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedioBanios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Construccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Terreno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LargoTerreno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrenteTerreno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcabadosEspecifique)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MantenimientoMensual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioUA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaUA)
+            </td>
+            <td>
+                @if (item.Estacionamiento.Value)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.M2Interiores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.M2Terraza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.M2Bodega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrenteLocal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LargoLocal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Niveles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SistemaAC)
+            </td>
+            @*<td>
+                    @if (item.Reglamento.Value)
+                    {
+                        <i class="fa fa-check-circle text-success text-center"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-times-circle text-danger text-center"></i>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URLReglamento)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Desarrollos.Desarrollo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monedas.Moneda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropiedadesAcabados.Acabado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropiedadesAntiguedad.Antiguedad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropiedadesTipo.TipoPropiedad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropiedadesTiposOperacion.TipoOperacion)
+            </td>
+        </tr>
+    }
+
+</table>
