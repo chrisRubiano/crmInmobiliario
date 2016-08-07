@@ -23,6 +23,33 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.ToList());
         }
 
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? IncluyeInstalacionBanio, Boolean? Estacionamiento )
+        {
+            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
+
+            if (Terraza!=null)
+            {
+                propiedades = propiedades.Where(p => p.Terraza == Terraza);
+            }
+
+            if (Bodega != null)
+            {
+                propiedades = propiedades.Where(p => p.Bodega == Bodega);
+            }
+
+            if (IncluyeInstalacionBanio != null)
+            {
+                propiedades = propiedades.Where(p => p.IncluyeInstalacionBanio == IncluyeInstalacionBanio);
+            }
+
+            if (Estacionamiento != null)
+            {
+                propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+            }
+
+            return View(propiedades.ToList());
+        }
+
         // GET: Propiedades/Details/5
         public ActionResult Details(int? id)
         {
