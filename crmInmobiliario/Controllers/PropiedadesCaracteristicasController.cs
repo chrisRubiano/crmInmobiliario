@@ -12,7 +12,7 @@ namespace crmInmobiliario.Controllers
 {
     public class PropiedadesCaracteristicasController : Controller
     {
-        private CRMINMOBILIARIOEntities5 db = new CRMINMOBILIARIOEntities5();
+        private CRMINMOBILIARIOEntities7 db = new CRMINMOBILIARIOEntities7();
 
         // GET: PropiedadesCaracteristicas
         public ActionResult Index()

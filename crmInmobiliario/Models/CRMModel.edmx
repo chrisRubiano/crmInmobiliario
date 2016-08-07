@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CRMINMOBILIARIOModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -991,7 +991,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOModelStoreContainer">
+        <EntityContainer Name="CRMINMOBILIARIOModel1StoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -1204,7 +1204,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CRMINMOBILIARIOModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -2239,7 +2239,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOEntities6" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CRMINMOBILIARIOEntities7" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -2448,9 +2448,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities6">
+        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModel1StoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities7">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -2460,7 +2460,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetRoles">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2468,7 +2468,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUserClaims">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -2478,7 +2478,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUserLogins">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -2487,7 +2487,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUsers">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -2505,7 +2505,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CaracteristicasPropiedades">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.CaracteristicasPropiedades">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.CaracteristicasPropiedades">
               <MappingFragment StoreEntitySet="CaracteristicasPropiedades">
                 <ScalarProperty Name="IdCaracteristicaPropiedad" ColumnName="IdCaracteristicaPropiedad" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
@@ -2515,7 +2515,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Configuraciones">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Configuraciones">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Configuraciones">
               <MappingFragment StoreEntitySet="Configuraciones">
                 <ScalarProperty Name="IdConfiguracion" ColumnName="IdConfiguracion" />
                 <ScalarProperty Name="DescuentoGlobal" ColumnName="DescuentoGlobal" />
@@ -2523,7 +2523,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cotizaciones">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Cotizaciones">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Cotizaciones">
               <MappingFragment StoreEntitySet="Cotizaciones">
                 <ScalarProperty Name="IdCotizacion" ColumnName="IdCotizacion" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
@@ -2540,7 +2540,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Desarrollos">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Desarrollos">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Desarrollos">
               <MappingFragment StoreEntitySet="Desarrollos">
                 <ScalarProperty Name="IdDesarrollo" ColumnName="IdDesarrollo" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
@@ -2552,7 +2552,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Documentos">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Documentos">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Documentos">
               <MappingFragment StoreEntitySet="Documentos">
                 <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
@@ -2569,7 +2569,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Domicilios">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Domicilios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Domicilios">
               <MappingFragment StoreEntitySet="Domicilios">
                 <ScalarProperty Name="IdDomicilio" ColumnName="IdDomicilio" />
                 <ScalarProperty Name="TipoDomicilio" ColumnName="TipoDomicilio" />
@@ -2597,7 +2597,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DomiciliosCategoria">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DomiciliosCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.DomiciliosCategoria">
               <MappingFragment StoreEntitySet="DomiciliosCategoria">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2605,7 +2605,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DomiciliosTipo">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DomiciliosTipo">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.DomiciliosTipo">
               <MappingFragment StoreEntitySet="DomiciliosTipo">
                 <ScalarProperty Name="IdTipoDomicilio" ColumnName="IdTipoDomicilio" />
                 <ScalarProperty Name="TipoDomicilio" ColumnName="TipoDomicilio" />
@@ -2613,7 +2613,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Edificios">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Edificios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Edificios">
               <MappingFragment StoreEntitySet="Edificios">
                 <ScalarProperty Name="IdEdificio" ColumnName="IdEdificio" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
@@ -2626,7 +2626,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EdificiosDetalle">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.EdificiosDetalle">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.EdificiosDetalle">
               <MappingFragment StoreEntitySet="EdificiosDetalle">
                 <ScalarProperty Name="IdEdificioDetalle" ColumnName="IdEdificioDetalle" />
                 <ScalarProperty Name="Edificio" ColumnName="Edificio" />
@@ -2636,7 +2636,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estados">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Estados">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Estados">
               <MappingFragment StoreEntitySet="Estados">
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -2645,7 +2645,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fotografias">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Fotografias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Fotografias">
               <MappingFragment StoreEntitySet="Fotografias">
                 <ScalarProperty Name="IdFotografia" ColumnName="IdFotografia" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
@@ -2658,7 +2658,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MediosContacto">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.MediosContacto">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.MediosContacto">
               <MappingFragment StoreEntitySet="MediosContacto">
                 <ScalarProperty Name="IdMedioContacto" ColumnName="IdMedioContacto" />
                 <ScalarProperty Name="MedioContacto" ColumnName="MedioContacto" />
@@ -2666,7 +2666,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MediosEnterarse">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.MediosEnterarse">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.MediosEnterarse">
               <MappingFragment StoreEntitySet="MediosEnterarse">
                 <ScalarProperty Name="IdMedio" ColumnName="IdMedio" />
                 <ScalarProperty Name="Medio" ColumnName="Medio" />
@@ -2674,7 +2674,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Monedas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Monedas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Monedas">
               <MappingFragment StoreEntitySet="Monedas">
                 <ScalarProperty Name="IdMoneda" ColumnName="IdMoneda" />
                 <ScalarProperty Name="Moneda" ColumnName="Moneda" />
@@ -2683,7 +2683,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Municipios">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Municipios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Municipios">
               <MappingFragment StoreEntitySet="Municipios">
                 <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -2693,7 +2693,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Notas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Notas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Notas">
               <MappingFragment StoreEntitySet="Notas">
                 <ScalarProperty Name="IdNota" ColumnName="IdNota" />
                 <ScalarProperty Name="Persona" ColumnName="Persona" />
@@ -2704,7 +2704,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Paises">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Paises">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Paises">
               <MappingFragment StoreEntitySet="Paises">
                 <ScalarProperty Name="IdPais" ColumnName="IdPais" />
                 <ScalarProperty Name="Pais" ColumnName="Pais" />
@@ -2712,7 +2712,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Personas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Personas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Personas">
               <MappingFragment StoreEntitySet="Personas">
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2739,7 +2739,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasCategoria">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasCategoria">
               <MappingFragment StoreEntitySet="PersonasCategoria">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2748,7 +2748,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasGenero">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasGenero">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasGenero">
               <MappingFragment StoreEntitySet="PersonasGenero">
                 <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
                 <ScalarProperty Name="Genero" ColumnName="Genero" />
@@ -2756,7 +2756,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasIntereses">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasIntereses">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasIntereses">
               <MappingFragment StoreEntitySet="PersonasIntereses">
                 <ScalarProperty Name="IdInteres" ColumnName="IdInteres" />
                 <ScalarProperty Name="Interes" ColumnName="Interes" />
@@ -2764,7 +2764,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasTipo">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasTipo">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PersonasTipo">
               <MappingFragment StoreEntitySet="PersonasTipo">
                 <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
@@ -2773,7 +2773,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Propiedades">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Propiedades">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Propiedades">
               <MappingFragment StoreEntitySet="Propiedades">
                 <ScalarProperty Name="IdPropiedad" ColumnName="IdPropiedad" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
@@ -2844,7 +2844,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesAcabados">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesAcabados">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesAcabados">
               <MappingFragment StoreEntitySet="PropiedadesAcabados">
                 <ScalarProperty Name="IdAcabado" ColumnName="IdAcabado" />
                 <ScalarProperty Name="Acabado" ColumnName="Acabado" />
@@ -2852,7 +2852,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesAntiguedad">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesAntiguedad">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesAntiguedad">
               <MappingFragment StoreEntitySet="PropiedadesAntiguedad">
                 <ScalarProperty Name="IdAntiguedad" ColumnName="IdAntiguedad" />
                 <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
@@ -2860,7 +2860,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesCaracteristicas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesCaracteristicas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesCaracteristicas">
               <MappingFragment StoreEntitySet="PropiedadesCaracteristicas">
                 <ScalarProperty Name="IdCaracteristica" ColumnName="IdCaracteristica" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2870,7 +2870,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesCaracteristicasCategorias">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesCaracteristicasCategorias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesCaracteristicasCategorias">
               <MappingFragment StoreEntitySet="PropiedadesCaracteristicasCategorias">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2878,7 +2878,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesEstatus">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesEstatus">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesEstatus">
               <MappingFragment StoreEntitySet="PropiedadesEstatus">
                 <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
@@ -2886,7 +2886,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesSistemaAC">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesSistemaAC">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesSistemaAC">
               <MappingFragment StoreEntitySet="PropiedadesSistemaAC">
                 <ScalarProperty Name="IdSistemaAC" ColumnName="IdSistemaAC" />
                 <ScalarProperty Name="SistemaAC" ColumnName="SistemaAC" />
@@ -2894,7 +2894,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesTipo">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesTipo">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesTipo">
               <MappingFragment StoreEntitySet="PropiedadesTipo">
                 <ScalarProperty Name="IdTipoPropiedad" ColumnName="IdTipoPropiedad" />
                 <ScalarProperty Name="TipoPropiedad" ColumnName="TipoPropiedad" />
@@ -2904,7 +2904,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PropiedadesTiposOperacion">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesTiposOperacion">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.PropiedadesTiposOperacion">
               <MappingFragment StoreEntitySet="PropiedadesTiposOperacion">
                 <ScalarProperty Name="IdTipoOperacion" ColumnName="IdTipoOperacion" />
                 <ScalarProperty Name="TipoOperacion" ColumnName="TipoOperacion" />
@@ -2912,7 +2912,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProspectosPropiedades">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.ProspectosPropiedades">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.ProspectosPropiedades">
               <MappingFragment StoreEntitySet="ProspectosPropiedades">
                 <ScalarProperty Name="IdProspectoPRopiedad" ColumnName="IdProspectoPRopiedad" />
                 <ScalarProperty Name="Prospecto" ColumnName="Prospecto" />
@@ -2922,7 +2922,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.sysdiagrams">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -2933,7 +2933,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tareas">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Tareas">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.Tareas">
               <MappingFragment StoreEntitySet="Tareas">
                 <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2951,7 +2951,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TareasCategorias">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.TareasCategorias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.TareasCategorias">
               <MappingFragment StoreEntitySet="TareasCategorias">
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -2959,14 +2959,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TareasEstatus">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.TareasEstatus">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel1.TareasEstatus">
               <MappingFragment StoreEntitySet="TareasEstatus">
                 <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CRMINMOBILIARIOModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CRMINMOBILIARIOModel1.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
