@@ -27,26 +27,41 @@ namespace crmInmobiliario.Controllers
 
         public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? IncluyeInstalacionBanio, Boolean? Estacionamiento )
         {
+
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
 
-            if (Terraza!=null)
-            {
-                propiedades = propiedades.Where(p => p.Terraza == Terraza);
-            }
 
-            if (Bodega != null)
-            {
-                propiedades = propiedades.Where(p => p.Bodega == Bodega);
-            }
+            //if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
+            //{
+            //    if (!Terraza.Value && !Bodega.Value && !Estacionamiento.Value)
+            //    {
+            //        propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
+            //    }
+            //}
+            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
+            { 
+                if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
+                {
+                    if (Terraza != null)
+                    {
+                        propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                    }
 
-            if (IncluyeInstalacionBanio != null)
-            {
-                propiedades = propiedades.Where(p => p.IncluyeInstalacionBanio == IncluyeInstalacionBanio);
-            }
+                    if (Bodega != null)
+                    {
+                        propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                    }
 
-            if (Estacionamiento != null)
-            {
-                propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                    if (IncluyeInstalacionBanio != null)
+                    {
+                        propiedades = propiedades.Where(p => p.IncluyeInstalacionBanio == IncluyeInstalacionBanio);
+                    }
+
+                    if (Estacionamiento != null)
+                    {
+                        propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                    }
+                }
             }
 
             return View(propiedades.ToList());
