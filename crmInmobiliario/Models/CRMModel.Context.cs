@@ -67,5 +67,10 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Tareas> Tareas { get; set; }
         public virtual DbSet<TareasCategorias> TareasCategorias { get; set; }
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
+
+        internal object GetModel()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

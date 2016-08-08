@@ -8,30 +8,32 @@
 
 <p>
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "PropiedadesAcabados")'"><i class="fa fa-user-plus"></i> Registrar Edificio</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "PropiedadesAcabados")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
 </p>
-<table class="table">
+<table class="table table-hover table-condensed">
     <tr>
         <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Acabado)
         </th>
-        
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="">
-            <div class="list-inline">
-                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "PropiedadesAcabados", new { id = item.IdAcabado })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "PropiedadesAcabados", new { id = item.IdAcabado })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "PropiedadesAcabados", new { id = item.IdAcabado })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-            </div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Acabado)
-        </td>
-        
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="">
+                <div class="list-inline">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "PropiedadesAcabados", new { id = item.IdAcabado })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "PropiedadesAcabados", new { id = item.IdAcabado })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "PropiedadesAcabados", new { id = item.IdAcabado })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acabado)
+            </td>
+
+        </tr>
+    }
 
 </table>

@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using crmInmobiliario.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.IO;
+using System.Web.UI;
 
 namespace crmInmobiliario.Controllers
 {
@@ -54,6 +56,34 @@ namespace crmInmobiliario.Controllers
 
             //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
             return View(personas.ToList());
+        }
+
+        public void Excel(string nombreArchivo)
+        {
+            var model = db.Personas.ToList();
+
+            Export export = new Export();
+            export.ToExcel(Response, model, nombreArchivo);
+        }
+
+        //helper class
+        public class Export
+        {
+            public void ToExcel(HttpResponseBase Response, object clientsList, string nombreArchivo)
+            {
+                var grid = new System.Web.UI.WebControls.GridView();
+                grid.DataSource = clientsList;
+                grid.DataBind();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment; filename=" + nombreArchivo + ".xls");
+                Response.ContentType = "application/excel";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+                grid.RenderControl(htw);
+                Response.Write(sw.ToString());
+                Response.End();
+            }
         }
 
 

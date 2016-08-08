@@ -24,11 +24,25 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Personas</a></li>*@
+                    <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
                     <li><a href='@Url.Action("ListaProspectos", "Personas")'><i class="fa fa-users"></i> Prospectos</a></li>
                     <li><a href='@Url.Action("ListaClientes", "Personas")'><i class="fa fa-users"></i> Clientes</a></li>
-                    <li><a href='@Url.Action("Index", "Desarrollos")'><i class="fa fa-building"></i> Desarrollos</a></li>
-                    <li><a href='@Url.Action("Index", "Propiedades")'><i class="fa fa-building-o"></i> Propiedades</a></li>
-                    <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Filtro de Propiedades</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Datos Maestros
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Index", "Desarrollos")'><i class="fa fa-building"></i> Desarrollos</a></li>
+                            <li><a href='@Url.Action("Index", "Edificios")'><i class="fa fa-building-o"></i> Edificios</a></li>
+                            <li><a href='@Url.Action("Index", "Propiedades")'><i class="fa fa-thumb-tack"></i> Propiedades</a></li>
+                            <li role="separator" class="divider"></li>                            
+                            <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>
+                            <li><a href='@Url.Action("Index", "PropiedadesCaracteristicas")'><i class="fa fa-check-circle-o"></i> Amenidades</a></li>
+                            
+
+                        </ul>
+                    </li>
                     <!--li>@Html.ActionLink("Home", "Index", "Home")</li-->
                     <!--li>@Html.ActionLink("About", "About", "Home")</li-->
                     <!--li>@Html.ActionLink("Contact", "Contact", "Home")</li-->
@@ -43,7 +57,7 @@
         <footer>
             <div class="row">
                 <div class="col-xs-offset-3 col-xs-6 text-center">
-                    <i class="fa fa-copyright"></i><p class="inline"> @DateTime.Now.Year - Consultores Asociados de Hermosillo</p>
+                    <i class="fa fa-copyright"></i><p class="inline"> @DateTime.Now.Year - Quantium Desarrollos <br/> Powered by CAHE | Consultores Asociados de Hermosillo</p>
                     <img class="inline logo" src="~/Content/Img/CAHElogo.jpg" alt="logo" />
                 </div>
              </div>

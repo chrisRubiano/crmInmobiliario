@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,7 @@ namespace crmInmobiliario.Models
 {
     public class EdificiosMeta
     {
-        [StringLength(100)]
+        [ForeignKey("IdDesarrollo")]
         public string Desarrollo { get; set; }
 
         [Display(Name = "% Descuento")]
