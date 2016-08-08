@@ -8,6 +8,7 @@
 
 <p>
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Personas", new { categoria = 2 })'"><i class="fa fa-user-plus"></i> Registrar Cliente</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Personas", new { nombreArchivo = "Clientes" })'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
     <hr />
 
     @using (Html.BeginForm("ListaClientes", "Personas", FormMethod.Get, new { @class = "form-inline" }))

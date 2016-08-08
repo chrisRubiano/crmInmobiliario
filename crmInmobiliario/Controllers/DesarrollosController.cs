@@ -7,9 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using crmInmobiliario.Models;
+using System.IO;
+using System.Web.UI;
 
 namespace crmInmobiliario.Controllers
 {
+    [Authorize]
     public class DesarrollosController : Controller
     {
         private CRMINMOBILIARIOEntities7 db = new CRMINMOBILIARIOEntities7();
@@ -83,6 +86,35 @@ namespace crmInmobiliario.Controllers
 
         //    return View(desarrollos.ToList());
         //}
+
+        //controller Action
+        public void Excel()
+        {
+            var model = db.Desarrollos.ToList();
+
+            Export export = new Export();
+            export.ToExcel(Response, model);
+        }
+
+        //helper class
+        public class Export
+        {
+            public void ToExcel(HttpResponseBase Response, object clientsList)
+            {
+                var grid = new System.Web.UI.WebControls.GridView();
+                grid.DataSource = clientsList;
+                grid.DataBind();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment; filename=Desarrollos.xls");
+                Response.ContentType = "application/excel";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+                grid.RenderControl(htw);
+                Response.Write(sw.ToString());
+                Response.End();
+            }
+        }
 
 
         // GET: Desarrollos/Edit/5

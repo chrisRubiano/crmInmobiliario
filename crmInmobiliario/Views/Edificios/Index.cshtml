@@ -8,8 +8,9 @@
 
 <p>
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Edificios")'"><i class="fa fa-user-plus"></i> Registrar Edificio</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Edificios")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
 </p>
-<table class="table">
+<table class="table table-hover table-condensed">
     <tr>
         <th></th>
         <th>
@@ -27,40 +28,41 @@
         <th>
             @Html.DisplayNameFor(model => model.Desarrollos.CajonesEstacionamiento)
         </th>
-        
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="">
-            <div class="list-inline">
-                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Edificios", new { id = item.IdEdificio })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Edificios", new { id = item.IdEdificio })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Edificios", new { id = item.IdEdificio })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-            </div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Desarrollo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Edificio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Niveles)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descuento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Desarrollos.CajonesEstacionamiento)
-        </td>
-        
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEdificio }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEdificio }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEdificio })
-        </td>*@
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="">
+                <div class="list-inline">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Edificios", new { id = item.IdEdificio })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Edificios", new { id = item.IdEdificio })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Edificios", new { id = item.IdEdificio })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desarrollo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edificio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Niveles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descuento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desarrollos.CajonesEstacionamiento)
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.IdEdificio }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdEdificio }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdEdificio })
+                </td>*@
+        </tr>
+    }
 
 </table>

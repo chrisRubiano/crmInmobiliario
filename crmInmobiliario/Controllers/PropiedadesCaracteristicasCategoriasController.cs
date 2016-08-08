@@ -10,6 +10,7 @@ using crmInmobiliario.Models;
 
 namespace crmInmobiliario.Controllers
 {
+    [Authorize]
     public class PropiedadesCaracteristicasCategoriasController : Controller
     {
         private CRMINMOBILIARIOEntities7 db = new CRMINMOBILIARIOEntities7();
