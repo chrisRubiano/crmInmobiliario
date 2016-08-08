@@ -40,6 +40,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         @*<div class="form-group">
             @Html.LabelFor(model => model.TipoOperacion, "TipoOperacion", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -317,3 +325,48 @@
 <div>
     <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
 </div>
+
+@section Scripts{
+
+    <script>
+            $(document).ready(function () {
+                document.getElementById("BodegaPanel").style.display = "none";
+                document.getElementById("TerrazaPanel").style.display = "none";
+                document.getElementById("EstacionamientoPanel").style.display = "none";
+                document.getElementById("BaniosPanel").style.display = "none";
+            });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#bodegaT').click(function () {
+                $('#BodegaPanel').show("fast");
+            });
+            $('#bodegaF').click(function () {
+                $('#BodegaPanel').hide("fast");
+            });
+            /*-------------*/
+            $('#terrazaT').click(function () {
+                $('#TerrazaPanel').show("fast");
+            });
+            $('#terrazaF').click(function () {
+                $('#TerrazaPanel').hide("fast");
+            });
+            /*-------------*/
+            $('#estacionamientoT').click(function () {
+                $('#EstacionamientoPanel').show("fast");
+            });
+            $('#estacionamientoF').click(function () {
+                $('#EstacionamientoPanel').hide("fast");
+            });
+            /*-------------*/
+            $('#banioT').click(function () {
+                $('#BaniosPanel').show("fast");
+            });
+            $('#banioF').click(function () {
+                $('#BaniosPanel').hide("fast");
+            });
+            /*-------------*/
+        });
+    </script>
+
+}

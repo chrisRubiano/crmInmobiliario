@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? IncluyeInstalacionBanio, Boolean? Estacionamiento )
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? IncluyeInstalacionBanio, Boolean? Estacionamiento, string titulo, int desarrollo = 0)
         {
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
@@ -44,26 +44,50 @@ namespace crmInmobiliario.Controllers
                 {
                     if (Terraza != null)
                     {
-                        propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                        if (Terraza==true)
+                        {
+                            propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                        }
                     }
 
                     if (Bodega != null)
                     {
-                        propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                        if (Bodega==true)
+                        {
+                            propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                        }
                     }
 
                     if (IncluyeInstalacionBanio != null)
                     {
-                        propiedades = propiedades.Where(p => p.IncluyeInstalacionBanio == IncluyeInstalacionBanio);
+                        if (IncluyeInstalacionBanio==true)
+                        {
+                            propiedades = propiedades.Where(p => p.IncluyeInstalacionBanio == IncluyeInstalacionBanio);
+                        }
                     }
 
                     if (Estacionamiento != null)
                     {
-                        propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                        if (Estacionamiento==true)
+                        {
+                            propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                        }
                     }
                 }
             }
 
+            if (desarrollo != 0)
+            {
+                propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
+            }
+
+            if (!string.IsNullOrEmpty(titulo))
+            {
+                propiedades = propiedades.Where(p => p.Titulo == titulo);
+            }
+
+
+            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
             return View(propiedades.ToList());
         }
 
@@ -138,7 +162,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPropiedad,Desarrollo,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,IncluyeInstalacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento")] Propiedades propiedades)
+        public ActionResult Create([Bind(Include = "IdPropiedad,Desarrollo,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,IncluyeInstalacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento, Titulo")] Propiedades propiedades)
         {
             try
             {
@@ -193,7 +217,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPropiedad,Desarrollo,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,IncluyeInstalacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento, PrecioM2Interiores, Bodega, M2Bodega, PrecioM2Bodega, Terraza, M2Terraza, PrecioM2Terraza, PrecioEstacionamiento, M2Estacionamiento, PrecioM2Estacionamiento, CajonesAdicionales, M2CajonAdicional, PrecioM2CajonAdicional, ")] Propiedades propiedades)
+        public ActionResult Edit([Bind(Include = "IdPropiedad,Desarrollo,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,IncluyeInstalacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento, PrecioM2Interiores, Bodega, M2Bodega, PrecioM2Bodega, Terraza, M2Terraza, PrecioM2Terraza, PrecioEstacionamiento, M2Estacionamiento, PrecioM2Estacionamiento, CajonesAdicionales, M2CajonAdicional, PrecioM2CajonAdicional, Titulo")] Propiedades propiedades)
         {
             try
             {
