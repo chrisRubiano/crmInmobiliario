@@ -1,0 +1,107 @@
+﻿@model crmInmobiliario.Models.Cotizaciones
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Cotización</h2>
+
+
+<div class="alert alert-danger" role="alert">
+    <strong>ATENCIÓN !!!</strong> <h3>Esta seguro(a) de Eliminar esta Cotización?</h3>
+</div>
+<div>
+    <h4>Cotizaciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCotizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCotizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioFinalVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioFinalVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcentajeEnganche)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PorcentajeEnganche)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enganche)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enganche)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parcialidades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parcialidades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PorcentajeMensualidades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PorcentajeMensualidades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PagoMensual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PagoMensual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedades.Titulo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Cotizaciones")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+        <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Eliminar</button>
+    </div>
+    }
+</div>

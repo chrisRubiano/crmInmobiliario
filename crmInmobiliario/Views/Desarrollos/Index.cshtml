@@ -7,20 +7,8 @@
 <h2>Desarrollos</h2>
 
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Desarrollos")'"><i class="fa fa-user-plus"></i> Registrar Desarrollo</button>
     <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Desarrollos")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
-    @*<hr />
-    @using (Html.BeginForm("ListaDesarrollos", "Desarrollos", FormMethod.Get, new { @class = "form-inline" }))
-    {
-        <div class="form-group">
-            <label for="desarrollo"> Desarrollo:</label> @Html.DropDownList("desarrollo", null, "Todos", new { @class = "form-control chosen-select" })
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
-        </div>
-    }*@
-   
 </p>
 <table class="table table-hover table-condensed">
     <tr>

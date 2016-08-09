@@ -366,6 +366,10 @@
                 $('#BaniosPanel').hide("fast");
             });
             /*-------------*/
+            $("select[name=TipoPropiedad]").change(function(){
+                $('input[name=Titulo]').val($(this).find("option:selected").text()); 
+            });
+            /*-------------*/
         });
     </script>
 

@@ -1,0 +1,42 @@
+﻿@model crmInmobiliario.Models.EdificiosDetalle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EdificiosDetalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nivel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.M2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.M2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edificios.Edificio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edificios.Edificio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEdificioDetalle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
