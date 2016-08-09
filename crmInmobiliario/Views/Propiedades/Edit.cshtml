@@ -233,33 +233,33 @@
         <!-------------Baños-------------------->
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Banios, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    Si @Html.RadioButtonFor(model => model.Banios, true, new { @id = "banioT" })
+                    No @Html.RadioButtonFor(model => model.Banios, false, new { @checked = "checked", @id = "banioF" })
+                    @Html.ValidationMessageFor(model => model.Banios, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.IncluyeInstalacionBanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, true, new { @id = "banioT" })
-                    No @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, false, new { @id = "banioF" })
+                    No @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, false, new { @checked = "checked", @id = "banioF" })
                     @Html.ValidationMessageFor(model => model.IncluyeInstalacionBanio, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
-        <div class="row groupform" id="BaniosPanel">
-            <div class="col-md-10 col-md-offset-1 form-inline panel panel-default">
-                <div class="form-group col-md-5">
-                    @Html.LabelFor(model => model.Banios, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.Banios, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Banios, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group col-md-5">
-                    @Html.LabelFor(model => model.PreparacionBanio, htmlAttributes: new { @class = "control-label col-md-5" })
-                    <div class="col-md-7">
-                        @Html.EditorFor(model => model.PreparacionBanio, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PreparacionBanio, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PreparacionBanio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                Si @Html.RadioButtonFor(model => model.PreparacionBanio, true, new { @id = "banioT" })
+                No @Html.RadioButtonFor(model => model.PreparacionBanio, false, new { @checked = "checked", @id = "banioF" })
+                @Html.ValidationMessageFor(model => model.PreparacionBanio, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -333,7 +333,6 @@
                 document.getElementById("BodegaPanel").style.display = "none";
                 document.getElementById("TerrazaPanel").style.display = "none";
                 document.getElementById("EstacionamientoPanel").style.display = "none";
-                document.getElementById("BaniosPanel").style.display = "none";
             });
     </script>
     <script>
@@ -359,12 +358,6 @@
                 $('#EstacionamientoPanel').hide("fast");
             });
             /*-------------*/
-            $('#banioT').click(function () {
-                $('#BaniosPanel').show("fast");
-            });
-            $('#banioF').click(function () {
-                $('#BaniosPanel').hide("fast");
-            });
             /*-------------*/
             $("select[name=TipoPropiedad]").change(function(){
                 $('input[name=Titulo]').val($(this).find("option:selected").text()); 

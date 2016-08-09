@@ -69,10 +69,17 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Cotizaciones/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id.HasValue)
+            {
+                ViewBag.Propiedad = id;
+            }
+            else
+            {
+                ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+            }
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             return View();
         }
 
