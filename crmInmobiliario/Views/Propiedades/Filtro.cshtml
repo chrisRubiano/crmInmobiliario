@@ -16,27 +16,32 @@
     @using (Html.BeginForm("Filtro", "Propiedades", FormMethod.Get, new { @class = " panel panel-default" }))
     {
         <div class="panel-body">
-            <div class="form-group row">
-                <div class="col-md-2"><label> Desarrollo: </label></div><div class="col-md-10">@Html.DropDownList("Desarrollo", null, htmlAttributes: new { @class = "form-control" })
-            </div>
-            </div>
-            <div class="form-group row">
-                    <div class="col-md-2"><label> Titulo: </label></div><div class="col-md-10">@Html.TextBox("titulo",null,htmlAttributes: new { @class = "form-control" })
+            <div class="col-md-4">
+                <div class="form-group row">
+                    <div class="col-md-2"><label> Desarrollo: </label></div><div class="col-md-10">
+                        @Html.DropDownList("Desarrollo", null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2"><label> Titulo: </label></div><div class="col-md-10">
+                        @Html.TextBox("titulo", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-md-2"><label> Terraza: </label></div><div class="col-md-10">@Html.CheckBox("Terraza")</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-md-3"><label> Terraza: </label></div><div class="col-md-9">@Html.CheckBox("Terraza")</div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3"><label> Bodega: </label></div><div class="col-md-9">@Html.CheckBox("Bodega")</div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3"><label> Estacionamiento: </label></div><div class="col-md-9">@Html.CheckBox("Estacionamiento")</div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-filtrar left" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
+                </div>
             </div>
-            <div class="form-group row">
-                <div class="col-md-2"><label> Bodega: </label></div><div class="col-md-10">@Html.CheckBox("Bodega")</div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-2"><label> Estacionamiento: </label></div><div class="col-md-10">@Html.CheckBox("Estacionamiento")</div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
-            </div>
-            
         </div>
     }
 </p>
@@ -190,7 +195,7 @@
         <tr>
             <td class="">
                 <div class="btn-lista">
-                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = item.IdPropiedad })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-fw fa-eye"></i></button>
                     <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Crear Cotización" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { id = item.IdPropiedad })';return false;"><i class="fa fa-file-text-o"></i></button>
                 </div>
             </td>

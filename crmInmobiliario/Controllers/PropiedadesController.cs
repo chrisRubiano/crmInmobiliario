@@ -122,7 +122,7 @@ namespace crmInmobiliario.Controllers
 
 
         // GET: Propiedades/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, bool filtro)
         {
             if (id == null)
             {
@@ -140,6 +140,7 @@ namespace crmInmobiliario.Controllers
             var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
             vModelos.domicilios = domicilios;
 
+            ViewBag.filtro = filtro;
             return View(vModelos);
         }
 
@@ -147,7 +148,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create()
         {
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
-            ViewBag.Edificios = new SelectList(db.Edificios, "IdEdificio", "Edificio");
+            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda");
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado");
             ViewBag.Antiguedad = new SelectList(db.PropiedadesAntiguedad, "IdAntiguedad", "Antiguedad");
