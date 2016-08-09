@@ -7,7 +7,7 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Opciones de configuración del perfil de usuario</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>Contraseña:</dt>
@@ -22,6 +22,17 @@
                 @Html.ActionLink("Create", "SetPassword")
             }
             ]
+        </dd>
+        <hr />
+        <dt>
+            Archivos de apoyo para venta
+        </dt>
+        <dd>
+            
+            <ul>
+                <li><a href="http://crm.bkswebs.com/archivos/CIBELES.pdf" target="_blank"><i class="fa fa-file-pdf-o"></i> CIBELES</a></li>
+                <li><a href="http://crm.bkswebs.com/archivos/CUMBRES.pdf" target="_blank"><i class="fa fa-file-pdf-o"></i> CUMBRES</a></li>
+            </ul>
         </dd>
         @*<dt>External Logins:</dt>
         <dd>
