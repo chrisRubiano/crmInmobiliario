@@ -139,6 +139,16 @@
 
             });
 
+            $("input[name=Parcialidades]").keyup(function () {
+                $('input[name=Enganche]').val((($("input[name=PorcentajeEnganche]").val()) * ($('input[name=PrecioFinalVenta]').val())) / 100);
+                $('input[name=PorcentajeMensualidades]').val(100 - ($("input[name=PorcentajeEnganche]").val()));
+                $('input[name=PagoMensual]').val(
+                                                    ($('input[name=PrecioFinalVenta]').val() -
+                                                    $('input[name=Enganche]').val()) /
+                                                    $('input[name=Parcialidades]').val()
+                                                    );
+            });
+
 
         });
     </script>
