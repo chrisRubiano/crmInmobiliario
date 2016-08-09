@@ -69,18 +69,20 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Cotizaciones/Create
-        public ActionResult Create(int? id)
+        public ActionResult Create(int? idPropiedad)
         {
-            if (id.HasValue)
+            Cotizaciones cotizacion = new Cotizaciones();
+            if (idPropiedad.HasValue)
             {
-                ViewBag.Propiedad = id;
+                var propiedad = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
+                cotizacion.Propiedad = idPropiedad.Value;
+                ViewBag.codigo = propiedad.Codigo;
             }
-            else
-            {
-                ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
-            }
+
+         ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            return View();
+            return View(cotizacion);
         }
 
         // POST: Cotizaciones/Create
@@ -88,12 +90,16 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCotizacion,Propiedad,Persona,FechaCotizacion,PrecioFinalVenta,PorcentajeEnganche,Enganche,Parcialidades,PorcentajeMensualidades,PagoMensual,Vendedor")] Cotizaciones cotizaciones)
+        public ActionResult Create([Bind(Include = "IdCotizacion,Propiedad,Persona,FechaCotizacion,PrecioFinalVenta,PorcentajeEnganche,Enganche,Parcialidades,PorcentajeMensualidades,PagoMensual,Vendedor")] Cotizaciones cotizaciones, int? idPropiedad)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if (idPropiedad.HasValue)
+                    {
+                        cotizaciones.Propiedad = idPropiedad.Value;
+                    }
                     cotizaciones.Vendedor = User.Identity.GetUserId().ToString();
                     cotizaciones.FechaCotizacion = DateTime.Now;
                     db.Cotizaciones.Add(cotizaciones);
@@ -107,7 +113,14 @@ namespace crmInmobiliario.Controllers
             }
 
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", cotizaciones.Persona);
-            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", cotizaciones.Propiedad);
+            if (!string.IsNullOrEmpty(ViewBag.codigo))
+            {
+
+            }
+            else
+            {
+                ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", cotizaciones.Propiedad);
+            }
             return View(cotizaciones);
         }
 
