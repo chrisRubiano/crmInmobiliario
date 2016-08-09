@@ -76,6 +76,7 @@ namespace crmInmobiliario.Controllers
             {
                 var propiedad = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
                 cotizacion.Propiedad = idPropiedad.Value;
+                cotizacion.PrecioFinalVenta = propiedad.VentaPrecio;
                 ViewBag.codigo = propiedad.Codigo;
             }
 
