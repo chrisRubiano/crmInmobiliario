@@ -177,9 +177,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CotizacionesController.cs" />
     <Compile Include="Controllers\DesarrollosController.cs" />
     <Compile Include="Controllers\DomiciliosController.cs" />
     <Compile Include="Controllers\EdificiosController.cs" />
+    <Compile Include="Controllers\EdificiosDetallesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
@@ -213,6 +215,7 @@
     <Compile Include="Models\Cotizaciones.cs">
       <DependentUpon>CRMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CotizacionesMeta.cs" />
     <Compile Include="Models\CRMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -254,6 +257,7 @@
       <DependentUpon>CRMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EdificiosMeta.cs" />
+    <Compile Include="Models\EdificioYDetalle.cs" />
     <Compile Include="Models\Estados.cs">
       <DependentUpon>CRMModel.tt</DependentUpon>
     </Compile>
@@ -496,6 +500,16 @@
     <Content Include="Views\PropiedadesCaracteristicasCategorias\Edit.cshtml" />
     <Content Include="Views\PropiedadesCaracteristicasCategorias\Index.cshtml" />
     <Content Include="Views\Propiedades\Filtro.cshtml" />
+    <Content Include="Views\EdificiosDetalles\Create.cshtml" />
+    <Content Include="Views\EdificiosDetalles\Delete.cshtml" />
+    <Content Include="Views\EdificiosDetalles\Details.cshtml" />
+    <Content Include="Views\EdificiosDetalles\Edit.cshtml" />
+    <Content Include="Views\EdificiosDetalles\Index.cshtml" />
+    <Content Include="Views\Cotizaciones\Create.cshtml" />
+    <Content Include="Views\Cotizaciones\Delete.cshtml" />
+    <Content Include="Views\Cotizaciones\Details.cshtml" />
+    <Content Include="Views\Cotizaciones\Edit.cshtml" />
+    <Content Include="Views\Cotizaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
