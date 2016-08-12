@@ -20,7 +20,7 @@ namespace crmInmobiliario.Controllers
         // GET: Notas
         public ActionResult Index()
         {
-            var notas = db.Notas.Include(n => n.Personas);
+            var notas = db.Notas.Include(n => n.Personas).OrderByDescending(n => n.IdNota);
             return View(notas.ToList());
         }
 

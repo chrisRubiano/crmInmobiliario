@@ -20,7 +20,7 @@ namespace crmInmobiliario.Controllers
         // GET: Domicilios
         public ActionResult Index()
         {
-            var domicilios = db.Domicilios.Include(d => d.DomiciliosTipo).Include(d => d.Estados).Include(d => d.Municipios).Include(d => d.Paises).Include(d => d.Personas).Include(d => d.Propiedades);
+            var domicilios = db.Domicilios.Include(d => d.DomiciliosTipo).Include(d => d.Estados).Include(d => d.Municipios).Include(d => d.Paises).Include(d => d.Personas).Include(d => d.Propiedades).OrderByDescending(d => d.IdDomicilio);
             return View(domicilios.ToList());
         }
 

@@ -47,9 +47,12 @@
                 @Html.DisplayFor(modelItem => item.Clave)
             </td>
             <td>
-                @if (item.Activo.Value)
+                @if (item.Activo.HasValue)
                 {
-                    <i class="fa fa-check-circle text-success text-center"></i>
+                    if (item.Activo.Value)
+                    {
+                        <i class="fa fa-check-circle text-success text-center"></i>
+                    }
                 }
                 else
                 {
