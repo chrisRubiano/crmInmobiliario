@@ -511,6 +511,7 @@
     <Content Include="Views\Cotizaciones\Details.cshtml" />
     <Content Include="Views\Cotizaciones\Edit.cshtml" />
     <Content Include="Views\Cotizaciones\Index.cshtml" />
+    <Content Include="Views\Propiedades\DetailsFiltro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

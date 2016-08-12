@@ -144,6 +144,28 @@ namespace crmInmobiliario.Controllers
             return View(vModelos);
         }
 
+        public ActionResult DetailsFiltro(int? id, bool filtro)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            VariosModelos vModelos = new VariosModelos();
+            Propiedades propiedades = db.Propiedades.Find(id);
+            if (propiedades == null)
+            {
+                return HttpNotFound();
+            }
+            vModelos.propiedades = propiedades;
+
+            var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
+            vModelos.domicilios = domicilios;
+
+            ViewBag.filtro = filtro;
+            return View(vModelos);
+        }
+
         // GET: Propiedades/Create
         public ActionResult Create()
         {
