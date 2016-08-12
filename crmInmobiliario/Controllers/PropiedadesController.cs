@@ -21,7 +21,7 @@ namespace crmInmobiliario.Controllers
         // GET: Propiedades
         public ActionResult Index()
         {
-            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
+            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion).OrderByDescending(p => p.IdPropiedad);
             return View(propiedades.ToList());
         }
 

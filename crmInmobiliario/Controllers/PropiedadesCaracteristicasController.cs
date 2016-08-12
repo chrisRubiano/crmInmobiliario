@@ -20,7 +20,7 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesCaracteristicas
         public ActionResult Index()
         {
-            var propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Include(p => p.PropiedadesCaracteristicasCategorias);
+            var propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Include(p => p.PropiedadesCaracteristicasCategorias).OrderByDescending(p => p.IdCaracteristica);
             return View(propiedadesCaracteristicas.ToList());
         }
 

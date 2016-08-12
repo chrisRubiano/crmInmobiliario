@@ -18,7 +18,7 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesCaracteristicasCategorias
         public ActionResult Index()
         {
-            return View(db.PropiedadesCaracteristicasCategorias.ToList());
+            return View(db.PropiedadesCaracteristicasCategorias.OrderByDescending(p => p.IdCategoria).ToList());
         }
 
         // GET: PropiedadesCaracteristicasCategorias/Details/5

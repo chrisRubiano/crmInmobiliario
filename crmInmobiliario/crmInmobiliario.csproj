@@ -325,6 +325,7 @@
     <Compile Include="Models\PropiedadesTiposOperacion.cs">
       <DependentUpon>CRMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PropiedadMeta.cs" />
     <Compile Include="Models\ProspectosPropiedades.cs">
       <DependentUpon>CRMModel.tt</DependentUpon>
     </Compile>

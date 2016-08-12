@@ -22,7 +22,7 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones
         public ActionResult Index()
         {
-            var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
+            var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades).OrderByDescending(c => c.IdCotizacion);
             return View(cotizaciones.ToList());
         }
 

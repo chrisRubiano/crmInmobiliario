@@ -55,7 +55,7 @@ namespace crmInmobiliario.Controllers
 
 
             //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
-            return View(personas.ToList());
+            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
         public void Excel(string nombreArchivo)

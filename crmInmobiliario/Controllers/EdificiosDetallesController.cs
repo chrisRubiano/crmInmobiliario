@@ -17,7 +17,7 @@ namespace crmInmobiliario.Controllers
         // GET: EdificiosDetalles
         public ActionResult Index()
         {
-            var edificiosDetalle = db.EdificiosDetalle.Include(e => e.Edificios);
+            var edificiosDetalle = db.EdificiosDetalle.Include(e => e.Edificios).OrderByDescending(e => e.IdEdificioDetalle);
             return View(edificiosDetalle.ToList());
         }
 

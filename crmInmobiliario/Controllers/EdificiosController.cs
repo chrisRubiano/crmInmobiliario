@@ -20,7 +20,7 @@ namespace crmInmobiliario.Controllers
         // GET: Edificios
         public ActionResult Index()
         {
-            var edificios = db.Edificios.Include(e => e.Desarrollos);
+            var edificios = db.Edificios.Include(e => e.Desarrollos).OrderByDescending(e => e.IdEdificio);
             return View(edificios.ToList());
         }
 

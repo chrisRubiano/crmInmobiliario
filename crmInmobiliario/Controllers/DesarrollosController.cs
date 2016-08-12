@@ -20,7 +20,7 @@ namespace crmInmobiliario.Controllers
         // GET: Desarrollos
         public ActionResult Index()
         {
-            return View(db.Desarrollos.ToList());
+            return View(db.Desarrollos.OrderByDescending(d => d.IdDesarrollo).ToList());
         }
 
         // GET: Desarrollos/Details/5
