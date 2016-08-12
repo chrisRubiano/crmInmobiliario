@@ -88,7 +88,7 @@ namespace crmInmobiliario.Controllers
 
 
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
-            return View(propiedades.ToList());
+            return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
 
 
