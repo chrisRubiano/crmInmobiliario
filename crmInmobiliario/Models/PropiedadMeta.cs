@@ -101,7 +101,9 @@ namespace crmInmobiliario.Models
         public Nullable<int> Acabados { get; set; }
 
         [Display(Name = "Especifique los acabados")]
+        [DataType(DataType.MultilineText)]
         public string AcabadosEspecifique { get; set; }
+
         public Nullable<int> Antiguedad { get; set; }
         public string Nivel { get; set; }
         public Nullable<int> Niveles { get; set; }

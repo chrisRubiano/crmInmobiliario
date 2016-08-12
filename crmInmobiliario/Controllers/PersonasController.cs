@@ -105,7 +105,7 @@ namespace crmInmobiliario.Controllers
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
             }
 
-            return View(personas.ToList());
+            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
         public ActionResult ListaClientes(string nombre)
@@ -126,7 +126,7 @@ namespace crmInmobiliario.Controllers
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
             }
 
-            return View(personas.ToList());
+            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
         // GET: Personas/Details/5

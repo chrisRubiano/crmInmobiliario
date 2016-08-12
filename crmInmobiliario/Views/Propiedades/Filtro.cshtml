@@ -195,7 +195,7 @@
         <tr>
             <td class="">
                 <div class="btn-lista">
-                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Propiedades", new { id = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("DetailsFiltro", "Propiedades", new { id = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-fw fa-eye"></i></button>
                     <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Crear Cotización" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = item.IdPropiedad })';return false;"><i class="fa fa-file-text-o"></i></button>
                 </div>
             </td>

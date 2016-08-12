@@ -88,7 +88,7 @@ namespace crmInmobiliario.Controllers
 
 
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
-            return View(propiedades.ToList());
+            return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
 
 
@@ -123,6 +123,28 @@ namespace crmInmobiliario.Controllers
 
         // GET: Propiedades/Details/5
         public ActionResult Details(int? id, bool filtro)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            VariosModelos vModelos = new VariosModelos();
+            Propiedades propiedades = db.Propiedades.Find(id);
+            if (propiedades == null)
+            {
+                return HttpNotFound();
+            }
+            vModelos.propiedades = propiedades;
+
+            var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
+            vModelos.domicilios = domicilios;
+
+            ViewBag.filtro = filtro;
+            return View(vModelos);
+        }
+
+        public ActionResult DetailsFiltro(int? id, bool filtro)
         {
             if (id == null)
             {
