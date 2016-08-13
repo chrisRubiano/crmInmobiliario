@@ -93,6 +93,41 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Bodega)
+        </dt>
+        <dd>
+            @if (Model.propiedades.Bodega.HasValue)
+            {
+                if (Model.propiedades.Bodega == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.M2Bodega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.M2Bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.PrecioM2Bodega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.PrecioM2Bodega)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.propiedades.Estacionamiento)
         </dt>
         <dd>
