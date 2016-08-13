@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Edificios, "Edificio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Edificios", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Edificio", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Edificios, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -237,7 +237,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Banios, true, new { @id = "banioT" })
-                    No @Html.RadioButtonFor(model => model.Banios, false, new { @checked = "checked", @id = "banioF" })
+                    No @Html.RadioButtonFor(model => model.Banios, false, new { @id = "banioF" })
                     @Html.ValidationMessageFor(model => model.Banios, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -248,7 +248,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, true, new { @id = "banioT" })
-                    No @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, false, new { @checked = "checked", @id = "banioF" })
+                    No @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, false, new { @id = "banioF" })
                     @Html.ValidationMessageFor(model => model.IncluyeInstalacionBanio, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -258,7 +258,7 @@
             @Html.LabelFor(model => model.PreparacionBanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 Si @Html.RadioButtonFor(model => model.PreparacionBanio, true, new { @id = "banioT" })
-                No @Html.RadioButtonFor(model => model.PreparacionBanio, false, new { @checked = "checked", @id = "banioF" })
+                No @Html.RadioButtonFor(model => model.PreparacionBanio, false, new { @id = "banioF" })
                 @Html.ValidationMessageFor(model => model.PreparacionBanio, "", new { @class = "text-danger" })
             </div>
         </div>
