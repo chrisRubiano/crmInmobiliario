@@ -194,42 +194,12 @@
                         </div>
                     </div>
                 </div>
-                <!---------->
-                <hr />
-                <div class="row groupform">
-
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.CajonesAdicionales, htmlAttributes: new { @class = "control-label col-md-5" })
-                        <div class="col-md-7">
-                            @Html.EditorFor(model => model.CajonesAdicionales, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.CajonesAdicionales, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row groupform">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.M2CajonAdicional, htmlAttributes: new { @class = "control-label col-md-5" })
-                        <div class="col-md-7">
-                            @Html.EditorFor(model => model.M2CajonAdicional, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.M2CajonAdicional, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.PrecioM2CajonAdicional, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.PrecioM2CajonAdicional, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PrecioM2CajonAdicional, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
 
-
         <!-------------Estacionamiento-------------------->
-        <!-------------Baños-------------------->
+        <!-------------Baños------------------------------>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Banios, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
