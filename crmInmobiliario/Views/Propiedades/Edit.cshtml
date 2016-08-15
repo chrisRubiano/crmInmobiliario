@@ -49,12 +49,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.TipoOperacion, "TipoOperacion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TipoOperacion", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TipoOperacion, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.TipoOperacion, "TipoOperacion", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("TipoOperacion", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TipoOperacion, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.VentaPrecio, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -195,39 +195,8 @@
                         </div>
                     </div>
                 </div>
-                <!---------->
-                <hr />
-                <div class="row groupform">
-
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.CajonesAdicionales, htmlAttributes: new { @class = "control-label col-md-5" })
-                        <div class="col-md-7">
-                            @Html.EditorFor(model => model.CajonesAdicionales, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.CajonesAdicionales, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row groupform">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.M2CajonAdicional, htmlAttributes: new { @class = "control-label col-md-5" })
-                        <div class="col-md-7">
-                            @Html.EditorFor(model => model.M2CajonAdicional, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.M2CajonAdicional, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.PrecioM2CajonAdicional, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.PrecioM2CajonAdicional, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PrecioM2CajonAdicional, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
-
 
         <!-------------Estacionamiento-------------------->
         <!-------------Baños-------------------->
@@ -329,11 +298,11 @@
 @section Scripts{
 
     <script>
-            $(document).ready(function () {
-                document.getElementById("BodegaPanel").style.display = "none";
-                document.getElementById("TerrazaPanel").style.display = "none";
-                document.getElementById("EstacionamientoPanel").style.display = "none";
-            });
+        $(document).ready(function () {
+            document.getElementById("BodegaPanel").style.display = "none";
+            document.getElementById("TerrazaPanel").style.display = "none";
+            document.getElementById("EstacionamientoPanel").style.display = "none";
+        });
     </script>
     <script>
         $(document).ready(function () {
@@ -360,7 +329,7 @@
             /*-------------*/
             /*-------------*/
             $("select[name=TipoPropiedad]").change(function(){
-                $('input[name=Titulo]').val($(this).find("option:selected").text()); 
+                $('input[name=Titulo]').val($(this).find("option:selected").text());
             });
             /*-------------*/
         });
