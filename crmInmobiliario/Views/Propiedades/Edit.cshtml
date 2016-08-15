@@ -213,17 +213,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IncluyeInstalacionBanio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    Si @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, true, new { @id = "banioT" })
-                    No @Html.RadioButtonFor(model => model.IncluyeInstalacionBanio, false, new { @id = "banioF" })
-                    @Html.ValidationMessageFor(model => model.IncluyeInstalacionBanio, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.PreparacionBanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 Si @Html.RadioButtonFor(model => model.PreparacionBanio, true, new { @id = "banioT" })
