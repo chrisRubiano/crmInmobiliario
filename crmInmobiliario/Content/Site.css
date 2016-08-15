@@ -27,6 +27,12 @@ table {
     margin-top: 20px;
 }
 
+table.floatThead-table {
+    border-top: none;
+    border-bottom: none;
+    background-color: #FFF;
+}
+
 .btn-tblsolc {
     font-size: 12px;
     margin: 2px auto;
