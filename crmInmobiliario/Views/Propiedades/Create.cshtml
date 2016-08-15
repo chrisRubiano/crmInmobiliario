@@ -211,15 +211,20 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PreparacionBanio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                Si @Html.RadioButtonFor(model => model.PreparacionBanio, true, new { @id = "banioT" })
-                No @Html.RadioButtonFor(model => model.PreparacionBanio, false, new { @checked = "checked", @id = "banioF" })
-                @Html.ValidationMessageFor(model => model.PreparacionBanio, "", new { @class = "text-danger" })
+        <div class="row groupform" id="BanioPanel">
+            <div class="col-md-10 col-md-offset-1 form-inline panel panel-default">
+                <div class="row groupform">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PreparacionBanio, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-7">
+                            Si @Html.RadioButtonFor(model => model.PreparacionBanio, true, new { @id = "banioT" })
+                            No @Html.RadioButtonFor(model => model.PreparacionBanio, false, new { @checked = "checked", @id = "banioF" })
+                            @Html.ValidationMessageFor(model => model.PreparacionBanio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
         <!-------------Baños-------------------->
         <hr />
         <div class="form-group">
@@ -289,6 +294,7 @@
             document.getElementById("BodegaPanel").style.display = "none";
             document.getElementById("TerrazaPanel").style.display = "none";
             document.getElementById("EstacionamientoPanel").style.display = "none";
+            document.getElementById("BanioPanel").style.display = "none";
         });
     </script>
     <script>
@@ -314,6 +320,12 @@
                 $('#EstacionamientoPanel').hide("fast");
             });
             /*-------------*/
+            $('#banioT').click(function () {
+                $('#BanioPanel').show("fast");
+            });
+            $('#banioF').click(function () {
+                $('#BanioPanel').hide("fast");
+            });
             /*-------------*/
             $("select[name=TipoPropiedad]").change(function(){
                 $('input[name=Titulo]').val($(this).find("option:selected").text());
