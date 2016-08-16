@@ -64,7 +64,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Titulo)
                         </th>
-
                         <th>
                             @Html.DisplayNameFor(model => model.Codigo)
                         </th>
@@ -74,84 +73,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Nivel)
                         </th>
-
-
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.RentaPrecio)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RentaTarifaDiaria)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RentaTarifaSemanal)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RentaTarifaMensual)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RentaEstadiaMinima)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Titulo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Recamaras)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PreparacionBanio)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IncluyeInstalacionBanio)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Banios)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.MedioBanios)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Construccion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Terreno)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LargoTerreno)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FrenteTerreno)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AcabadosEspecifique)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.MantenimientoMensual)
-                            </th>*@
-
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.Observaciones)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Usuario)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaRegistro)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.UsuarioUA)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FechaUA)
-                            </th>*@
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.Estacionamiento)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
-                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.M2Interiores)
                         </th>
@@ -167,33 +88,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.LargoLocal)
                         </th>
-
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.Niveles)
-                            </th>*@
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.SistemaAC)
-                            </th>*@
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.Reglamento)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.URLReglamento)
-                            </th>*@
-
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.Monedas.Moneda)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PropiedadesAcabados.Acabado)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PropiedadesAntiguedad.Antiguedad)
-                            </th>*@
-
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
-                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.VentaPrecio)
                         </th>
@@ -224,97 +118,6 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Nivel)
                         </td>
-
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.RentaPrecio)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RentaTarifaDiaria)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RentaTarifaSemanal)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RentaTarifaMensual)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RentaEstadiaMinima)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Titulo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Recamaras)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PreparacionBanio)
-                            </td>
-                            <td>
-                                @if (item.IncluyeInstalacionBanio.Value)
-                                {
-                                    <i class="fa fa-check-circle text-success text-center"></i>
-                                }
-                                else
-                                {
-                                    <i class="fa fa-times-circle text-danger text-center"></i>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Banios)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MedioBanios)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Construccion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Terreno)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LargoTerreno)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FrenteTerreno)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AcabadosEspecifique)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MantenimientoMensual)
-                            </td>*@
-
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.Observaciones)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Usuario)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaRegistro)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UsuarioUA)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaUA)
-                            </td>
-                            <td>
-                                @if (item.Estacionamiento.Value)
-                                {
-                                    <i class="fa fa-check-circle text-success text-center"></i>
-                                }
-                                else
-                                {
-                                    <i class="fa fa-times-circle text-danger text-center"></i>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
-                            </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.M2Interiores)
                         </td>
@@ -330,46 +133,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.LargoLocal)
                         </td>
-
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.Niveles)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SistemaAC)
-                            </td>*@
-                        @*<td>
-                                @if (item.Reglamento.Value)
-                                {
-                                    <i class="fa fa-check-circle text-success text-center"></i>
-                                }
-                                else
-                                {
-                                    <i class="fa fa-times-circle text-danger text-center"></i>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.URLReglamento)
-                            </td>*@
-
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.Monedas.Moneda)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PropiedadesAcabados.Acabado)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PropiedadesAntiguedad.Antiguedad)
-                            </td>*@
-
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.PropiedadesTiposOperacion.TipoOperacion)
-                            </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.VentaPrecio)
                         </td>
                     </tr>
                 }
-
             </table>
         </div>
     </div>
