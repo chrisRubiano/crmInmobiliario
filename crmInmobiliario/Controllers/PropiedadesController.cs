@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, int desarrollo = 0)
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, Boolean? Banio, string titulo, int desarrollo = 0)
         {
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
@@ -38,9 +38,9 @@ namespace crmInmobiliario.Controllers
             //        propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
             //    }
             //}
-            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
+            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue && Banio.HasValue)
             { 
-                if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
+                if (Terraza.Value || Bodega.Value || Estacionamiento.Value || Banio.Value)
                 {
                     if (Terraza != null)
                     {
@@ -63,6 +63,13 @@ namespace crmInmobiliario.Controllers
                         if (Estacionamiento==true)
                         {
                             propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                        }
+                    }
+                    if (Banio != null)
+                    {
+                        if (Banio == true)
+                        {
+                            propiedades = propiedades.Where(p => p.Banios == Banio);
                         }
                     }
                 }
