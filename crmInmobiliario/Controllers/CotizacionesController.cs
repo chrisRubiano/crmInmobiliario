@@ -17,7 +17,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class CotizacionesController : Controller
     {
-        private CRMINMOBILIARIOEntities8 db = new CRMINMOBILIARIOEntities8();
+        private CRMINMOBILIARIOEntities10 db = new CRMINMOBILIARIOEntities10();
 
         // GET: Cotizaciones
         public ActionResult Index()
