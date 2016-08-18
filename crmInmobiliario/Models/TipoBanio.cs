@@ -12,16 +12,16 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PropiedadesAntiguedad
+    public partial class TipoBanio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PropiedadesAntiguedad()
+        public TipoBanio()
         {
             this.Propiedades = new HashSet<Propiedades>();
         }
     
-        public int IdAntiguedad { get; set; }
-        public string Antiguedad { get; set; }
+        public int IdTipoBanio { get; set; }
+        public string TipoBanio1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Propiedades> Propiedades { get; set; }

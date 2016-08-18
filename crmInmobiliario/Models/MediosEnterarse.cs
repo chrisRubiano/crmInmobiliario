@@ -17,12 +17,15 @@ namespace crmInmobiliario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MediosEnterarse()
         {
+            this.Personas = new HashSet<Personas>();
             this.ProspectosPropiedades = new HashSet<ProspectosPropiedades>();
         }
     
         public int IdMedio { get; set; }
         public string Medio { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personas> Personas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProspectosPropiedades> ProspectosPropiedades { get; set; }
     }

@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities7 : DbContext
+    public partial class CRMINMOBILIARIOEntities8 : DbContext
     {
-        public CRMINMOBILIARIOEntities7()
-            : base("name=CRMINMOBILIARIOEntities7")
+        public CRMINMOBILIARIOEntities8()
+            : base("name=CRMINMOBILIARIOEntities8")
         {
         }
     
@@ -55,22 +55,15 @@ namespace crmInmobiliario.Models
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
         public virtual DbSet<Propiedades> Propiedades { get; set; }
         public virtual DbSet<PropiedadesAcabados> PropiedadesAcabados { get; set; }
-        public virtual DbSet<PropiedadesAntiguedad> PropiedadesAntiguedad { get; set; }
         public virtual DbSet<PropiedadesCaracteristicas> PropiedadesCaracteristicas { get; set; }
         public virtual DbSet<PropiedadesCaracteristicasCategorias> PropiedadesCaracteristicasCategorias { get; set; }
+        public virtual DbSet<PropiedadesCategoria> PropiedadesCategoria { get; set; }
         public virtual DbSet<PropiedadesEstatus> PropiedadesEstatus { get; set; }
-        public virtual DbSet<PropiedadesSistemaAC> PropiedadesSistemaAC { get; set; }
-        public virtual DbSet<PropiedadesTipo> PropiedadesTipo { get; set; }
-        public virtual DbSet<PropiedadesTiposOperacion> PropiedadesTiposOperacion { get; set; }
         public virtual DbSet<ProspectosPropiedades> ProspectosPropiedades { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tareas> Tareas { get; set; }
         public virtual DbSet<TareasCategorias> TareasCategorias { get; set; }
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
-
-        internal object GetModel()
-        {
-            throw new NotImplementedException();
-        }
+        public virtual DbSet<TipoBanio> TipoBanio { get; set; }
     }
 }
