@@ -27,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.propiedades.TipoPropiedad)
+            @Html.DisplayNameFor(model => model.propiedades.PropiedadesCategoria.Categoria)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.propiedades.TipoPropiedad)
+            @Html.DisplayFor(model => model.propiedades.PropiedadesCategoria.Categoria)
         </dd>
 
         <dt>
@@ -156,66 +156,10 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.propiedades.M2Estacionamiento)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.propiedades.M2Estacionamiento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.PrecioM2Estacionamiento)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.propiedades.PrecioM2Estacionamiento)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.propiedades.CajonesEstacionamiento)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.propiedades.CajonesEstacionamiento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.Banios)
-        </dt>
-        <dd>
-            @if (Model.propiedades.Banios.HasValue)
-            {
-                if (Model.propiedades.Banios == true)
-                {
-                    <i class="fa fa-check-circle text-success text-center"></i>
-                }
-                else
-                {
-                    <i class="fa fa-times-circle text-danger text-center"></i>
-                }
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.PreparacionBanio)
-        </dt>
-        <dd>
-            @if (Model.propiedades.PreparacionBanio.HasValue)
-            {
-                if (Model.propiedades.PreparacionBanio == true)
-                {
-                    <i class="fa fa-check-circle text-success text-center"></i>
-                }
-                else
-                {
-                    <i class="fa fa-times-circle text-danger text-center"></i>
-                }
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
         </dd>
 
         <dt>
@@ -252,15 +196,6 @@
         <dd>
             @Html.DisplayFor(model => model.propiedades.Nivel)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.SistemaAC)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.propiedades.SistemaAC)
-        </dd>
-
-
     </dl>
 
 </div>
@@ -276,7 +211,7 @@
                 <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
             }
 
-            <button class="btn btn-warning" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = Model.propiedades.IdPropiedad })';return false;"><i class="fa fa-file-text-o"></i> Crear Cotización</button>
+            <button class="btn btn-warning" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = Model.propiedades.IdPropiedad })';return false;"><i class="fa fa-money"></i> Crear Cotización</button>
         </p>
     </div>
 </div>

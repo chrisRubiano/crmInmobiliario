@@ -16,31 +16,23 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PropiedadesController : Controller
     {
-        private CRMINMOBILIARIOEntities8 db = new CRMINMOBILIARIOEntities8();
+        private CRMINMOBILIARIOEntities10 db = new CRMINMOBILIARIOEntities10();
 
         // GET: Propiedades
         public ActionResult Index()
         {
-            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad);
+            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad).Include(p => p.PropiedadesTipoBanios);
             return View(propiedades.ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, Boolean? Banio, string titulo, int desarrollo = 0)
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, int desarrollo = 0)
         {
 
-            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria);
+            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
 
-
-            //if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
-            //{
-            //    if (!Terraza.Value && !Bodega.Value && !Estacionamiento.Value)
-            //    {
-            //        propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesAntiguedad).Include(p => p.PropiedadesTipo).Include(p => p.PropiedadesTiposOperacion);
-            //    }
-            //}
-            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue && Banio.HasValue)
+            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
             { 
-                if (Terraza.Value || Bodega.Value || Estacionamiento.Value || Banio.Value)
+                if (Terraza.Value || Bodega.Value || Estacionamiento.Value )
                 {
                     if (Terraza != null)
                     {
@@ -75,10 +67,10 @@ namespace crmInmobiliario.Controllers
 
             if (!string.IsNullOrEmpty(titulo))
             {
-                propiedades = propiedades.Where(p => p.Titulo == titulo);
+                propiedades = propiedades.Where(p => p.Titulo.Contains( titulo));
             }
 
-
+            propiedades = propiedades.Where(p => p.Activa == true);
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
             return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
@@ -165,7 +157,8 @@ namespace crmInmobiliario.Controllers
             ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda");
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado");
-            ViewBag.TipoPropiedad = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria");
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
+            ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View();
         }
 
@@ -196,7 +189,8 @@ namespace crmInmobiliario.Controllers
             ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", propiedades.Edificio);
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
-            ViewBag.CategoriaPropiedad = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View(propiedades);
         }
 
@@ -216,7 +210,8 @@ namespace crmInmobiliario.Controllers
             ViewBag.Edificio = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
-            ViewBag.TipoPropiedad = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View(propiedades);
         }
 
@@ -246,7 +241,8 @@ namespace crmInmobiliario.Controllers
             ViewBag.Edificios = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
-            ViewBag.TipoPropiedad = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View(propiedades);
         }
 

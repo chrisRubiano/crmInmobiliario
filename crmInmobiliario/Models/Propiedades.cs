@@ -85,7 +85,6 @@ namespace crmInmobiliario.Models
         public virtual PropiedadesAcabados PropiedadesAcabados { get; set; }
         public virtual PropiedadesCategoria PropiedadesCategoria { get; set; }
         public virtual PropiedadesEstatus PropiedadesEstatus { get; set; }
-        public virtual PropiedadesCategoria PropiedadesCategoria1 { get; set; }
-        public virtual TipoBanio TipoBanio1 { get; set; }
+        public virtual PropiedadesTipoBanios PropiedadesTipoBanios { get; set; }
     }
 }

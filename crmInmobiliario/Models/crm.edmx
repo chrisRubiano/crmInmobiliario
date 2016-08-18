@@ -402,6 +402,13 @@
           <Property Name="IdEstatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="PropiedadesTipoBanios">
+          <Key>
+            <PropertyRef Name="IdTipoBanio" />
+          </Key>
+          <Property Name="IdTipoBanio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoBanio" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="ProspectosPropiedades">
           <Key>
             <PropertyRef Name="IdProspectoPRopiedad" />
@@ -451,13 +458,6 @@
           </Key>
           <Property Name="IdEstatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="TipoBanio">
-          <Key>
-            <PropertyRef Name="IdTipoBanio" />
-          </Key>
-          <Property Name="IdTipoBanio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoBanio" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_CaracteristicasPropiedades_Propiedades">
           <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
@@ -875,23 +875,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Propiedades_PropiedadesTipo">
-          <End Role="PropiedadesCategoria" Type="Self.PropiedadesCategoria" Multiplicity="0..1" />
+        <Association Name="FK_Propiedades_PropiedadesTipoBanios">
+          <End Role="PropiedadesTipoBanios" Type="Self.PropiedadesTipoBanios" Multiplicity="0..1" />
           <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PropiedadesCategoria">
-              <PropertyRef Name="IdCategoria" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_TipoBanio">
-          <End Role="TipoBanio" Type="Self.TipoBanio" Multiplicity="0..1" />
-          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoBanio">
+            <Principal Role="PropiedadesTipoBanios">
               <PropertyRef Name="IdTipoBanio" />
             </Principal>
             <Dependent Role="Propiedades">
@@ -995,12 +983,12 @@
           <EntitySet Name="PropiedadesCaracteristicasCategorias" EntityType="Self.PropiedadesCaracteristicasCategorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropiedadesCategoria" EntityType="Self.PropiedadesCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropiedadesEstatus" EntityType="Self.PropiedadesEstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropiedadesTipoBanios" EntityType="Self.PropiedadesTipoBanios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProspectosPropiedades" EntityType="Self.ProspectosPropiedades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tareas" EntityType="Self.Tareas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareasCategorias" EntityType="Self.TareasCategorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareasEstatus" EntityType="Self.TareasEstatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TipoBanio" EntityType="Self.TipoBanio" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CaracteristicasPropiedades_Propiedades" Association="Self.FK_CaracteristicasPropiedades_Propiedades">
             <End Role="Propiedades" EntitySet="Propiedades" />
             <End Role="CaracteristicasPropiedades" EntitySet="CaracteristicasPropiedades" />
@@ -1137,12 +1125,8 @@
             <End Role="PropiedadesEstatus" EntitySet="PropiedadesEstatus" />
             <End Role="Propiedades" EntitySet="Propiedades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesTipo" Association="Self.FK_Propiedades_PropiedadesTipo">
-            <End Role="PropiedadesCategoria" EntitySet="PropiedadesCategoria" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_TipoBanio" Association="Self.FK_Propiedades_TipoBanio">
-            <End Role="TipoBanio" EntitySet="TipoBanio" />
+          <AssociationSet Name="FK_Propiedades_PropiedadesTipoBanios" Association="Self.FK_Propiedades_PropiedadesTipoBanios">
+            <End Role="PropiedadesTipoBanios" EntitySet="PropiedadesTipoBanios" />
             <End Role="Propiedades" EntitySet="Propiedades" />
           </AssociationSet>
           <AssociationSet Name="FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias" Association="Self.FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias">
@@ -1584,8 +1568,7 @@
           <NavigationProperty Name="PropiedadesAcabados" Relationship="Self.FK_Propiedades_PropiedadesAcabados" FromRole="Propiedades" ToRole="PropiedadesAcabados" />
           <NavigationProperty Name="PropiedadesCategoria" Relationship="Self.FK_Propiedades_PropiedadesCategoria" FromRole="Propiedades" ToRole="PropiedadesCategoria" />
           <NavigationProperty Name="PropiedadesEstatus" Relationship="Self.FK_Propiedades_PropiedadesEstatus" FromRole="Propiedades" ToRole="PropiedadesEstatus" />
-          <NavigationProperty Name="PropiedadesCategoria1" Relationship="Self.FK_Propiedades_PropiedadesTipo" FromRole="Propiedades" ToRole="PropiedadesCategoria" />
-          <NavigationProperty Name="TipoBanio1" Relationship="Self.FK_Propiedades_TipoBanio" FromRole="Propiedades" ToRole="TipoBanio" />
+          <NavigationProperty Name="PropiedadesTipoBanios" Relationship="Self.FK_Propiedades_PropiedadesTipoBanios" FromRole="Propiedades" ToRole="PropiedadesTipoBanios" />
         </EntityType>
         <EntityType Name="PropiedadesAcabados">
           <Key>
@@ -1623,7 +1606,6 @@
           <Property Name="Clave" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesCategoria" FromRole="PropiedadesCategoria" ToRole="Propiedades" />
-          <NavigationProperty Name="Propiedades1" Relationship="Self.FK_Propiedades_PropiedadesTipo" FromRole="PropiedadesCategoria" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="PropiedadesEstatus">
           <Key>
@@ -1632,6 +1614,14 @@
           <Property Name="IdEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesEstatus" FromRole="PropiedadesEstatus" ToRole="Propiedades" />
+        </EntityType>
+        <EntityType Name="PropiedadesTipoBanios">
+          <Key>
+            <PropertyRef Name="IdTipoBanio" />
+          </Key>
+          <Property Name="IdTipoBanio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoBanio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesTipoBanios" FromRole="PropiedadesTipoBanios" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="ProspectosPropiedades">
           <Key>
@@ -1688,14 +1678,6 @@
           <Property Name="IdEstatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tareas" Relationship="Self.FK_Tareas_TareasEstatus" FromRole="TareasEstatus" ToRole="Tareas" />
-        </EntityType>
-        <EntityType Name="TipoBanio">
-          <Key>
-            <PropertyRef Name="IdTipoBanio" />
-          </Key>
-          <Property Name="IdTipoBanio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoBanio1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_TipoBanio" FromRole="TipoBanio" ToRole="Propiedades" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -2109,23 +2091,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Propiedades_PropiedadesTipo">
-          <End Role="PropiedadesCategoria" Type="Self.PropiedadesCategoria" Multiplicity="0..1" />
+        <Association Name="FK_Propiedades_PropiedadesTipoBanios">
+          <End Role="PropiedadesTipoBanios" Type="Self.PropiedadesTipoBanios" Multiplicity="0..1" />
           <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PropiedadesCategoria">
-              <PropertyRef Name="IdCategoria" />
-            </Principal>
-            <Dependent Role="Propiedades">
-              <PropertyRef Name="Categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Propiedades_TipoBanio">
-          <End Role="TipoBanio" Type="Self.TipoBanio" Multiplicity="0..1" />
-          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoBanio">
+            <Principal Role="PropiedadesTipoBanios">
               <PropertyRef Name="IdTipoBanio" />
             </Principal>
             <Dependent Role="Propiedades">
@@ -2173,7 +2143,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOEntities8" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CRMINMOBILIARIOEntities10" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -2208,12 +2178,12 @@
           <EntitySet Name="PropiedadesCaracteristicasCategorias" EntityType="Self.PropiedadesCaracteristicasCategorias" />
           <EntitySet Name="PropiedadesCategoria" EntityType="Self.PropiedadesCategoria" />
           <EntitySet Name="PropiedadesEstatus" EntityType="Self.PropiedadesEstatus" />
+          <EntitySet Name="PropiedadesTipoBanios" EntityType="Self.PropiedadesTipoBanios" />
           <EntitySet Name="ProspectosPropiedades" EntityType="Self.ProspectosPropiedades" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tareas" EntityType="Self.Tareas" />
           <EntitySet Name="TareasCategorias" EntityType="Self.TareasCategorias" />
           <EntitySet Name="TareasEstatus" EntityType="Self.TareasEstatus" />
-          <EntitySet Name="TipoBanio" EntityType="Self.TipoBanio" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -2350,12 +2320,8 @@
             <End Role="PropiedadesEstatus" EntitySet="PropiedadesEstatus" />
             <End Role="Propiedades" EntitySet="Propiedades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_PropiedadesTipo" Association="Self.FK_Propiedades_PropiedadesTipo">
-            <End Role="PropiedadesCategoria" EntitySet="PropiedadesCategoria" />
-            <End Role="Propiedades" EntitySet="Propiedades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Propiedades_TipoBanio" Association="Self.FK_Propiedades_TipoBanio">
-            <End Role="TipoBanio" EntitySet="TipoBanio" />
+          <AssociationSet Name="FK_Propiedades_PropiedadesTipoBanios" Association="Self.FK_Propiedades_PropiedadesTipoBanios">
+            <End Role="PropiedadesTipoBanios" EntitySet="PropiedadesTipoBanios" />
             <End Role="Propiedades" EntitySet="Propiedades" />
           </AssociationSet>
           <AssociationSet Name="FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias" Association="Self.FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias">
@@ -2380,7 +2346,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities8">
+        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities10">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -2801,6 +2767,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PropiedadesTipoBanios">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PropiedadesTipoBanios">
+              <MappingFragment StoreEntitySet="PropiedadesTipoBanios">
+                <ScalarProperty Name="IdTipoBanio" ColumnName="IdTipoBanio" />
+                <ScalarProperty Name="TipoBanio" ColumnName="TipoBanio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProspectosPropiedades">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.ProspectosPropiedades">
               <MappingFragment StoreEntitySet="ProspectosPropiedades">
@@ -2853,14 +2827,6 @@
               <MappingFragment StoreEntitySet="TareasEstatus">
                 <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TipoBanio">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.TipoBanio">
-              <MappingFragment StoreEntitySet="TipoBanio">
-                <ScalarProperty Name="IdTipoBanio" ColumnName="IdTipoBanio" />
-                <ScalarProperty Name="TipoBanio1" ColumnName="TipoBanio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
