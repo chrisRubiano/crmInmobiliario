@@ -4,89 +4,87 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea2ee6cb9ea142f8b089ee1725230923" Name="Diagram1">
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.AspNetRoles" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.AspNetUserClaims" Width="1.5" PointX="17.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.AspNetUserLogins" Width="1.5" PointX="17.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.AspNetUsers" Width="1.5" PointX="15" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.CaracteristicasPropiedades" Width="1.5" PointX="10.5" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Configuraciones" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Cotizaciones" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Desarrollos" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Documentos" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Domicilios" Width="1.5" PointX="10.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.DomiciliosCategoria" Width="1.5" PointX="8.25" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.DomiciliosTipo" Width="1.5" PointX="8.25" PointY="25.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Edificios" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.EdificiosDetalle" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Estados" Width="1.5" PointX="8.25" PointY="37" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Fotografias" Width="1.5" PointX="10.5" PointY="31.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.MediosContacto" Width="1.5" PointX="6" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.MediosEnterarse" Width="1.5" PointX="15.75" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Monedas" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Municipios" Width="1.5" PointX="8.25" PointY="39.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Notas" Width="1.5" PointX="10.5" PointY="28" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Paises" Width="1.5" PointX="8.25" PointY="42.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Personas" Width="1.5" PointX="8.25" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasCategoria" Width="1.5" PointX="6" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasGenero" Width="1.5" PointX="6" PointY="31.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasIntereses" Width="1.5" PointX="6" PointY="33.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PersonasTipo" Width="1.5" PointX="6" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Propiedades" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesAcabados" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesAntiguedad" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesCaracteristicas" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesCaracteristicasCategorias" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesEstatus" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesSistemaAC" Width="1.5" PointX="6" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesTipo" Width="1.5" PointX="6" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.PropiedadesTiposOperacion" Width="1.5" PointX="6" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.ProspectosPropiedades" Width="1.5" PointX="18" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.Tareas" Width="1.5" PointX="20.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.TareasCategorias" Width="1.5" PointX="18" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel1.TareasEstatus" Width="1.5" PointX="18" PointY="9.25" IsExpanded="true" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Tareas_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_CaracteristicasPropiedades_Propiedades" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_CaracteristicasPropiedades_PropiedadesCaracteristicas" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Cotizaciones_Personas1" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Cotizaciones_Propiedades" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Edificios_Desarrollos" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_Desarrollos" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Documentos_Personas" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Documentos_Propiedades" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_DomiciliosCategoria" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_DomiciliosTipo" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_Estados" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_Municipios" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_Paises" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_Personas" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Domicilios_Propiedades" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_EdificiosDetalle_Edificios" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_Edificios" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Fotografias_Propiedades" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_MediosContacto" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_ProspectosPropiedades_MediosEnterarse" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_Monedas" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Notas_Personas" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasCategoria" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasGenero" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasIntereses" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PersonasTipo" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Personas_PropiedadesTipo" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAcabados" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesAntiguedad" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesEstatus" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesSistemaAC" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTipo" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Propiedades_PropiedadesTiposOperacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Tareas_TareasCategorias" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.FK_Tareas_TareasEstatus" ManuallyRouted="false" />
-        <AssociationConnector Association="CRMINMOBILIARIOModel1.AspNetUserRoles" ManuallyRouted="false" />
+      <Diagram DiagramId="1cfaad34d09448c88624508fb272a9ff" Name="Diagram1">
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetRoles" Width="1.5" PointX="12.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetUserClaims" Width="1.5" PointX="17.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetUserLogins" Width="1.5" PointX="17.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetUsers" Width="1.5" PointX="15" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.CaracteristicasPropiedades" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Configuraciones" Width="1.5" PointX="2.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Cotizaciones" Width="1.5" PointX="13.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Desarrollos" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Documentos" Width="1.5" PointX="10.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Domicilios" Width="1.5" PointX="10.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.DomiciliosCategoria" Width="1.5" PointX="8.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.DomiciliosTipo" Width="1.5" PointX="8.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Edificios" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.EdificiosDetalle" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Estados" Width="1.5" PointX="8.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Fotografias" Width="1.5" PointX="10.5" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.MediosContacto" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.MediosEnterarse" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Monedas" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Municipios" Width="1.5" PointX="8.25" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Notas" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Paises" Width="1.5" PointX="8.25" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Personas" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasCategoria" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasGenero" Width="1.5" PointX="6" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasIntereses" Width="1.5" PointX="6" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasTipo" Width="1.5" PointX="6" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Propiedades" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesAcabados" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCaracteristicas" Width="1.5" PointX="8.25" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCaracteristicasCategorias" Width="1.5" PointX="6" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCategoria" Width="1.5" PointX="6" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesEstatus" Width="1.5" PointX="6" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.ProspectosPropiedades" Width="1.5" PointX="8.25" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Tareas" Width="1.5" PointX="20.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.TareasCategorias" Width="1.5" PointX="18" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.TareasEstatus" Width="1.5" PointX="18" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.TipoBanio" Width="1.5" PointX="6" PointY="26.25" IsExpanded="true" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_CaracteristicasPropiedades_Propiedades" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_CaracteristicasPropiedades_PropiedadesCaracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Cotizaciones_Personas1" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Cotizaciones_Propiedades" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Edificios_Desarrollos" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_Desarrollos" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Documentos_Personas" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Documentos_Propiedades" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_DomiciliosCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_DomiciliosTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_Municipios" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_Paises" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_Personas" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Domicilios_Propiedades" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_EdificiosDetalle_Edificios" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_Edificios" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Fotografias_Propiedades" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_MediosContacto" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_MediosEnterarse" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_ProspectosPropiedades_MediosEnterarse" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_Monedas" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Notas_Personas" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_Personas1" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_PersonasCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_PersonasGenero" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_PersonasIntereses" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_PersonasTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_PropiedadesAcabados" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_PropiedadesCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_PropiedadesEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_PropiedadesTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Propiedades_TipoBanio" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_PropiedadesCaracteristicas_PropiedadesCaracteristicasCategorias" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasCategorias" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

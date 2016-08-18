@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(PropiedadMeta))]
+    
     public partial class Propiedades
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,131 +27,42 @@ namespace crmInmobiliario.Models
         public int IdPropiedad { get; set; }
         public Nullable<int> Desarrollo { get; set; }
         public Nullable<int> Edificio { get; set; }
-
-        [Display(Name = "Tipo de propiedad")]
-        public Nullable<int> TipoPropiedad { get; set; }
-
-        [Display(Name = "Tipo de operacion")]
-        public Nullable<int> TipoOperacion { get; set; }
-
-        [Display(Name = "Precio de venta")]
+        public Nullable<int> Categoria { get; set; }
         public Nullable<decimal> VentaPrecio { get; set; }
-
-        [Display(Name = "Precio de renta")]
-        public Nullable<decimal> RentaPrecio { get; set; }
-
-        [Display(Name = "Tarifa diaria de renta")]
-        public Nullable<decimal> RentaTarifaDiaria { get; set; }
-
-        [Display(Name = "Tarifa semanal de renta")]
-        public Nullable<decimal> RentaTarifaSemanal { get; set; }
-
-        [Display(Name = "Tarifa mensual de renta")]
-        public Nullable<decimal> RentaTarifaMensual { get; set; }
-
-        [Display(Name = "Estadia minima de renta")]
-        public Nullable<int> RentaEstadiaMinima { get; set; }
         public string Titulo { get; set; }
-        public string Descripcion { get; set; }
+        public string Codigo { get; set; }
+        public string CodigoCorto { get; set; }
         public Nullable<int> Moneda { get; set; }
         public Nullable<int> Recamaras { get; set; }
-
-        [Display(Name = "Preparacion baño")]
-        public Nullable<bool> PreparacionBanio { get; set; }
-
-        [Display(Name = "Incluye instalacion de baño")]
-        public Nullable<bool> IncluyeInstalacionBanio { get; set; }
-
-        [Display(Name = "Baños")]
-        public Nullable<bool> Banios { get; set; }
-        public Nullable<int> MedioBanios { get; set; }
+        public Nullable<int> TipoBanio { get; set; }
+        public Nullable<double> NumBanios { get; set; }
         public Nullable<bool> Estacionamiento { get; set; }
-
-        [Display(Name = "Precio de estacionamiento")]
         public Nullable<decimal> PrecioEstacionamiento { get; set; }
-
-        [Display(Name = "m2 de estacionamiento")]
-        public Nullable<decimal> M2Estacionamiento { get; set; }
-
-        [Display(Name = "Precio de m2 estacionamiento")]
-        public Nullable<decimal> PrecioM2Estacionamiento { get; set; }
-
-        [Display(Name = "Cajones de estacionamiento")]
         public Nullable<int> CajonesEstacionamiento { get; set; }
-
-        [Display(Name = "Cajones adicionales")]
-        public Nullable<int> CajonesAdicionales { get; set; }
-
-        [Display(Name = "m2 cajon adicional")]
-        public Nullable<decimal> M2CajonAdicional { get; set; }
-
-        [Display(Name = "Precio m2 cajon adicional")]
-        public Nullable<decimal> PrecioM2CajonAdicional { get; set; }
         public Nullable<decimal> Terreno { get; set; }
-
-        [Display(Name = "m2 terreno")]
         public Nullable<decimal> M2Terreno { get; set; }
-
-        [Display(Name = "Precio m2 terreno")]
         public Nullable<decimal> PrecioM2Terreno { get; set; }
-
-        [Display(Name = "Largo terreno")]
-        public Nullable<decimal> LargoTerreno { get; set; }
-
-        [Display(Name = "Frente terreno")]
-        public Nullable<decimal> FrenteTerreno { get; set; }
-        public Nullable<decimal> Construccion { get; set; }
-
-        [Display(Name = "m2 interiores")]
         public Nullable<decimal> M2Interiores { get; set; }
-
-        [Display(Name = "precio m2 interiores")]
         public Nullable<decimal> PrecioM2Interiores { get; set; }
         public Nullable<bool> Terraza { get; set; }
-
-        [Display(Name = "m2 terraza")]
         public Nullable<decimal> M2Terraza { get; set; }
-
-        [Display(Name = "Precio m2 terraza")]
         public Nullable<decimal> PrecioM2Terraza { get; set; }
         public Nullable<bool> Bodega { get; set; }
-
-        [Display(Name = "m2 bodega")]
         public Nullable<decimal> M2Bodega { get; set; }
-
-        [Display(Name = "Precio m2 bodega")]
         public Nullable<decimal> PrecioM2Bodega { get; set; }
-
-        [Display(Name = "Frente local")]
         public Nullable<decimal> FrenteLocal { get; set; }
-
-        [Display(Name = "Largo local")]
         public Nullable<decimal> LargoLocal { get; set; }
         public Nullable<int> Acabados { get; set; }
-
-        [Display(Name = "Especifique acabados")]
         public string AcabadosEspecifique { get; set; }
-        public Nullable<int> Antiguedad { get; set; }
         public string Nivel { get; set; }
         public Nullable<int> Niveles { get; set; }
-
-        [Display(Name = "Sistema de AC")]
-        public Nullable<int> SistemaAC { get; set; }
-
-        public string MantenimientoMensual { get; set; }
-        public Nullable<bool> Reglamento { get; set; }
-
-        [Display(Name = "Url de reglamento")]
-        public string URLReglamento { get; set; }
-
         public Nullable<int> Consecutivo { get; set; }
-        public string Codigo { get; set; }
-        public string Observaciones { get; set; }
         public string Usuario { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string UsuarioUA { get; set; }
         public Nullable<System.DateTime> FechaUA { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public Nullable<bool> Activa { get; set; }
         public string Uso1 { get; set; }
         public string Uso2 { get; set; }
         public string Uso3 { get; set; }
@@ -174,10 +83,9 @@ namespace crmInmobiliario.Models
         public virtual ICollection<Fotografias> Fotografias { get; set; }
         public virtual Monedas Monedas { get; set; }
         public virtual PropiedadesAcabados PropiedadesAcabados { get; set; }
-        public virtual PropiedadesAntiguedad PropiedadesAntiguedad { get; set; }
+        public virtual PropiedadesCategoria PropiedadesCategoria { get; set; }
         public virtual PropiedadesEstatus PropiedadesEstatus { get; set; }
-        public virtual PropiedadesSistemaAC PropiedadesSistemaAC { get; set; }
-        public virtual PropiedadesTipo PropiedadesTipo { get; set; }
-        public virtual PropiedadesTiposOperacion PropiedadesTiposOperacion { get; set; }
+        public virtual PropiedadesCategoria PropiedadesCategoria1 { get; set; }
+        public virtual TipoBanio TipoBanio1 { get; set; }
     }
 }

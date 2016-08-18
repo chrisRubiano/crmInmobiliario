@@ -17,7 +17,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PersonasController : Controller
     {
-        private CRMINMOBILIARIOEntities7 db = new CRMINMOBILIARIOEntities7();
+        private CRMINMOBILIARIOEntities8 db = new CRMINMOBILIARIOEntities8();
 
 
         // GET: Personas
@@ -163,7 +163,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
-            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
             ViewBag.Categoriap = categoria;
             return View();
         }
@@ -204,7 +204,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
-            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
             return View(personas);
         }
 
