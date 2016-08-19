@@ -156,66 +156,10 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.propiedades.M2Estacionamiento)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.propiedades.M2Estacionamiento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.PrecioM2Estacionamiento)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.propiedades.PrecioM2Estacionamiento)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.propiedades.CajonesEstacionamiento)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.propiedades.CajonesEstacionamiento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.Banios)
-        </dt>
-        <dd>
-            @if (Model.propiedades.Banios.HasValue)
-            {
-                if (Model.propiedades.Banios == true)
-                {
-                    <i class="fa fa-check-circle text-success text-center"></i>
-                }
-                else
-                {
-                    <i class="fa fa-times-circle text-danger text-center"></i>
-                }
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.PreparacionBanio)
-        </dt>
-        <dd>
-            @if (Model.propiedades.PreparacionBanio.HasValue)
-            {
-                if (Model.propiedades.PreparacionBanio == true)
-                {
-                    <i class="fa fa-check-circle text-success text-center"></i>
-                }
-                else
-                {
-                    <i class="fa fa-times-circle text-danger text-center"></i>
-                }
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
         </dd>
 
         <dt>
@@ -252,15 +196,7 @@
         <dd>
             @Html.DisplayFor(model => model.propiedades.Nivel)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.propiedades.SistemaAC)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.propiedades.SistemaAC)
-        </dd>
        
-
     </dl>
 
     <p>

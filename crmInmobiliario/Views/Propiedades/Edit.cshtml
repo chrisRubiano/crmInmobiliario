@@ -14,7 +14,6 @@
         <h4>Propiedad</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IdPropiedad)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Desarrollo, "Desarrollo", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -25,18 +24,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Edificios, "Edificio", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Edificio, "Edificio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Edificio", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Edificios, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Edificio, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoPropiedad, "TipoPropiedad", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Categoria, "Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TipoPropiedad", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TipoPropiedad, "", new { @class = "text-danger" })
+                @Html.DropDownList("Categoria", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -85,7 +84,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Bodega, true, new { @id = "bodegaT" })
-                    No @Html.RadioButtonFor(model => model.Bodega, false, new { @id = "bodegaF" })
+                    No @Html.RadioButtonFor(model => model.Bodega, false, new { @checked = "checked", @id = "bodegaF" })
                     @Html.ValidationMessageFor(model => model.Bodega, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -119,7 +118,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Terraza, true, new { @id = "terrazaT" })
-                    No @Html.RadioButtonFor(model => model.Terraza, false, new { @id = "terrazaF" })
+                    No @Html.RadioButtonFor(model => model.Terraza, false, new { @checked = "checked", @id = "terrazaF" })
                     @Html.ValidationMessageFor(model => model.Terraza, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -153,7 +152,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Estacionamiento, true, new { @id = "estacionamientoT" })
-                    No @Html.RadioButtonFor(model => model.Estacionamiento, false, new { @id = "estacionamientoF" })
+                    No @Html.RadioButtonFor(model => model.Estacionamiento, false, new { @checked = "checked", @id = "estacionamientoF" })
                     @Html.ValidationMessageFor(model => model.Estacionamiento, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -170,29 +169,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row groupform">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.M2Estacionamiento, htmlAttributes: new { @class = "control-label col-md-5" })
-                        <div class="col-md-7">
-                            @Html.EditorFor(model => model.M2Estacionamiento, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.M2Estacionamiento, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.PrecioM2Estacionamiento, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-6">
-                            @Html.EditorFor(model => model.PrecioM2Estacionamiento, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PrecioM2Estacionamiento, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <!-------------Estacionamiento-------------------->
         <!-------------Baños------------------------------>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoBanio, "TipoBanio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoBanio", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoBanio, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumBanios, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.NumBanios, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumBanios, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <!-------------Baños-------------------->
         <hr />
         <div class="form-group">
@@ -236,17 +232,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SistemaAC, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("SistemaAC", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SistemaAC, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Registrar</button>
             </div>
         </div>
     </div>
@@ -260,18 +247,9 @@
 
     <script>
         $(document).ready(function () {
-            if ($('#bodegaF').is(':checked')) {
-                document.getElementById("BodegaPanel").style.display = "none";
-            }
-            if ($('#terrazaF').is(':checked')) {
-                document.getElementById("TerrazaPanel").style.display = "none";
-            }
-            if ($('#estacionamientoF').is(':checked')){
-                document.getElementById("EstacionamientoPanel").style.display = "none";
-            }
-            if ($('#banioF').is(':checked')){
-                document.getElementById("BanioPanel").style.display = "none";
-            }
+            document.getElementById("BodegaPanel").style.display = "none";
+            document.getElementById("TerrazaPanel").style.display = "none";
+            document.getElementById("EstacionamientoPanel").style.display = "none";
         });
     </script>
     <script>
@@ -297,12 +275,6 @@
                 $('#EstacionamientoPanel').hide("fast");
             });
             /*-------------*/
-            $('#banioT').click(function () {
-                $('#BanioPanel').show("fast");
-            });
-            $('#banioF').click(function () {
-                $('#BanioPanel').hide("fast");
-            });
             /*-------------*/
             $("select[name=TipoPropiedad]").change(function(){
                 $('input[name=Titulo]').val($(this).find("option:selected").text());
