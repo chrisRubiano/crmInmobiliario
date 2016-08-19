@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, int desarrollo = 0)
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel,int? pMenor, int? pMayor, int desarrollo = 0, int categoria = 0)
         {
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
@@ -60,9 +60,25 @@ namespace crmInmobiliario.Controllers
                 }
             }
 
+            /*--------------*/
+            if (pMenor != null)
+            {
+                propiedades = propiedades.Where(p => p.VentaPrecio > pMenor);
+            }
+            if (pMayor != null)
+            {
+                propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
+            }
+            /*--------------*/
+
             if (desarrollo != 0)
             {
                 propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
+            }
+
+            if (categoria != 0)
+            {
+                propiedades = propiedades.Where(p => p.Categoria == categoria);
             }
 
             if (!string.IsNullOrEmpty(titulo))
@@ -70,8 +86,14 @@ namespace crmInmobiliario.Controllers
                 propiedades = propiedades.Where(p => p.Titulo.Contains( titulo));
             }
 
-            propiedades = propiedades.Where(p => p.Activa == true);
+            if (!string.IsNullOrEmpty(nivel))
+            {
+                propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
+            }
+           
+            propiedades = propiedades.Where(p => p.Activa == true).Where(p => p.Estatus.Value < 3);
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
             return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
 
@@ -173,6 +195,8 @@ namespace crmInmobiliario.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    propiedades.Estatus = 1;
+                    propiedades.Activa = true;
                     propiedades.Usuario = User.Identity.GetUserId().ToString();
                     propiedades.FechaRegistro = DateTime.Now;
                     db.Propiedades.Add(propiedades);
@@ -210,7 +234,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Edificio = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
-            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
             ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View(propiedades);
         }
