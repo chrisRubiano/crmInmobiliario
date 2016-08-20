@@ -147,6 +147,8 @@ namespace crmInmobiliario.Controllers
             vModelos.domicilios = domicilios;
 
             ViewBag.filtro = filtro;
+            ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus");
+
             return View(vModelos);
         }
 
