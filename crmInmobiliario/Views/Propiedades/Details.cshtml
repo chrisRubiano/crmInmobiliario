@@ -196,25 +196,8 @@
         <dd>
             @Html.DisplayFor(model => model.propiedades.Nivel)
         </dd>
-       
+
     </dl>
-
-    <p>
-        <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Domicilios", new { idPersona = Model.propiedades.IdPropiedad, tipo = 3 })';return false;"><i class="fa fa-map-marker"></i> Agregar Domicilio</button>
-    </p>
-</div>
-
-<div class="col-md-6 panel panel-info">
-    <div class="panel-body">
-        <div class="form-group">
-            @Html.LabelFor(model => model.propiedades.Estatus, "Estatus", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Estatus", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.propiedades.Estatus, "", new { @class = "text-danger" })
-            </div>
-            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Guardar</button>
-        </div>
-    </div>
 </div>
 
 <div class="row">
@@ -222,7 +205,7 @@
         <p>
             @if (ViewBag.filtro)
             {
-                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Filtro", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Filtro", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
             }
             else
             {
