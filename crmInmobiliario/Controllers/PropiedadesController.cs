@@ -25,18 +25,18 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel,int? pMenor, int? pMayor, int desarrollo = 0, int categoria = 0)
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int desarrollo = 0, int categoria = 0)
         {
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
 
             if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
-            { 
-                if (Terraza.Value || Bodega.Value || Estacionamiento.Value )
+            {
+                if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
                 {
                     if (Terraza != null)
                     {
-                        if (Terraza==true)
+                        if (Terraza == true)
                         {
                             propiedades = propiedades.Where(p => p.Terraza == Terraza);
                         }
@@ -44,7 +44,7 @@ namespace crmInmobiliario.Controllers
 
                     if (Bodega != null)
                     {
-                        if (Bodega==true)
+                        if (Bodega == true)
                         {
                             propiedades = propiedades.Where(p => p.Bodega == Bodega);
                         }
@@ -52,7 +52,7 @@ namespace crmInmobiliario.Controllers
 
                     if (Estacionamiento != null)
                     {
-                        if (Estacionamiento==true)
+                        if (Estacionamiento == true)
                         {
                             propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
                         }
@@ -83,14 +83,14 @@ namespace crmInmobiliario.Controllers
 
             if (!string.IsNullOrEmpty(titulo))
             {
-                propiedades = propiedades.Where(p => p.Titulo.Contains( titulo));
+                propiedades = propiedades.Where(p => p.Titulo.Contains(titulo));
             }
 
             if (!string.IsNullOrEmpty(nivel))
             {
                 propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
             }
-           
+
             propiedades = propiedades.Where(p => p.Activa == true).Where(p => p.Estatus.Value < 3);
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
             ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
@@ -147,6 +147,8 @@ namespace crmInmobiliario.Controllers
             vModelos.domicilios = domicilios;
 
             ViewBag.filtro = filtro;
+            ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus");
+
             return View(vModelos);
         }
 
@@ -189,12 +191,30 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Bodega,Terraza,IdPropiedad,Desarrollo,Edificio,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,Titulo,Categoria")] Propiedades propiedades)
+        public ActionResult Create([Bind(Include = "PrecioEstacionamiento,Bodega,Terraza,IdPropiedad,Desarrollo,Edificio,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,PrecioM2Interiores,M2Terraza,PrecioM2Terraza,M2Bodega,PrecioM2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,Titulo,Categoria")] Propiedades propiedades)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var precioVenta = propiedades.M2Interiores.Value * propiedades.PrecioM2Interiores.Value;
+
+                    if (propiedades.Bodega == true)
+                    {
+                        precioVenta += propiedades.M2Bodega.Value * propiedades.PrecioM2Bodega.Value;
+                    }
+
+                    if (propiedades.Terraza == true)
+                    {
+                        precioVenta += propiedades.M2Terraza.Value * propiedades.PrecioM2Terraza.Value;
+                    }
+
+                    if (propiedades.Estacionamiento == true)
+                    {
+                        precioVenta += propiedades.PrecioEstacionamiento.Value * propiedades.CajonesEstacionamiento.Value;
+                    }
+
+                    propiedades.VentaPrecio = precioVenta;
                     propiedades.Estatus = 1;
                     propiedades.Activa = true;
                     propiedades.Usuario = User.Identity.GetUserId().ToString();
