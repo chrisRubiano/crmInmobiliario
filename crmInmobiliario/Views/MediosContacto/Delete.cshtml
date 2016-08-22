@@ -1,0 +1,34 @@
+﻿@model crmInmobiliario.Models.MediosContacto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Medio de Enterarse</h2>
+
+<div class="alert alert-danger" role="alert">
+    <strong>ATENCIÓN !!!</strong> <h3>Esta seguro(a) de Eliminar este Medio de Contacto?</h3>
+</div>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MedioContacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedioContacto)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "MediosContacto")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Eliminar</button>
+        </div>
+    }
+</div>
