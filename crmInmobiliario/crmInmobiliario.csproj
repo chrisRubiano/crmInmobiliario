@@ -188,9 +188,11 @@
     <Compile Include="Controllers\MediosEnterarseController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
+    <Compile Include="Controllers\PersonasInteresesController.cs" />
     <Compile Include="Controllers\PropiedadesAcabadosController.cs" />
     <Compile Include="Controllers\PropiedadesCaracteristicasCategoriasController.cs" />
     <Compile Include="Controllers\PropiedadesCaracteristicasController.cs" />
+    <Compile Include="Controllers\PropiedadesCategoriasController.cs" />
     <Compile Include="Controllers\PropiedadesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -520,6 +522,16 @@
     <Content Include="Views\MediosContacto\Details.cshtml" />
     <Content Include="Views\MediosContacto\Edit.cshtml" />
     <Content Include="Views\MediosContacto\Index.cshtml" />
+    <Content Include="Views\PropiedadesCategorias\Create.cshtml" />
+    <Content Include="Views\PropiedadesCategorias\Delete.cshtml" />
+    <Content Include="Views\PropiedadesCategorias\Details.cshtml" />
+    <Content Include="Views\PropiedadesCategorias\Edit.cshtml" />
+    <Content Include="Views\PropiedadesCategorias\Index.cshtml" />
+    <Content Include="Views\PersonasIntereses\Create.cshtml" />
+    <Content Include="Views\PersonasIntereses\Delete.cshtml" />
+    <Content Include="Views\PersonasIntereses\Details.cshtml" />
+    <Content Include="Views\PersonasIntereses\Edit.cshtml" />
+    <Content Include="Views\PersonasIntereses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,6 +17,7 @@ namespace crmInmobiliario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Desarrollos()
         {
+            this.Activo = true;
             this.Edificios = new HashSet<Edificios>();
             this.Propiedades = new HashSet<Propiedades>();
         }

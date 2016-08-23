@@ -1,0 +1,60 @@
+﻿@model IEnumerable<crmInmobiliario.Models.PropiedadesCategoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorías de Propiedades</h2>
+
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "PropiedadesCategorias")'"><i class="fa fa-building"></i> Registrar Categoría de Propiedad</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "PropiedadesCategorias")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="">
+            <div class="btn-lista">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "PropiedadesCategorias", new { id = item.IdCategoria })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "PropiedadesCategorias", new { id = item.IdCategoria, filtro = false })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "PropiedadesCategorias", new { id = item.IdCategoria })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clave)
+        </td>
+        <td>
+            @if (item.Activo.HasValue)
+            {
+                if (item.Activo.Value)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </td>
+
+    </tr>
+}
+
+</table>
