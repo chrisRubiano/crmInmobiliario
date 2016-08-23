@@ -11,6 +11,7 @@ using System.IO;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using crmInmobiliario.Utilidades;
 
 namespace crmInmobiliario.Controllers
 {
@@ -46,28 +47,10 @@ namespace crmInmobiliario.Controllers
             var model = db.Cotizaciones.ToList();
 
             Export export = new Export();
-            export.ToExcel(Response, model);
+            export.ToExcel(Response, model, "Cotizaciones");
         }
 
-        //helper class
-        public class Export
-        {
-            public void ToExcel(HttpResponseBase Response, object clientsList)
-            {
-                var grid = new System.Web.UI.WebControls.GridView();
-                grid.DataSource = clientsList;
-                grid.DataBind();
-                Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment; filename=Cotizaciones.xls");
-                Response.ContentType = "application/excel";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
-
-                grid.RenderControl(htw);
-                Response.Write(sw.ToString());
-                Response.End();
-            }
-        }
+        
 
         // GET: Cotizaciones/Create
         public ActionResult Create(int? idPropiedad)

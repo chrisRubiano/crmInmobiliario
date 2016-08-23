@@ -34,65 +34,9 @@
             @Html.DisplayFor(model => model.edificios.Niveles)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.edificios.Descuento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.edificios.Descuento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.edificios.CajonesEstacionamiento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.edificios.CajonesEstacionamiento)
-        </dd>
-
-
-        
-
 
     </dl>
 </div>
-
-
-@*<div class="col-md-6">
-    <h4><i class="fa fa-sticky-note"></i> Detalles</h4>
-    <hr />
-    <button class="btn btn-warning" onclick="location.href='@Url.Action("Create", "EdificiosDetalle", new { idEdificio = Model.edificios.IdEdificio })';return false;"><i class="fa fa-sticky-note-o"></i> Agregar detalle</button>
-    <hr />
-    <table class="table">
-        @foreach (var d in Model.edificiosdetalle)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => d.Nivel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => d.M2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => d.Edificio)
-                </td>
-                <dt>
-                    <div class="btn-group" role="group">
-                        <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "EdificiosDetalle", new { id = @d.IdEdificioDetalle, idEdificio = Model.edificios.IdEdificio })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                        <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "EdificiosDetalle", new { id = @d.IdEdificioDetalle, idEdificio = Model.edificios.IdEdificio })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                        <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "EdificiosDetalle", new { id = @d.IdEdificioDetalle, idEdificio = Model.edificios.IdEdificio })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-                    </div>
-                </dt>
-            </tr>
-        }
-
-        
-
-    </table>
-
-    
-
-</div>*@
 
 
 <div class="row">

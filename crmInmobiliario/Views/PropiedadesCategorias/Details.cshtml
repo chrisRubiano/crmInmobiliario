@@ -1,0 +1,53 @@
+﻿@model crmInmobiliario.Models.PropiedadesCategoria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Datos de Categoría de Propiedades</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @if (@Model.Activo.Value)
+            {
+                <i class="fa fa-check-circle text-success text-center"></i>
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+    </dl>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "PropiedadesCategorias")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "PropiedadesCategorias", new { id = Model.IdCategoria })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>

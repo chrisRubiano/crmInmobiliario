@@ -1261,7 +1261,7 @@
           <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="CajonesEstacionamiento" Type="Int32" />
           <Property Name="CajonesDisponibles" Type="Int32" />
-          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Activo" Type="Boolean" DefaultValue="True" />
           <NavigationProperty Name="Edificios" Relationship="Self.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
         </EntityType>
