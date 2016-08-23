@@ -66,6 +66,14 @@
             </div>
         </div>
 
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.PrecioFinalVenta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="control-label">@Html.EditorFor(model => model.PrecioFinalVenta, new { htmlAttributes = new { @class = "" } })</label>
+                @Html.ValidationMessageFor(model => model.PrecioFinalVenta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
 
             @Html.LabelFor(model => model.PorcentajeEnganche, htmlAttributes: new { @class = "control-label col-md-2" })

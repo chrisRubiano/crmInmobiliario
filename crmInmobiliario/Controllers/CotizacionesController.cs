@@ -98,6 +98,12 @@ namespace crmInmobiliario.Controllers
             {
                 if (ModelState.IsValid)
                 {
+
+                    cotizaciones.Enganche = cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeEnganche.Value / 100);
+                    cotizaciones.PagoMensual = (cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeMensualidades / 100))/cotizaciones.Parcialidades.Value;
+
+
+
                     if (idPropiedad.HasValue)
                     {
                         cotizaciones.Propiedad = idPropiedad.Value;
