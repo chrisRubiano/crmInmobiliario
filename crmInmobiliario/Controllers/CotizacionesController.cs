@@ -81,7 +81,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.codigo = propiedad.Codigo;
             }
 
-         ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
 
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             return View(cotizacion);
@@ -100,10 +100,8 @@ namespace crmInmobiliario.Controllers
                 {
 
                     cotizaciones.Enganche = cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeEnganche.Value / 100);
-                    cotizaciones.PagoMensual = (cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeMensualidades / 100))/cotizaciones.Parcialidades.Value;
-
-
-
+                    cotizaciones.PagoMensual = (cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeMensualidades / 100)) / cotizaciones.Parcialidades.Value;
+                    
                     if (idPropiedad.HasValue)
                     {
                         cotizaciones.Propiedad = idPropiedad.Value;

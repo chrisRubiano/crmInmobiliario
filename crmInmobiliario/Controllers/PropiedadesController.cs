@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int desarrollo = 0, int categoria = 0)
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int desarrollo = 0, int categoria = 0)
         {
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
@@ -68,6 +68,27 @@ namespace crmInmobiliario.Controllers
             if (pMayor != null)
             {
                 propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
+            }
+            /*--------------*/
+
+            /*--------------*/
+            if (fLocalMenor != null)
+            {
+                propiedades = propiedades.Where(p => p.FrenteLocal > fLocalMenor);
+            }
+            if (fLocalMayor != null)
+            {
+                propiedades = propiedades.Where(p => p.FrenteLocal < fLocalMayor);
+            }
+            /*--------------*/
+            /*--------------*/
+            if (lLocalMenor != null)
+            {
+                propiedades = propiedades.Where(p => p.LargoLocal > lLocalMenor);
+            }
+            if (lLocalMayor != null)
+            {
+                propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
             }
             /*--------------*/
 
@@ -226,7 +247,7 @@ namespace crmInmobiliario.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los cambios persisten favor de contactarse con un adminsitrador");
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
             }
 
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", propiedades.Desarrollo);
@@ -256,6 +277,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
             ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
             ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
+            ViewBag.IdPropiedad = propiedades.IdPropiedad.ToString();
             return View(propiedades);
         }
 
@@ -264,7 +286,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPropiedad,Desarrollo,Edificio,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,M2Terraza,M2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,SistemaAC,Reglamento,URLReglamento, PrecioM2Interiores, Bodega, M2Bodega, PrecioM2Bodega, Terraza, M2Terraza, PrecioM2Terraza, PrecioEstacionamiento, M2Estacionamiento, PrecioM2Estacionamiento, Titulo")] Propiedades propiedades)
+        public ActionResult Edit([Bind(Include = "IdPropiedad,PrecioEstacionamiento,Bodega,Terraza,Desarrollo,Edificio,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,PrecioM2Interiores,M2Terraza,PrecioM2Terraza,M2Bodega,PrecioM2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,Titulo,Categoria")] Propiedades propiedades)
         {
             try
             {
@@ -277,15 +299,15 @@ namespace crmInmobiliario.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los cambios persisten favor de contactarse con un adminsitrador");
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
             }
 
 
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", propiedades.Desarrollo);
-            ViewBag.Edificios = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
+            ViewBag.Edificio = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
-            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoriaPropiedad", "Categoria", propiedades.Categoria);
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
             ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View(propiedades);
         }
