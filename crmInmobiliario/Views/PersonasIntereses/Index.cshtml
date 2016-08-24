@@ -1,0 +1,38 @@
+﻿@model IEnumerable<crmInmobiliario.Models.PersonasIntereses>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Intereses sobre la Propiedad</h2>
+
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "PersonasIntereses")'"><i class="fa fa-building"></i> Registrar Interes sobre Propiedad</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "PersonasIntereses")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interes)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="">
+            <div class="btn-lista">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "PersonasIntereses", new { id = item.IdInteres })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "PersonasIntereses", new { id = item.IdInteres, filtro = false })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "PersonasIntereses", new { id = item.IdInteres })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interes)
+        </td>
+    </tr>
+}
+
+</table>
