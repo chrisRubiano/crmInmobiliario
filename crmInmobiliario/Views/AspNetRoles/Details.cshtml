@@ -1,0 +1,31 @@
+﻿@model crmInmobiliario.Models.AspNetRoles
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Datos del rol de usuario</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "AspNetRoles")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "AspNetRoles", new { id = Model.Id })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>
+
