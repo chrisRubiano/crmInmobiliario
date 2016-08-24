@@ -197,7 +197,17 @@ namespace crmInmobiliario.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var duplicado = db.Personas.Where(p => p.Email == personas.Email || p.Email2 == personas.Email2).FirstOrDefault();
+                    var duplicado = new Personas();
+                    if (personas.Email != null)
+                    {
+                        duplicado = db.Personas.Where(p => p.Email == personas.Email || p.Email2 == personas.Email).FirstOrDefault();
+                    }
+                    if (personas.Email2 != null && duplicado == null)
+                    {
+                        duplicado = db.Personas.Where(p => p.Email == personas.Email2 || p.Email2 == personas.Email2).FirstOrDefault();
+                    }
+
+
                     if (duplicado != null)
                     {
                         return RedirectToAction("Duplicado", new { id = duplicado.IdPersona });
