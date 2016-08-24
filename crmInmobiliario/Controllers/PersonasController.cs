@@ -156,6 +156,24 @@ namespace crmInmobiliario.Controllers
             return View(vModelos);
         }
 
+
+        public ActionResult Duplicado(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            VariosModelos vModelos = new VariosModelos();
+            Personas personas = db.Personas.Find(id);
+            if (personas == null)
+            {
+                return HttpNotFound();
+            }
+            vModelos.personas = personas;
+
+            return View(vModelos);
+        }
+
         // GET: Personas/Create
         public ActionResult Create(int? categoria)
         {
@@ -179,20 +197,28 @@ namespace crmInmobiliario.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    personas.Usuario = User.Identity.GetUserId().ToString();
-                    personas.FechaRegistro = DateTime.Now;
-                    personas.Categoria = categoria;
-                    db.Personas.Add(personas);
-                    db.SaveChanges();
-                    if (personas.Categoria == 1)
+                    var duplicado = db.Personas.Where(p => p.Email == personas.Email || p.Email2 == personas.Email2).FirstOrDefault();
+                    if (duplicado != null)
                     {
-                        return RedirectToAction("ListaProspectos");
+                        return RedirectToAction("Duplicado", new { id = duplicado.IdPersona });
                     }
-                    else if (personas.Categoria == 2)
+                    else
                     {
-                        return RedirectToAction("ListaClientes");
+                        personas.Usuario = User.Identity.GetUserId().ToString();
+                        personas.FechaRegistro = DateTime.Now;
+                        personas.Categoria = categoria;
+                        db.Personas.Add(personas);
+                        db.SaveChanges();
+                        if (personas.Categoria == 1)
+                        {
+                            return RedirectToAction("ListaProspectos");
+                        }
+                        else if (personas.Categoria == 2)
+                        {
+                            return RedirectToAction("ListaClientes");
+                        }
                     }
-                    
+
                 }
             }
             catch (DataException)
@@ -307,7 +333,8 @@ namespace crmInmobiliario.Controllers
             {
                 return RedirectToAction("ListaClientes");
             }
-            else {
+            else
+            {
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -323,7 +350,7 @@ namespace crmInmobiliario.Controllers
 
         /*---------------------------------*/
 
-       public void eliminarNotas(int id)
+        public void eliminarNotas(int id)
         {
             IEnumerable<Notas> listaNotas = db.Notas.Where(i => i.Persona == id);
             foreach (var item in listaNotas)
