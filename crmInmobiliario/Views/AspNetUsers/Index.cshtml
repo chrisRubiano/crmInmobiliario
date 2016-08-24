@@ -1,0 +1,47 @@
+﻿@model IEnumerable<crmInmobiliario.Models.AspNetUsers>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Usuarios</h2>
+
+
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Register", "Account")'"><i class="fa fa-user-plus"></i> Registrar Usuario</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "AspNetUsers")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="">
+            <div class="list-inline">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "AspNetUsers", new { id = item.Id })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "AspNetUsers", new { id = item.Id })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "AspNetUsers", new { id = item.Id })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        
+    </tr>
+}
+
+</table>
