@@ -1,0 +1,101 @@
+﻿@model crmInmobiliario.Models.VariosModelos
+
+@{
+    ViewBag.Title = "Duplicado";
+}
+
+<h2>Persona ya registrada</h2>
+
+<div class="alert alert-danger h3" role="alert">
+    <p><i class="fa fa-exclamation-triangle"></i> La persona que está intentando registrar ya se encuentra guardada en la base de datos!</p>
+    <p>Se ha notificado al manager de esta acción via correo electrónico</p>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <h3>Detalles: </h3>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Paterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Paterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Materno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Materno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Celular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.MediosContacto.MedioContacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.MediosContacto.MedioContacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.PersonasTipo.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.PersonasTipo.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.PersonasCategoria.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.PersonasCategoria.Categoria)
+        </dd>
+        <hr />
+        <dt>
+            <button class="btn btn-info" onclick="location.href='@Url.Action("Edit", "Personas", new { id = Model.personas.IdPersona })';return false;"><i class="fa fa-fw fa-chevron-left"></i> Editar</button>
+        </dt>
+        <dd>
+        </dd>
+
+    </dl>
+
+</div>
+
+<button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")';return false;"><i class="fa fa-fw fa-chevron-left"></i> Volver al inicio</button>
+

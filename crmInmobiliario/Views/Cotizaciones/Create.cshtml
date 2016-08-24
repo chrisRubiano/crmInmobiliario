@@ -1,0 +1,176 @@
+﻿@model crmInmobiliario.Models.Cotizaciones
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Nueva Cotización</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @if (!string.IsNullOrEmpty(ViewBag.codigo))
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2"> Propiedad</label> <div class="col-md-10"><label class="control-label">   @ViewBag.codigo</label></div>
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.Propiedad, "Propiedad", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Propiedad", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Propiedad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Propiedad, "Propiedad", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Propiedad", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Propiedad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Persona, "Persona", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Persona", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Persona, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.FechaCotizacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaCotizacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaCotizacion, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioFinalVenta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="control-label">@Html.DisplayFor(model => model.PrecioFinalVenta, new { htmlAttributes = new { @class = "" } })</label>
+                @Html.ValidationMessageFor(model => model.PrecioFinalVenta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.PrecioFinalVenta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label class="control-label">@Html.EditorFor(model => model.PrecioFinalVenta, new { htmlAttributes = new { @class = "" } })</label>
+                @Html.ValidationMessageFor(model => model.PrecioFinalVenta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.PorcentajeEnganche, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PorcentajeEnganche, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PorcentajeEnganche, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Enganche, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Enganche, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Enganche, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parcialidades, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Parcialidades, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Parcialidades, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PorcentajeMensualidades, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PorcentajeMensualidades, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.PorcentajeMensualidades, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PagoMensual, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PagoMensual, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.PagoMensual, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Vendedor, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Vendedor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Vendedor, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Cotizaciones")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            // $('input[name=Enganche]').prop('disabled', true);
+            // $('input[name=PagoMensual]').prop('disabled', true);
+            // $('input[name=PorcentajeMensualidades]').prop('disabled', true);
+            $('input[name=PorcentajeEnganche]').val('30');
+            $('input[name=Parcialidades]').val('24');
+            $('input[name=PorcentajeMensualidades]').val('70');
+
+
+            $("input[name=PorcentajeEnganche]").keyup(function () {
+                $('input[name=Enganche]').val((($(this).val()) * ($('input[name=PrecioFinalVenta]').val())) / 100);
+                $('input[name=PorcentajeMensualidades]').val(100 - ($(this).val()));
+                $('input[name=PagoMensual]').val(
+                                                    ($('input[name=PrecioFinalVenta]').val() -
+                                                    $('input[name=Enganche]').val()) /
+                                                    $('input[name=Parcialidades]').val()
+                                                    );
+            });
+
+            $("input[name=Parcialidades]").keyup(function () {
+                $('input[name=Enganche]').val((($("input[name=PorcentajeEnganche]").val()) * ($('input[name=PrecioFinalVenta]').val())) / 100);
+                $('input[name=PorcentajeMensualidades]').val(100 - ($("input[name=PorcentajeEnganche]").val()));
+                $('input[name=PagoMensual]').val(
+                                                    ($('input[name=PrecioFinalVenta]').val() -
+                                                    $('input[name=Enganche]').val()) /
+                                                    $('input[name=Parcialidades]').val()
+                                                    );
+            });
+
+
+        });
+    </script>
+
+}

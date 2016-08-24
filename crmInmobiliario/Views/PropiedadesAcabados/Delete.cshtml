@@ -1,0 +1,36 @@
+﻿@model crmInmobiliario.Models.PropiedadesAcabados
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Acabado</h2>
+
+
+<div class="alert alert-danger" role="alert">
+    <strong>ATENCIÓN!!!</strong> <h3>Esta seguro(a) de Eliminar este Acabado?</h3>
+</div>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Acabado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acabado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "PropiedadesAcabados")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+        <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Eliminar</button>
+    </div>
+    }
+</div>

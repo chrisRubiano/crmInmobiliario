@@ -1,0 +1,212 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Propiedades>
+
+@{
+    ViewBag.Title = "Consulta de Propiedades";
+}
+
+<h2>Consulta de Propiedades Disponibles</h2>
+
+
+<p>
+    <button class="btn btn-warning" onclick="location.href='@Url.Action("Filtro", "Propiedades")'"><i class="fa fa-list-ol"></i> Ver todas</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Propiedades")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+
+<div class="row no-gutter">
+    <div class="col-md-2">
+        @using (Html.BeginForm("Filtro", "Propiedades", FormMethod.Get, new { @class = " panel panel-default" }))
+        {
+            <div class="panel-body panel-info">
+
+                <div class="form-group">
+                    <label> Categoría: </label><div class="">
+                        @Html.DropDownList("Categoria", null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label> Desarrollo: </label><div class="">
+                        @Html.DropDownList("Desarrollo", null, "Todos", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label> Titulo: </label><div class="">
+                        @Html.TextBox("titulo", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label> Nivel: </label><div class="">
+                        @Html.TextBox("nivel", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <label> Precio: </label>
+                    </div>
+                    <div class="row no-gutter">
+                        <div class="col-md-5">
+                            @Html.TextBox("pMenor", null, htmlAttributes: new { @class = "form-control" }) 
+                        </div>
+                        <div class="col-md-2 text-center"><i class="fa fa-arrows-h fa-align-center"></i></div>
+                        <div class="col-md-5">
+                            @Html.TextBox("pMayor", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <label> Frente: </label>
+                    </div>
+                    <div class="row no-gutter">
+                        <div class="col-md-5">
+                            @Html.TextBox("fLocalMenor", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2 text-center"><i class="fa fa-arrows-h fa-align-center"></i></div>
+                        <div class="col-md-5">
+                            @Html.TextBox("fLocalMayor", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <label> Largo: </label>
+                    </div>
+                    <div class="row no-gutter">
+                        <div class="col-md-5">
+                            @Html.TextBox("lLocalMenor", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2 text-center"><i class="fa fa-arrows-h fa-align-center"></i></div>
+                        <div class="col-md-5">
+                            @Html.TextBox("lLocalMayor", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <div class=""><label> Terraza: </label></div><div class="">@Html.CheckBox("Terraza")</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class=""><label> Bodega: </label></div><div class="">@Html.CheckBox("Bodega")</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class=""><label> Estacionamiento: </label></div><div class="">@Html.CheckBox("Estacionamiento")</div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-filtrar left" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-10">
+        <div class="wrapper" style="height: 500px; overflow-y:auto;">
+
+
+            <table class="table table-hover table-condensed">
+                <thead class="header">
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PropiedadesCategoria.Categoria)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Titulo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nivel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.M2Interiores)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.M2Terraza)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.M2Bodega)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FrenteLocal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LargoLocal)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VentaPrecio)
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td class="">
+                            <div class="btn-lista">
+                                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("DetailsFiltro", "Propiedades", new { id = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                                <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Crear Cotización" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = item.IdPropiedad })';return false;"><i class="fa fa-money"></i></button>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PropiedadesCategoria.Categoria)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Codigo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Desarrollos.Desarrollo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nivel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.M2Interiores)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.M2Terraza)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.M2Bodega)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FrenteLocal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LargoLocal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VentaPrecio)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <script>
+        var $table = $('.wrapper table');
+
+        $table.floatThead({
+            //useAbsolutePositioning: true,
+            scrollContainer: function ($table) {
+                return $table.closest('.wrapper');
+            }
+        });
+
+    </script>
+}

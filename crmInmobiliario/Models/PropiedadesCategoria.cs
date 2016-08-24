@@ -12,16 +12,18 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PropiedadesAntiguedad
+    public partial class PropiedadesCategoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PropiedadesAntiguedad()
+        public PropiedadesCategoria()
         {
             this.Propiedades = new HashSet<Propiedades>();
         }
     
-        public int IdAntiguedad { get; set; }
-        public string Antiguedad { get; set; }
+        public int IdCategoria { get; set; }
+        public string Categoria { get; set; }
+        public string Clave { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Propiedades> Propiedades { get; set; }

@@ -8,7 +8,7 @@
 
 
 <div class="alert alert-danger" role="alert">
-    <strong>Atención!!!</strong> <h3>Esta seguro(a) de Eliminar este Desarrollo?</h3>
+    <strong>ATENCIÓN !!!</strong> <h3>Esta seguro(a) de Eliminar este Desarrollo?</h3>
 </div>
 <div>
 
@@ -66,11 +66,6 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
-        @*<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
 
         <div class="form-actions no-color">
             <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Desarrollos")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>

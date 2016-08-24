@@ -21,6 +21,7 @@ namespace crmInmobiliario.Models
             this.Documentos = new HashSet<Documentos>();
             this.Domicilios = new HashSet<Domicilios>();
             this.Notas = new HashSet<Notas>();
+            this.Personas1 = new HashSet<Personas>();
         }
     
         public int IdPersona { get; set; }
@@ -39,7 +40,12 @@ namespace crmInmobiliario.Models
         public string Celular { get; set; }
         public Nullable<int> MedioContacto { get; set; }
         public Nullable<int> Interes { get; set; }
-        public Nullable<int> CategoriaInteres { get; set; }
+        public string InteresEspecifique { get; set; }
+        public string Giro { get; set; }
+        public string QueNegocio { get; set; }
+        public string MedicionPublicidad { get; set; }
+        public Nullable<int> MediosEnterarse { get; set; }
+        public Nullable<int> Referencia { get; set; }
         public string Usuario { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string UsuarioUA { get; set; }
@@ -52,12 +58,15 @@ namespace crmInmobiliario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Domicilios> Domicilios { get; set; }
         public virtual MediosContacto MediosContacto { get; set; }
+        public virtual MediosEnterarse MediosEnterarse1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notas> Notas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personas> Personas1 { get; set; }
+        public virtual Personas Personas2 { get; set; }
         public virtual PersonasCategoria PersonasCategoria { get; set; }
         public virtual PersonasGenero PersonasGenero { get; set; }
         public virtual PersonasIntereses PersonasIntereses { get; set; }
         public virtual PersonasTipo PersonasTipo { get; set; }
-        public virtual PropiedadesTipo PropiedadesTipo { get; set; }
     }
 }

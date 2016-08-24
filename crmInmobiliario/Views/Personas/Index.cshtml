@@ -15,9 +15,6 @@
     @using (Html.BeginForm("Index", "Personas", FormMethod.Get, new { @class="form-inline" }))
     {
         <div class="form-group">
-        <label for="categoria"> Categoría:</label> @Html.DropDownList("Categoria", null, "Todos", new { @class = "form-control" })
-        </div>
-        <div class="form-group">
             <label for="nombre"> Nombre:</label> @Html.DropDownList("nombre", null, "Todos", new { @class = "form-control chosen-select" })
         </div>
         <div class="form-group">

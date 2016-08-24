@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities5 : DbContext
+    public partial class CRMINMOBILIARIOEntities10 : DbContext
     {
-        public CRMINMOBILIARIOEntities5()
-            : base("name=CRMINMOBILIARIOEntities5")
+        public CRMINMOBILIARIOEntities10()
+            : base("name=CRMINMOBILIARIOEntities10")
         {
         }
     
@@ -55,13 +55,11 @@ namespace crmInmobiliario.Models
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
         public virtual DbSet<Propiedades> Propiedades { get; set; }
         public virtual DbSet<PropiedadesAcabados> PropiedadesAcabados { get; set; }
-        public virtual DbSet<PropiedadesAntiguedad> PropiedadesAntiguedad { get; set; }
         public virtual DbSet<PropiedadesCaracteristicas> PropiedadesCaracteristicas { get; set; }
         public virtual DbSet<PropiedadesCaracteristicasCategorias> PropiedadesCaracteristicasCategorias { get; set; }
+        public virtual DbSet<PropiedadesCategoria> PropiedadesCategoria { get; set; }
         public virtual DbSet<PropiedadesEstatus> PropiedadesEstatus { get; set; }
-        public virtual DbSet<PropiedadesSistemaAC> PropiedadesSistemaAC { get; set; }
-        public virtual DbSet<PropiedadesTipo> PropiedadesTipo { get; set; }
-        public virtual DbSet<PropiedadesTiposOperacion> PropiedadesTiposOperacion { get; set; }
+        public virtual DbSet<PropiedadesTipoBanios> PropiedadesTipoBanios { get; set; }
         public virtual DbSet<ProspectosPropiedades> ProspectosPropiedades { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tareas> Tareas { get; set; }

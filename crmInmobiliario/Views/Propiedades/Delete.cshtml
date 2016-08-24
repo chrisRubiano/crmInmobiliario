@@ -11,51 +11,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.VentaPrecio)
+            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.VentaPrecio)
+            @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RentaPrecio)
+            @Html.DisplayNameFor(model => model.Edificios.Edificio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RentaPrecio)
+            @Html.DisplayFor(model => model.Edificios.Edificio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RentaTarifaDiaria)
+            @Html.DisplayNameFor(model => model.Categoria)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RentaTarifaDiaria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RentaTarifaSemanal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RentaTarifaSemanal)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RentaTarifaMensual)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RentaTarifaMensual)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RentaEstadiaMinima)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RentaEstadiaMinima)
+            @Html.DisplayFor(model => model.Categoria)
         </dd>
 
         <dt>
@@ -67,207 +43,93 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.VentaPrecio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Recamaras)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Recamaras)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PreparacionBanio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PreparacionBanio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IncluyeInstalacionBanio)
-        </dt>
-
-        <dd>
-            @if (@Model.IncluyeInstalacionBanio.Value)
-            {
-                <i class="fa fa-check-circle text-success text-center"></i>
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Banios)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Banios)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MedioBanios)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MedioBanios)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Construccion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Construccion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Terreno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Terreno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LargoTerreno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LargoTerreno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenteTerreno)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrenteTerreno)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AcabadosEspecifique)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AcabadosEspecifique)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MantenimientoMensual)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MantenimientoMensual)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Observaciones)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Observaciones)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UsuarioUA)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UsuarioUA)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaUA)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaUA)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estacionamiento)
-        </dt>
-
-        <dd>
-            @if (@Model.Estacionamiento.Value)
-            {
-                <i class="fa fa-check-circle text-success text-center"></i>
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CajonesEstacionamiento)
+            @Html.DisplayFor(model => model.VentaPrecio)
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.M2Interiores)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.M2Interiores)
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Terraza)
+        </dt>
+        <dd>
+            @if (Model.Terraza.HasValue)
+            {
+                if (Model.Terraza == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.M2Terraza)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.M2Terraza)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.M2Bodega)
+            @Html.DisplayNameFor(model => model.PrecioM2Terraza)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.M2Bodega)
+            @Html.DisplayFor(model => model.PrecioM2Terraza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estacionamiento)
+        </dt>
+        <dd>
+            @if (Model.Estacionamiento.HasValue)
+            {
+                if (Model.Estacionamiento == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioEstacionamiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioEstacionamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CajonesEstacionamiento)
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.FrenteLocal)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.FrenteLocal)
         </dd>
@@ -275,104 +137,29 @@
         <dt>
             @Html.DisplayNameFor(model => model.LargoLocal)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.LargoLocal)
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Acabados)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Acabados)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AcabadosEspecifique)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AcabadosEspecifique)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Nivel)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Nivel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Niveles)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Niveles)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SistemaAC)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SistemaAC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Reglamento)
-        </dt>
-
-        <dd>
-            @if (@Model.Reglamento.Value)
-            {
-                <i class="fa fa-check-circle text-success text-center"></i>
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.URLReglamento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.URLReglamento)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Monedas.Moneda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Monedas.Moneda)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PropiedadesAcabados.Acabado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PropiedadesAcabados.Acabado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PropiedadesAntiguedad.Antiguedad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PropiedadesAntiguedad.Antiguedad)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PropiedadesTipo.TipoPropiedad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PropiedadesTipo.TipoPropiedad)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PropiedadesTiposOperacion.TipoOperacion)
         </dd>
 
     </dl>

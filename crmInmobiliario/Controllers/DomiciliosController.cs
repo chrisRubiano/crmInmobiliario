@@ -7,18 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using crmInmobiliario.Models;
+using System.IO;
+using System.Web.UI;
 
 namespace crmInmobiliario.Controllers
 {
     [Authorize]
     public class DomiciliosController : Controller
     {
-        private CRMINMOBILIARIOEntities5 db = new CRMINMOBILIARIOEntities5();
+        private CRMINMOBILIARIOEntities10 db = new CRMINMOBILIARIOEntities10();
 
         // GET: Domicilios
         public ActionResult Index()
         {
-            var domicilios = db.Domicilios.Include(d => d.DomiciliosTipo).Include(d => d.Estados).Include(d => d.Municipios).Include(d => d.Paises).Include(d => d.Personas).Include(d => d.Propiedades);
+            var domicilios = db.Domicilios.Include(d => d.DomiciliosTipo).Include(d => d.Estados).Include(d => d.Municipios).Include(d => d.Paises).Include(d => d.Personas).Include(d => d.Propiedades).OrderByDescending(d => d.IdDomicilio);
             return View(domicilios.ToList());
         }
 
@@ -42,6 +44,34 @@ namespace crmInmobiliario.Controllers
                 ViewBag.categoriap = categoriap;
             }
             return View(domicilios);
+        }
+
+        public void Excel()
+        {
+            var model = db.Domicilios.ToList();
+
+            Export export = new Export();
+            export.ToExcel(Response, model);
+        }
+
+        //helper class
+        public class Export
+        {
+            public void ToExcel(HttpResponseBase Response, object clientsList)
+            {
+                var grid = new System.Web.UI.WebControls.GridView();
+                grid.DataSource = clientsList;
+                grid.DataBind();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment; filename=Domicilios.xls");
+                Response.ContentType = "application/excel";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+                grid.RenderControl(htw);
+                Response.Write(sw.ToString());
+                Response.End();
+            }
         }
 
         // GET: Domicilios/Create

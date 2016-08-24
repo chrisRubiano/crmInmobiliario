@@ -1,0 +1,40 @@
+﻿@model IEnumerable<crmInmobiliario.Models.PropiedadesCaracteristicasCategorias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorías de Amenidades de Propiedades</h2>
+
+
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "PropiedadesCaracteristicasCategorias")'"><i class="fa fa-user-plus"></i> Registrar Nueva Categoría de Amenidad</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "PropiedadesCaracteristicasCategorias")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+<table class="table table-hover table-condensed">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="">
+                <div class="list-inline">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "PropiedadesCaracteristicasCategorias", new { id = item.IdCategoria })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "PropiedadesCaracteristicasCategorias", new { id = item.IdCategoria })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "PropiedadesCaracteristicasCategorias", new { id = item.IdCategoria })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+
+        </tr>
+    }
+
+</table>

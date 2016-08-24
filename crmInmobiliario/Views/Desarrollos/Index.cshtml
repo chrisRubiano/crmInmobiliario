@@ -7,22 +7,10 @@
 <h2>Desarrollos</h2>
 
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
     <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Desarrollos")'"><i class="fa fa-user-plus"></i> Registrar Desarrollo</button>
-
-    @*<hr />
-    @using (Html.BeginForm("ListaDesarrollos", "Desarrollos", FormMethod.Get, new { @class = "form-inline" }))
-    {
-        <div class="form-group">
-            <label for="desarrollo"> Desarrollo:</label> @Html.DropDownList("desarrollo", null, "Todos", new { @class = "form-control chosen-select" })
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
-        </div>
-    }*@
-
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Desarrollos")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
 </p>
-<table class="table">
+<table class="table table-hover table-condensed">
     <tr>
         <th></th>
         <th>
@@ -42,39 +30,43 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="">
-            <div class="list-inline">
-                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Desarrollos", new { id = item.IdDesarrollo })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Desarrollos", new { id = item.IdDesarrollo })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Desarrollos", new { id = item.IdDesarrollo })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-            </div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Desarrollo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Clave)
-        </td>        
-        <td>
-            @if (item.Activo.Value)
-            {
-                <i class="fa fa-check-circle text-success text-center"></i>
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descuento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
-        </td>
-       
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="">
+                <div class="list-inline">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Desarrollos", new { id = item.IdDesarrollo })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Desarrollos", new { id = item.IdDesarrollo })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Desarrollos", new { id = item.IdDesarrollo })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desarrollo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clave)
+            </td>
+            <td>
+                @if (item.Activo.HasValue)
+                {
+                    if (item.Activo.Value)
+                    {
+                        <i class="fa fa-check-circle text-success text-center"></i>
+                    }
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descuento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
+            </td>
+
+        </tr>
+    }
 
 </table>

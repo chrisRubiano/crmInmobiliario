@@ -9,13 +9,15 @@ using System.Web.Mvc;
 using crmInmobiliario.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.IO;
+using System.Web.UI;
 
 namespace crmInmobiliario.Controllers
 {
     [Authorize]
     public class PersonasController : Controller
     {
-        private CRMINMOBILIARIOEntities5 db = new CRMINMOBILIARIOEntities5();
+        private CRMINMOBILIARIOEntities10 db = new CRMINMOBILIARIOEntities10();
 
 
         // GET: Personas
@@ -53,7 +55,35 @@ namespace crmInmobiliario.Controllers
 
 
             //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
-            return View(personas.ToList());
+            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+        }
+
+        public void Excel(string nombreArchivo)
+        {
+            var model = db.Personas.ToList();
+
+            Export export = new Export();
+            export.ToExcel(Response, model, nombreArchivo);
+        }
+
+        //helper class
+        public class Export
+        {
+            public void ToExcel(HttpResponseBase Response, object clientsList, string nombreArchivo)
+            {
+                var grid = new System.Web.UI.WebControls.GridView();
+                grid.DataSource = clientsList;
+                grid.DataBind();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment; filename=" + nombreArchivo + ".xls");
+                Response.ContentType = "application/excel";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+                grid.RenderControl(htw);
+                Response.Write(sw.ToString());
+                Response.End();
+            }
         }
 
 
@@ -75,7 +105,7 @@ namespace crmInmobiliario.Controllers
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
             }
 
-            return View(personas.ToList());
+            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
         public ActionResult ListaClientes(string nombre)
@@ -96,7 +126,7 @@ namespace crmInmobiliario.Controllers
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
             }
 
-            return View(personas.ToList());
+            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
         // GET: Personas/Details/5
@@ -126,6 +156,24 @@ namespace crmInmobiliario.Controllers
             return View(vModelos);
         }
 
+
+        public ActionResult Duplicado(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            VariosModelos vModelos = new VariosModelos();
+            Personas personas = db.Personas.Find(id);
+            if (personas == null)
+            {
+                return HttpNotFound();
+            }
+            vModelos.personas = personas;
+
+            return View(vModelos);
+        }
+
         // GET: Personas/Create
         public ActionResult Create(int? categoria)
         {
@@ -133,7 +181,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
-            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
             ViewBag.Categoriap = categoria;
             return View();
         }
@@ -149,20 +197,28 @@ namespace crmInmobiliario.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    personas.Usuario = User.Identity.GetUserId().ToString();
-                    personas.FechaRegistro = DateTime.Now;
-                    personas.Categoria = categoria;
-                    db.Personas.Add(personas);
-                    db.SaveChanges();
-                    if (personas.Categoria == 1)
+                    var duplicado = db.Personas.Where(p => p.Email == personas.Email || p.Email2 == personas.Email2).FirstOrDefault();
+                    if (duplicado != null)
                     {
-                        return RedirectToAction("ListaProspectos");
+                        return RedirectToAction("Duplicado", new { id = duplicado.IdPersona });
                     }
-                    else if (personas.Categoria == 2)
+                    else
                     {
-                        return RedirectToAction("ListaClientes");
+                        personas.Usuario = User.Identity.GetUserId().ToString();
+                        personas.FechaRegistro = DateTime.Now;
+                        personas.Categoria = categoria;
+                        db.Personas.Add(personas);
+                        db.SaveChanges();
+                        if (personas.Categoria == 1)
+                        {
+                            return RedirectToAction("ListaProspectos");
+                        }
+                        else if (personas.Categoria == 2)
+                        {
+                            return RedirectToAction("ListaClientes");
+                        }
                     }
-                    
+
                 }
             }
             catch (DataException)
@@ -174,7 +230,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
-            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesTipo, "IdTipoPropiedad", "TipoPropiedad");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
             return View(personas);
         }
 
@@ -277,7 +333,8 @@ namespace crmInmobiliario.Controllers
             {
                 return RedirectToAction("ListaClientes");
             }
-            else {
+            else
+            {
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -293,7 +350,7 @@ namespace crmInmobiliario.Controllers
 
         /*---------------------------------*/
 
-       public void eliminarNotas(int id)
+        public void eliminarNotas(int id)
         {
             IEnumerable<Notas> listaNotas = db.Notas.Where(i => i.Persona == id);
             foreach (var item in listaNotas)
