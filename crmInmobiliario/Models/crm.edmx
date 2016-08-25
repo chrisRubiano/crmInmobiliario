@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -14,6 +14,21 @@
           <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Amortizaciones">
+          <Key>
+            <PropertyRef Name="IdAmortizacion" />
+          </Key>
+          <Property Name="IdAmortizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoPago" Type="int" />
+          <Property Name="Persona" Type="int" />
+          <Property Name="Propiedad" Type="int" />
+          <Property Name="Cotizacion" Type="int" />
+          <Property Name="FechaProgramado" Type="date" />
+          <Property Name="Moneda" Type="int" />
+          <Property Name="TipoCambio" Type="money" />
+          <Property Name="Importe" Type="money" />
+          <Property Name="EstaPagado" Type="bit" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -107,8 +122,9 @@
           <Property Name="Clave" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CajonesEstacionamiento" Type="int" />
-          <Property Name="CajonesDisponibles" Type="int" />
+          <Property Name="CajonesDisponibles" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="Activo" Type="bit" />
+          <Property Name="Logo" Type="image" />
         </EntityType>
         <EntityType Name="Documentos">
           <Key>
@@ -245,6 +261,21 @@
           <Property Name="Nota" Type="varchar(max)" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Usuario" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="int" />
+          <Property Name="Propiedad" Type="int" />
+          <Property Name="Persona" Type="int" />
+          <Property Name="Cotizacion" Type="int" />
+          <Property Name="Amortizacion" Type="int" />
+          <Property Name="FechaPago" Type="date" />
+          <Property Name="Moneda" Type="int" />
+          <Property Name="TipoCambio" Type="money" />
+          <Property Name="Importe" Type="money" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -458,6 +489,13 @@
           </Key>
           <Property Name="IdEstatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TiposPago">
+          <Key>
+            <PropertyRef Name="IdTipoPago" />
+          </Key>
+          <Property Name="IdTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_CaracteristicasPropiedades_Propiedades">
           <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
@@ -719,6 +757,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Pagos_Amortizaciones">
+          <End Role="Amortizaciones" Type="Self.Amortizaciones" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amortizaciones">
+              <PropertyRef Name="IdAmortizacion" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Amortizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Cotizaciones">
+          <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotizaciones">
+              <PropertyRef Name="IdCotizacion" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Cotizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Monedas">
+          <End Role="Monedas" Type="Self.Monedas" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monedas">
+              <PropertyRef Name="IdMoneda" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Propiedades">
+          <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_TiposPago">
+          <End Role="TiposPago" Type="Self.TiposPago" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposPago">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Personas_MediosContacto">
           <End Role="MediosContacto" Type="Self.MediosContacto" Multiplicity="0..1" />
           <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
@@ -947,8 +1057,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fCajonesDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="IdDesarrollo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fCodigoPropiedad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="IdPropiedad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fCodigoPropiedadCorto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="IdPropiedad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fEstaPagado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="IdAmortizacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fTituloPropiedad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="IdPropiedad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PadLeft" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="Seq" Type="varchar" Mode="In" />
+          <Parameter Name="PadWith" Type="char" Mode="In" />
+          <Parameter Name="PadLength" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="CRMINMOBILIARIOModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Amortizaciones" EntityType="Self.Amortizaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -971,6 +1107,7 @@
           <EntitySet Name="Monedas" EntityType="Self.Monedas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Municipios" EntityType="Self.Municipios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonasCategoria" EntityType="Self.PersonasCategoria" Schema="dbo" store:Type="Tables" />
@@ -989,6 +1126,7 @@
           <EntitySet Name="Tareas" EntityType="Self.Tareas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareasCategorias" EntityType="Self.TareasCategorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareasEstatus" EntityType="Self.TareasEstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposPago" EntityType="Self.TiposPago" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CaracteristicasPropiedades_Propiedades" Association="Self.FK_CaracteristicasPropiedades_Propiedades">
             <End Role="Propiedades" EntitySet="Propiedades" />
             <End Role="CaracteristicasPropiedades" EntitySet="CaracteristicasPropiedades" />
@@ -1073,6 +1211,30 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="Notas" EntitySet="Notas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Amortizaciones" Association="Self.FK_Pagos_Amortizaciones">
+            <End Role="Amortizaciones" EntitySet="Amortizaciones" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Cotizaciones" Association="Self.FK_Pagos_Cotizaciones">
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Monedas" Association="Self.FK_Pagos_Monedas">
+            <End Role="Monedas" EntitySet="Monedas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Personas" Association="Self.FK_Pagos_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Propiedades" Association="Self.FK_Pagos_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_TiposPago" Association="Self.FK_Pagos_TiposPago">
+            <End Role="TiposPago" EntitySet="TiposPago" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Personas_MediosContacto" Association="Self.FK_Personas_MediosContacto">
             <End Role="MediosContacto" EntitySet="MediosContacto" />
             <End Role="Personas" EntitySet="Personas" />
@@ -1150,8 +1312,7 @@
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1250,6 +1411,7 @@
           <Property Name="Vendedor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Cotizaciones_Personas1" FromRole="Cotizaciones" ToRole="Personas" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Cotizaciones_Propiedades" FromRole="Cotizaciones" ToRole="Propiedades" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Cotizaciones" FromRole="Cotizaciones" ToRole="Pagos" />
         </EntityType>
         <EntityType Name="Desarrollos">
           <Key>
@@ -1264,6 +1426,7 @@
           <Property Name="Activo" Type="Boolean" DefaultValue="True" />
           <NavigationProperty Name="Edificios" Relationship="Self.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Documentos">
           <Key>
@@ -1402,6 +1565,7 @@
           <Property Name="Moneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Abreviatura" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Monedas" FromRole="Monedas" ToRole="Propiedades" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Monedas" FromRole="Monedas" ToRole="Pagos" />
         </EntityType>
         <EntityType Name="Municipios">
           <Key>
@@ -1474,6 +1638,7 @@
           <NavigationProperty Name="PersonasGenero" Relationship="Self.FK_Personas_PersonasGenero" FromRole="Personas" ToRole="PersonasGenero" />
           <NavigationProperty Name="PersonasIntereses" Relationship="Self.FK_Personas_PersonasIntereses" FromRole="Personas" ToRole="PersonasIntereses" />
           <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Personas" FromRole="Personas" ToRole="Pagos" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -1569,6 +1734,7 @@
           <NavigationProperty Name="PropiedadesCategoria" Relationship="Self.FK_Propiedades_PropiedadesCategoria" FromRole="Propiedades" ToRole="PropiedadesCategoria" />
           <NavigationProperty Name="PropiedadesEstatus" Relationship="Self.FK_Propiedades_PropiedadesEstatus" FromRole="Propiedades" ToRole="PropiedadesEstatus" />
           <NavigationProperty Name="PropiedadesTipoBanios" Relationship="Self.FK_Propiedades_PropiedadesTipoBanios" FromRole="Propiedades" ToRole="PropiedadesTipoBanios" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Propiedades" FromRole="Propiedades" ToRole="Pagos" />
         </EntityType>
         <EntityType Name="PropiedadesAcabados">
           <Key>
@@ -2340,7 +2506,156 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Amortizaciones" EntityType="CRMINMOBILIARIOModel.Amortizaciones" />
+          <EntitySet Name="Pagos" EntityType="CRMINMOBILIARIOModel.Pagos" />
+          <EntitySet Name="TiposPago" EntityType="CRMINMOBILIARIOModel.TiposPago" />
+          <AssociationSet Name="FK_Pagos_Amortizaciones" Association="CRMINMOBILIARIOModel.FK_Pagos_Amortizaciones">
+            <End Role="Amortizaciones" EntitySet="Amortizaciones" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Cotizaciones" Association="CRMINMOBILIARIOModel.FK_Pagos_Cotizaciones">
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Monedas" Association="CRMINMOBILIARIOModel.FK_Pagos_Monedas">
+            <End Role="Monedas" EntitySet="Monedas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Personas" Association="CRMINMOBILIARIOModel.FK_Pagos_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Propiedades" Association="CRMINMOBILIARIOModel.FK_Pagos_Propiedades">
+            <End Role="Propiedades" EntitySet="Propiedades" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_TiposPago" Association="CRMINMOBILIARIOModel.FK_Pagos_TiposPago">
+            <End Role="TiposPago" EntitySet="TiposPago" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="Amortizaciones">
+          <Key>
+            <PropertyRef Name="IdAmortizacion" />
+          </Key>
+          <Property Name="IdAmortizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoPago" Type="Int32" />
+          <Property Name="Persona" Type="Int32" />
+          <Property Name="Propiedad" Type="Int32" />
+          <Property Name="Cotizacion" Type="Int32" />
+          <Property Name="FechaProgramado" Type="DateTime" Precision="0" />
+          <Property Name="Moneda" Type="Int32" />
+          <Property Name="TipoCambio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="EstaPagado" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Amortizaciones" FromRole="Amortizaciones" ToRole="Pagos" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="Int32" />
+          <Property Name="Propiedad" Type="Int32" />
+          <Property Name="Persona" Type="Int32" />
+          <Property Name="Cotizacion" Type="Int32" />
+          <Property Name="Amortizacion" Type="Int32" />
+          <Property Name="FechaPago" Type="DateTime" Precision="0" />
+          <Property Name="Moneda" Type="Int32" />
+          <Property Name="TipoCambio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Amortizaciones" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Amortizaciones" FromRole="Pagos" ToRole="Amortizaciones" />
+          <NavigationProperty Name="Cotizaciones" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Cotizaciones" FromRole="Pagos" ToRole="Cotizaciones" />
+          <NavigationProperty Name="Monedas" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Monedas" FromRole="Pagos" ToRole="Monedas" />
+          <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Personas" FromRole="Pagos" ToRole="Personas" />
+          <NavigationProperty Name="Propiedades" Relationship="CRMINMOBILIARIOModel.FK_Pagos_Propiedades" FromRole="Pagos" ToRole="Propiedades" />
+          <NavigationProperty Name="TiposPago" Relationship="CRMINMOBILIARIOModel.FK_Pagos_TiposPago" FromRole="Pagos" ToRole="TiposPago" />
+        </EntityType>
+        <EntityType Name="TiposPago">
+          <Key>
+            <PropertyRef Name="IdTipoPago" />
+          </Key>
+          <Property Name="IdTipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_TiposPago" FromRole="TiposPago" ToRole="Pagos" />
+        </EntityType>
+        <Association Name="FK_Pagos_Amortizaciones">
+          <End Type="CRMINMOBILIARIOModel.Amortizaciones" Role="Amortizaciones" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amortizaciones">
+              <PropertyRef Name="IdAmortizacion" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Amortizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Cotizaciones">
+          <End Type="CRMINMOBILIARIOModel.Cotizaciones" Role="Cotizaciones" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotizaciones">
+              <PropertyRef Name="IdCotizacion" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Cotizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Monedas">
+          <End Type="CRMINMOBILIARIOModel.Monedas" Role="Monedas" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Monedas">
+              <PropertyRef Name="IdMoneda" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Personas">
+          <End Type="CRMINMOBILIARIOModel.Personas" Role="Personas" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Propiedades">
+          <End Type="CRMINMOBILIARIOModel.Propiedades" Role="Propiedades" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Propiedades">
+              <PropertyRef Name="IdPropiedad" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_TiposPago">
+          <End Type="CRMINMOBILIARIOModel.TiposPago" Role="TiposPago" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposPago">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2440,6 +2755,7 @@
           <EntitySetMapping Name="Desarrollos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Desarrollos">
               <MappingFragment StoreEntitySet="Desarrollos">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="IdDesarrollo" ColumnName="IdDesarrollo" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
@@ -2838,6 +3154,47 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Amortizaciones">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Amortizaciones">
+              <MappingFragment StoreEntitySet="Amortizaciones">
+                <ScalarProperty Name="EstaPagado" ColumnName="EstaPagado" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="FechaProgramado" ColumnName="FechaProgramado" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="IdAmortizacion" ColumnName="IdAmortizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagos">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Pagos">
+              <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="Amortizacion" ColumnName="Amortizacion" />
+                <ScalarProperty Name="Cotizacion" ColumnName="Cotizacion" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+                <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposPago">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.TiposPago">
+              <MappingFragment StoreEntitySet="TiposPago">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CRMINMOBILIARIOModel.Store.sp_renamediagram" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
