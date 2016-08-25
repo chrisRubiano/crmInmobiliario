@@ -12,6 +12,8 @@ namespace crmInmobiliario.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CRMINMOBILIARIOEntities10 : DbContext
     {
@@ -65,5 +67,25 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Tareas> Tareas { get; set; }
         public virtual DbSet<TareasCategorias> TareasCategorias { get; set; }
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
+        public virtual DbSet<Amortizaciones> Amortizaciones { get; set; }
+        public virtual DbSet<Pagos> Pagos { get; set; }
+        public virtual DbSet<TiposPago> TiposPago { get; set; }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
     }
 }

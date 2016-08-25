@@ -22,6 +22,7 @@ namespace crmInmobiliario.Models
             this.Documentos = new HashSet<Documentos>();
             this.Domicilios = new HashSet<Domicilios>();
             this.Fotografias = new HashSet<Fotografias>();
+            this.Pagos = new HashSet<Pagos>();
         }
     
         public int IdPropiedad { get; set; }
@@ -86,5 +87,7 @@ namespace crmInmobiliario.Models
         public virtual PropiedadesCategoria PropiedadesCategoria { get; set; }
         public virtual PropiedadesEstatus PropiedadesEstatus { get; set; }
         public virtual PropiedadesTipoBanios PropiedadesTipoBanios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pagos> Pagos { get; set; }
     }
 }

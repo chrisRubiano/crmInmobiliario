@@ -12,28 +12,25 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cotizaciones
+    public partial class Amortizaciones
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cotizaciones()
+        public Amortizaciones()
         {
             this.Pagos = new HashSet<Pagos>();
         }
     
-        public int IdCotizacion { get; set; }
-        public Nullable<int> Propiedad { get; set; }
+        public int IdAmortizacion { get; set; }
+        public Nullable<int> TipoPago { get; set; }
         public Nullable<int> Persona { get; set; }
-        public Nullable<System.DateTime> FechaCotizacion { get; set; }
-        public Nullable<decimal> PrecioFinalVenta { get; set; }
-        public Nullable<decimal> PorcentajeEnganche { get; set; }
-        public Nullable<decimal> Enganche { get; set; }
-        public Nullable<int> Parcialidades { get; set; }
-        public Nullable<decimal> PorcentajeMensualidades { get; set; }
-        public Nullable<decimal> PagoMensual { get; set; }
-        public string Vendedor { get; set; }
+        public Nullable<int> Propiedad { get; set; }
+        public Nullable<int> Cotizacion { get; set; }
+        public Nullable<System.DateTime> FechaProgramado { get; set; }
+        public Nullable<int> Moneda { get; set; }
+        public Nullable<decimal> TipoCambio { get; set; }
+        public Nullable<decimal> Importe { get; set; }
+        public Nullable<bool> EstaPagado { get; set; }
     
-        public virtual Personas Personas { get; set; }
-        public virtual Propiedades Propiedades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagos> Pagos { get; set; }
     }

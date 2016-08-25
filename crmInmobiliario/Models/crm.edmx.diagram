@@ -84,6 +84,15 @@
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasCategorias" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasEstatus" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Amortizaciones" Width="1.5" PointX="13.5" PointY="19" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Pagos" Width="1.5" PointX="15.75" PointY="19.75" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.TiposPago" Width="1.5" PointX="13.5" PointY="22.875" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_Amortizaciones" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_Cotizaciones" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_Monedas" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_Personas" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_Propiedades" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_TiposPago" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

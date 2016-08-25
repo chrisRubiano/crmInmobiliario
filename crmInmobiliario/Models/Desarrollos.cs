@@ -29,6 +29,7 @@ namespace crmInmobiliario.Models
         public Nullable<int> CajonesEstacionamiento { get; set; }
         public Nullable<int> CajonesDisponibles { get; set; }
         public Nullable<bool> Activo { get; set; }
+        public byte[] Logo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Edificios> Edificios { get; set; }

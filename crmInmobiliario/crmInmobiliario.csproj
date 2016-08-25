@@ -200,6 +200,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Amortizaciones.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>crm.tt</DependentUpon>
     </Compile>
@@ -286,6 +289,9 @@
     <Compile Include="Models\Notas.cs">
       <DependentUpon>crm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pagos.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Paises.cs">
       <DependentUpon>crm.tt</DependentUpon>
     </Compile>
@@ -339,6 +345,9 @@
       <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TareasEstatus.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TiposPago.cs">
       <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VariosModelos.cs" />
