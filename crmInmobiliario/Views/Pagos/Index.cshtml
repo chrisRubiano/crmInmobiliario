@@ -1,0 +1,86 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Pagos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Pagos</h2>
+
+<p>
+<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Pagos")'"><i class="fa fa-user-plus"></i> Registrar Pago</button>
+<button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Pagos")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoCambio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amortizaciones.IdAmortizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cotizaciones.Vendedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monedas.Moneda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="">
+            <div class="list-inline">
+                @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Pagos", new { id = item.IdPago })';return false;"><i class="fa fa-fw fa-pencil"></i></button>*@
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Pagos", new { id = item.IdPago })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                @*<button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Pagos", new { id = item.IdPago })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>*@
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoCambio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amortizaciones.IdAmortizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cotizaciones.Vendedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monedas.Moneda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personas.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Propiedades.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+        </td>
+        
+    </tr>
+}
+
+</table>

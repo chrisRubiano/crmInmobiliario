@@ -1,0 +1,100 @@
+﻿@model crmInmobiliario.Models.Pagos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Pago</h2>
+
+
+<div class="alert alert-danger" role="alert">
+    <strong>ATENCIÓN !!!</strong> <h3>Esta seguro(a) de Eliminar este Pago?</h3>
+</div>
+<div>
+    <h4>Pagos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amortizaciones.IdAmortizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amortizaciones.IdAmortizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cotizaciones.Vendedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cotizaciones.Vendedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monedas.Moneda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monedas.Moneda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedades.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiposPago.Tipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Pagos")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Eliminar</button>
+        </div>
+    }
+</div>

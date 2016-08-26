@@ -1,0 +1,94 @@
+﻿@model crmInmobiliario.Models.Pagos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Datos del Pago</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amortizaciones.IdAmortizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amortizaciones.IdAmortizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cotizaciones.Vendedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cotizaciones.Vendedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monedas.Moneda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monedas.Moneda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedades.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiposPago.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Pagos")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Pagos", new { id = Model.IdPago })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>
