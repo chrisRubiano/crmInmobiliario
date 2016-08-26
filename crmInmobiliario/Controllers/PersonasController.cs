@@ -202,7 +202,7 @@ namespace crmInmobiliario.Controllers
                     {
                         duplicado = db.Personas.Where(p => p.Email == personas.Email || p.Email2 == personas.Email).FirstOrDefault();
                     }
-                    if (personas.Email2 != null && duplicado == null)
+                    if (personas.Email2 != null && duplicado.IdPersona == 0)
                     {
                         duplicado = db.Personas.Where(p => p.Email == personas.Email2 || p.Email2 == personas.Email2).FirstOrDefault();
                     }

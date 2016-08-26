@@ -64,8 +64,16 @@ namespace crmInmobiliario.Controllers
                 ViewBag.codigo = propiedad.Codigo;
             }
 
-            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+            var nombreCompleto = new List<string>();
+            var nombreQry = from d in db.Personas
+                            orderby d.Paterno
+                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
+            nombreCompleto.AddRange(nombreQry);
+            //ViewBag.nombre = new SelectList(nombreCompleto);
 
+
+            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+            //ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             return View(cotizacion);
         }
