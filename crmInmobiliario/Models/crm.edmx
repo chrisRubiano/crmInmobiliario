@@ -125,6 +125,7 @@
           <Property Name="CajonesDisponibles" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="Activo" Type="bit" />
           <Property Name="Logo" Type="image" />
+          <Property Name="ERP" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Documentos">
           <Key>
@@ -1427,6 +1428,7 @@
           <NavigationProperty Name="Edificios" Relationship="Self.FK_Edificios_Desarrollos" FromRole="Desarrollos" ToRole="Edificios" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_Desarrollos" FromRole="Desarrollos" ToRole="Propiedades" />
           <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ERP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Documentos">
           <Key>
@@ -2755,6 +2757,7 @@
           <EntitySetMapping Name="Desarrollos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Desarrollos">
               <MappingFragment StoreEntitySet="Desarrollos">
+                <ScalarProperty Name="ERP" ColumnName="ERP" />
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="IdDesarrollo" ColumnName="IdDesarrollo" />
                 <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
