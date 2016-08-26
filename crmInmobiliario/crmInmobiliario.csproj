@@ -189,6 +189,7 @@
     <Compile Include="Controllers\MediosContactoController.cs" />
     <Compile Include="Controllers\MediosEnterarseController.cs" />
     <Compile Include="Controllers\NotasController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PersonasInteresesController.cs" />
     <Compile Include="Controllers\PropiedadesAcabadosController.cs" />
@@ -553,6 +554,11 @@
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Views\Pagos\Create.cshtml" />
+    <Content Include="Views\Pagos\Delete.cshtml" />
+    <Content Include="Views\Pagos\Details.cshtml" />
+    <Content Include="Views\Pagos\Edit.cshtml" />
+    <Content Include="Views\Pagos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
