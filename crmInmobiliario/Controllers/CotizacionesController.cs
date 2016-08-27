@@ -18,7 +18,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class CotizacionesController : Controller
     {
-        private CRMINMOBILIARIOEntities10 db = new CRMINMOBILIARIOEntities10();
+        private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
 
         // GET: Cotizaciones
         public ActionResult Index()
@@ -55,6 +55,7 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones/Create
         public ActionResult Create(int? idPropiedad)
         {
+            vmCotizacion = new vmCotizacion();
             Cotizaciones cotizacion = new Cotizaciones();
             if (idPropiedad.HasValue)
             {
@@ -64,18 +65,10 @@ namespace crmInmobiliario.Controllers
                 ViewBag.codigo = propiedad.Codigo;
             }
 
-            var nombreCompleto = new List<string>();
-            var nombreQry = from d in db.Personas
-                            orderby d.Paterno
-                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
-            nombreCompleto.AddRange(nombreQry);
-            //ViewBag.nombre = new SelectList(nombreCompleto);
-
-
             ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             //ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            return View(cotizacion);
+            return View(vmCotizacion);
         }
 
         // POST: Cotizaciones/Create

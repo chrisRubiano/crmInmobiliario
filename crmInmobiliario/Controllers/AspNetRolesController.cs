@@ -14,7 +14,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class AspNetRolesController : Controller
     {
-        private CRMINMOBILIARIOEntities10 db = new CRMINMOBILIARIOEntities10();
+        private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
 
         // GET: AspNetRoles
         public ActionResult Index()
