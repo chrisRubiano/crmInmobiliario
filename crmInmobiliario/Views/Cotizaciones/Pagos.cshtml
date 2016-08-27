@@ -9,7 +9,7 @@
 
 <div class="col-md-4 no-gutter">
     <div class="panel">
-        <div class="panel-body alert alert-success">
+        <div class="panel-body alert-success">
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.propiedades.Codigo)
@@ -19,13 +19,15 @@
                     @Html.DisplayFor(model => model.propiedades.Codigo)
                 </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.propiedades.VentaPrecio)
-                </dt>
+                <div class="alert-warning">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.propiedades.VentaPrecio)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.propiedades.VentaPrecio)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.propiedades.VentaPrecio)
+                    </dd>
+                </div>
 
                 <dt>
                     @Html.DisplayNameFor(model => model.propiedades.M2Interiores)
@@ -121,7 +123,7 @@
     </div>
 
     <div class="panel">
-        <div class="panel-body alert alert-info">
+        <div class="panel-body alert-info">
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.personas.Nombre)
@@ -183,4 +185,15 @@
     </div>
 
 </div>
+
+<div class="col-md-8">
+        <div class="form-group">
+            @Html.LabelFor(model => model.cotizaciones.PorcentajeEnganche, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.cotizaciones.PorcentajeEnganche, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cotizaciones.PorcentajeEnganche, "", new { @class = "text-danger" })
+            </div>
+        </div>
+</div>
+
 <div class="col-md-12"></div>
