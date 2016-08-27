@@ -12,13 +12,11 @@ namespace crmInmobiliario.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
-    public partial class CRMINMOBILIARIOEntities10 : DbContext
+    public partial class CRMINMOBILIARIOEntities : DbContext
     {
-        public CRMINMOBILIARIOEntities10()
-            : base("name=CRMINMOBILIARIOEntities10")
+        public CRMINMOBILIARIOEntities()
+            : base("name=CRMINMOBILIARIOEntities")
         {
         }
     
@@ -28,12 +26,14 @@ namespace crmInmobiliario.Models
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Amortizaciones> Amortizaciones { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CaracteristicasPropiedades> CaracteristicasPropiedades { get; set; }
         public virtual DbSet<Configuraciones> Configuraciones { get; set; }
+        public virtual DbSet<Consecutivos> Consecutivos { get; set; }
         public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
         public virtual DbSet<Desarrollos> Desarrollos { get; set; }
         public virtual DbSet<Documentos> Documentos { get; set; }
@@ -49,6 +49,7 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Monedas> Monedas { get; set; }
         public virtual DbSet<Municipios> Municipios { get; set; }
         public virtual DbSet<Notas> Notas { get; set; }
+        public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<Paises> Paises { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<PersonasCategoria> PersonasCategoria { get; set; }
@@ -67,25 +68,6 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Tareas> Tareas { get; set; }
         public virtual DbSet<TareasCategorias> TareasCategorias { get; set; }
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
-        public virtual DbSet<Amortizaciones> Amortizaciones { get; set; }
-        public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<TiposPago> TiposPago { get; set; }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
     }
 }

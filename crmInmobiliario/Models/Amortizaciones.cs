@@ -26,8 +26,6 @@ namespace crmInmobiliario.Models
         public Nullable<int> Propiedad { get; set; }
         public Nullable<int> Cotizacion { get; set; }
         public Nullable<System.DateTime> FechaProgramado { get; set; }
-        public Nullable<int> Moneda { get; set; }
-        public Nullable<decimal> TipoCambio { get; set; }
         public Nullable<decimal> Importe { get; set; }
         public Nullable<bool> EstaPagado { get; set; }
     
