@@ -17,8 +17,8 @@ namespace crmInmobiliario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Monedas()
         {
-            this.Propiedades = new HashSet<Propiedades>();
             this.Pagos = new HashSet<Pagos>();
+            this.Propiedades = new HashSet<Propiedades>();
         }
     
         public int IdMoneda { get; set; }
@@ -26,8 +26,8 @@ namespace crmInmobiliario.Models
         public string Abreviatura { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Propiedades> Propiedades { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Propiedades> Propiedades { get; set; }
     }
 }

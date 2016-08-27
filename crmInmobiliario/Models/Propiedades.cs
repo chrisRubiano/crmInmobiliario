@@ -83,11 +83,11 @@ namespace crmInmobiliario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fotografias> Fotografias { get; set; }
         public virtual Monedas Monedas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pagos> Pagos { get; set; }
         public virtual PropiedadesAcabados PropiedadesAcabados { get; set; }
         public virtual PropiedadesCategoria PropiedadesCategoria { get; set; }
         public virtual PropiedadesEstatus PropiedadesEstatus { get; set; }
         public virtual PropiedadesTipoBanios PropiedadesTipoBanios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagos> Pagos { get; set; }
     }
 }
