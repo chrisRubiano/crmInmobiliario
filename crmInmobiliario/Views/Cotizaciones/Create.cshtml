@@ -1,185 +1,298 @@
-﻿@model crmInmobiliario.Models.Cotizaciones
+﻿@model crmInmobiliario.Models.vmCotizacion
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Nueva Cotización</h2>
+<div class="col-md-3">
+    <h4>Propiedad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Desarrollos.Desarrollo)
+        </dt>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.Desarrollos.Desarrollo)
+        </dd>
 
-    <div class="form-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Edificios.Edificio)
+        </dt>
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.Edificios.Edificio)
+        </dd>
 
-        @if (!string.IsNullOrEmpty(ViewBag.codigo))
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.PropiedadesCategoria.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.PropiedadesCategoria.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.VentaPrecio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.VentaPrecio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.M2Interiores)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.M2Interiores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Terraza)
+        </dt>
+        <dd>
+            @if (Model.propiedades.Terraza.HasValue)
+            {
+                if (Model.propiedades.Terraza == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.M2Terraza)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.M2Terraza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.PrecioM2Terraza)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.PrecioM2Terraza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Bodega)
+        </dt>
+        <dd>
+            @if (Model.propiedades.Bodega.HasValue)
+            {
+                if (Model.propiedades.Bodega == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.M2Bodega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.M2Bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.PrecioM2Bodega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.PrecioM2Bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Estacionamiento)
+        </dt>
+        <dd>
+            @if (Model.propiedades.Estacionamiento.HasValue)
+            {
+                if (Model.propiedades.Estacionamiento == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.PrecioEstacionamiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.PrecioEstacionamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.CajonesEstacionamiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.CajonesEstacionamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.FrenteLocal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.FrenteLocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.LargoLocal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.LargoLocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Acabados)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.Acabados)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.AcabadosEspecifique)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.AcabadosEspecifique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Nivel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.Nivel)
+        </dd>
+    </dl>
+
+</div>
+<div class="col-md-9">
+    @*<p>
+        @using (Html.BeginForm("Create", "Cotizaciones", FormMethod.Get, new { @class = "form-inline" }))
         {
             <div class="form-group">
-                <label class="control-label col-md-2"> Propiedad</label> <div class="col-md-10"><label class="control-label">   @ViewBag.codigo</label></div>
+                <label for="nombre"> Nombre:</label> @Html.DropDownList("nombre", null, "Todos", new { @class = "form-control chosen-select" })
             </div>
-
-            <div class="form-group" style="display:none">
-                @Html.LabelFor(model => model.Propiedad, "Propiedad", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Propiedad", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Propiedad, "", new { @class = "text-danger" })
-                </div>
+            <div style="display:none;">
+                @Html.EditorFor(model => model.propiedades.IdPropiedad)
             </div>
-        }
-        else
-        {
             <div class="form-group">
-                @Html.LabelFor(model => model.Propiedad, "Propiedad", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Propiedad", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Propiedad, "", new { @class = "text-danger" })
-                </div>
+                <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
             </div>
         }
+    </p>*@
 
+    <table class="table table-hover table-condensed">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.Paterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.Materno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.Celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.RazonSocial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personas.RFC)
+            </th>
+        </tr>
 
+        @foreach (var item in ViewBag.personas)
+        {
+            <tr>
+                <td class="">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Siguiente" onclick="location.href='@Url.Action("Pagos", "Cotizaciones", new { idPersona = item.IdPersona, idPropiedad = Model.propiedades.IdPropiedad })';return false;"><i class="fa fa-fw fa-chevron-circle-right"></i></button>
+                </td>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.Paterno
+                </td>
+                <td>
+                    @item.Materno
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Telefono
+                </td>
+                <td>
+                    @item.Celular
+                </td>
+                <td>
+                    @item.RazonSocial
+                </td>
+                <td>
+                    @item.RFC
+                </td>
+            </tr>
+        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Persona, "Persona", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Persona", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Persona, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </table>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PrecioFinalVenta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <label class="control-label">@Html.DisplayFor(model => model.PrecioFinalVenta, new { htmlAttributes = new { @class = "" } })</label>
-                @Html.ValidationMessageFor(model => model.PrecioFinalVenta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group" style="display:none;">
-            @Html.LabelFor(model => model.PrecioFinalVenta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <label class="control-label">@Html.EditorFor(model => model.PrecioFinalVenta, new { htmlAttributes = new { @class = "" } })</label>
-                @Html.ValidationMessageFor(model => model.PrecioFinalVenta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-4 col-md-offset-2">
-                @Html.LabelFor(model => model.Parcialidades, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.Parcialidades, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Parcialidades, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-2">pagos enganche</label>
-                <div class="col-md-4">
-                    @Html.TextBox("NumeroEnganche", null, htmlAttributes: new { @class = "form-control" })
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-4 col-md-offset-2">
-
-                @Html.LabelFor(model => model.PorcentajeEnganche, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.PorcentajeEnganche, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PorcentajeEnganche, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Enganche, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.Enganche, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.Enganche, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-4 col-md-offset-2">
-                @Html.LabelFor(model => model.PorcentajeMensualidades, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.PorcentajeMensualidades, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.PorcentajeMensualidades, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.PagoMensual, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.PagoMensual, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.PagoMensual, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        
-        
-        
-        
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Vendedor, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Vendedor, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Vendedor, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
-            </div>
-        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            @if (ViewBag.filtro)
+            {
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Filtro", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+            }
+            else
+            {
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+            }
+        </p>
     </div>
-}
-
-<div>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Cotizaciones")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
 </div>
 
-@section Scripts{
-
-    <script>
-        //$(document).ready(function () {
-
-        //    // $('input[name=Enganche]').prop('disabled', true);
-        //    // $('input[name=PagoMensual]').prop('disabled', true);
-        //    // $('input[name=PorcentajeMensualidades]').prop('disabled', true);
-        //    $('input[name=PorcentajeEnganche]').val('30');
-        //    $('input[name=Parcialidades]').val('24');
-        //    $('input[name=PorcentajeMensualidades]').val('70');
-
-
-        //    $("input[name=PorcentajeEnganche]").keyup(function () {
-        //        $('input[name=Enganche]').val((($(this).val()) * ($('input[name=PrecioFinalVenta]').val())) / 100);
-        //        $('input[name=PorcentajeMensualidades]').val(100 - ($(this).val()));
-        //        $('input[name=PagoMensual]').val(
-        //                                            ($('input[name=PrecioFinalVenta]').val() -
-        //                                            $('input[name=Enganche]').val()) /
-        //                                            $('input[name=Parcialidades]').val()
-        //                                            );
-        //    });
-
-        //    $("input[name=Parcialidades]").keyup(function () {
-        //        $('input[name=Enganche]').val((($("input[name=PorcentajeEnganche]").val()) * ($('input[name=PrecioFinalVenta]').val())) / 100);
-        //        $('input[name=PorcentajeMensualidades]').val(100 - ($("input[name=PorcentajeEnganche]").val()));
-        //        $('input[name=PagoMensual]').val(
-        //                                            ($('input[name=PrecioFinalVenta]').val() -
-        //                                            $('input[name=Enganche]').val()) /
-        //                                            $('input[name=Parcialidades]').val()
-        //                                            );
-        //    });
-
-
-        //});
-    </script>
-
-}

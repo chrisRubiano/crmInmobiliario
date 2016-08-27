@@ -564,6 +564,7 @@
     <Content Include="Views\Pagos\Details.cshtml" />
     <Content Include="Views\Pagos\Edit.cshtml" />
     <Content Include="Views\Pagos\Index.cshtml" />
+    <Content Include="Views\Cotizaciones\Pagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
