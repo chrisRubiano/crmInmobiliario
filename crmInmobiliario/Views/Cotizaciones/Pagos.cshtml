@@ -1,0 +1,186 @@
+﻿@model crmInmobiliario.Models.vmCotizacion
+
+@{
+    ViewBag.Title = "Pagos";
+}
+
+<h2>Pagos</h2>
+
+
+<div class="col-md-4 no-gutter">
+    <div class="panel">
+        <div class="panel-body alert alert-success">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.Codigo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.Codigo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.VentaPrecio)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.VentaPrecio)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.M2Interiores)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.M2Interiores)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.Terraza)
+                </dt>
+                <dd>
+                    @if (Model.propiedades.Terraza.HasValue)
+            {
+                if (Model.propiedades.Terraza == true)
+                {
+                            <i class="fa fa-check-circle text-success text-center"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times-circle text-danger text-center"></i>
+                        }
+                    }
+                    else
+                    {
+                        <i class="fa fa-times-circle text-danger text-center"></i>
+                    }
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.M2Terraza)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.M2Terraza)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.Bodega)
+                </dt>
+                <dd>
+                    @if (Model.propiedades.Bodega.HasValue)
+            {
+                if (Model.propiedades.Bodega == true)
+                {
+                            <i class="fa fa-check-circle text-success text-center"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times-circle text-danger text-center"></i>
+                        }
+                    }
+                    else
+                    {
+                        <i class="fa fa-times-circle text-danger text-center"></i>
+                    }
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.M2Bodega)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.M2Bodega)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.Estacionamiento)
+                </dt>
+                <dd>
+                    @if (Model.propiedades.Estacionamiento.HasValue)
+            {
+                if (Model.propiedades.Estacionamiento == true)
+                {
+                            <i class="fa fa-check-circle text-success text-center"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times-circle text-danger text-center"></i>
+                        }
+                    }
+                    else
+                    {
+                        <i class="fa fa-times-circle text-danger text-center"></i>
+                    }
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.Nivel)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.Nivel)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-body alert alert-info">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.Paterno)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.Paterno)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.Materno)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.Materno)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.Telefono)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.Telefono)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.Celular)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.Celular)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.personas.PersonasCategoria.Categoria)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.personas.PersonasCategoria.Categoria)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-12"></div>

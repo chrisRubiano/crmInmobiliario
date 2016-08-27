@@ -50,12 +50,20 @@ namespace crmInmobiliario.Controllers
             export.ToExcel(Response, model, "Cotizaciones");
         }
 
+        public ActionResult Pagos(int idPersona, int idPropiedad)
+        {
+            vmCotizacion vmcotizacion = new vmCotizacion();
+            vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
+            vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
+            return View(vmcotizacion);
+        }
+
         
 
         // GET: Cotizaciones/Create
-        public ActionResult Create(int? idPropiedad)
+        public ActionResult Create(int? idPropiedad, bool? filtro, string nombre, string categoria)
         {
-            vmCotizacion = new vmCotizacion();
+            vmCotizacion vmcotizacion = new vmCotizacion();
             Cotizaciones cotizacion = new Cotizaciones();
             if (idPropiedad.HasValue)
             {
@@ -63,12 +71,53 @@ namespace crmInmobiliario.Controllers
                 cotizacion.Propiedad = idPropiedad.Value;
                 cotizacion.PrecioFinalVenta = propiedad.VentaPrecio;
                 ViewBag.codigo = propiedad.Codigo;
+                vmcotizacion.propiedades = propiedad;
             }
 
-            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
-            //ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            return View(vmCotizacion);
+            if (!filtro.HasValue)
+            {
+                ViewBag.filtro = false;
+            }
+
+            ViewBag.filtro = filtro;
+            vmcotizacion.cotizaciones = cotizacion;
+
+            /*        Personas       */
+            var nombreCompleto = new List<string>();
+            var nombreQry = from d in db.Personas
+                            orderby d.Paterno
+                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
+            nombreCompleto.AddRange(nombreQry);
+            ViewBag.nombre = new SelectList(nombreCompleto);
+
+
+            var categorias = new List<string>();
+            var categoriaQry = from d in db.PersonasCategoria
+                               orderby d.Categoria
+                               select d.Categoria.ToString();
+
+            categorias.AddRange(categoriaQry.Distinct());
+            ViewBag.categoria = new SelectList(categorias);
+
+            var personas = from p in db.Personas
+                           select p;
+
+            if (!string.IsNullOrEmpty(categoria))
+            {
+                personas = personas.Where(s => s.PersonasCategoria.Categoria.ToString().Contains(categoria));
+            }
+
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                personas = from p in db.Personas select p;
+                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
+            }
+
+            ViewBag.personas = personas;
+            /*      Personas           */
+
+            //ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
+            return View(vmcotizacion);
         }
 
         // POST: Cotizaciones/Create
