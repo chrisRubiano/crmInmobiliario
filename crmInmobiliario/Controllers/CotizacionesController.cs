@@ -58,7 +58,15 @@ namespace crmInmobiliario.Controllers
             return View(vmcotizacion);
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Pagos(vmCotizacion vmcotizacion)
+        {
+
+            return View(vmcotizacion);
+        }
+
+
 
         // GET: Cotizaciones/Create
         public ActionResult Create(int? idPropiedad, bool? filtro, string nombre, string categoria)

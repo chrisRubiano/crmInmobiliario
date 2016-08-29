@@ -10,8 +10,12 @@
 }
 
 .no-gutter > [class*='col-'] {
-    padding-right:0;
-    padding-left:0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.pb-15 {
+    padding-bottom: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -32,52 +36,52 @@ table {
     margin-top: 20px;
 }
 
-table.floatThead-table {
-    border-top: none;
-    border-bottom: none;
-    background-color: #FFF;
-}
+    table.floatThead-table {
+        border-top: none;
+        border-bottom: none;
+        background-color: #FFF;
+    }
 
 .btn-tblsolc {
     font-size: 12px;
     margin: 2px auto;
     max-width: 36px;
     max-height: 24px;
-    padding-top: 4px!important;
+    padding-top: 4px !important;
     padding: 8px;
 }
 
-.form-group-sm form-control{
+.form-group-sm form-control {
     max-width: auto;
 }
 
-.nota{
+.nota {
     min-width: 40%;
 }
 
-.logo{
+.logo {
     max-height: 30px;
 }
 
-.inline{
-    display:inline;
+.inline {
+    display: inline;
 }
 
-.navbar-right{
+.navbar-right {
     padding-right: 10px;
 }
 
-.uppercase{
+.uppercase {
     text-transform: uppercase;
 }
 
-.groupform{
+.groupform {
     margin-bottom: 15px;
 }
 
-.panel{
+.panel {
     padding: 15px;
-    background-color: #fafbff; 
+    background-color: #fafbff;
 }
 
 /*Ajustes de iconos font awesome*/
@@ -88,7 +92,7 @@ button.navbar-toggle {
     font-size: 1.8em;
 }
 
-.btn-lista{
+.btn-lista {
     max-width: 45px;
 }
 
@@ -98,14 +102,17 @@ button.navbar-toggle {
     .navbar-collapse.collapse {
         display: none !important;
     }
-    .navbar-collapse.collapse.in {
+
+        .navbar-collapse.collapse.in {
+            display: block !important;
+        }
+
+    .navbar-header .collapse, .navbar-toggle {
         display: block !important;
     }
-    .navbar-header .collapse, .navbar-toggle {
-        display:block !important;
-    }
+
     .navbar-header {
-        float:none;
+        float: none;
     }
 }
 
@@ -126,8 +133,8 @@ button.navbar-toggle {
     background-color: #3b5998;
 }
 
-.fa-google-plus, .fa-facebook-square{
-    vertical-align:central;
+.fa-google-plus, .fa-facebook-square {
+    vertical-align: central;
     font-size: 18px;
 }
 
@@ -137,7 +144,7 @@ button.navbar-toggle {
     width: 100%;
 }
 
-.chosen-select,.chosen-container-single .chosen-single {
+.chosen-select, .chosen-container-single .chosen-single {
     background-color: #fff;
     height: 34px;
     padding: 6px 12px;
