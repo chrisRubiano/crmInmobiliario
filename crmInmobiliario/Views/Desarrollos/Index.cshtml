@@ -28,6 +28,12 @@
         <th>
             @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ERP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEntrega)
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -64,6 +70,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CajonesEstacionamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ERP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEntrega)
             </td>
 
         </tr>
