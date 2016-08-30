@@ -87,7 +87,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Bodega, true, new { @id = "bodegaT" })
-                    No @Html.RadioButtonFor(model => model.Bodega, false, new { @checked = "checked", @id = "bodegaF" })
+                    No @Html.RadioButtonFor(model => model.Bodega, false, new { @id = "bodegaF" })
                     @Html.ValidationMessageFor(model => model.Bodega, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -121,7 +121,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Terraza, true, new { @id = "terrazaT" })
-                    No @Html.RadioButtonFor(model => model.Terraza, false, new { @checked = "checked", @id = "terrazaF" })
+                    No @Html.RadioButtonFor(model => model.Terraza, false, new { @id = "terrazaF" })
                     @Html.ValidationMessageFor(model => model.Terraza, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -155,7 +155,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     Si @Html.RadioButtonFor(model => model.Estacionamiento, true, new { @id = "estacionamientoT" })
-                    No @Html.RadioButtonFor(model => model.Estacionamiento, false, new { @checked = "checked", @id = "estacionamientoF" })
+                    No @Html.RadioButtonFor(model => model.Estacionamiento, false, new { @id = "estacionamientoF" })
                     @Html.ValidationMessageFor(model => model.Estacionamiento, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -236,7 +236,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Registrar</button>
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>

@@ -195,7 +195,7 @@
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.PorcentajeEnganche, htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        @Html.EditorFor(model => model.cotizaciones.PorcentajeEnganche, new { htmlAttributes = new { @class = "form-control", @id="porcentajeEnganche" } })
+                        @Html.EditorFor(model => model.cotizaciones.PorcentajeEnganche, new { htmlAttributes = new { @class = "form-control", @id = "porcentajeEnganche" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.PorcentajeEnganche, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.Enganche, htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        @Html.EditorFor(model => model.cotizaciones.Enganche, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id="enganche" } })
+                        @Html.EditorFor(model => model.cotizaciones.Enganche, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "enganche" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.Enganche, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -211,21 +211,21 @@
                 <div class="form-group col-md-4 pb-15">
                     <label class="control-label">Pagos de enganche</label>
                     <div class="">
-                        @Html.TextBox("pagosEnganche", null, htmlAttributes: new { @class = "form-control", @id="pagosEnganche" })
+                        @Html.TextBox("pagosEnganche", null, htmlAttributes: new { @class = "form-control", @id = "pagosEnganche" })
                     </div>
                 </div>
 
                 <div class="form-group" style="display:none;">
                     <label class="control-label">Precio Final</label>
                     <div class="">
-                        @Html.TextBox("pagosEnganche", Model.propiedades.VentaPrecio.Value, htmlAttributes: new { @class = "form-control", @id = "precioFinalVenta" })
+                        @Html.TextBox("precioFinalVenta", Model.propiedades.VentaPrecio.Value, htmlAttributes: new { @class = "form-control", @id = "precioFinalVenta" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.PorcentajeMensualidades, htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        @Html.EditorFor(model => model.cotizaciones.PorcentajeMensualidades, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id="porcentajeMensualidades" } })
+                        @Html.EditorFor(model => model.cotizaciones.PorcentajeMensualidades, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "porcentajeMensualidades" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.PorcentajeMensualidades, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.PagoMensual, htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        @Html.EditorFor(model => model.cotizaciones.PagoMensual, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id="pagoMensual" } })
+                        @Html.EditorFor(model => model.cotizaciones.PagoMensual, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "pagoMensual" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.PagoMensual, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.Parcialidades, htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        @Html.EditorFor(model => model.cotizaciones.Parcialidades, new { htmlAttributes = new { @class = "form-control", @id="parcialidades" } })
+                        @Html.EditorFor(model => model.cotizaciones.Parcialidades, new { htmlAttributes = new { @class = "form-control", @id = "parcialidades" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.Parcialidades, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -249,18 +249,18 @@
                 <div class="form-group col-md-offset-4 col-md-4 pb-15">
                     <label class="control-label">Pago Inicial</label>
                     <div class="">
-                        @Html.TextBox("fechaInicial", null, htmlAttributes: new { @class = "form-control date", @type="date" })
+                        @Html.TextBox("fechaInicial", null, htmlAttributes: new { @class = "form-control date", @type = "date" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-4 pb-15">
                     <label class="control-label">Pagos Anuales</label>
                     <div class="">
-                        @Html.TextBox("numPagosAnuales", null, htmlAttributes: new { @class = "form-control", @style = "max-width: 60px;", @id="numPagosAnuales" })
-                        @Html.TextBox("pagosAnuales", null, htmlAttributes: new { @class = "form-control", @id="pagosAnuales" })
+                        @Html.TextBox("numPagosAnuales", null, htmlAttributes: new { @class = "form-control", @style = "max-width: 60px;", @id = "numPagosAnuales" })
+                        @Html.TextBox("pagosAnuales", null, htmlAttributes: new { @class = "form-control", @id = "pagosAnuales" })
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 pull-right">
                     <button class="btn btn-success" type="submit"><i class="fa fa-table"></i> Generar tabla de Pagos</button>
                 </div>
@@ -272,7 +272,7 @@
 <div class="col-md-12"></div>
 
 @section Scripts{
-<script>
+    <script>
         $(document).ready(function () {
 
             // $('name=Enganche]').prop('disabled', true);
@@ -281,6 +281,8 @@
             $('#pagosEnganche').val('1');
             $('#porcentajeEnganche').val('30');
             $('#parcialidades').val('24');
+            $('#numPagosAnuales').val('0');
+            $('#pagosAnuales').val('0');
             $('#porcentajeMensualidades').val(100 - $('#porcentajeEnganche').val());
 
 
@@ -305,8 +307,8 @@
                 //$('#porcentajeMensualidades').val(100 - ($("#porcentajeEnganche").val()));
                 $('#pagoMensual').val(
                                                     ($('#precioFinalVenta').val() -
-                                                    $('#enganche').val() - 
-                                                    ($('#pagosAnuales').val()*$('#numPagosAnuales').val())
+                                                    $('#enganche').val() -
+                                                    ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
                                                     ) /
                                                     $('#parcialidades').val()
                                                     );
@@ -334,5 +336,5 @@
 
 
         });
-</script>
+    </script>
 }
