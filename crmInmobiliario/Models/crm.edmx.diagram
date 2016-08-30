@@ -94,6 +94,8 @@
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasCategorias" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasEstatus" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.DocumentosCategoria" Width="2.25" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

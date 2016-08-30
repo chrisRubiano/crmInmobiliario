@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CotizacionesController.cs" />
     <Compile Include="Controllers\DesarrollosController.cs" />
+    <Compile Include="Controllers\DocumentosCategoriasController.cs" />
     <Compile Include="Controllers\DomiciliosController.cs" />
     <Compile Include="Controllers\EdificiosController.cs" />
     <Compile Include="Controllers\EdificiosDetallesController.cs" />
@@ -252,6 +253,9 @@
     </Compile>
     <Compile Include="Models\DesarrollosMeta.cs" />
     <Compile Include="Models\Documentos.cs">
+      <DependentUpon>crm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentosCategoria.cs">
       <DependentUpon>crm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Domicilios.cs">
@@ -565,6 +569,11 @@
     <Content Include="Views\Pagos\Edit.cshtml" />
     <Content Include="Views\Pagos\Index.cshtml" />
     <Content Include="Views\Cotizaciones\Pagos.cshtml" />
+    <Content Include="Views\DocumentosCategorias\Create.cshtml" />
+    <Content Include="Views\DocumentosCategorias\Delete.cshtml" />
+    <Content Include="Views\DocumentosCategorias\Details.cshtml" />
+    <Content Include="Views\DocumentosCategorias\Edit.cshtml" />
+    <Content Include="Views\DocumentosCategorias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

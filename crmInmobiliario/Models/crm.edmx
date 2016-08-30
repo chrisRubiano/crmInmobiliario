@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -140,6 +140,7 @@
             <PropertyRef Name="IdDocumento" />
           </Key>
           <Property Name="IdDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categoria" Type="int" />
           <Property Name="Propiedad" Type="int" />
           <Property Name="Persona" Type="int" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="100" />
@@ -150,6 +151,13 @@
           <Property Name="Observaciones" Type="varchar(max)" />
           <Property Name="FechaRegistro" Type="datetime" />
           <Property Name="Usuario" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="DocumentosCategoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Domicilios">
           <Key>
@@ -607,6 +615,18 @@
             </Principal>
             <Dependent Role="AspNetUserRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documentos_DocumentosCategoria">
+          <End Role="DocumentosCategoria" Type="Self.DocumentosCategoria" Multiplicity="0..1" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentosCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="Categoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1080,6 +1100,7 @@
           <EntitySet Name="Cotizaciones" EntityType="Self.Cotizaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Desarrollos" EntityType="Self.Desarrollos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Documentos" EntityType="Self.Documentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentosCategoria" EntityType="Self.DocumentosCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Domicilios" EntityType="Self.Domicilios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DomiciliosCategoria" EntityType="Self.DomiciliosCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DomiciliosTipo" EntityType="Self.DomiciliosTipo" Schema="dbo" store:Type="Tables" />
@@ -1143,6 +1164,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documentos_DocumentosCategoria" Association="Self.FK_Documentos_DocumentosCategoria">
+            <End Role="DocumentosCategoria" EntitySet="DocumentosCategoria" />
+            <End Role="Documentos" EntitySet="Documentos" />
           </AssociationSet>
           <AssociationSet Name="FK_Documentos_Personas" Association="Self.FK_Documentos_Personas">
             <End Role="Personas" EntitySet="Personas" />
@@ -1297,8 +1322,7 @@
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1456,6 +1480,8 @@
           <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Documentos_Personas" FromRole="Documentos" ToRole="Personas" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Documentos_Propiedades" FromRole="Documentos" ToRole="Propiedades" />
+          <Property Name="Categoria" Type="Int32" />
+          <NavigationProperty Name="DocumentosCategoria" Relationship="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria" FromRole="Documentos" ToRole="DocumentosCategoria" />
         </EntityType>
         <EntityType Name="Domicilios">
           <Key>
@@ -2646,7 +2672,32 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="DocumentosCategoria" EntityType="CRMINMOBILIARIOModel.DocumentosCategoria" />
+          <AssociationSet Name="FK_Documentos_DocumentosCategoria" Association="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria">
+            <End Role="DocumentosCategoria" EntitySet="DocumentosCategoria" />
+            <End Role="Documentos" EntitySet="Documentos" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DocumentosCategoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Documentos" Relationship="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria" FromRole="DocumentosCategoria" ToRole="Documentos" />
+        </EntityType>
+        <Association Name="FK_Documentos_DocumentosCategoria">
+          <End Type="CRMINMOBILIARIOModel.DocumentosCategoria" Role="DocumentosCategoria" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Documentos" Role="Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentosCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2786,6 +2837,7 @@
           <EntitySetMapping Name="Documentos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Documentos">
               <MappingFragment StoreEntitySet="Documentos">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
                 <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
                 <ScalarProperty Name="Persona" ColumnName="Persona" />
@@ -3195,6 +3247,14 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="DocumentosCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DocumentosCategoria">
+              <MappingFragment StoreEntitySet="DocumentosCategoria">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

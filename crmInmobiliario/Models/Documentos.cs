@@ -25,8 +25,10 @@ namespace crmInmobiliario.Models
         public string Observaciones { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string Usuario { get; set; }
+        public Nullable<int> Categoria { get; set; }
     
         public virtual Personas Personas { get; set; }
         public virtual Propiedades Propiedades { get; set; }
+        public virtual DocumentosCategoria DocumentosCategoria { get; set; }
     }
 }
