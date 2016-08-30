@@ -60,11 +60,8 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad)
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, int pagosEnganche, int numPagosAnuales, int pagosAnuales, string fechaInicial  )
         {
-
-
-
             //vmCotizacion vmcotizacion = new vmCotizacion();
             vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
             vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
