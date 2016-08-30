@@ -11,6 +11,7 @@ using crmInmobiliario.Utilidades;
 
 namespace crmInmobiliario.Controllers
 {
+    [Authorize]
     public class DocumentosCategoriasController : Controller
     {
         private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
