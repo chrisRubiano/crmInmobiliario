@@ -60,9 +60,15 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion)
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad)
         {
 
+
+
+            //vmCotizacion vmcotizacion = new vmCotizacion();
+            vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
+            vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
+            return View(vmcotizacion);
             return View(vmcotizacion);
         }
 
@@ -156,7 +162,7 @@ namespace crmInmobiliario.Controllers
             }
             catch (DataException)
             {
-                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los cambios persisten favor de contactarse con un adminsitrador");
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
             }
 
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", cotizaciones.Persona);
