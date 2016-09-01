@@ -4,41 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Configuraciones de Edificios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "EdificiosDetalles")'"><i class="fa fa-user-plus"></i> Registrar Edificio</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "EdificiosDetalles")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
 </p>
 <table class="table">
     <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edificios.Edificio)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nivel)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.M2)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Edificios.Edificio)
-        </th>
-        <th></th>
+        
+        
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td class="">
+            <div class="list-inline">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "EdificiosDetalles", new { id = item.IdEdificioDetalle })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "EdificiosDetalles", new { id = item.IdEdificioDetalle })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "EdificiosDetalles", new { id = item.IdEdificioDetalle })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edificios.Edificio)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nivel)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.M2)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Edificios.Edificio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEdificioDetalle }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEdificioDetalle }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEdificioDetalle })
-        </td>
+        
+        
     </tr>
 }
 

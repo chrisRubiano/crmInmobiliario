@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Datos de Configuración de Edificio</h2>
 
 <div>
-    <h4>EdificiosDetalle</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,7 +36,11 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEdificioDetalle }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "EdificiosDetalles")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "EdificiosDetalles", new { id = Model.IdEdificioDetalle })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+        </p>
+    </div>
+</div>
