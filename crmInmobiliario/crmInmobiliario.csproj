@@ -160,6 +160,8 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Reporting, Version=8.2.14.1027, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=8.2.14.1027, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -364,6 +366,13 @@
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\vmCotizacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\RptCotizacion.aspx.cs">
+      <DependentUpon>RptCotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\RptCotizacion.aspx.designer.cs">
+      <DependentUpon>RptCotizacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utilidades\Export.cs" />
   </ItemGroup>
@@ -401,6 +410,7 @@
       <DependentUpon>crm.edmx</DependentUpon>
       <LastGenOutput>crm.cs</LastGenOutput>
     </Content>
+    <Content Include="Reportes\RptCotizacion.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
@@ -584,6 +594,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRMReportes\CRMReportes.csproj">
+      <Project>{bfb2bbae-69d5-4f84-9f7d-3c6525ab2775}</Project>
+      <Name>CRMReportes</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
