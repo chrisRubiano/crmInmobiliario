@@ -129,6 +129,35 @@ namespace crmInmobiliario.Controllers
             return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
+        public ActionResult Asignar(int? id)
+        {
+            Personas persona = db.Personas.Find(id);
+            ViewBag.Usuario = new SelectList(db.AspNetUsers, "Id", "UserName", persona.Usuario);
+            //ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
+
+            return View(persona);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Asignar(int? id, string Usuario)
+        {
+            try
+            {
+                Personas persona = new Personas();
+                persona = db.Personas.Find(id);
+                persona.Usuario = Usuario;
+                db.Entry(persona).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+            return RedirectToAction("Index", "Personas");
+        }
+
+
         // GET: Personas/Details/5
         public ActionResult Details(int? id, int? categoriap)
         {

@@ -595,6 +595,7 @@
     <Content Include="Views\Amortizaciones\Edit.cshtml" />
     <Content Include="Views\Amortizaciones\Index.cshtml" />
     <Content Include="Views\Amortizaciones\Filtro.cshtml" />
+    <Content Include="Views\Personas\Asignar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
