@@ -277,6 +277,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
             ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
             ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
+            ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus", propiedades.Estatus);
             ViewBag.IdPropiedad = propiedades.IdPropiedad.ToString();
             return View(propiedades);
         }
@@ -286,7 +287,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPropiedad,Consecutivo,Activa,PrecioEstacionamiento,Bodega,Terraza,Desarrollo,Edificio,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,PrecioM2Interiores,M2Terraza,PrecioM2Terraza,M2Bodega,PrecioM2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,Titulo,Categoria")] Propiedades propiedades)
+        public ActionResult Edit([Bind(Include = "IdPropiedad,Estatus,Consecutivo,Activa,PrecioEstacionamiento,Bodega,Terraza,Desarrollo,Edificio,TipoPropiedad,TipoOperacion,VentaPrecio,RentaPrecio,RentaTarifaDiaria,RentaTarifaSemanal,RentaTarifaMensual,RentaEstadiaMinima,Titulo,Descripcion,Moneda,Recamaras,PreparacionBanio,Banios,MedioBanios,Construccion,Terreno,LargoTerreno,FrenteTerreno,Acabados,AcabadosEspecifique,Antiguedad,MantenimientoMensual,Codigo,Observaciones,Usuario,FechaRegistro,UsuarioUA,FechaUA,Estacionamiento,CajonesEstacionamiento,M2Interiores,PrecioM2Interiores,M2Terraza,PrecioM2Terraza,M2Bodega,PrecioM2Bodega,FrenteLocal,LargoLocal,Nivel,Niveles,Titulo,Categoria")] Propiedades propiedades)
         {
             try
             {
@@ -308,6 +309,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
             ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
             ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
+            ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus", propiedades.Estatus);
             ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
             return View(propiedades);
         }
