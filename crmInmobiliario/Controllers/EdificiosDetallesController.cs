@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using crmInmobiliario.Models;
+using crmInmobiliario.Utilidades;
 
 namespace crmInmobiliario.Controllers
 {
@@ -18,7 +19,7 @@ namespace crmInmobiliario.Controllers
         // GET: EdificiosDetalles
         public ActionResult Index()
         {
-            var edificiosDetalle = db.EdificiosDetalle.Include(e => e.Edificios).OrderByDescending(e => e.IdEdificioDetalle);
+            var edificiosDetalle = db.EdificiosDetalle.Include(e => e.Edificios);
             return View(edificiosDetalle.ToList());
         }
 
@@ -38,19 +39,10 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: EdificiosDetalles/Create
-        public ActionResult Create(int? idEdificio)
+        public ActionResult Create()
         {
-
-            var edificiosList = new List<string>();
-            var detalleEdificioQry = from d in db.Edificios where d.IdEdificio == idEdificio select d.Edificio;
-            edificiosList.AddRange(detalleEdificioQry);
-            ViewBag.Edificio = edificiosList[0];
-            EdificiosDetalle detalles = new EdificiosDetalle();
-            ViewBag.idEdificio = idEdificio;
-            return View(detalles);
-
-            //ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
-            //return View();
+            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
+            return View();
         }
 
         // POST: EdificiosDetalles/Create
@@ -58,45 +50,30 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEdificioDetalle,Edificio,Nivel,M2")] EdificiosDetalle edificiosDetalle, int idEdificio)
+        public ActionResult Create([Bind(Include = "IdEdificioDetalle,Edificio,Nivel,M2")] EdificiosDetalle edificiosDetalle)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.EdificiosDetalle.Add(edificiosDetalle);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-
-            //ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
-            //return View(edificiosDetalle);
-
             if (ModelState.IsValid)
             {
-                edificiosDetalle.Edificio = idEdificio;
                 db.EdificiosDetalle.Add(edificiosDetalle);
                 db.SaveChanges();
-                
-                return Redirect("/Edificios/Details/" + idEdificio.ToString());
+                return RedirectToAction("Index");
             }
 
+            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
             return View(edificiosDetalle);
+        }
 
+        public void Excel()
+        {
+            var model = db.Edificios.ToList();
+
+            Export export = new Export();
+            export.ToExcel(Response, model, "ConfiguracionesEdificios");
         }
 
         // GET: EdificiosDetalles/Edit/5
-        public ActionResult Edit(int? id, int idEdificio)
+        public ActionResult Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
-            //if (edificiosDetalle == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
-            //return View(edificiosDetalle);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -106,9 +83,8 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Edificio = idEdificio;
+            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
             return View(edificiosDetalle);
-
         }
 
         // POST: EdificiosDetalles/Edit/5
@@ -116,25 +92,15 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEdificioDetalle,Edificio,Nivel,M2")] EdificiosDetalle edificiosDetalle, int idEdificio)
+        public ActionResult Edit([Bind(Include = "IdEdificioDetalle,Edificio,Nivel,M2")] EdificiosDetalle edificiosDetalle)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(edificiosDetalle).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
-            //return View(edificiosDetalle);
-
             if (ModelState.IsValid)
             {
-                edificiosDetalle.Edificio = idEdificio;
                 db.Entry(edificiosDetalle).State = EntityState.Modified;
                 db.SaveChanges();
-                return Redirect("/Edificios/Details/" + idEdificio.ToString());
+                return RedirectToAction("Index");
             }
-            ViewBag.Edificio = idEdificio;
+            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
             return View(edificiosDetalle);
         }
 
@@ -158,17 +124,10 @@ namespace crmInmobiliario.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
-            //db.EdificiosDetalle.Remove(edificiosDetalle);
-            //db.SaveChanges();
-            //return RedirectToAction("Index");
-
             EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
-            var edificio = edificiosDetalle.Edificio;
             db.EdificiosDetalle.Remove(edificiosDetalle);
             db.SaveChanges();
-            return Redirect("/Edificios/Details/" + edificio.ToString());
-
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
