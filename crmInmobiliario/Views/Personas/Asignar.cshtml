@@ -1,0 +1,125 @@
+﻿@model crmInmobiliario.Models.Personas
+
+@{
+    ViewBag.Title = "Asignar Vendedor";
+}
+
+<h2>Asignar Vendedor</h2>
+
+<div class="col-md-6">
+    <h4><i class="fa fa-user"></i> Persona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Celular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediosContacto.MedioContacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediosContacto.MedioContacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonasGenero.Genero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonasTipo.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonasTipo.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonasCategoria.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonasCategoria.Categoria)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Usuario, "Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Usuario", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                        @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="col-md-offset-2">
+                        <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Guardar</button>
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
