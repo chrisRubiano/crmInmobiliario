@@ -1,4 +1,4 @@
-﻿@model crmInmobiliario.Models.EdificioYDetalle
+﻿@model crmInmobiliario.Models.Edificios
 
 @{
     ViewBag.Title = "Details";
@@ -11,27 +11,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.desarrollos.Desarrollo)
+            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.desarrollos.Desarrollo)
+            @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.edificios.Edificio)
+            @Html.DisplayNameFor(model => model.Edificio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.edificios.Edificio)
+            @Html.DisplayFor(model => model.Edificio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.edificios.Niveles)
+            @Html.DisplayNameFor(model => model.Niveles)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.edificios.Niveles)
+            @Html.DisplayFor(model => model.Niveles)
         </dd>
 
 
@@ -43,7 +43,7 @@
     <div class="col-md-12">
         <p>
             <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Edificios")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
-            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Edificios", new { id = Model.edificios.IdEdificio })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Edit", "Edificios", new { id = Model.IdEdificio })';return false;"><i class="fa fa-pencil"></i> Editar</button>
         </p>
     </div>
 </div>
