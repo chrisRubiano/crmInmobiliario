@@ -60,12 +60,98 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, int pagosEnganche, int numPagosAnuales, int pagosAnuales, string fechaInicial  )
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, int pagosEnganche, int numPagosAnuales, int pagosAnuales, string fechaInicial)
         {
             //vmCotizacion vmcotizacion = new vmCotizacion();
             vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
             vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
-            return View(vmcotizacion);
+            vmcotizacion.cotizaciones.Persona = vmcotizacion.personas.IdPersona;
+            vmcotizacion.cotizaciones.Propiedad = vmcotizacion.propiedades.IdPropiedad;
+
+            try
+            {
+                Cotizaciones cotizaciones = new Cotizaciones();
+                vmcotizacion.cotizaciones.Vendedor = User.Identity.GetUserId().ToString();
+                vmcotizacion.cotizaciones.FechaCotizacion = DateTime.Now;
+
+                cotizaciones = vmcotizacion.cotizaciones;
+                db.Cotizaciones.Add(cotizaciones);
+                db.SaveChanges();
+
+
+                /*---- Amortizaciones ----*/
+                decimal enganche = vmcotizacion.cotizaciones.Enganche.Value;
+                decimal pagoMensual = vmcotizacion.cotizaciones.PagoMensual.Value;
+                int pagosMensuales = vmcotizacion.cotizaciones.Parcialidades.Value;
+
+                DateTime pago; //cambia para cada mes
+                DateTime.TryParse(fechaInicial, out pago);
+
+
+
+                //Enganches
+                for (int i = 0; i < pagosEnganche; i++)
+                {
+                    Amortizaciones amortizacion = new Amortizaciones();
+                    amortizacion.Cotizacion = cotizaciones.IdCotizacion;
+                    amortizacion.Persona = cotizaciones.Persona;
+                    amortizacion.Propiedad = cotizaciones.Propiedad;
+                    amortizacion.Importe = enganche / pagosEnganche;
+                    amortizacion.TipoPago = 1;
+                    amortizacion.FechaProgramado = pago;
+
+
+                    db.Amortizaciones.Add(amortizacion);
+                    //db.SaveChanges();
+                    pago.AddMonths(1);
+                }
+
+                //Parcialidades
+                for (int i = 0; i < pagosMensuales; i++)
+                {
+                    Amortizaciones amortizacion = new Amortizaciones();
+                    amortizacion.Cotizacion = cotizaciones.IdCotizacion;
+                    amortizacion.Persona = cotizaciones.Persona;
+                    amortizacion.Propiedad = cotizaciones.Propiedad;
+                    amortizacion.Importe = pagoMensual;
+                    amortizacion.TipoPago = 2;
+                    amortizacion.FechaProgramado = pago;
+
+                    db.Amortizaciones.Add(amortizacion);
+
+                    //Anualidades
+                    if (pago.Month == 12 && numPagosAnuales != 0)
+                    {
+                        Amortizaciones amortizacionAnual = new Amortizaciones();
+                        amortizacion.Cotizacion = cotizaciones.IdCotizacion;
+                        amortizacion.Persona = cotizaciones.Persona;
+                        amortizacion.Propiedad = cotizaciones.Propiedad;
+                        amortizacionAnual.Importe = pagosAnuales;
+                        amortizacionAnual.TipoPago = 3;
+                        amortizacionAnual.FechaProgramado = pago;
+
+                        db.Amortizaciones.Add(amortizacionAnual);
+                        numPagosAnuales--;
+                    }
+                    //db.SaveChanges();
+                    pago.AddMonths(1);
+                }
+
+                /*--- Amortizaciones ----*/
+
+
+
+
+
+
+                return RedirectToAction("Index");
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
+            }
+
+
             return View(vmcotizacion);
         }
 
@@ -145,7 +231,7 @@ namespace crmInmobiliario.Controllers
 
                     cotizaciones.Enganche = cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeEnganche.Value / 100);
                     cotizaciones.PagoMensual = (cotizaciones.PrecioFinalVenta.Value * (cotizaciones.PorcentajeMensualidades / 100)) / cotizaciones.Parcialidades.Value;
-                    
+
                     if (idPropiedad.HasValue)
                     {
                         cotizaciones.Propiedad = idPropiedad.Value;
