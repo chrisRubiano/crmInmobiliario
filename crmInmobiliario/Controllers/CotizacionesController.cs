@@ -159,7 +159,8 @@ namespace crmInmobiliario.Controllers
 
                 //db.SaveChanges();
 
-                return RedirectToAction("Filtro", "Amortizaciones", new {cotizacion = cotizaciones.IdCotizacion });
+                //return RedirectToAction("Filtro", "Amortizaciones", new {cotizacion = cotizaciones.IdCotizacion });
+                return Redirect("http://184.107.136.186/crminmobiliario/Reportes/RptCotizacion.aspx?IdCotizacion=" + cotizaciones.IdCotizacion);
             }
             catch (DataException)
             {
