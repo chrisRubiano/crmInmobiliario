@@ -237,8 +237,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Activa, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Activa, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Activa, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    Si @Html.RadioButtonFor(model => model.Activa, true)
+                    No @Html.RadioButtonFor(model => model.Activa, false)
+                    @Html.ValidationMessageFor(model => model.Activa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estatus, "Estatus", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Estatus", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Estatus, "", new { @class = "text-danger" })
             </div>
         </div>
 

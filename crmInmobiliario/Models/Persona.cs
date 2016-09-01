@@ -43,9 +43,6 @@ namespace crmInmobiliario.Models
         [Display(Name = "Interés")]
         public Nullable<int> Interes { get; set; }
 
-        [Display(Name = "Categoría de interés")]
-        public Nullable<int> CategoriaInteres { get; set; }
-
         public string nombreCompleto()
         {
             return Nombre + " " + Paterno + " " + Materno;

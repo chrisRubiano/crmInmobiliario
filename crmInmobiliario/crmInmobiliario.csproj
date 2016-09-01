@@ -208,6 +208,7 @@
     <Compile Include="Models\Amortizaciones.cs">
       <DependentUpon>crmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AmortizacionMeta.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>crmModel.tt</DependentUpon>
     </Compile>
