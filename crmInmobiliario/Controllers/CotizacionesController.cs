@@ -103,7 +103,7 @@ namespace crmInmobiliario.Controllers
 
 
                     db.Amortizaciones.Add(amortizacion);
-                    //db.SaveChanges();
+                    db.SaveChanges();
                    pago = pago.AddMonths(1);
                 }
 
@@ -119,7 +119,7 @@ namespace crmInmobiliario.Controllers
                     amortizacion.FechaProgramado = pago;
 
                     db.Amortizaciones.Add(amortizacion);
-
+                    db.SaveChanges();
                     //Anualidades
                     if (pago.Month == 12 && numPagosAnuales != 0)
                     {
@@ -133,8 +133,8 @@ namespace crmInmobiliario.Controllers
 
                         db.Amortizaciones.Add(amortizacionAnual);
                         numPagosAnuales--;
+                        db.SaveChanges();
                     }
-                    //db.SaveChanges();
                    pago = pago.AddMonths(1);
                 }
 
@@ -149,15 +149,15 @@ namespace crmInmobiliario.Controllers
                         amortizacionAnual.Importe = pagosAnuales;
                         amortizacionAnual.TipoPago = 3;
                         amortizacionAnual.FechaProgramado = pago;
-
                         db.Amortizaciones.Add(amortizacionAnual);
+                        db.SaveChanges();
                     }
                     //numPagosAnuales--;
                 }
 
                 /*--- Amortizaciones ----*/
 
-                db.SaveChanges();
+                //db.SaveChanges();
 
                 return RedirectToAction("Filtro", "Amortizaciones", new {cotizacion = cotizaciones.IdCotizacion });
             }
