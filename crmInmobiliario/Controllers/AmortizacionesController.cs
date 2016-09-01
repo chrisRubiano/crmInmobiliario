@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using crmInmobiliario.Models;
+using System.Data.Entity.Core.Objects;
 
 namespace crmInmobiliario.Controllers
 {
@@ -42,45 +43,6 @@ namespace crmInmobiliario.Controllers
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             return View(amortizaciones.ToList());
         }
-
-        public ActionResult ConfPago(int? idAmortizacion)
-        {
-            if (idAmortizacion == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            vmCotizacion vmcotizacion = new vmCotizacion();
-            Amortizaciones amortizaciones = db.Amortizaciones.Find(idAmortizacion);
-            vmcotizacion.personas = db.Personas.Find(amortizaciones.Persona);
-            vmcotizacion.propiedades = db.Propiedades.Find(amortizaciones.Propiedad);
-            vmcotizacion.amortizaciones = amortizaciones;
-            if (amortizaciones == null)
-            {
-                return HttpNotFound();
-            }
-            return View(vmcotizacion);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ConfPago([Bind(Include = "EstaPagado")] Amortizaciones amortizacion ,int idAmortizacion)
-        {
-            try
-            {
-                amortizacion = db.Amortizaciones.Where(a => a.IdAmortizacion == idAmortizacion).FirstOrDefault();
-                db.Amortizaciones.Attach(amortizacion);
-                db.Entry(amortizacion).State = EntityState.Modified;
-                amortizacion.EstaPagado = true;
-                db.SaveChanges();
-                return RedirectToAction("Filtro", "Amortizaciones", new { cotizacion = amortizacion.Cotizacion.Value });
-            }
-            catch (Exception)
-            {
-                    
-            }
-            return RedirectToAction("Filtro", "Amortizaciones");
-        }
-
 
         // GET: Amortizaciones/Details/5
         public ActionResult Details(int? id)
