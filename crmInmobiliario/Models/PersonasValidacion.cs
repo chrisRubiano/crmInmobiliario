@@ -12,17 +12,14 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Amortizaciones
+    public partial class PersonasValidacion
     {
-        public int IdAmortizacion { get; set; }
-        public Nullable<int> TipoPago { get; set; }
+        public int IdValidacion { get; set; }
         public Nullable<int> Persona { get; set; }
-        public Nullable<int> Propiedad { get; set; }
-        public Nullable<int> Cotizacion { get; set; }
-        public Nullable<System.DateTime> FechaProgramado { get; set; }
-        public Nullable<decimal> Importe { get; set; }
-        public Nullable<bool> EstaPagado { get; set; }
+        public Nullable<int> CategoriaDocumento { get; set; }
+        public Nullable<bool> Validacion { get; set; }
     
-        public virtual TiposPago TiposPago { get; set; }
+        public virtual DocumentosCategoria DocumentosCategoria { get; set; }
+        public virtual Personas Personas { get; set; }
     }
 }

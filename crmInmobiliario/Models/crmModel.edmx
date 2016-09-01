@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -331,6 +331,7 @@
           <Property Name="FechaRegistro" Type="datetime" />
           <Property Name="UsuarioUA" Type="nvarchar" MaxLength="128" />
           <Property Name="FechaUA" Type="datetime" />
+          <Property Name="Validado" Type="bit" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -361,6 +362,15 @@
           <Property Name="IdTipoPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="varchar" MaxLength="50" />
           <Property Name="Descripcion" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PersonasValidacion">
+          <Key>
+            <PropertyRef Name="IdValidacion" />
+          </Key>
+          <Property Name="IdValidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Persona" Type="int" />
+          <Property Name="CategoriaDocumento" Type="int" />
+          <Property Name="Validacion" Type="bit" />
         </EntityType>
         <EntityType Name="Propiedades">
           <Key>
@@ -514,6 +524,18 @@
           <Property Name="IdTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Amortizaciones_TiposPago">
+          <End Role="TiposPago" Type="Self.TiposPago" Multiplicity="0..1" />
+          <End Role="Amortizaciones" Type="Self.Amortizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposPago">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Amortizaciones">
+              <PropertyRef Name="TipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CaracteristicasPropiedades_Propiedades">
           <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="0..1" />
           <End Role="CaracteristicasPropiedades" Type="Self.CaracteristicasPropiedades" Multiplicity="*" />
@@ -786,18 +808,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pagos_Amortizaciones">
-          <End Role="Amortizaciones" Type="Self.Amortizaciones" Multiplicity="0..1" />
-          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Amortizaciones">
-              <PropertyRef Name="IdAmortizacion" />
-            </Principal>
-            <Dependent Role="Pagos">
-              <PropertyRef Name="Amortizacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Pagos_Cotizaciones">
           <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="0..1" />
           <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
@@ -939,6 +949,30 @@
             </Principal>
             <Dependent Role="Personas">
               <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonasValidacion_DocumentosCategoria">
+          <End Role="DocumentosCategoria" Type="Self.DocumentosCategoria" Multiplicity="0..1" />
+          <End Role="PersonasValidacion" Type="Self.PersonasValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentosCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="PersonasValidacion">
+              <PropertyRef Name="CategoriaDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonasValidacion_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
+          <End Role="PersonasValidacion" Type="Self.PersonasValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="PersonasValidacion">
+              <PropertyRef Name="Persona" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1120,6 +1154,7 @@
           <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonasIntereses" EntityType="Self.PersonasIntereses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonasValidacion" EntityType="Self.PersonasValidacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propiedades" EntityType="Self.Propiedades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropiedadesAcabados" EntityType="Self.PropiedadesAcabados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropiedadesCaracteristicas" EntityType="Self.PropiedadesCaracteristicas" Schema="dbo" store:Type="Tables" />
@@ -1133,6 +1168,10 @@
           <EntitySet Name="TareasCategorias" EntityType="Self.TareasCategorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TareasEstatus" EntityType="Self.TareasEstatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiposPago" EntityType="Self.TiposPago" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Amortizaciones_TiposPago" Association="Self.FK_Amortizaciones_TiposPago">
+            <End Role="TiposPago" EntitySet="TiposPago" />
+            <End Role="Amortizaciones" EntitySet="Amortizaciones" />
+          </AssociationSet>
           <AssociationSet Name="FK_CaracteristicasPropiedades_Propiedades" Association="Self.FK_CaracteristicasPropiedades_Propiedades">
             <End Role="Propiedades" EntitySet="Propiedades" />
             <End Role="CaracteristicasPropiedades" EntitySet="CaracteristicasPropiedades" />
@@ -1221,10 +1260,6 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="Notas" EntitySet="Notas" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pagos_Amortizaciones" Association="Self.FK_Pagos_Amortizaciones">
-            <End Role="Amortizaciones" EntitySet="Amortizaciones" />
-            <End Role="Pagos" EntitySet="Pagos" />
-          </AssociationSet>
           <AssociationSet Name="FK_Pagos_Cotizaciones" Association="Self.FK_Pagos_Cotizaciones">
             <End Role="Cotizaciones" EntitySet="Cotizaciones" />
             <End Role="Pagos" EntitySet="Pagos" />
@@ -1272,6 +1307,14 @@
           <AssociationSet Name="FK_Personas_PersonasTipo" Association="Self.FK_Personas_PersonasTipo">
             <End Role="PersonasTipo" EntitySet="PersonasTipo" />
             <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonasValidacion_DocumentosCategoria" Association="Self.FK_PersonasValidacion_DocumentosCategoria">
+            <End Role="DocumentosCategoria" EntitySet="DocumentosCategoria" />
+            <End Role="PersonasValidacion" EntitySet="PersonasValidacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonasValidacion_Personas" Association="Self.FK_PersonasValidacion_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="PersonasValidacion" EntitySet="PersonasValidacion" />
           </AssociationSet>
           <AssociationSet Name="FK_Propiedades_Desarrollos" Association="Self.FK_Propiedades_Desarrollos">
             <End Role="Desarrollos" EntitySet="Desarrollos" />
@@ -1322,7 +1365,8 @@
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1348,7 +1392,7 @@
           <Property Name="FechaProgramado" Type="DateTime" Precision="0" />
           <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="EstaPagado" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Pagos" Relationship="Self.FK_Pagos_Amortizaciones" FromRole="Amortizaciones" ToRole="Pagos" />
+          <NavigationProperty Name="TiposPago" Relationship="Self.FK_Amortizaciones_TiposPago" FromRole="Amortizaciones" ToRole="TiposPago" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -1468,6 +1512,7 @@
             <PropertyRef Name="IdDocumento" />
           </Key>
           <Property Name="IdDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="Int32" />
           <Property Name="Propiedad" Type="Int32" />
           <Property Name="Persona" Type="Int32" Nullable="false" />
           <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1478,10 +1523,18 @@
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
           <Property Name="Usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DocumentosCategoria" Relationship="Self.FK_Documentos_DocumentosCategoria" FromRole="Documentos" ToRole="DocumentosCategoria" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Documentos_Personas" FromRole="Documentos" ToRole="Personas" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Documentos_Propiedades" FromRole="Documentos" ToRole="Propiedades" />
-          <Property Name="Categoria" Type="Int32" />
-          <NavigationProperty Name="DocumentosCategoria" Relationship="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria" FromRole="Documentos" ToRole="DocumentosCategoria" />
+        </EntityType>
+        <EntityType Name="DocumentosCategoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_DocumentosCategoria" FromRole="DocumentosCategoria" ToRole="Documentos" />
+          <NavigationProperty Name="PersonasValidacion" Relationship="Self.FK_PersonasValidacion_DocumentosCategoria" FromRole="DocumentosCategoria" ToRole="PersonasValidacion" />
         </EntityType>
         <EntityType Name="Domicilios">
           <Key>
@@ -1639,7 +1692,6 @@
           <Property Name="Moneda" Type="Int32" />
           <Property Name="TipoCambio" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Amortizaciones" Relationship="Self.FK_Pagos_Amortizaciones" FromRole="Pagos" ToRole="Amortizaciones" />
           <NavigationProperty Name="Cotizaciones" Relationship="Self.FK_Pagos_Cotizaciones" FromRole="Pagos" ToRole="Cotizaciones" />
           <NavigationProperty Name="Monedas" Relationship="Self.FK_Pagos_Monedas" FromRole="Pagos" ToRole="Monedas" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Pagos_Personas" FromRole="Pagos" ToRole="Personas" />
@@ -1684,6 +1736,7 @@
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
           <Property Name="UsuarioUA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="FechaUA" Type="DateTime" Precision="3" />
+          <Property Name="Validado" Type="Boolean" />
           <NavigationProperty Name="Cotizaciones" Relationship="Self.FK_Cotizaciones_Personas1" FromRole="Personas" ToRole="Cotizaciones" />
           <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_Personas" FromRole="Personas" ToRole="Documentos" />
           <NavigationProperty Name="Domicilios" Relationship="Self.FK_Domicilios_Personas" FromRole="Personas" ToRole="Domicilios" />
@@ -1697,6 +1750,7 @@
           <NavigationProperty Name="PersonasGenero" Relationship="Self.FK_Personas_PersonasGenero" FromRole="Personas" ToRole="PersonasGenero" />
           <NavigationProperty Name="PersonasIntereses" Relationship="Self.FK_Personas_PersonasIntereses" FromRole="Personas" ToRole="PersonasIntereses" />
           <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
+          <NavigationProperty Name="PersonasValidacion" Relationship="Self.FK_PersonasValidacion_Personas" FromRole="Personas" ToRole="PersonasValidacion" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -1731,6 +1785,17 @@
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PersonasTipo" FromRole="PersonasTipo" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="PersonasValidacion">
+          <Key>
+            <PropertyRef Name="IdValidacion" />
+          </Key>
+          <Property Name="IdValidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Persona" Type="Int32" />
+          <Property Name="CategoriaDocumento" Type="Int32" />
+          <Property Name="Validacion" Type="Boolean" />
+          <NavigationProperty Name="DocumentosCategoria" Relationship="Self.FK_PersonasValidacion_DocumentosCategoria" FromRole="PersonasValidacion" ToRole="DocumentosCategoria" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_PersonasValidacion_Personas" FromRole="PersonasValidacion" ToRole="Personas" />
         </EntityType>
         <EntityType Name="Propiedades">
           <Key>
@@ -1909,17 +1974,18 @@
           </Key>
           <Property Name="IdTipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Amortizaciones" Relationship="Self.FK_Amortizaciones_TiposPago" FromRole="TiposPago" ToRole="Amortizaciones" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK_Pagos_TiposPago" FromRole="TiposPago" ToRole="Pagos" />
         </EntityType>
-        <Association Name="FK_Pagos_Amortizaciones">
-          <End Role="Amortizaciones" Type="Self.Amortizaciones" Multiplicity="0..1" />
-          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+        <Association Name="FK_Amortizaciones_TiposPago">
+          <End Role="TiposPago" Type="Self.TiposPago" Multiplicity="0..1" />
+          <End Role="Amortizaciones" Type="Self.Amortizaciones" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Amortizaciones">
-              <PropertyRef Name="IdAmortizacion" />
+            <Principal Role="TiposPago">
+              <PropertyRef Name="IdTipoPago" />
             </Principal>
-            <Dependent Role="Pagos">
-              <PropertyRef Name="Amortizacion" />
+            <Dependent Role="Amortizaciones">
+              <PropertyRef Name="TipoPago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2047,6 +2113,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Documentos_DocumentosCategoria">
+          <End Role="DocumentosCategoria" Type="Self.DocumentosCategoria" Multiplicity="0..1" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentosCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Documentos_Personas">
           <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
           <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
@@ -2068,6 +2146,18 @@
             </Principal>
             <Dependent Role="Documentos">
               <PropertyRef Name="Propiedad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonasValidacion_DocumentosCategoria">
+          <End Role="DocumentosCategoria" Type="Self.DocumentosCategoria" Multiplicity="0..1" />
+          <End Role="PersonasValidacion" Type="Self.PersonasValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentosCategoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="PersonasValidacion">
+              <PropertyRef Name="CategoriaDocumento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2359,6 +2449,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PersonasValidacion_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
+          <End Role="PersonasValidacion" Type="Self.PersonasValidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="PersonasValidacion">
+              <PropertyRef Name="Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Propiedades_PropiedadesAcabados">
           <End Role="PropiedadesAcabados" Type="Self.PropiedadesAcabados" Multiplicity="0..1" />
           <End Role="Propiedades" Type="Self.Propiedades" Multiplicity="*" />
@@ -2447,7 +2549,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CRMINMOBILIARIOEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Amortizaciones" EntityType="Self.Amortizaciones" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
@@ -2460,6 +2562,7 @@
           <EntitySet Name="Cotizaciones" EntityType="Self.Cotizaciones" />
           <EntitySet Name="Desarrollos" EntityType="Self.Desarrollos" />
           <EntitySet Name="Documentos" EntityType="Self.Documentos" />
+          <EntitySet Name="DocumentosCategoria" EntityType="Self.DocumentosCategoria" />
           <EntitySet Name="Domicilios" EntityType="Self.Domicilios" />
           <EntitySet Name="DomiciliosCategoria" EntityType="Self.DomiciliosCategoria" />
           <EntitySet Name="DomiciliosTipo" EntityType="Self.DomiciliosTipo" />
@@ -2479,6 +2582,7 @@
           <EntitySet Name="PersonasGenero" EntityType="Self.PersonasGenero" />
           <EntitySet Name="PersonasIntereses" EntityType="Self.PersonasIntereses" />
           <EntitySet Name="PersonasTipo" EntityType="Self.PersonasTipo" />
+          <EntitySet Name="PersonasValidacion" EntityType="Self.PersonasValidacion" />
           <EntitySet Name="Propiedades" EntityType="Self.Propiedades" />
           <EntitySet Name="PropiedadesAcabados" EntityType="Self.PropiedadesAcabados" />
           <EntitySet Name="PropiedadesCaracteristicas" EntityType="Self.PropiedadesCaracteristicas" />
@@ -2492,9 +2596,9 @@
           <EntitySet Name="TareasCategorias" EntityType="Self.TareasCategorias" />
           <EntitySet Name="TareasEstatus" EntityType="Self.TareasEstatus" />
           <EntitySet Name="TiposPago" EntityType="Self.TiposPago" />
-          <AssociationSet Name="FK_Pagos_Amortizaciones" Association="Self.FK_Pagos_Amortizaciones">
+          <AssociationSet Name="FK_Amortizaciones_TiposPago" Association="Self.FK_Amortizaciones_TiposPago">
+            <End Role="TiposPago" EntitySet="TiposPago" />
             <End Role="Amortizaciones" EntitySet="Amortizaciones" />
-            <End Role="Pagos" EntitySet="Pagos" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -2536,6 +2640,10 @@
             <End Role="Desarrollos" EntitySet="Desarrollos" />
             <End Role="Propiedades" EntitySet="Propiedades" />
           </AssociationSet>
+          <AssociationSet Name="FK_Documentos_DocumentosCategoria" Association="Self.FK_Documentos_DocumentosCategoria">
+            <End Role="DocumentosCategoria" EntitySet="DocumentosCategoria" />
+            <End Role="Documentos" EntitySet="Documentos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Documentos_Personas" Association="Self.FK_Documentos_Personas">
             <End Role="Personas" EntitySet="Personas" />
             <End Role="Documentos" EntitySet="Documentos" />
@@ -2543,6 +2651,10 @@
           <AssociationSet Name="FK_Documentos_Propiedades" Association="Self.FK_Documentos_Propiedades">
             <End Role="Propiedades" EntitySet="Propiedades" />
             <End Role="Documentos" EntitySet="Documentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonasValidacion_DocumentosCategoria" Association="Self.FK_PersonasValidacion_DocumentosCategoria">
+            <End Role="DocumentosCategoria" EntitySet="DocumentosCategoria" />
+            <End Role="PersonasValidacion" EntitySet="PersonasValidacion" />
           </AssociationSet>
           <AssociationSet Name="FK_Domicilios_DomiciliosCategoria" Association="Self.FK_Domicilios_DomiciliosCategoria">
             <End Role="DomiciliosCategoria" EntitySet="DomiciliosCategoria" />
@@ -2640,6 +2752,10 @@
             <End Role="PersonasTipo" EntitySet="PersonasTipo" />
             <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
+          <AssociationSet Name="FK_PersonasValidacion_Personas" Association="Self.FK_PersonasValidacion_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="PersonasValidacion" EntitySet="PersonasValidacion" />
+          </AssociationSet>
           <AssociationSet Name="FK_Propiedades_PropiedadesAcabados" Association="Self.FK_Propiedades_PropiedadesAcabados">
             <End Role="PropiedadesAcabados" EntitySet="PropiedadesAcabados" />
             <End Role="Propiedades" EntitySet="Propiedades" />
@@ -2672,38 +2788,13 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="DocumentosCategoria" EntityType="CRMINMOBILIARIOModel.DocumentosCategoria" />
-          <AssociationSet Name="FK_Documentos_DocumentosCategoria" Association="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria">
-            <End Role="DocumentosCategoria" EntitySet="DocumentosCategoria" />
-            <End Role="Documentos" EntitySet="Documentos" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="DocumentosCategoria">
-          <Key>
-            <PropertyRef Name="IdCategoria" />
-          </Key>
-          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Documentos" Relationship="CRMINMOBILIARIOModel.FK_Documentos_DocumentosCategoria" FromRole="DocumentosCategoria" ToRole="Documentos" />
-        </EntityType>
-        <Association Name="FK_Documentos_DocumentosCategoria">
-          <End Type="CRMINMOBILIARIOModel.DocumentosCategoria" Role="DocumentosCategoria" Multiplicity="0..1" />
-          <End Type="CRMINMOBILIARIOModel.Documentos" Role="Documentos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DocumentosCategoria">
-              <PropertyRef Name="IdCategoria" />
-            </Principal>
-            <Dependent Role="Documentos">
-              <PropertyRef Name="Categoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities">
+        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities2">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -2837,8 +2928,8 @@
           <EntitySetMapping Name="Documentos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Documentos">
               <MappingFragment StoreEntitySet="Documentos">
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
                 <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
                 <ScalarProperty Name="Persona" ColumnName="Persona" />
                 <ScalarProperty Name="Titulo" ColumnName="Titulo" />
@@ -2849,6 +2940,14 @@
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentosCategoria">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DocumentosCategoria">
+              <MappingFragment StoreEntitySet="DocumentosCategoria">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3037,6 +3136,7 @@
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="UsuarioUA" ColumnName="UsuarioUA" />
                 <ScalarProperty Name="FechaUA" ColumnName="FechaUA" />
+                <ScalarProperty Name="Validado" ColumnName="Validado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3071,6 +3171,16 @@
                 <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasValidacion">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.PersonasValidacion">
+              <MappingFragment StoreEntitySet="PersonasValidacion">
+                <ScalarProperty Name="IdValidacion" ColumnName="IdValidacion" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+                <ScalarProperty Name="CategoriaDocumento" ColumnName="CategoriaDocumento" />
+                <ScalarProperty Name="Validacion" ColumnName="Validacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3247,14 +3357,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="DocumentosCategoria">
-            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.DocumentosCategoria">
-              <MappingFragment StoreEntitySet="DocumentosCategoria">
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

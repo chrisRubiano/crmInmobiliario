@@ -18,7 +18,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class CotizacionesController : Controller
     {
-        private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
+        private CRMINMOBILIARIOEntities2 db = new CRMINMOBILIARIOEntities2();
 
         // GET: Cotizaciones
         public ActionResult Index()
@@ -96,14 +96,14 @@ namespace crmInmobiliario.Controllers
                     amortizacion.Cotizacion = cotizaciones.IdCotizacion;
                     amortizacion.Persona = cotizaciones.Persona;
                     amortizacion.Propiedad = cotizaciones.Propiedad;
-                    amortizacion.Importe = enganche / pagosEnganche;
+                    amortizacion.Importe = enganche;
                     amortizacion.TipoPago = 1;
                     amortizacion.FechaProgramado = pago;
 
 
                     db.Amortizaciones.Add(amortizacion);
                     //db.SaveChanges();
-                    pago.AddMonths(1);
+                   pago = pago.AddMonths(1);
                 }
 
                 //Parcialidades
@@ -134,9 +134,9 @@ namespace crmInmobiliario.Controllers
                         numPagosAnuales--;
                     }
                     //db.SaveChanges();
-                    pago.AddMonths(1);
+                   pago = pago.AddMonths(1);
                 }
-
+                db.SaveChanges();
                 /*--- Amortizaciones ----*/
 
 

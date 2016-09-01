@@ -15,6 +15,7 @@ namespace crmInmobiliario.Models
     public partial class Documentos
     {
         public int IdDocumento { get; set; }
+        public Nullable<int> Categoria { get; set; }
         public Nullable<int> Propiedad { get; set; }
         public int Persona { get; set; }
         public string Titulo { get; set; }
@@ -25,10 +26,9 @@ namespace crmInmobiliario.Models
         public string Observaciones { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string Usuario { get; set; }
-        public Nullable<int> Categoria { get; set; }
     
+        public virtual DocumentosCategoria DocumentosCategoria { get; set; }
         public virtual Personas Personas { get; set; }
         public virtual Propiedades Propiedades { get; set; }
-        public virtual DocumentosCategoria DocumentosCategoria { get; set; }
     }
 }

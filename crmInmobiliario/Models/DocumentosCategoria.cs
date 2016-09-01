@@ -18,6 +18,7 @@ namespace crmInmobiliario.Models
         public DocumentosCategoria()
         {
             this.Documentos = new HashSet<Documentos>();
+            this.PersonasValidacion = new HashSet<PersonasValidacion>();
         }
     
         public int IdCategoria { get; set; }
@@ -25,5 +26,7 @@ namespace crmInmobiliario.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Documentos> Documentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonasValidacion> PersonasValidacion { get; set; }
     }
 }
