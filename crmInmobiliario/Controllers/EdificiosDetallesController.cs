@@ -65,7 +65,7 @@ namespace crmInmobiliario.Controllers
 
         public void Excel()
         {
-            var model = db.Edificios.ToList();
+            var model = db.EdificiosDetalle.ToList();
 
             Export export = new Export();
             export.ToExcel(Response, model, "ConfiguracionesEdificios");
