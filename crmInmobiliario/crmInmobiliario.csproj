@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AmortizacionesController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CotizacionesController.cs" />
@@ -577,6 +578,13 @@
     <Content Include="Views\DocumentosCategorias\Details.cshtml" />
     <Content Include="Views\DocumentosCategorias\Edit.cshtml" />
     <Content Include="Views\DocumentosCategorias\Index.cshtml" />
+    <Content Include="Views\Amortizaciones\Create.cshtml" />
+    <Content Include="Views\Amortizaciones\Delete.cshtml" />
+    <Content Include="Views\Amortizaciones\Details.cshtml" />
+    <Content Include="Views\Amortizaciones\Edit.cshtml" />
+    <Content Include="Views\Amortizaciones\Index.cshtml" />
+    <Content Include="Views\Amortizaciones\Filtro.cshtml" />
+    <Content Include="Views\Amortizaciones\ConfPago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

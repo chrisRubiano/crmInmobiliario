@@ -73,6 +73,7 @@ namespace crmInmobiliario.Controllers
                 Cotizaciones cotizaciones = new Cotizaciones();
                 vmcotizacion.cotizaciones.Vendedor = User.Identity.GetUserId().ToString();
                 vmcotizacion.cotizaciones.FechaCotizacion = DateTime.Now;
+                vmcotizacion.cotizaciones.PrecioFinalVenta = vmcotizacion.propiedades.VentaPrecio.Value;
 
                 cotizaciones = vmcotizacion.cotizaciones;
                 db.Cotizaciones.Add(cotizaciones);
@@ -136,15 +137,29 @@ namespace crmInmobiliario.Controllers
                     //db.SaveChanges();
                    pago = pago.AddMonths(1);
                 }
-                db.SaveChanges();
+
+                if (numPagosAnuales != 0)
+                {
+                    for (int i = numPagosAnuales; i > 0; i--)
+                    {
+                        Amortizaciones amortizacionAnual = new Amortizaciones();
+                        amortizacionAnual.Cotizacion = cotizaciones.IdCotizacion;
+                        amortizacionAnual.Persona = cotizaciones.Persona;
+                        amortizacionAnual.Propiedad = cotizaciones.Propiedad;
+                        amortizacionAnual.Importe = pagosAnuales;
+                        amortizacionAnual.TipoPago = 3;
+                        amortizacionAnual.FechaProgramado = pago;
+
+                        db.Amortizaciones.Add(amortizacionAnual);
+                    }
+                    //numPagosAnuales--;
+                }
+
                 /*--- Amortizaciones ----*/
 
+                db.SaveChanges();
 
-
-
-
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Filtro", "Amortizaciones", new {cotizacion = cotizaciones.IdCotizacion });
             }
             catch (DataException)
             {

@@ -1,0 +1,68 @@
+﻿@model crmInmobiliario.Models.vmCotizacion
+
+@{
+    ViewBag.Title = "Confirmar Pago";
+}
+
+<h2>Confirmar Pago</h2>
+
+<div>
+    <h4>Amortizaciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.personas.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.propiedades.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.propiedades.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amortizaciones.Cotizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amortizaciones.Cotizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amortizaciones.FechaProgramado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amortizaciones.FechaProgramado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amortizaciones.Importe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amortizaciones.Importe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amortizaciones.TiposPago.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amortizaciones.TiposPago.Tipo)
+        </dd>
+    </dl>
+</div>
+<p>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Filtro", "Amortizaciones")';return false;"><i class="fa fa-chevron-left"></i> Volver</button>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.amortizaciones.IdAmortizacion)
+    <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+}
+</p>

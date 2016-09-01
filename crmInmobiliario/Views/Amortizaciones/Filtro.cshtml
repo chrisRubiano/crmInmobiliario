@@ -1,0 +1,94 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Amortizaciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="row no-gutter">
+    <div class="col-md-2">
+        @using (Html.BeginForm("Filtro", "Amortizaciones", FormMethod.Get, new { @class = " panel panel-default" }))
+        {
+            <div class="panel-body panel-info">
+
+                <div class="form-group">
+                    <label> Persona: </label><div class="">
+                        @Html.DropDownList("Persona", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label> Propiedad: </label><div class="">
+                        @Html.DropDownList("Propiedad", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-filtrar left" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <div class="col-md-10">
+        <div class="wrapper" style="height: 500px; overflow-y:auto;">
+            <table class="table table-hover table-condensed">
+                <thead class="header">
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaProgramado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Importe)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cotizacion)
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Registrar pago" onclick="location.href='@Url.Action("ConfPago", "Amortizaciones", new { idAmortizacion = item.IdAmortizacion, filtro = true })';return false;"><i class="fa fa-money"></i></button>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaProgramado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Importe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        var $table = $('.wrapper table');
+
+        $table.floatThead({
+            //useAbsolutePositioning: true,
+            scrollContainer: function ($table) {
+                return $table.closest('.wrapper');
+            }
+        });
+
+    </script>
+}
