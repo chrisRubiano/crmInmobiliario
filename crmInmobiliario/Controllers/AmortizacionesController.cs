@@ -67,8 +67,8 @@ namespace crmInmobiliario.Controllers
         {
             try
             {
-                //Amortizaciones amortizacion = new Amortizaciones();
                 amortizacion = db.Amortizaciones.Where(a => a.IdAmortizacion == idAmortizacion).FirstOrDefault();
+                db.Amortizaciones.Attach(amortizacion);
                 db.Entry(amortizacion).State = EntityState.Modified;
                 amortizacion.EstaPagado = true;
                 db.SaveChanges();
