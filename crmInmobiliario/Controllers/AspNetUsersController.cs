@@ -14,7 +14,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class AspNetUsersController : Controller
     {
-        private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
+        private CRMINMOBILIARIOEntities2 db = new CRMINMOBILIARIOEntities2();
 
         // GET: AspNetUsers
         public ActionResult Index()

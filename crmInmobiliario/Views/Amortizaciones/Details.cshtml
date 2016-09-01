@@ -1,0 +1,74 @@
+﻿@model crmInmobiliario.Models.Amortizaciones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Amortizaciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propiedad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propiedad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cotizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cotizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaProgramado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaProgramado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Importe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Importe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaPagado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstaPagado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiposPago.Tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAmortizacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

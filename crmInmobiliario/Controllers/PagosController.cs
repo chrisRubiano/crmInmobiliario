@@ -14,12 +14,12 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PagosController : Controller
     {
-        private CRMINMOBILIARIOEntities db = new CRMINMOBILIARIOEntities();
+        private CRMINMOBILIARIOEntities2 db = new CRMINMOBILIARIOEntities2();
 
         // GET: Pagos
         public ActionResult Index()
         {
-            var pagos = db.Pagos.Include(p => p.Amortizaciones).Include(p => p.Cotizaciones).Include(p => p.Monedas).Include(p => p.Personas).Include(p => p.Propiedades).Include(p => p.TiposPago);
+            var pagos = db.Pagos.Include(p => p.Cotizaciones).Include(p => p.Monedas).Include(p => p.Personas).Include(p => p.Propiedades).Include(p => p.TiposPago);
             return View(pagos.ToList());
         }
 

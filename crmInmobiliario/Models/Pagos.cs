@@ -25,7 +25,6 @@ namespace crmInmobiliario.Models
         public Nullable<decimal> TipoCambio { get; set; }
         public Nullable<decimal> Importe { get; set; }
     
-        public virtual Amortizaciones Amortizaciones { get; set; }
         public virtual Cotizaciones Cotizaciones { get; set; }
         public virtual Monedas Monedas { get; set; }
         public virtual Personas Personas { get; set; }

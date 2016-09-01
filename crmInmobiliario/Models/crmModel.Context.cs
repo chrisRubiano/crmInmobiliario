@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities : DbContext
+    public partial class CRMINMOBILIARIOEntities2 : DbContext
     {
-        public CRMINMOBILIARIOEntities()
-            : base("name=CRMINMOBILIARIOEntities")
+        public CRMINMOBILIARIOEntities2()
+            : base("name=CRMINMOBILIARIOEntities2")
         {
         }
     
@@ -37,6 +37,7 @@ namespace crmInmobiliario.Models
         public virtual DbSet<Cotizaciones> Cotizaciones { get; set; }
         public virtual DbSet<Desarrollos> Desarrollos { get; set; }
         public virtual DbSet<Documentos> Documentos { get; set; }
+        public virtual DbSet<DocumentosCategoria> DocumentosCategoria { get; set; }
         public virtual DbSet<Domicilios> Domicilios { get; set; }
         public virtual DbSet<DomiciliosCategoria> DomiciliosCategoria { get; set; }
         public virtual DbSet<DomiciliosTipo> DomiciliosTipo { get; set; }
@@ -56,6 +57,7 @@ namespace crmInmobiliario.Models
         public virtual DbSet<PersonasGenero> PersonasGenero { get; set; }
         public virtual DbSet<PersonasIntereses> PersonasIntereses { get; set; }
         public virtual DbSet<PersonasTipo> PersonasTipo { get; set; }
+        public virtual DbSet<PersonasValidacion> PersonasValidacion { get; set; }
         public virtual DbSet<Propiedades> Propiedades { get; set; }
         public virtual DbSet<PropiedadesAcabados> PropiedadesAcabados { get; set; }
         public virtual DbSet<PropiedadesCaracteristicas> PropiedadesCaracteristicas { get; set; }
@@ -69,6 +71,5 @@ namespace crmInmobiliario.Models
         public virtual DbSet<TareasCategorias> TareasCategorias { get; set; }
         public virtual DbSet<TareasEstatus> TareasEstatus { get; set; }
         public virtual DbSet<TiposPago> TiposPago { get; set; }
-        public virtual DbSet<DocumentosCategoria> DocumentosCategoria { get; set; }
     }
 }

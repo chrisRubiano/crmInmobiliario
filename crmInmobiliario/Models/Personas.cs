@@ -23,6 +23,7 @@ namespace crmInmobiliario.Models
             this.Notas = new HashSet<Notas>();
             this.Pagos = new HashSet<Pagos>();
             this.Personas1 = new HashSet<Personas>();
+            this.PersonasValidacion = new HashSet<PersonasValidacion>();
         }
     
         public int IdPersona { get; set; }
@@ -51,6 +52,7 @@ namespace crmInmobiliario.Models
         public Nullable<System.DateTime> FechaRegistro { get; set; }
         public string UsuarioUA { get; set; }
         public Nullable<System.DateTime> FechaUA { get; set; }
+        public Nullable<bool> Validado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cotizaciones> Cotizaciones { get; set; }
@@ -71,5 +73,7 @@ namespace crmInmobiliario.Models
         public virtual PersonasGenero PersonasGenero { get; set; }
         public virtual PersonasIntereses PersonasIntereses { get; set; }
         public virtual PersonasTipo PersonasTipo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonasValidacion> PersonasValidacion { get; set; }
     }
 }
