@@ -123,9 +123,9 @@ namespace crmInmobiliario.Controllers
                     if (pago.Month == 12 && numPagosAnuales != 0)
                     {
                         Amortizaciones amortizacionAnual = new Amortizaciones();
-                        amortizacion.Cotizacion = cotizaciones.IdCotizacion;
-                        amortizacion.Persona = cotizaciones.Persona;
-                        amortizacion.Propiedad = cotizaciones.Propiedad;
+                        amortizacionAnual.Cotizacion = cotizaciones.IdCotizacion;
+                        amortizacionAnual.Persona = cotizaciones.Persona;
+                        amortizacionAnual.Propiedad = cotizaciones.Propiedad;
                         amortizacionAnual.Importe = pagosAnuales;
                         amortizacionAnual.TipoPago = 3;
                         amortizacionAnual.FechaProgramado = pago;
