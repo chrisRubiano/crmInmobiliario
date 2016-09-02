@@ -19,29 +19,47 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="" class="navbar-brand">Quantium desarrollos</a>
+                <a href="" class="navbar-brand">Quantium Desarrollos</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Personas</a></li>*@
-                    <li><a href='@Url.Action("Filtro", "Amortizaciones")'><i class="fa fa-dollar"></i> Pagos</a></li>
-                    <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Personas
+                            Ventas
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href='@Url.Action("ListaProspectos", "Personas")'><i class="fa fa-user"></i> Prospectos</a></li>
                             <li><a href='@Url.Action("ListaClientes", "Personas")'><i class="fa fa-user"></i> Clientes</a></li>
                             <li role="separator" class="divider"></li>  
-                            <li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Todos</a></li>
+                            <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Formalizacion
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                             <li><a href='#'><i class="fa fa-users"></i> Validación</a></li>
+                            
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Cobranza
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Filtro", "Amortizaciones")'><i class="fa fa-dollar"></i> Pagos</a></li>
                         </ul>
                     </li>
                     
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                             Datos Maestros
+                             Administración
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -51,7 +69,11 @@
                             <li><a href='@Url.Action("Index", "Propiedades")'><i class="fa fa-thumb-tack"></i> Propiedades</a></li>
                             <li role="separator" class="divider"></li>  
                             <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Cotizaciones</a></li>                            
-                          
+                            <li role="separator" class="divider"></li>  
+                            <li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Reasignación de Prospecto/Clientes a Vendedor@s</a></li>                          
+                            <li role="separator" class="divider"></li>
+                            <li><a href='@Url.Action("Index", "AspNetUsers")'><i class="fa fa-user"></i> Usuarios</a></li>
+                            <li><a href='@Url.Action("Index", "AspNetRoles")'><i class="fa fa-key"></i> Roles de Usuario</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -60,8 +82,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>
-                            <li><a href='@Url.Action("Index", "PropiedadesCaracteristicas")'><i class="fa fa-check-circle-o"></i> Amenidades</a></li>
+                            <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>                            
                             <li><a href='@Url.Action("Index", "PropiedadesCategorias")'><i class="fa fa-magic"></i> Categorias de Propiedades</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "MediosEnterarse")'><i class="fa fa-magic"></i> Medios de Enterarse</a></li>
@@ -70,9 +91,7 @@
                             <li><a href='@Url.Action("Index", "PersonasIntereses")'><i class="fa fa-magic"></i> Interes sobre la Propiedad</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "DocumentosCategorias")'><i class="fa fa-file-text-o"></i> Categorías de Documentos</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href='@Url.Action("Index", "AspNetUsers")'><i class="fa fa-user"></i> Usuarios</a></li>
-                            <li><a href='@Url.Action("Index", "AspNetRoles")'><i class="fa fa-key"></i> Roles de Usuario</a></li>
+                            
                             
                         </ul>
                     </li>                    
