@@ -5,6 +5,9 @@
 }
 
 <h2>Pagos</h2>
+<p>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>
+</p>
 <div class="row no-gutter">
     <div class="col-md-2">
         @using (Html.BeginForm("Filtro", "Amortizaciones", FormMethod.Get, new { @class = " panel panel-default" }))
@@ -56,6 +59,9 @@
             {
                     <tr>
                         <td>
+                            <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                            <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TiposPago.Tipo)

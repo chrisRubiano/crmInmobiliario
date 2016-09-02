@@ -60,8 +60,12 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Amortizaciones/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idCotizacion)
         {
+            if (idCotizacion.HasValue && idCotizacion != 0)
+            {
+                ViewBag.Cotizacion = idCotizacion;
+            }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo");
             return View();
         }
@@ -71,13 +75,17 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAmortizacion,TipoPago,Persona,Propiedad,Cotizacion,FechaProgramado,Importe,EstaPagado")] Amortizaciones amortizaciones)
+        public ActionResult Create([Bind(Include = "IdAmortizacion,TipoPago,Persona,Propiedad,Cotizacion,FechaProgramado,Importe,EstaPagado")] Amortizaciones amortizaciones, int? idCotizacion)
         {
             if (ModelState.IsValid)
             {
+                if (idCotizacion.HasValue)
+                {
+                    amortizaciones.Cotizacion = idCotizacion;
+                }
                 db.Amortizaciones.Add(amortizaciones);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Filtro", new { cotizacion = amortizaciones.Cotizacion });
             }
 
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
