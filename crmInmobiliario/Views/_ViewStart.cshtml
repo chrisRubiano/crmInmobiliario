@@ -10,8 +10,30 @@
     {
         case "Personas":
         case "Propiedades":
+        case "Cotizaciones":
             cLayout = "~/Views/Shared/_LayoutVentas.cshtml";
-            break;        
+            break;
+        case "Validacion":
+            cLayout = "~/Views/Shared/_LayoutFormalizacion.cshtml";
+            break;
+        case "Desarrollos":
+        case "Edificios":
+        case "EdificiosDetalles":
+        case "AspNetUsers":
+        case "AspNetRoles":
+            cLayout = "~/Views/Shared/_LayoutAdministracion.cshtml";
+            break;
+        case "PropiedadesAcabados":
+        case "PropiedadesCategorias":
+        case "MediosContacto":
+        case "MediosEnterarse":
+        case "PersonasIntereses":
+        case "DocumentosCategorias":
+            cLayout = "~/Views/Shared/_LayoutConfiguracion.cshtml";
+            break;
+        case "Pagos":
+            cLayout = "~/Views/Shared/_LayoutCobranza.cshtml";
+            break;
         default:
             cLayout = "~/Views/Shared/_Layout.cshtml";    
             break;
