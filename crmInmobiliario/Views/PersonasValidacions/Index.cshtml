@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.DocumentosCategoria.Categoria)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Personas.Nombre)
+            @Html.DisplayFor(modelItem => item.Personas.Paterno) @Html.DisplayFor(modelItem => item.Personas.Materno) @Html.DisplayFor(modelItem => item.Personas.Nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdValidacion }) |

@@ -10,6 +10,8 @@ using crmInmobiliario.Models;
 
 namespace crmInmobiliario.Controllers
 {
+    
+    [Authorize]
     public class PersonasValidacionsController : Controller
     {
         private CRMINMOBILIARIOEntities2 db = new CRMINMOBILIARIOEntities2();
