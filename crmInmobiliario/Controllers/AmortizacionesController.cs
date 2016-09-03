@@ -26,11 +26,11 @@ namespace crmInmobiliario.Controllers
         {
             var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false);
 
-            if (persona!=0)
+            if (persona != 0)
             {
                 amortizaciones = amortizaciones.Where(a => a.Persona == persona);
             }
-            if (propiedad!=0)
+            if (propiedad != 0)
             {
                 amortizaciones = amortizaciones.Where(a => a.Propiedad == propiedad);
             }
@@ -118,9 +118,44 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (amortizaciones.TipoPago == 1)
+                {
+                    var listaEnganches = from e in db.Amortizaciones.AsNoTracking() where e.TipoPago == 1 select e;
+                    listaEnganches = listaEnganches.Where(e => e.Cotizacion == amortizaciones.Cotizacion);
+                    decimal totalEnganche;
+                    decimal otrosEnganches;
+                    var cotizacion = db.Cotizaciones.Find(amortizaciones.Cotizacion);
+                    totalEnganche = cotizacion.Enganche.Value;
+                    otrosEnganches = (totalEnganche - amortizaciones.Importe.Value)/ (listaEnganches.Count()-1);
+
+                    foreach (var item in listaEnganches)
+                    {
+                        if (item.IdAmortizacion != amortizaciones.IdAmortizacion)
+                        {
+                            item.Importe = otrosEnganches;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
+                    }
+                }
+
+
+
+                DateTime nuevaFecha = amortizaciones.FechaProgramado.Value;
+                var listaAmortizaciones = from a in db.Amortizaciones.AsNoTracking() where a.Cotizacion == amortizaciones.Cotizacion select a;
+                listaAmortizaciones = listaAmortizaciones.Where(a => a.IdAmortizacion > amortizaciones.IdAmortizacion);
+
+                foreach (var item in listaAmortizaciones)
+                {
+                    if (item.TipoPago == 2)
+                    {
+                        nuevaFecha = nuevaFecha.AddMonths(1);
+                        item.FechaProgramado = nuevaFecha;
+                        db.Entry(item).State = EntityState.Modified;
+                    }
+                }
                 db.Entry(amortizaciones).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Filtro");
             }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
             return View(amortizaciones);
@@ -149,7 +184,7 @@ namespace crmInmobiliario.Controllers
             Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
             db.Amortizaciones.Remove(amortizaciones);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Filtro");
         }
 
         protected override void Dispose(bool disposing)
