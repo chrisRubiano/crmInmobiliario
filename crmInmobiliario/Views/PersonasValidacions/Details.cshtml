@@ -1,0 +1,42 @@
+﻿@model crmInmobiliario.Models.PersonasValidacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PersonasValidacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Validacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Validacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentosCategoria.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentosCategoria.Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdValidacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
