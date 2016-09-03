@@ -13,10 +13,10 @@ namespace crmInmobiliario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CRMINMOBILIARIOEntities2 : DbContext
+    public partial class CRMINMOBILIARIOEntities3 : DbContext
     {
-        public CRMINMOBILIARIOEntities2()
-            : base("name=CRMINMOBILIARIOEntities2")
+        public CRMINMOBILIARIOEntities3()
+            : base("name=CRMINMOBILIARIOEntities3")
         {
         }
     

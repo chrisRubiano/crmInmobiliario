@@ -4,49 +4,49 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b137e031d77f451ba5d9781b3fef0b72" Name="Diagram1">
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="2ed79091da604b268c8665c732bcc41e" Name="Diagram1">
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Amortizaciones" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetRoles" Width="1.5" PointX="10.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetUserClaims" Width="1.5" PointX="15.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetUserLogins" Width="1.5" PointX="15.25" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.AspNetUsers" Width="1.5" PointX="13" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.CaracteristicasPropiedades" Width="1.5" PointX="5.25" PointY="24.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Configuraciones" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Consecutivos" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.CaracteristicasPropiedades" Width="1.5" PointX="17.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Configuraciones" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Consecutivos" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Cotizaciones" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Desarrollos" Width="1.5" PointX="0.75" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Desarrollos" Width="1.5" PointX="0.75" PointY="32" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Documentos" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.DocumentosCategoria" Width="1.5" PointX="6" PointY="20.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Domicilios" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.DomiciliosCategoria" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.DomiciliosTipo" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Edificios" Width="1.5" PointX="0.75" PointY="38" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.EdificiosDetalle" Width="1.5" PointX="3" PointY="34.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Estados" Width="1.5" PointX="3" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Fotografias" Width="1.5" PointX="5.25" PointY="42.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.MediosContacto" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Edificios" Width="1.5" PointX="0.75" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.EdificiosDetalle" Width="1.5" PointX="3" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Estados" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Fotografias" Width="1.5" PointX="5.25" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.MediosContacto" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.MediosEnterarse" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Monedas" Width="1.5" PointX="0.75" PointY="41.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Municipios" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Monedas" Width="1.5" PointX="0.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Municipios" Width="1.5" PointX="3" PointY="26.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Notas" Width="1.5" PointX="5.25" PointY="29.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Pagos" Width="1.5" PointX="10.5" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Paises" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Personas" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasCategoria" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasGenero" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Paises" Width="1.5" PointX="3" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Personas" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasCategoria" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasGenero" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasIntereses" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasTipo" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasTipo" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PersonasValidacion" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Propiedades" Width="1.5" PointX="3" PointY="37.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesAcabados" Width="1.5" PointX="0.75" PointY="43.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCaracteristicas" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCaracteristicasCategorias" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCategoria" Width="1.5" PointX="0.75" PointY="46.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesEstatus" Width="1.5" PointX="0.75" PointY="48.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesTipoBanios" Width="1.5" PointX="0.75" PointY="51.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.ProspectosPropiedades" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Propiedades" Width="1.5" PointX="3" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesAcabados" Width="1.5" PointX="0.75" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCaracteristicas" Width="1.5" PointX="15" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCaracteristicasCategorias" Width="1.5" PointX="12.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesCategoria" Width="1.5" PointX="0.75" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesEstatus" Width="1.5" PointX="0.75" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.PropiedadesTipoBanios" Width="1.5" PointX="0.75" PointY="49.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.ProspectosPropiedades" Width="1.5" PointX="3" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CRMINMOBILIARIOModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.Tareas" Width="1.5" PointX="18.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.TareasCategorias" Width="1.5" PointX="16" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.TareasEstatus" Width="1.5" PointX="16" PointY="9.25" IsExpanded="true" />

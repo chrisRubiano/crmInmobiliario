@@ -13,7 +13,7 @@ namespace crmInmobiliario.Controllers
     [Authorize]
     public class PropiedadesCaracteristicasCategoriasController : Controller
     {
-        private CRMINMOBILIARIOEntities2 db = new CRMINMOBILIARIOEntities2();
+        private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
         // GET: PropiedadesCaracteristicasCategorias
         public ActionResult Index()

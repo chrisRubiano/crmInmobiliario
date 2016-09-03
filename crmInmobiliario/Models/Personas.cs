@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(Persona))]
+    
     public partial class Personas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -55,6 +53,10 @@ namespace crmInmobiliario.Models
         public string UsuarioUA { get; set; }
         public Nullable<System.DateTime> FechaUA { get; set; }
         public Nullable<bool> Validado { get; set; }
+        public string NombreCompleto { get; set; }
+        public string NombreCompleto2 { get; set; }
+        public string CodigoPersona { get; set; }
+        public string NombreCompletoCodigo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cotizaciones> Cotizaciones { get; set; }
