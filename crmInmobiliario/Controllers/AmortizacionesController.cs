@@ -105,6 +105,7 @@ namespace crmInmobiliario.Controllers
                 return HttpNotFound();
             }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
+            ViewBag.Tipo = amortizaciones.TiposPago.Tipo;
             return View(amortizaciones);
         }
 

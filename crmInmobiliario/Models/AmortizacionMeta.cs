@@ -10,6 +10,8 @@ namespace crmInmobiliario.Models
     {
         [Display(Name = "Fecha Programada")]
         public Nullable<System.DateTime> FechaProgramado { get; set; }
+        [Display(Name = "Está Pagado")]
+        public Nullable<bool> EstaPagado { get; set; }
 
     }
 }

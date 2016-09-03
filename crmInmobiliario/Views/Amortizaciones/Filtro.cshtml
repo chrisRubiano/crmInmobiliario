@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<crmInmobiliario.Models.Amortizaciones>
 
 @{
-    ViewBag.Title = "Tabla";
+    ViewBag.Title = "Tabla de Amortizaciones";
 }
 
 <h2>Tabla de Amortizaciones</h2>
-<p>
+@*<p>
     <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>
-</p>
+</p>*@
 <div class="row no-gutter">
     <div class="col-md-2">
         @using (Html.BeginForm("Filtro", "Amortizaciones", FormMethod.Get, new { @class = " panel panel-default" }))
