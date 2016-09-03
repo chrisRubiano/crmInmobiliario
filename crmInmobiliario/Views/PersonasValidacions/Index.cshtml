@@ -1,0 +1,45 @@
+﻿@model IEnumerable<crmInmobiliario.Models.PersonasValidacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Validar Persona", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Validacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentosCategoria.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personas.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Validacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentosCategoria.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personas.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdValidacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdValidacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdValidacion })
+        </td>
+    </tr>
+}
+
+</table>
