@@ -26,8 +26,8 @@ namespace crmInmobiliario.Models
         [DataType(DataType.Currency)]
         public Nullable<decimal> PrecioFinalVenta { get; set; }
         [Display(Name = "% Enganche")]
-        [Range(1.0, 30.0,
-            ErrorMessage = "Debe ser máximo 30%")]
+        [Range(30.0, 100.0,
+            ErrorMessage = "El porcentaje debe de estar entre {1}% y {2}%")]
         public Nullable<decimal> PorcentajeEnganche { get; set; }
 
         [DataType(DataType.Currency)]
@@ -36,7 +36,7 @@ namespace crmInmobiliario.Models
         [Range(1, 24,
             ErrorMessage = "Debe ser máxim0 24 parcialidades")]
         public Nullable<int> Parcialidades { get; set; }
-        [Display(Name = "% Mensaualidades")]
+        [Display(Name = "% Mensualidades")]
         public Nullable<decimal> PorcentajeMensualidades { get; set; }
         [Display(Name = "Pago Mensual")]
         [DataType(DataType.Currency)]
