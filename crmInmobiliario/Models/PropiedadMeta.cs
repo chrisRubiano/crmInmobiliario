@@ -25,7 +25,10 @@ namespace crmInmobiliario.Models
         [DataType(DataType.Currency)]
         public Nullable<decimal> PrecioEstacionamiento { get; set; }
 
-        [Display(Name = "m² de interiores")]
+        [Display(Name = "Cajones de Estacionamiento")]        
+        public Nullable<int> CajonesEstacionamiento { get; set; }
+
+        [Display(Name = "Interiores (m²)")]
         public Nullable<decimal> M2Interiores { get; set; }
 
         [Display(Name = "Precio m² de interiores")]
@@ -33,15 +36,15 @@ namespace crmInmobiliario.Models
         public Nullable<decimal> PrecioM2Interiores { get; set; }
         public Nullable<bool> Terraza { get; set; }
 
-        [Display(Name = "m² de terraza")]
+        [Display(Name = "Terraza (m²)")]
         public Nullable<decimal> M2Terraza { get; set; }
 
-        [Display(Name = "Precio m² de terraza")]
+        [Display(Name = "Precio m² de Terraza")]
         [DataType(DataType.Currency)]
         public Nullable<decimal> PrecioM2Terraza { get; set; }
         public Nullable<bool> Bodega { get; set; }
 
-        [Display(Name = "m² de bodega")]
+        [Display(Name = "Bodega (m²)")]
         public Nullable<decimal> M2Bodega { get; set; }
 
         [Display(Name = "Precio m² de bodega")]
@@ -58,6 +61,9 @@ namespace crmInmobiliario.Models
         [Display(Name = "Especifique los acabados")]
         [DataType(DataType.MultilineText)]
         public string AcabadosEspecifique { get; set; }
+
+        
+        
 
 
     }

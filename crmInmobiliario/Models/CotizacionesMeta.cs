@@ -25,6 +25,7 @@ namespace crmInmobiliario.Models
         [Required(ErrorMessage = "Debe capturar un Precio de Venta")]
         [DataType(DataType.Currency)]
         public Nullable<decimal> PrecioFinalVenta { get; set; }
+       
         [Display(Name = "% Enganche")]
         [Range(30.0, 100.0,
             ErrorMessage = "El porcentaje debe de estar entre {1}% y {2}%")]
