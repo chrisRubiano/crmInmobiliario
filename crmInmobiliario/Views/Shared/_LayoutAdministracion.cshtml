@@ -7,9 +7,8 @@
     <link href="~/Content/chosen.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
-
-     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/ventas.css" rel="stylesheet" />
+    
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,12 +24,31 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href='@Url.Action("Index", "Home")'><i class="fa fa-backward"></i> Regresar</a></li>
-                    <li><a href='@Url.Action("ListaProspectos", "Personas")'><i class="fa fa-user"></i> Prospectos</a></li>
-                    <li><a href='@Url.Action("ListaClientes", "Personas")'><i class="fa fa-user"></i> Clientes</a></li>
-                    <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
+                    <li><a href='@Url.Action("Index", "Desarrollos")'><i class="fa fa-building"></i> Desarrollos</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href='@Url.Action("Index", "Edificios")'>
+                            <i class="fa fa-building-o"></i> Edificios
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Index", "Edificios")'><i class="fa fa-building-o"></i> Edificios</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href='@Url.Action("Index", "EdificiosDetalles")'><i class="fa fa-building-o"></i> Configuración de Edificios</a></li>
 
+                        </ul>
+                    </li>
 
-
+                    <li><a href='@Url.Action("Index", "Propiedades")'><i class="fa fa-thumb-tack"></i> Propiedades</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-users"></i> Reasignación
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Reasignación de Prospecto/Clientes a Vendedor@s</a></li>                          
+                        </ul>
+                    </li>
+                    
                     <!--li>@Html.ActionLink("Home", "Index", "Home")</li-->
                     <!--li>@Html.ActionLink("About", "About", "Home")</li-->
                     <!--li>@Html.ActionLink("Contact", "Contact", "Home")</li-->

@@ -7,9 +7,8 @@
     <link href="~/Content/chosen.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
-
-     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/ventas.css" rel="stylesheet" />
+    
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,12 +24,38 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href='@Url.Action("Index", "Home")'><i class="fa fa-backward"></i> Regresar</a></li>
-                    <li><a href='@Url.Action("ListaProspectos", "Personas")'><i class="fa fa-user"></i> Prospectos</a></li>
-                    <li><a href='@Url.Action("ListaClientes", "Personas")'><i class="fa fa-user"></i> Clientes</a></li>
-                    <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Propiedades
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>
+                            <li><a href='@Url.Action("Index", "PropiedadesCategorias")'><i class="fa fa-magic"></i> Categorias de Propiedades</a></li>
+                        </ul>
+                    </li>   
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Personas
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Index", "MediosEnterarse")'><i class="fa fa-magic"></i> Medios de Enterarse</a></li>
+                            <li><a href='@Url.Action("Index", "MediosContacto")'><i class="fa fa-magic"></i> Medios de Contacto</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href='@Url.Action("Index", "PersonasIntereses")'><i class="fa fa-magic"></i> Interes sobre la Propiedad</a></li>
 
-
-
+                        </ul>
+                    </li>   
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Documentos
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href='@Url.Action("Index", "DocumentosCategorias")'><i class="fa fa-file-text-o"></i> Categorías de Documentos</a></li>
+                        </ul>
+                    </li>                    
                     <!--li>@Html.ActionLink("Home", "Index", "Home")</li-->
                     <!--li>@Html.ActionLink("About", "About", "Home")</li-->
                     <!--li>@Html.ActionLink("Contact", "Contact", "Home")</li-->

@@ -196,6 +196,7 @@
     <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PersonasInteresesController.cs" />
+    <Compile Include="Controllers\PersonasValidacionsController.cs" />
     <Compile Include="Controllers\PropiedadesAcabadosController.cs" />
     <Compile Include="Controllers\PropiedadesCaracteristicasCategoriasController.cs" />
     <Compile Include="Controllers\PropiedadesCaracteristicasController.cs" />
@@ -432,6 +433,8 @@
     <Content Include="Models\modeloCRM.edmx.diagram">
       <DependentUpon>modeloCRM.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -597,6 +600,15 @@
     <Content Include="Views\Amortizaciones\Filtro.cshtml" />
     <Content Include="Views\Personas\Asignar.cshtml" />
     <Content Include="Views\Shared\_LayoutVentas.cshtml" />
+    <Content Include="Views\Shared\_LayoutFormalizacion.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdministracion.cshtml" />
+    <Content Include="Views\Shared\_LayoutConfiguracion.cshtml" />
+    <Content Include="Views\Shared\_LayoutCobranza.cshtml" />
+    <Content Include="Views\PersonasValidacions\Create.cshtml" />
+    <Content Include="Views\PersonasValidacions\Delete.cshtml" />
+    <Content Include="Views\PersonasValidacions\Details.cshtml" />
+    <Content Include="Views\PersonasValidacions\Edit.cshtml" />
+    <Content Include="Views\PersonasValidacions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
