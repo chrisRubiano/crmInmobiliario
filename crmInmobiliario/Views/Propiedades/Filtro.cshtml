@@ -112,9 +112,6 @@
                     <tr>
                         <th></th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Titulo)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.Codigo)
                         </th>
                         <th>
@@ -152,9 +149,6 @@
                                 <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("DetailsFiltro", "Propiedades", new { id = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-fw fa-eye"></i></button>
                                 <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Crear Cotización" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-money"></i></button>
                             </div>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Titulo)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Codigo)

@@ -217,6 +217,7 @@
           <Property Name="Edificio" Type="int" />
           <Property Name="Nivel" Type="varchar" MaxLength="3" />
           <Property Name="M2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Desarrollo" Type="varchar" MaxLength="150" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -332,6 +333,10 @@
           <Property Name="UsuarioUA" Type="nvarchar" MaxLength="128" />
           <Property Name="FechaUA" Type="datetime" />
           <Property Name="Validado" Type="bit" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="302" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="NombreCompleto2" Type="varchar" MaxLength="302" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CodigoPersona" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" />
+          <Property Name="NombreCompletoCodigo" Type="varchar" MaxLength="317" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -340,6 +345,7 @@
           <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Categoria" Type="varchar" MaxLength="50" />
           <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Clave" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="PersonasGenero">
           <Key>
@@ -426,7 +432,7 @@
             <PropertyRef Name="IdAcabado" />
           </Key>
           <Property Name="IdAcabado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Acabado" Type="varchar" MaxLength="100" />
+          <Property Name="Acabado" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="PropiedadesCaracteristicas">
           <Key>
@@ -1606,6 +1612,7 @@
           <Property Name="Edificio" Type="Int32" />
           <Property Name="Nivel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="M2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Desarrollo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Edificios" Relationship="Self.FK_EdificiosDetalle_Edificios" FromRole="EdificiosDetalle" ToRole="Edificios" />
         </EntityType>
         <EntityType Name="Estados">
@@ -1737,6 +1744,10 @@
           <Property Name="UsuarioUA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="FechaUA" Type="DateTime" Precision="3" />
           <Property Name="Validado" Type="Boolean" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="302" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="NombreCompleto2" Type="String" MaxLength="302" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CodigoPersona" Type="String" MaxLength="10" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="NombreCompletoCodigo" Type="String" MaxLength="317" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Cotizaciones" Relationship="Self.FK_Cotizaciones_Personas1" FromRole="Personas" ToRole="Cotizaciones" />
           <NavigationProperty Name="Documentos" Relationship="Self.FK_Documentos_Personas" FromRole="Personas" ToRole="Documentos" />
           <NavigationProperty Name="Domicilios" Relationship="Self.FK_Domicilios_Personas" FromRole="Personas" ToRole="Domicilios" />
@@ -1759,6 +1770,7 @@
           <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PersonasCategoria" FromRole="PersonasCategoria" ToRole="Personas" />
         </EntityType>
         <EntityType Name="PersonasGenero">
@@ -1864,7 +1876,7 @@
             <PropertyRef Name="IdAcabado" />
           </Key>
           <Property Name="IdAcabado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Acabado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Acabado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Propiedades_PropiedadesAcabados" FromRole="PropiedadesAcabados" ToRole="Propiedades" />
         </EntityType>
         <EntityType Name="PropiedadesCaracteristicas">
@@ -2549,7 +2561,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CRMINMOBILIARIOEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CRMINMOBILIARIOEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Amortizaciones" EntityType="Self.Amortizaciones" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
@@ -2794,7 +2806,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities2">
+        <EntityContainerMapping StorageEntityContainer="CRMINMOBILIARIOModelStoreContainer" CdmEntityContainer="CRMINMOBILIARIOEntities3">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -3012,6 +3024,7 @@
                 <ScalarProperty Name="Edificio" ColumnName="Edificio" />
                 <ScalarProperty Name="Nivel" ColumnName="Nivel" />
                 <ScalarProperty Name="M2" ColumnName="M2" />
+                <ScalarProperty Name="Desarrollo" ColumnName="Desarrollo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3137,6 +3150,10 @@
                 <ScalarProperty Name="UsuarioUA" ColumnName="UsuarioUA" />
                 <ScalarProperty Name="FechaUA" ColumnName="FechaUA" />
                 <ScalarProperty Name="Validado" ColumnName="Validado" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="NombreCompleto2" ColumnName="NombreCompleto2" />
+                <ScalarProperty Name="CodigoPersona" ColumnName="CodigoPersona" />
+                <ScalarProperty Name="NombreCompletoCodigo" ColumnName="NombreCompletoCodigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3146,6 +3163,7 @@
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

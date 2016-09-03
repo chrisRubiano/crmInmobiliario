@@ -18,6 +18,7 @@ namespace crmInmobiliario.Models
         public Nullable<int> Edificio { get; set; }
         public string Nivel { get; set; }
         public Nullable<decimal> M2 { get; set; }
+        public string Desarrollo { get; set; }
     
         public virtual Edificios Edificios { get; set; }
     }

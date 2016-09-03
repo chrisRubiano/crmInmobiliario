@@ -206,164 +206,164 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Amortizaciones.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AmortizacionMeta.cs" />
     <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CaracteristicasPropiedades.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Configuraciones.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Consecutivos.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cotizaciones.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CotizacionesMeta.cs" />
-    <Compile Include="Models\crmModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crmModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\crmModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crmModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\crmModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crmModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Desarrollos.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DesarrollosMeta.cs" />
     <Compile Include="Models\Documentos.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DocumentosCategoria.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Domicilios.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DomiciliosCategoria.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DomiciliosTipo.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Edificios.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EdificiosDetalle.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EdificiosMeta.cs" />
     <Compile Include="Models\EdificioYDetalle.cs" />
     <Compile Include="Models\Estados.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fotografias.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MediosContacto.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MediosEnterarse.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modeloCRM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modeloCRM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modeloCRM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modeloCRM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modeloCRM.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Monedas.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Municipios.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NotaMeta.cs" />
     <Compile Include="Models\Notas.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pagos.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Paises.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Personas.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasCategoria.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasGenero.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasIntereses.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasTipo.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonasValidacion.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Propiedades.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesAcabados.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesCaracteristicas.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesCaracteristicasCategorias.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesCategoria.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesEstatus.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadesTipoBanios.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadMeta.cs" />
     <Compile Include="Models\ProspectosPropiedades.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tareas.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TareasCategorias.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TareasEstatus.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TiposPago.cs">
-      <DependentUpon>crmModel.tt</DependentUpon>
+      <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VariosModelos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -405,15 +405,15 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Models\crmModel.Context.tt">
+    <Content Include="Models\modeloCRM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>crmModel.edmx</DependentUpon>
-      <LastGenOutput>crmModel.Context.cs</LastGenOutput>
+      <DependentUpon>modeloCRM.edmx</DependentUpon>
+      <LastGenOutput>modeloCRM.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\crmModel.tt">
+    <Content Include="Models\modeloCRM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>crmModel.edmx</DependentUpon>
-      <LastGenOutput>crmModel.cs</LastGenOutput>
+      <DependentUpon>modeloCRM.edmx</DependentUpon>
+      <LastGenOutput>modeloCRM.cs</LastGenOutput>
     </Content>
     <Content Include="Reportes\RptCotizacion.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -425,12 +425,12 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
-    <EntityDeploy Include="Models\crmModel.edmx">
+    <EntityDeploy Include="Models\modeloCRM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>crmModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>modeloCRM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\crmModel.edmx.diagram">
-      <DependentUpon>crmModel.edmx</DependentUpon>
+    <Content Include="Models\modeloCRM.edmx.diagram">
+      <DependentUpon>modeloCRM.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
