@@ -221,6 +221,23 @@
         <h3>Seleccione Cliente/Prospecto a cotizar</h3>
     </div>
 
+    <div>
+        <p>
+            @using (Html.BeginForm("Create", "Cotizaciones", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                <input type="hidden" value="@Model.propiedades.IdPropiedad" name="IdPropiedad" />
+                <input type="hidden" value="True" name="filtro" />
+
+                <div class="form-group">
+                    <label for="nombre"> Nombre:</label> @Html.DropDownList("nombre", null, "Todos", new { @class = "form-control chosen-select" })
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                </div>
+            }
+        </p>
+    </div>
+
         <table class="table table-hover table-condensed">
             <tr>
                 <th></th>
@@ -292,14 +309,14 @@
 <div class="row">
     <div class="col-md-12">
         <p>
-            @if (ViewBag.filtro)
-            {
+            @*@if (ViewBag.filtro.HasValue)
+            {*@
+
                 <button class="btn btn-primary" onclick="location.href='@Url.Action("Filtro", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
-            }
-            else
+            @*else
             {
                 <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Propiedades")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
-            }
+            }*@
         </p>
     </div>
 </div>

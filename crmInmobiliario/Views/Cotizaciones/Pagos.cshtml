@@ -249,7 +249,7 @@
                 <div class="form-group col-md-offset-4 col-md-4 pb-15">
                     <label class="control-label">Pago Inicial</label>
                     <div class="">
-                        @Html.TextBox("fechaInicial", null, htmlAttributes: new { @class = "form-control date", @type = "date" })
+                        @Html.TextBox("fechaInicial", null, htmlAttributes: new { @class = "form-control date", @type = "date", @id="fechaInicial" })
                     </div>
                 </div>
 
@@ -275,6 +275,11 @@
     <script>
         $(document).ready(function () {
 
+            Date.prototype.toDateInputValue = (function () {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0, 10);
+            });
             // $('name=Enganche]').prop('disabled', true);
             // $('name=PagoMensual]').prop('disabled', true);
             // $('name=PorcentajeMensualidades]').prop('disabled', true);
@@ -284,6 +289,15 @@
             $('#numPagosAnuales').val('0');
             $('#pagosAnuales').val('0');
             $('#porcentajeMensualidades').val(100 - $('#porcentajeEnganche').val());
+            $('#enganche').val((($('#porcentajeEnganche').val()) * ($('#precioFinalVenta').val())) / 100 );
+            $('#pagoMensual').val(
+                                                    ($('#precioFinalVenta').val() -
+                                                    $('#enganche').val() -
+                                                    ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
+                                                    ) /
+                                                    $('#parcialidades').val()
+                                                    );
+            $('#fechaInicial').val(new Date().toDateInputValue());
 
 
             $("#porcentajeEnganche").keyup(function () {
