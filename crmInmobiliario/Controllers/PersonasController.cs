@@ -304,7 +304,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro,RFC")] Personas personas, int? categoriap)
+        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro,RFC")] Personas personas, int? categoriap)
         {
             try
             {

@@ -242,6 +242,9 @@
             <tr>
                 <th></th>
                 <th>
+                    @Html.DisplayNameFor(model => model.personas.CodigoPersona)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.personas.Nombre)
                 </th>
                 <th>
@@ -249,25 +252,11 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.personas.Materno)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.personas.FechaNacimiento)
-                </th>
+                </th>                
                 <th>
                     @Html.DisplayNameFor(model => model.personas.Email)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.personas.Telefono)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.personas.Celular)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.personas.RazonSocial)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.personas.RFC)
-                </th>
+                
             </tr>
 
             @foreach (var item in ViewBag.personas)
@@ -275,6 +264,9 @@
                 <tr>
                     <td class="">
                         <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Siguiente" onclick="location.href='@Url.Action("Pagos", "Cotizaciones", new { idPersona = item.IdPersona, idPropiedad = Model.propiedades.IdPropiedad })';return false;"><i class="fa fa-fw fa-chevron-circle-right"></i></button>
+                    </td>
+                    <td>
+                        @item.CodigoPersona
                     </td>
                     <td>
                         @item.Nombre
@@ -288,18 +280,7 @@
                     <td>
                         @item.Email
                     </td>
-                    <td>
-                        @item.Telefono
-                    </td>
-                    <td>
-                        @item.Celular
-                    </td>
-                    <td>
-                        @item.RazonSocial
-                    </td>
-                    <td>
-                        @item.RFC
-                    </td>
+                   
                 </tr>
             }
 
