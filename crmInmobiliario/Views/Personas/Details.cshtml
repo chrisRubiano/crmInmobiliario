@@ -4,10 +4,16 @@
     ViewBag.Title = "Detalles";
 }
 
-<h2>Detalles</h2>
+<h2>Datos de la persona</h2>
+<hr />
 
 <div class="col-md-6">
-    <h4><i class="fa fa-user"></i> Persona</h4>
+    <div class="alert alert-info" role="alert">
+        <h4><i class="fa fa-user"></i> @Html.DisplayFor(model => model.personas.PersonasCategoria.Categoria)</h4>
+        @*<dl class="dl-horizontal">
+            
+        </dl>*@
+    </div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -91,77 +97,74 @@
         </dd>
         <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.personas.PersonasCategoria.Categoria)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.personas.PersonasCategoria.Categoria)
-        </dd>
-        @foreach (var d in Model.domicilios)
-        {
-            <hr />
-            <dt class="text-info">
-                <i class="fa fa-map-marker"></i> Domicilio
-            </dt>
-            <dd>
-                
-            </dd>
+            @foreach (var d in Model.domicilios)
+            {
+                <hr />
+                <dt class="text-info">
+                    <i class="fa fa-map-marker"></i> Domicilio
+                </dt>
+                <dd>
+
+                </dd>
 
 
-            <dt>
-                @Html.DisplayNameFor(model => d.Calle)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => d.Calle)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => d.Calle)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => d.Calle)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => d.NumExterior)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => d.NumExterior)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => d.NumExterior)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => d.NumExterior)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => d.NumInterior)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => d.NumInterior)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => d.NumInterior)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => d.NumInterior)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => d.EntreEsquina)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => d.EntreEsquina)
-            </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => d.EntreEsquina)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => d.EntreEsquina)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => d.YCalle)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => d.YCalle)
-            </dd>
-            <dt>
-                <div class="btn-group" role="group">
-                    <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                    <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                    <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-                </div>
-            </dt>
-            <dd></dd>
-            
-        }
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => d.YCalle)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => d.YCalle)
+                </dd>
+                <dt>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                        <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                        <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                    </div>
+                </dt>
+                <dd></dd>
 
-<p>
-    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Domicilios", new { idPersona = Model.personas.IdPersona, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-map-marker"></i> Agregar Domicilio</button>
-</p>
+            }
+        </dl>
+
+        <p>
+            <button class="btn btn-info" onclick="location.href='@Url.Action("Create", "Domicilios", new { idPersona = Model.personas.IdPersona, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-map-marker"></i> Agregar Domicilio</button>
+
+        </p>
 
 </div>
 <div class="col-md-6">
-    <h4><i class="fa fa-sticky-note"></i> Notas</h4>
+    <div class="alert alert-warning" role="alert">
+        <h4><i class="fa fa-sticky-note"></i> Notas</h4>
+    </div>
     <hr />
     <button class="btn btn-warning" onclick="location.href='@Url.Action("Create", "Notas", new { idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap })';return false;"><i class="fa fa-sticky-note-o"></i> Crear Nota</button>
     <hr />
