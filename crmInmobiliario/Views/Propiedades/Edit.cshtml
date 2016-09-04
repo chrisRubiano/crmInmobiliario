@@ -171,13 +171,6 @@
                             @Html.ValidationMessageFor(model => model.PrecioEstacionamiento, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row groupform" id="EstacionamientoPanel">
-            <div class="col-md-10 col-md-offset-1 form-inline panel panel-default">
-                <div class="row groupform">
                     <div class="form-group col-md-6">
                         @Html.LabelFor(model => model.CajonesEstacionamiento, htmlAttributes: new { @class = "control-label col-md-5" })
                         <div class="col-md-7">
@@ -300,7 +293,7 @@
     <script>
         $(document).ready(function () {
 
-            if(!$('#BodegaF:checked').val()){
+            if($('#BodegaF:checked').val()){
                 document.getElementById("BodegaPanel").style.display = "none";
             }
             if($('#TerrazaF:checked').val()==true){
