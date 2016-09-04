@@ -12,160 +12,230 @@
 <div>
 
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
-        </dt>
+    <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
-        </dd>
+        <div class="col-md-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Edificios.Edificio)
-        </dt>
+            <div class="alert alert-info" role="alert">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Codigo)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Edificios.Edificio)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Codigo)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Categoria)
-        </dd>
+                </dl>
+            </div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Desarrollos.Desarrollo)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Desarrollos.Desarrollo)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Edificios.Edificio)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VentaPrecio)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Edificios.Edificio)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VentaPrecio)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.M2Interiores)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.M2Interiores)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Titulo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nivel)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nivel)
+                </dd>
+            </dl>
+            <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Terraza)
-        </dt>
-        <dd>
-            @if (Model.Terraza.HasValue)
-            {
-                if (Model.Terraza == true)
-                {
-                    <i class="fa fa-check-circle text-success text-center"></i>
-                }
-                else
-                {
-                    <i class="fa fa-times-circle text-danger text-center"></i>
-                }
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
+            <div class="alert alert-success" role="alert">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.VentaPrecio)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.M2Terraza)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.M2Terraza)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.VentaPrecio)
+                    </dd>
+                </dl>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecioM2Terraza)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PrecioM2Terraza)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Estacionamiento)
-        </dt>
-        <dd>
-            @if (Model.Estacionamiento.HasValue)
-            {
-                if (Model.Estacionamiento == true)
-                {
-                    <i class="fa fa-check-circle text-success text-center"></i>
-                }
-                else
-                {
-                    <i class="fa fa-times-circle text-danger text-center"></i>
-                }
-            }
-            else
-            {
-                <i class="fa fa-times-circle text-danger text-center"></i>
-            }
-        </dd>
+            <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecioEstacionamiento)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PrecioEstacionamiento)
-        </dd>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FrenteLocal)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FrenteLocal)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CajonesEstacionamiento)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LargoLocal)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LargoLocal)
+                </dd>
+                <hr />
+                <dt>
+                    @Html.DisplayNameFor(model => model.Acabados)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Acabados)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenteLocal)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FrenteLocal)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AcabadosEspecifique)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.AcabadosEspecifique)
+                </dd>
+                <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LargoLocal)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LargoLocal)
-        </dd>
+            </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Acabados)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Acabados)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AcabadosEspecifique)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AcabadosEspecifique)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nivel)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nivel)
-        </dd>
 
-    </dl>
+
+        <div class="col-md-6">
+
+            <div class="alert alert-warning" role="alert">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.M2Interiores)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.M2Interiores)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Terraza)
+                    </dt>
+                    <dd>
+                        @if (Model.Terraza.HasValue)
+                        {
+                            if (Model.Terraza == true)
+                            {
+                                <i class="fa fa-check-circle text-success text-center"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-times-circle text-danger text-center"></i>
+                            }
+                        }
+                        else
+                        {
+                            <i class="fa fa-times-circle text-danger text-center"></i>
+                        }
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.M2Terraza)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.M2Terraza)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrecioM2Terraza)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PrecioM2Terraza)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Bodega)
+                    </dt>
+                    <dd>
+                        @if (Model.Bodega.HasValue)
+                        {
+                            if (Model.Bodega == true)
+                            {
+                                <i class="fa fa-check-circle text-success text-center"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-times-circle text-danger text-center"></i>
+                            }
+                        }
+                        else
+                        {
+                            <i class="fa fa-times-circle text-danger text-center"></i>
+                        }
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.M2Bodega)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.M2Bodega)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrecioM2Bodega)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PrecioM2Bodega)
+                    </dd>
+                    <hr />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Estacionamiento)
+                    </dt>
+                    <dd>
+                        @if (Model.Estacionamiento.HasValue)
+                        {
+                            if (Model.Estacionamiento == true)
+                            {
+                                <i class="fa fa-check-circle text-success text-center"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-times-circle text-danger text-center"></i>
+                            }
+                        }
+                        else
+                        {
+                            <i class="fa fa-times-circle text-danger text-center"></i>
+                        }
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PrecioEstacionamiento)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PrecioEstacionamiento)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CajonesEstacionamiento)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CajonesEstacionamiento)
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+
+    </div>
+
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
