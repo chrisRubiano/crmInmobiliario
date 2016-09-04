@@ -55,6 +55,7 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
+                propiedadesCategoria.Activo = true;
                 db.PropiedadesCategoria.Add(propiedadesCategoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");
