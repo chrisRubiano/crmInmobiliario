@@ -13,6 +13,12 @@ namespace crmInmobiliario.Models
         public Nullable<int> Desarrollo { get; set; }
         public Nullable<int> Edificio { get; set; }
 
+        [Display(Name = "Código")]
+        public string Codigo { get; set; }
+
+        [Display(Name = "Código Corto")]
+        public string CodigoCorto { get; set; }
+
         [Display(Name = "Precio de venta")]
         [DataType(DataType.Currency)]
         public Nullable<decimal> VentaPrecio { get; set; }
