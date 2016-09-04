@@ -4,14 +4,13 @@
     ViewBag.Title = "Lista de Prospectos";
 }
 
-<h2>Prospectos</h2>
+<h2>Seleccione Prospecto para Validación</h2>
+
+<hr />
 
 <p>
-    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Personas", new { categoria = 1 })'"><i class="fa fa-user-plus"></i> Registrar Prospecto</button>
-    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Personas", new { nombreArchivo = "Prospectos" })'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
-    <hr />
 
-    @using (Html.BeginForm("ListaProspectos", "Personas", FormMethod.Get, new { @class = "form-inline" }))
+    @using (Html.BeginForm("ListaProspectosValidar", "Personas", FormMethod.Get, new { @class = "form-inline" }))
     {
         <div class="form-group">
             <label for="nombre"> Nombre:</label> @Html.DropDownList("nombre", null, "Todos", new { @class = "form-control chosen-select" })
@@ -50,12 +49,11 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Celular)
-        </th>        
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.RFC)
         </th>
-        
-        
+     
     </tr>
 
     @foreach (var item in Model)
@@ -63,9 +61,7 @@
         <tr>
             <td class="">
                 <div class="btn-lista">
-                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                    <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Validacion" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
                 </div>
             </td>
             <td>
@@ -86,7 +82,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PersonasGenero.Genero)
             </td>
-            
+
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
@@ -95,11 +91,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Celular)
-            </td>            
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RFC)
             </td>
-            
         </tr>
     }
 

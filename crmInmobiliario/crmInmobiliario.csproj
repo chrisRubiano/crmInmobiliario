@@ -609,6 +609,7 @@
     <Content Include="Views\PersonasValidacions\Details.cshtml" />
     <Content Include="Views\PersonasValidacions\Edit.cshtml" />
     <Content Include="Views\PersonasValidacions\Index.cshtml" />
+    <Content Include="Views\Personas\ListaProspectosValidar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
