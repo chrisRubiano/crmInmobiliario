@@ -254,6 +254,7 @@
     <Compile Include="Models\DomiciliosCategoria.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DomiciliosMeta.cs" />
     <Compile Include="Models\DomiciliosTipo.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -271,6 +272,7 @@
     <Compile Include="Models\Fotografias.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MedioContactoMeta.cs" />
     <Compile Include="Models\MediosContacto.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
