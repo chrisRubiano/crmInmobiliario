@@ -20,11 +20,11 @@
             @Html.DisplayNameFor(model => model.FechaCotizacion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Propiedades.Titulo)
+            Propiedad
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.Personas.Nombre)
+            Prospecto / Cliente
         </th>
         
     </tr>
@@ -49,11 +49,11 @@
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.Propiedades.Titulo)
+            @Html.DisplayFor(modelItem => item.Propiedades.Codigo)  ( @Html.DisplayFor(modelItem => item.Propiedades.Titulo) )
         </td>
         
         <td>
-            @Html.DisplayFor(modelItem => item.Personas.Nombre)
+            @Html.DisplayFor(modelItem => item.Personas.Nombre) @Html.DisplayFor(modelItem => item.Personas.Paterno) @Html.DisplayFor(modelItem => item.Personas.Materno)
         </td>
         
         
