@@ -50,10 +50,11 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Descuento,CajonesEstacionamiento,ERP,FechaEntrega")] Desarrollos desarrollos)
+        public ActionResult Create([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Activo,Descuento,CajonesEstacionamiento,ERP,FechaEntrega")] Desarrollos desarrollos)
         {
             if (ModelState.IsValid)
             {
+                desarrollos.Activo = true;
                 db.Desarrollos.Add(desarrollos);
                 db.SaveChanges();
                 return RedirectToAction("Index");

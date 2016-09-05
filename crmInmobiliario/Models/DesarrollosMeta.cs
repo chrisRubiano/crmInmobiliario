@@ -8,12 +8,15 @@ namespace crmInmobiliario.Models
 {
     public class DesarrollosMeta
     {
+        [Required]
         [StringLength(150)]
         public string Desarrollo { get; set; }
 
+        [Required]
         [StringLength(2)]
         public string Clave { get; set; }
     
+        [Required]
         [Display(Name = "% Descuento")]        
         public Nullable<decimal> Descuento { get; set; }
         
