@@ -40,7 +40,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: PersonasValidacions/Create
-        public ActionResult Create()
+        public ActionResult Create(int? IdPersona)
         {
             var personas = (from p in db.Personas
                            select new SelectListItem
@@ -48,9 +48,12 @@ namespace crmInmobiliario.Controllers
                                Text = p.Paterno + " " + p.Materno + " " + p.Nombre,
                                Value = p.IdPersona.ToString()
                            }).ToList();
-            ViewBag.Persona = new SelectList(personas, "Value", "Text");
+
+            ViewBag.Persona = new SelectList(personas, "Value", "Text", IdPersona);
+            ViewBag.IdPersona = IdPersona;
 
             ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria");
+
             return View();
         }
 
@@ -63,9 +66,11 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
+                personasValidacion.Validacion = true;
                 db.PersonasValidacion.Add(personasValidacion);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DetailsProspectoValidar", "Personas", new { id = personasValidacion.Persona });
+                    //RedirectToAction("Index");
             }
 
             ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria", personasValidacion.CategoriaDocumento);
@@ -87,6 +92,7 @@ namespace crmInmobiliario.Controllers
             }
             ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria", personasValidacion.CategoriaDocumento);
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", personasValidacion.Persona);
+            ViewBag.IdPersona = personasValidacion.Persona;
             return View(personasValidacion);
         }
 
@@ -99,9 +105,10 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
+                personasValidacion.Validacion = true;
                 db.Entry(personasValidacion).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DetailsProspectoValidar", "Personas", new { id = personasValidacion.Persona });
             }
             ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria", personasValidacion.CategoriaDocumento);
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", personasValidacion.Persona);
@@ -120,6 +127,9 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.IdPersona = personasValidacion.Persona;
+
             return View(personasValidacion);
         }
 
@@ -129,9 +139,10 @@ namespace crmInmobiliario.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
+            int idPersona = personasValidacion.Persona.Value;
             db.PersonasValidacion.Remove(personasValidacion);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("DetailsProspectoValidar", "Personas", new { id = idPersona });
         }
 
         protected override void Dispose(bool disposing)
