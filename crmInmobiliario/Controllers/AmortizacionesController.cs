@@ -48,6 +48,20 @@ namespace crmInmobiliario.Controllers
 
             ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+            /*** Panel info Cotizacion ***/
+            ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
+            ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
+            ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
+            ViewBag.titulo = cotizaciones.Propiedades.Codigo;
+            ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value,2);
+            ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value,2);
+            ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
+            ViewBag.mensualidades = cotizaciones.Parcialidades;
+            ViewBag.porcMensualidades = cotizaciones.PorcentajeMensualidades;
+            ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value-cotizaciones.Enganche.Value),2);
+            ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value,2);
+            /*** Panel info Cotizacion ***/
+
             return View(amortizaciones.ToList());
         }
 
