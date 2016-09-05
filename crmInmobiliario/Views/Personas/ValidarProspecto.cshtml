@@ -1,0 +1,171 @@
+﻿@model crmInmobiliario.Models.Personas
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Validación</h2>
+<hr />
+
+<div class="alert alert-info" role="alert">
+    <strong>PASO 3 DE 3 </strong> <h3>Marcar como Prospecto Validado</h3>
+</div>
+<div class="alert alert-warning" role="alert">
+     <strong>ATENCION!!!</strong><H4>Cuando Usted Marque como Validado, ya no podrán Modificarse los datos del Prospecto</H4>
+</div>
+
+@*<div class="col-md-6">
+    <div class="alert alert-info" role="alert">
+        <h4><i class="fa fa-user"></i> Datos del @Html.DisplayFor(model => model.PersonasCategoria.Categoria).ToString().ToLower()</h4>
+    </div>
+    <hr />
+  </div>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdPersona)
+
+
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CodigoPersona)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CodigoPersona)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Paterno)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Paterno)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Materno)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Materno)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaNacimiento)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PersonasGenero.Genero)
+            </dd>
+            <hr />
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telefono)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Celular)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Celular)
+            </dd>
+
+         </dl>
+
+            <div class="form-group" style="display:none;">
+                
+                @Html.DropDownList("Tipo", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                
+                @Html.DropDownList("Categoria", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Paterno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Paterno, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Materno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Materno, "", new { @class = "text-danger" })
+
+                @Html.DropDownList("Genero", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Celular, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.RFC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RFC, "", new { @class = "text-danger" })
+
+                @Html.DropDownList("MedioContacto", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MedioContacto, "", new { @class = "text-danger" })
+
+                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                
+                @Html.EditorFor(model => model.FechaRegistro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaRegistro, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> MARCAR COMO PROSPECTO VALIDADO</button>
+                </div>
+            </div>
+</div>
+}
+
+<div>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("DetailsProspectoValidar", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver al paso 2</button>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
