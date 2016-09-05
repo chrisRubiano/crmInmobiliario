@@ -55,8 +55,24 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EstaPagado)
+            @if (Model.EstaPagado.HasValue)
+            {
+                if (Model.EstaPagado == true)
+                {
+                    <i class="fa fa-check-circle text-success text-center"></i>
+                }
+                else
+                {
+                    <i class="fa fa-times-circle text-danger text-center"></i>
+                }
+            }
+            else
+            {
+                <i class="fa fa-times-circle text-danger text-center"></i>
+            }
         </dd>
+
+
 
         <dt>
             @Html.DisplayNameFor(model => model.TiposPago.Tipo)
@@ -68,7 +84,8 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAmortizacion }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Filtro", "Amortizaciones", new { cotizacion = Model.Cotizacion })';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = Model.IdAmortizacion })';return false;"><i class="fa fa-pencil"></i> Editar</button>
+</div>

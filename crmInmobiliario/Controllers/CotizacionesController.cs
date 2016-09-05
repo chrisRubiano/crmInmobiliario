@@ -60,112 +60,118 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, int pagosEnganche, int numPagosAnuales, int pagosAnuales, string fechaInicial)
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int pagosEnganche = 1, int numPagosAnuales = 1, int pagosAnuales = 0)
         {
+
+            if (string.IsNullOrEmpty(fechaInicial))
+            {
+                ModelState.AddModelError("", "Favor de verificar la fecha");
+            }
+            else{ 
             //vmCotizacion vmcotizacion = new vmCotizacion();
             vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
             vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
             vmcotizacion.cotizaciones.Persona = vmcotizacion.personas.IdPersona;
             vmcotizacion.cotizaciones.Propiedad = vmcotizacion.propiedades.IdPropiedad;
-
-            try
-            {
-                Cotizaciones cotizaciones = new Cotizaciones();
-                vmcotizacion.cotizaciones.Vendedor = User.Identity.GetUserId().ToString();
-                vmcotizacion.cotizaciones.FechaCotizacion = DateTime.Now;
-                vmcotizacion.cotizaciones.PrecioFinalVenta = vmcotizacion.propiedades.VentaPrecio.Value;
-
-                cotizaciones = vmcotizacion.cotizaciones;
-                db.Cotizaciones.Add(cotizaciones);
-                db.SaveChanges();
-
-
-                /*---- Amortizaciones ----*/
-                decimal enganche = vmcotizacion.cotizaciones.Enganche.Value;
-                decimal pagoMensual = vmcotizacion.cotizaciones.PagoMensual.Value;
-                int pagosMensuales = vmcotizacion.cotizaciones.Parcialidades.Value;
-
-                DateTime pago; //cambia para cada mes
-                DateTime.TryParse(fechaInicial, out pago);
-
-
-
-                //Enganches
-                for (int i = 0; i < pagosEnganche; i++)
+            
+                try
                 {
-                    Amortizaciones amortizacion = new Amortizaciones();
-                    amortizacion.Cotizacion = cotizaciones.IdCotizacion;
-                    amortizacion.Persona = cotizaciones.Persona;
-                    amortizacion.Propiedad = cotizaciones.Propiedad;
-                    amortizacion.Importe = enganche / pagosEnganche;
-                    amortizacion.TipoPago = 1;
-                    amortizacion.FechaProgramado = pago;
+                    Cotizaciones cotizaciones = new Cotizaciones();
+                    vmcotizacion.cotizaciones.Vendedor = User.Identity.GetUserId().ToString();
+                    vmcotizacion.cotizaciones.FechaCotizacion = DateTime.Now;
+                    vmcotizacion.cotizaciones.PrecioFinalVenta = vmcotizacion.propiedades.VentaPrecio.Value;
 
-                    db.Amortizaciones.Add(amortizacion);
+                    cotizaciones = vmcotizacion.cotizaciones;
+                    db.Cotizaciones.Add(cotizaciones);
                     db.SaveChanges();
-                   pago = pago.AddMonths(1);
-                }
 
-                //Parcialidades
-                for (int i = 0; i < pagosMensuales; i++)
-                {
-                    Amortizaciones amortizacion = new Amortizaciones();
-                    amortizacion.Cotizacion = cotizaciones.IdCotizacion;
-                    amortizacion.Persona = cotizaciones.Persona;
-                    amortizacion.Propiedad = cotizaciones.Propiedad;
-                    amortizacion.Importe = pagoMensual;
-                    amortizacion.TipoPago = 2;
-                    amortizacion.FechaProgramado = pago;
 
-                    db.Amortizaciones.Add(amortizacion);
-                    db.SaveChanges();
-                    //Anualidades
-                    if (pago.Month == 12 && numPagosAnuales != 0)
+                    /*---- Amortizaciones ----*/
+                    decimal enganche = vmcotizacion.cotizaciones.Enganche.Value;
+                    decimal pagoMensual = vmcotizacion.cotizaciones.PagoMensual.Value;
+                    int pagosMensuales = vmcotizacion.cotizaciones.Parcialidades.Value;
+
+                    DateTime pago; //cambia para cada mes
+                    DateTime.TryParse(fechaInicial, out pago);
+
+
+
+                    //Enganches
+                    for (int i = 0; i < pagosEnganche; i++)
                     {
-                        Amortizaciones amortizacionAnual = new Amortizaciones();
-                        amortizacionAnual.Cotizacion = cotizaciones.IdCotizacion;
-                        amortizacionAnual.Persona = cotizaciones.Persona;
-                        amortizacionAnual.Propiedad = cotizaciones.Propiedad;
-                        amortizacionAnual.Importe = pagosAnuales;
-                        amortizacionAnual.TipoPago = 3;
-                        amortizacionAnual.FechaProgramado = pago;
+                        Amortizaciones amortizacion = new Amortizaciones();
+                        amortizacion.Cotizacion = cotizaciones.IdCotizacion;
+                        amortizacion.Persona = cotizaciones.Persona;
+                        amortizacion.Propiedad = cotizaciones.Propiedad;
+                        amortizacion.Importe = enganche / pagosEnganche;
+                        amortizacion.TipoPago = 1;
+                        amortizacion.FechaProgramado = pago;
 
-                        db.Amortizaciones.Add(amortizacionAnual);
-                        numPagosAnuales--;
+                        db.Amortizaciones.Add(amortizacion);
                         db.SaveChanges();
+                        pago = pago.AddMonths(1);
                     }
-                   pago = pago.AddMonths(1);
-                }
 
-                if (numPagosAnuales != 0)
-                {
-                    for (int i = numPagosAnuales; i > 0; i--)
+                    //Parcialidades
+                    for (int i = 0; i < pagosMensuales; i++)
                     {
-                        Amortizaciones amortizacionAnual = new Amortizaciones();
-                        amortizacionAnual.Cotizacion = cotizaciones.IdCotizacion;
-                        amortizacionAnual.Persona = cotizaciones.Persona;
-                        amortizacionAnual.Propiedad = cotizaciones.Propiedad;
-                        amortizacionAnual.Importe = pagosAnuales;
-                        amortizacionAnual.TipoPago = 3;
-                        amortizacionAnual.FechaProgramado = pago;
-                        db.Amortizaciones.Add(amortizacionAnual);
+                        Amortizaciones amortizacion = new Amortizaciones();
+                        amortizacion.Cotizacion = cotizaciones.IdCotizacion;
+                        amortizacion.Persona = cotizaciones.Persona;
+                        amortizacion.Propiedad = cotizaciones.Propiedad;
+                        amortizacion.Importe = pagoMensual;
+                        amortizacion.TipoPago = 2;
+                        amortizacion.FechaProgramado = pago;
+
+                        db.Amortizaciones.Add(amortizacion);
                         db.SaveChanges();
+                        //Anualidades
+                        if (pago.Month == 12 && numPagosAnuales != 0)
+                        {
+                            Amortizaciones amortizacionAnual = new Amortizaciones();
+                            amortizacionAnual.Cotizacion = cotizaciones.IdCotizacion;
+                            amortizacionAnual.Persona = cotizaciones.Persona;
+                            amortizacionAnual.Propiedad = cotizaciones.Propiedad;
+                            amortizacionAnual.Importe = pagosAnuales;
+                            amortizacionAnual.TipoPago = 3;
+                            amortizacionAnual.FechaProgramado = pago;
+
+                            db.Amortizaciones.Add(amortizacionAnual);
+                            numPagosAnuales--;
+                            db.SaveChanges();
+                        }
+                        pago = pago.AddMonths(1);
                     }
-                    //numPagosAnuales--;
+
+                    if (numPagosAnuales != 0)
+                    {
+                        for (int i = numPagosAnuales; i > 0; i--)
+                        {
+                            Amortizaciones amortizacionAnual = new Amortizaciones();
+                            amortizacionAnual.Cotizacion = cotizaciones.IdCotizacion;
+                            amortizacionAnual.Persona = cotizaciones.Persona;
+                            amortizacionAnual.Propiedad = cotizaciones.Propiedad;
+                            amortizacionAnual.Importe = pagosAnuales;
+                            amortizacionAnual.TipoPago = 3;
+                            amortizacionAnual.FechaProgramado = pago;
+                            db.Amortizaciones.Add(amortizacionAnual);
+                            db.SaveChanges();
+                        }
+                        //numPagosAnuales--;
+                    }
+
+                    /*--- Amortizaciones ----*/
+
+                    //db.SaveChanges();
+
+                    return RedirectToAction("Filtro", "Amortizaciones", new { cotizacion = cotizaciones.IdCotizacion });
+                    // return Redirect("http://184.107.136.186/crminmobiliario/Reportes/RptCotizacion.aspx?IdCotizacion=" + cotizaciones.IdCotizacion);
                 }
-
-                /*--- Amortizaciones ----*/
-
-                //db.SaveChanges();
-
-                return RedirectToAction("Filtro", "Amortizaciones", new {cotizacion = cotizaciones.IdCotizacion });
-               // return Redirect("http://184.107.136.186/crminmobiliario/Reportes/RptCotizacion.aspx?IdCotizacion=" + cotizaciones.IdCotizacion);
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
+                }
             }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
-            }
-
 
             return View(vmcotizacion);
         }

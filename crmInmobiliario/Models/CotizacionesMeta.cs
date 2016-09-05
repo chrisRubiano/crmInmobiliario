@@ -17,6 +17,7 @@ namespace crmInmobiliario.Models
         [Display(Name = "Prospecto / Cliente")]
         [Required(ErrorMessage = "Debe seleccionar un Cliente / Prospecto")]
         public Nullable<int> Persona { get; set; }
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de Cotización")]
@@ -29,18 +30,23 @@ namespace crmInmobiliario.Models
         [Display(Name = "% Enganche")]
         [Range(30.0, 100.0,
             ErrorMessage = "El porcentaje debe de estar entre {1}% y {2}%")]
+        [Required]
         public Nullable<decimal> PorcentajeEnganche { get; set; }
 
         [DataType(DataType.Currency)]
+        [Required]
         public Nullable<decimal> Enganche { get; set; }
 
         [Range(1, 24,
             ErrorMessage = "Debe ser máxim0 24 parcialidades")]
+        [Required]
         public Nullable<int> Parcialidades { get; set; }
         [Display(Name = "% Mensualidades")]
+        [Required]
         public Nullable<decimal> PorcentajeMensualidades { get; set; }
         [Display(Name = "Pago Mensual")]
         [DataType(DataType.Currency)]
+        [Required]
         public Nullable<decimal> PagoMensual { get; set; }
         public string Vendedor { get; set; }
 
