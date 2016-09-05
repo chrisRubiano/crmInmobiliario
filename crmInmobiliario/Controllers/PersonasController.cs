@@ -400,6 +400,7 @@ namespace crmInmobiliario.Controllers
                     personas.UsuarioUA = User.Identity.GetUserId().ToString();
                     personas.FechaUA = DateTime.Now;
                     personas.Validado = true;
+                    personas.Categoria = 2;
                     db.Entry(personas).State = EntityState.Modified;
                     db.SaveChanges();
                    
