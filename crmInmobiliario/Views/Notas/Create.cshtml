@@ -4,7 +4,7 @@
     ViewBag.Title = "Guardar";
 }
 
-<h2>Guardar</h2>
+<h2>Registrar Nota</h2>
 
 
 @using (Html.BeginForm()) 
@@ -18,7 +18,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Nota, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nota, new { htmlAttributes = new { @class = "form-control nota", @rows = 5 } })
+                @*@Html.EditorFor(model => model.Nota, new { htmlAttributes = new { @class = "form-control nota", @rows = 5 } })*@
+                @Html.TextAreaFor(model => model.Nota, new { @class = "form-control nota", @cols = 60, @rows = 5 })
                 @Html.ValidationMessageFor(model => model.Nota, "", new { @class = "text-danger" })
             </div>
         </div>
