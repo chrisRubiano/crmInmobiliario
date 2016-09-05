@@ -41,34 +41,9 @@ namespace crmInmobiliario.Controllers
             return View(notas);
         }
 
-        public void Excel()
-        {
-            var model = db.Notas.ToList();
-
-            Export export = new Export();
-            export.ToExcel(Response, model);
-        }
 
         //helper class
-        public class Export
-        {
-            public void ToExcel(HttpResponseBase Response, object clientsList)
-            {
-                var grid = new System.Web.UI.WebControls.GridView();
-                grid.DataSource = clientsList;
-                grid.DataBind();
-                Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment; filename=Notas.xls");
-                Response.ContentType = "application/excel";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
-
-                grid.RenderControl(htw);
-                Response.Write(sw.ToString());
-                Response.End();
-            }
-        }
-
+       
         // GET: Notas/Create
         public ActionResult Create(int ? idPersona, int? categoriap)
         {
@@ -96,7 +71,8 @@ namespace crmInmobiliario.Controllers
                 db.Notas.Add(notas);
                 db.SaveChanges();
                 //return RedirectToAction("Index", "Personas");
-                return Redirect("/Personas/Details/" + idPersona.ToString());
+                //return Redirect("/Personas/Details/" + idPersona.ToString());
+                return RedirectToAction("Details", "Personas", new { id = notas.Persona });
             }
 
             //ViewBag.Persona = db.Personas.Find(idPersona);
@@ -133,7 +109,9 @@ namespace crmInmobiliario.Controllers
                 notas.Persona = idPersona;
                 db.Entry(notas).State = EntityState.Modified;
                 db.SaveChanges();
-                return Redirect("/Personas/Details/" + idPersona.ToString());
+               // return Redirect("/Personas/Details/" + idPersona.ToString());
+
+                return RedirectToAction("Details", "Personas", new { id = notas.Persona });
             }
             ViewBag.Persona = idPersona;
             return View(notas);
@@ -161,10 +139,11 @@ namespace crmInmobiliario.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Notas notas = db.Notas.Find(id);
-            var persona = notas.Persona;
+            //var persona = notas.Persona;
             db.Notas.Remove(notas);
             db.SaveChanges();
-            return Redirect("/Personas/Details/" + persona.ToString());
+            //return Redirect("/Personas/Details/" + persona.ToString());
+            return RedirectToAction("Details", "Personas", new { id = notas.Persona });
         }
 
         protected override void Dispose(bool disposing)
