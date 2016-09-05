@@ -190,6 +190,29 @@ namespace crmInmobiliario.Controllers
             return View(vModelos);
         }
 
+        // GET: Personas/Details/5
+        public ActionResult DetailsProspectoValidar(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            vmPersonaValidacion validacionmodelos = new vmPersonaValidacion();
+            Personas personas = db.Personas.Find(id);
+            if (personas == null)
+            {
+                return HttpNotFound();
+            }
+            validacionmodelos.personas = personas;
+
+            var validaciones = db.PersonasValidacion.Where(d => d.Persona == id);
+            validacionmodelos.validaciones = validaciones;
+
+            return View(validacionmodelos);
+        }
+
 
         public ActionResult Duplicado(int? id)
         {

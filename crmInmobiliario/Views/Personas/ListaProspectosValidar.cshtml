@@ -4,9 +4,13 @@
     ViewBag.Title = "Lista de Prospectos";
 }
 
-<h2>Seleccione Prospecto para Validación</h2>
+<h2>Validación</h2>
 
 <hr />
+
+<div class="alert alert-info" role="alert">
+    <strong>PASO 1 DE 3  </strong> <h3>Seleccione Prospecto a Validar</h3>
+</div>
 
 <p>
 
@@ -61,7 +65,7 @@
         <tr>
             <td class="">
                 <div class="btn-lista">
-                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Validacion" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-chevron-circle-right"></i></button>
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Seleccionar para Validacion" onclick="location.href='@Url.Action("DetailsProspectoValidar", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-chevron-circle-right"></i></button>
                 </div>
             </td>
             <td>
