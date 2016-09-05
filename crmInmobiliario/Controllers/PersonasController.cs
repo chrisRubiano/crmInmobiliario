@@ -121,7 +121,7 @@ namespace crmInmobiliario.Controllers
             nombreCompleto.AddRange(nombreQry);
             ViewBag.nombre = new SelectList(nombreCompleto);
 
-            var personas = from p in db.Personas.Where(p => p.Categoria == 1)
+            var personas = from p in db.Personas.Where(p => p.Categoria == 1).Where(p => p.Validado != true)
                            select p;
 
             if (!string.IsNullOrEmpty(nombre))
@@ -213,6 +213,11 @@ namespace crmInmobiliario.Controllers
             return View(validacionmodelos);
         }
 
+        
+        public ActionResult ValidacionRealizada()
+        {
+            return View();
+        }
 
         public ActionResult Duplicado(int? id)
         {
@@ -345,6 +350,60 @@ namespace crmInmobiliario.Controllers
                     {
                         return RedirectToAction("ListaClientes");
                     }
+
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
+            }
+
+            ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+            ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
+            ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+            return View(personas);
+        }
+
+        // GET: Personas/Edit/5
+        public ActionResult ValidarProspecto(int? id, int? categoriap)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Personas personas = db.Personas.Find(id);
+            if (personas == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
+            ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+            ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
+            ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+            ViewBag.categoriap = categoriap;
+            return View(personas);
+        }
+
+
+        // POST: Personas/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ValidarProspecto([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro,RFC")] Personas personas, int? categoriap)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    personas.UsuarioUA = User.Identity.GetUserId().ToString();
+                    personas.FechaUA = DateTime.Now;
+                    personas.Validado = true;
+                    db.Entry(personas).State = EntityState.Modified;
+                    db.SaveChanges();
+                   
+                    return RedirectToAction("ValidacionRealizada");
 
                 }
             }
