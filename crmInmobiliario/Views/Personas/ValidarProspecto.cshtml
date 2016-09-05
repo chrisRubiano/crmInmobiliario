@@ -163,7 +163,7 @@
 }
 
 <div>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("DetailsProspectoValidar", "Personas")';return false;"><i class="fa fa-chevron-left"></i> Volver al paso 2</button>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("DetailsProspectoValidar", "Personas", new { id = Model.IdPersona })';return false;"><i class="fa fa-chevron-left"></i> Volver al paso 2</button>
 </div>
 
 @section Scripts {

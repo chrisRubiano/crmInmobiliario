@@ -39,6 +39,13 @@ namespace crmInmobiliario.Controllers
                 amortizaciones = amortizaciones.Where(a => a.Cotizacion == cotizacion);
             }
 
+            var cotizaciones = db.Cotizaciones.Find(cotizacion);
+            ViewBag.cotizaciones = cotizaciones;
+            var personas = db.Personas.Find(persona);
+            ViewBag.personas = personas;
+            var propiedades = db.Propiedades.Find(propiedad);
+            ViewBag.propiedades = propiedades;
+
             ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             return View(amortizaciones.ToList());

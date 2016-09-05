@@ -4,7 +4,12 @@
     ViewBag.Title = "Pagos";
 }
 
-<h2>Cotización : Datos de Pagos</h2>
+<h2>Cotización</h2>
+<hr />
+<div class="alert alert-info" role="alert">
+    <strong>PASO 2 </strong> <h3>Datos sobre los pagos</h3>
+</div>
+
 
 <div class="row">
     <div class="col-md-4 no-gutter">
@@ -123,8 +128,15 @@
         </div>
 
         <div class="panel">
-            <div class="panel-body alert-info">
+            <div class="panel-body alert-warning">
                 <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.personas.CodigoPersona)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.personas.CodigoPersona)
+                    </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.personas.Nombre)
                     </dt>

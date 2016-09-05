@@ -5,13 +5,25 @@
 }
 
 <h2>Cotización</h2>
+<hr />
+<div class="alert alert-info" role="alert">
+    <strong>PASO 1 </strong> <h3>Seleccione Prospecto/Cliente a Cotizar</h3>
+</div>
 
-<br /><br />
+
 <div class="col-md-3">
         
-        <hr />
-    <div class="alert alert-info" role="alert">
+        
+    <h4>Datos de la Propiedad</h4>
+    <div class="alert alert-success" role="alert">
         <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.propiedades.Codigo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.propiedades.Codigo)
+            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.propiedades.Desarrollos.Desarrollo)
             </dt>
@@ -26,14 +38,6 @@
 
             <dd>
                 @Html.DisplayFor(model => model.propiedades.Edificios.Edificio)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.propiedades.PropiedadesCategoria.Categoria)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.propiedades.PropiedadesCategoria.Categoria)
             </dd>
 
             <dt>
@@ -202,9 +206,7 @@
     </div>
 </div>
 <div class="col-md-9">
-    <div class="alert alert-success" role="alert">
-        <h3>Seleccione Cliente/Prospecto a cotizar</h3>
-    </div>
+    
 
     <div>
         <p>
@@ -248,7 +250,7 @@
             {
                 <tr>
                     <td class="">
-                        <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Siguiente" onclick="location.href='@Url.Action("Pagos", "Cotizaciones", new { idPersona = item.IdPersona, idPropiedad = Model.propiedades.IdPropiedad })';return false;"><i class="fa fa-fw fa-chevron-circle-right"></i></button>
+                        <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Seleccionar para Cotizar" onclick="location.href='@Url.Action("Pagos", "Cotizaciones", new { idPersona = item.IdPersona, idPropiedad = Model.propiedades.IdPropiedad })';return false;"><i class="fa fa-fw fa-chevron-circle-right"></i></button>
                     </td>
                     <td>
                         @item.CodigoPersona

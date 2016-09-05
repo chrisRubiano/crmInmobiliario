@@ -4,16 +4,21 @@
     ViewBag.Title = "Tabla de Amortizaciones";
 }
 
-<h2>Tabla de Amortizaciones</h2>
+<h2>Cotización</h2>
+<hr />
+<div class="alert alert-info" role="alert">
+    <strong>PASO 3 </strong> <h3>Tabla de Amortización</h3>
+</div>
 @*<p>
     <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>
 </p>*@
+
+
 <div class="row no-gutter">
-    <div class="col-md-2" style="display:none;">
+    @*<div class="col-md-2" style="display:none;">
         @using (Html.BeginForm("Filtro", "Amortizaciones", FormMethod.Get, new { @class = " panel panel-default" }))
         {
             <div class="panel-body panel-info">
-
                 <div class="form-group">
                     <label> Persona: </label><div class="">
                         @Html.DropDownList("Persona", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
@@ -32,7 +37,7 @@
 
             </div>
         }
-    </div>
+    </div>*@
 
     <div class="col-md-10 col-md-offset-1">
         <div class="wrapper" style="height: 500px; overflow-y:auto;">
@@ -41,7 +46,7 @@
                     <tr>
                         <th></th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+                            @Html.DisplayNameFor(model => model.TiposPago.Tipo) 
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.FechaProgramado)
@@ -56,26 +61,26 @@
                 </thead>
 
                 @foreach (var item in Model)
-            {
-                    <tr>
-                        <td>
-                            <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaProgramado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Importe)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
-                        </td>
-                    </tr>
-                }
+                {
+                        <tr>
+                            <td>
+                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaProgramado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Importe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
+                            </td>
+                        </tr>
+                    }
 
             </table>
         </div>
