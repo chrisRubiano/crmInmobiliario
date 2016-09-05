@@ -269,7 +269,7 @@ namespace crmInmobiliario.Controllers
                 ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
             }
 
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", cotizaciones.Persona);
+            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto", cotizaciones.Persona);
             if (!string.IsNullOrEmpty(ViewBag.codigo))
             {
 
@@ -293,7 +293,7 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", cotizaciones.Persona);
+            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto", cotizaciones.Persona);
             ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", cotizaciones.Propiedad);
             return View(cotizaciones);
         }
@@ -313,7 +313,7 @@ namespace crmInmobiliario.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", cotizaciones.Persona);
+            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto", cotizaciones.Persona);
             ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", cotizaciones.Propiedad);
             return View(cotizaciones);
         }
