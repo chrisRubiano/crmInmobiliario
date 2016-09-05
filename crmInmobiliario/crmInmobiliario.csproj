@@ -371,6 +371,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\vmCotizacion.cs" />
+    <Compile Include="Models\vmPersonaValidacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reportes\RptCotizacion.aspx.cs">
       <DependentUpon>RptCotizacion.aspx</DependentUpon>
@@ -610,6 +611,7 @@
     <Content Include="Views\PersonasValidacions\Edit.cshtml" />
     <Content Include="Views\PersonasValidacions\Index.cshtml" />
     <Content Include="Views\Personas\ListaProspectosValidar.cshtml" />
+    <Content Include="Views\Personas\DetailsProspectoValidar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
