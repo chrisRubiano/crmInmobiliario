@@ -10,7 +10,7 @@ namespace crmInmobiliario.Models
     {
         [Display(Name = "Fecha Programada")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaProgramado { get; set; }
 
         [DataType(DataType.Currency)]
