@@ -49,6 +49,9 @@ namespace crmInmobiliario.Controllers
             ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             /*** Panel info Cotizacion ***/
+            ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
+            ViewBag.personaTelefono = cotizaciones.Personas.Celular;
+            ViewBag.personaCorreo = cotizaciones.Personas.Email;
             ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
             ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
             ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
@@ -176,7 +179,7 @@ namespace crmInmobiliario.Controllers
                 }
                 db.Entry(amortizaciones).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Filtro");
+                return RedirectToAction("Filtro", new { cotizacion = amortizaciones.Cotizacion });
             }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
             return View(amortizaciones);
@@ -205,7 +208,7 @@ namespace crmInmobiliario.Controllers
             Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
             db.Amortizaciones.Remove(amortizaciones);
             db.SaveChanges();
-            return RedirectToAction("Filtro");
+            return RedirectToAction("Filtro", new { cotizacion = amortizaciones.Cotizacion });
         }
 
         protected override void Dispose(bool disposing)
