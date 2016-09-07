@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
         /**           Filtro                    **/
         public ActionResult Filtro(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
-            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
+            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("C"));
 
             if (persona != 0)
             {
@@ -46,6 +46,16 @@ namespace crmInmobiliario.Controllers
             ViewBag.personas = personas;
             var propiedades = db.Propiedades.Find(propiedad);
             ViewBag.propiedades = propiedades;
+
+            /*  Checar si existe ya una tabla oficial */
+            ViewBag.existeOficial = false;
+            var checaroficial = db.Amortizaciones.AsNoTracking().Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
+            if (checaroficial.Count() > 0)
+            {
+                ViewBag.existeOficial = true;
+            }
+            //
+
 
             ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");

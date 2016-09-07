@@ -9,12 +9,23 @@
 </div>
 <p>
 <div class="col-md-offset-10">
-@using (Html.BeginForm())
+@if (ViewBag.existeOficial)
 {
-    @Html.AntiForgeryToken()   
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = ViewBag.cotizacion })'"><i class="fa fa-eye"></i> Ver Tabla Oficial</button>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
         <input style="display:none;" id="idCotizacion" name="idCotizacion" value="@ViewBag.IdCotizacion" />
         <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Generar TAM Oficial</button>
+    }
 }
+
+
+
+
 </div>
 </p>
 @*<p>
