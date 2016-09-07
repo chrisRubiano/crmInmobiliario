@@ -33,11 +33,11 @@
     <tr>
         <td class="">
             <div class="list-inline">
-                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                 <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-                <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones" onclick="location.href='@Url.Action("Filtro", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-dollar"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones Oficial" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>*@
+                <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones (Cotizacion)" onclick="location.href='@Url.Action("Filtro", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-dollar"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones (Oficial)" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
                 <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Imprimir" onclick="window.open('/Reportes/RptCotizacion.aspx?IdCotizacion='+ @Html.DisplayFor(modelItem => item.IdCotizacion));return false;"><i class="fa fa-fw fa-print"></i></button>
                 
             </div>

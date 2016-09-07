@@ -382,6 +382,13 @@
     <Compile Include="Reportes\RptCotizacion.aspx.designer.cs">
       <DependentUpon>RptCotizacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\RptReciboPago.aspx.cs">
+      <DependentUpon>RptReciboPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\RptReciboPago.aspx.designer.cs">
+      <DependentUpon>RptReciboPago.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utilidades\Export.cs" />
   </ItemGroup>
@@ -420,6 +427,7 @@
       <LastGenOutput>modeloCRM.cs</LastGenOutput>
     </Content>
     <Content Include="Reportes\RptCotizacion.aspx" />
+    <Content Include="Reportes\RptReciboPago.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.woff2" />

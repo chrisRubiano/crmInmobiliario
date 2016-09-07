@@ -198,14 +198,17 @@
         e5pmEASzp2kGQTB7mmYQBLOnaQZBMHuaZhAEs2bdHX4LIfywqD6dfAoAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="dsPago.ParameterValues" xml:space="preserve">
+    <value>{"@IdAmortizacion":"1481"}</value>
+  </metadata>
   <data name="dsPago.SelectCommand" xml:space="preserve">
     <value>SELECT Desarrollos.Desarrollo, Propiedades.IdPropiedad, Propiedades.Titulo, Propiedades.VentaPrecio, Propiedades.Codigo, Propiedades.Bodega, Propiedades.M2Bodega, Propiedades.FrenteLocal, Propiedades.LargoLocal, Propiedades.Nivel, Propiedades.Estacionamiento, 
-             Propiedades.CajonesEstacionamiento, Personas.Nombre, Personas.Paterno, Personas.Materno, Personas.RFC, Personas.Email, Personas.Email2, Personas.Telefono, Personas.Celular, Pagos.Importe, Pagos.FechaPago, Pagos.ImporteConLetra
+             Propiedades.CajonesEstacionamiento, Personas.Nombre, Personas.Paterno, Personas.Materno, Personas.RFC, Personas.Email, Personas.Email2, Personas.Telefono, Personas.Celular, Pagos.Importe, Pagos.FechaPago, Pagos.ImporteConLetra, Pagos.IdPago
 FROM   Pagos INNER JOIN
              Propiedades ON Pagos.Propiedad = Propiedades.IdPropiedad INNER JOIN
              Personas ON Pagos.Persona = Personas.IdPersona LEFT OUTER JOIN
              Amortizaciones ON Pagos.Amortizacion = Amortizaciones.IdAmortizacion LEFT OUTER JOIN
              Desarrollos ON Propiedades.Desarrollo = Desarrollos.IdDesarrollo
-WHERE (Pagos.IdPago = @IdPago)</value>
+WHERE (Pagos.Amortizacion = @IdAmortizacion)</value>
   </data>
 </root>

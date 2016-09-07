@@ -30,16 +30,16 @@ namespace CRMReportes
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox3 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
-            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.textBox13 = new Telerik.Reporting.TextBox();
-            this.textBox12 = new Telerik.Reporting.TextBox();
-            this.textBox11 = new Telerik.Reporting.TextBox();
-            this.dsPago = new Telerik.Reporting.SqlDataSource();
             this.textBox4 = new Telerik.Reporting.TextBox();
             this.textBox26 = new Telerik.Reporting.TextBox();
             this.textBox5 = new Telerik.Reporting.TextBox();
             this.textBox10 = new Telerik.Reporting.TextBox();
             this.textBox20 = new Telerik.Reporting.TextBox();
+            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
+            this.textBox13 = new Telerik.Reporting.TextBox();
+            this.textBox12 = new Telerik.Reporting.TextBox();
+            this.textBox11 = new Telerik.Reporting.TextBox();
+            this.dsPago = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // pageHeaderSection1
@@ -118,7 +118,7 @@ namespace CRMReportes
             this.textBox24.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox24.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox24.Value = "= Fields.CodigoCotizacion";
+            this.textBox24.Value = "= Fields.IdPago";
             // 
             // textBox19
             // 
@@ -264,52 +264,6 @@ namespace CRMReportes
             this.textBox2.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox2.Value = "= Fields.Titulo";
             // 
-            // pageFooterSection1
-            // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(0.51999998092651367D);
-            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.textBox13,
-            this.textBox12,
-            this.textBox11});
-            this.pageFooterSection1.Name = "pageFooterSection1";
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.1383333206176758D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.9000000953674316D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
-            this.textBox13.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox13.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox13.Value = "Quantium Desarrollos";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(15.599900245666504D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.9000000953674316D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
-            this.textBox12.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
-            this.textBox12.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox12.Value = "= \"Página \" + PageNumber + \" de \" + PageCount";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.0999999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
-            this.textBox11.Style.Color = System.Drawing.Color.Silver;
-            this.textBox11.Style.Font.Name = "Arial";
-            this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox11.Value = "= \"Fecha Impresión : \" + Now()";
-            // 
-            // dsPago
-            // 
-            this.dsPago.CommandTimeout = 900;
-            this.dsPago.ConnectionString = "CRMReportes.Properties.Settings.CRMINMOBILIARIO";
-            this.dsPago.Name = "dsPago";
-            this.dsPago.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@IdPago", System.Data.DbType.Int32, "= Parameters.IdPago.Value")});
-            this.dsPago.SelectCommand = resources.GetString("dsPago.SelectCommand");
-            // 
             // textBox4
             // 
             this.textBox4.Format = "{0:C2}";
@@ -366,11 +320,54 @@ namespace CRMReportes
             this.textBox20.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.707521915435791D), Telerik.Reporting.Drawing.Unit.Cm(4.3002004623413086D));
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(16.99247932434082D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
-            this.textBox20.Style.BorderColor.Bottom = System.Drawing.Color.Gray;
-            this.textBox20.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.textBox20.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox20.Value = "= \"( SON \" + Fields.ImporteConLetra + \" MN )\"";
+            // 
+            // pageFooterSection1
+            // 
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(0.51999998092651367D);
+            this.pageFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.textBox13,
+            this.textBox12,
+            this.textBox11});
+            this.pageFooterSection1.Name = "pageFooterSection1";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6.1383333206176758D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.9000000953674316D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox13.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox13.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox13.Value = "Quantium Desarrollos";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(15.599900245666504D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.9000000953674316D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox12.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox12.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox12.Value = "= \"Página \" + PageNumber + \" de \" + PageCount";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.0999999046325684D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox11.Style.Color = System.Drawing.Color.Silver;
+            this.textBox11.Style.Font.Name = "Arial";
+            this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox11.Value = "= \"Fecha Impresión : \" + Now()";
+            // 
+            // dsPago
+            // 
+            this.dsPago.CommandTimeout = 900;
+            this.dsPago.ConnectionString = "CRMReportes.Properties.Settings.CRMINMOBILIARIO";
+            this.dsPago.Name = "dsPago";
+            this.dsPago.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
+            new Telerik.Reporting.SqlDataSourceParameter("@IdAmortizacion", System.Data.DbType.Int32, "= Parameters.IdAmortizacion.Value")});
+            this.dsPago.SelectCommand = resources.GetString("dsPago.SelectCommand");
             // 
             // ReciboPago
             // 
@@ -383,8 +380,8 @@ namespace CRMReportes
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(0.5D), Telerik.Reporting.Drawing.Unit.Cm(0.5D), Telerik.Reporting.Drawing.Unit.Cm(0.5D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.Letter;
-            reportParameter1.Name = "IdPago";
-            reportParameter1.Text = "Id Pago";
+            reportParameter1.Name = "IdAmortizacion";
+            reportParameter1.Text = "IdAmortizacion";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.Integer;
             reportParameter1.Visible = true;
             this.ReportParameters.Add(reportParameter1);
