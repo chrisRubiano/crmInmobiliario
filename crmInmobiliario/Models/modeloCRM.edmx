@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CRMINMOBILIARIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -27,6 +27,7 @@
           <Property Name="FechaProgramado" Type="date" />
           <Property Name="Importe" Type="money" />
           <Property Name="EstaPagado" Type="bit" StoreGeneratedPattern="Computed" />
+          <Property Name="Tipo" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -1371,8 +1372,7 @@
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CRMINMOBILIARIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1399,6 +1399,7 @@
           <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="EstaPagado" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="TiposPago" Relationship="Self.FK_Amortizaciones_TiposPago" FromRole="Amortizaciones" ToRole="TiposPago" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -2820,6 +2821,7 @@
           <EntitySetMapping Name="Amortizaciones">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Amortizaciones">
               <MappingFragment StoreEntitySet="Amortizaciones">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="IdAmortizacion" ColumnName="IdAmortizacion" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="Persona" ColumnName="Persona" />
