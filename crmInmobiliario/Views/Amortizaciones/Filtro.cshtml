@@ -8,12 +8,14 @@
     <strong>PASO 3 </strong> <h3>Tabla de Amortización</h3>
 </div>
 <p>
+<div class="col-md-offset-10">
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    <input id="idCotizacion" name="idCotizacion" value="@ViewBag.IdCotizacion" />
-    <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Generar TAM Oficial</button>
+    @Html.AntiForgeryToken()   
+        <input style="display:none;" id="idCotizacion" name="idCotizacion" value="@ViewBag.IdCotizacion" />
+        <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Generar TAM Oficial</button>
 }
+</div>
 </p>
 @*<p>
     <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>

@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
         /**           Filtro                    **/
         public ActionResult Filtro(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
-            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false);
+            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
 
             if (persona != 0)
             {
@@ -82,10 +82,11 @@ namespace crmInmobiliario.Controllers
                 oficial = amortizacion;
                 oficial.Tipo = "O";
                 db.Amortizaciones.Add(oficial);
+                idCotizacion = oficial.Cotizacion.Value;
             }
             db.SaveChanges();
 
-            return RedirectToAction("Oficial", new { idCotizacion = amortizaciones.FirstOrDefault().Cotizacion });
+            return RedirectToAction("Oficial", new { cotizacion = idCotizacion });
         }
         /**           Filtro                    **/
 
