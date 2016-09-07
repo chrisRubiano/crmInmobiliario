@@ -22,6 +22,7 @@ namespace crmInmobiliario.Controllers
             return View(amortizaciones.ToList());
         }
 
+        /**           Filtro                    **/
         public ActionResult Filtro(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
             var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false);
@@ -64,9 +65,81 @@ namespace crmInmobiliario.Controllers
             ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value-cotizaciones.Enganche.Value),2);
             ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value,2);
             /*** Panel info Cotizacion ***/
+            ViewBag.idCotizacion = cotizaciones.IdCotizacion;
 
             return View(amortizaciones.ToList());
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Filtro(int idCotizacion)
+        {
+            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.Cotizacion == idCotizacion);
+            foreach (var amortizacion in amortizaciones)
+            {
+                Amortizaciones oficial = new Amortizaciones();
+                oficial = amortizacion;
+                oficial.Tipo = "O";
+                db.Amortizaciones.Add(oficial);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Oficial", new { idCotizacion = amortizaciones.FirstOrDefault().Cotizacion });
+        }
+        /**           Filtro                    **/
+
+        /**           OFICIAL                   **/
+        public ActionResult Oficial(int persona = 0, int propiedad = 0, int cotizacion = 0)
+        {
+            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
+
+            if (persona != 0)
+            {
+                amortizaciones = amortizaciones.Where(a => a.Persona == persona);
+            }
+            if (propiedad != 0)
+            {
+                amortizaciones = amortizaciones.Where(a => a.Propiedad == propiedad);
+            }
+            if (cotizacion != 0)
+            {
+                amortizaciones = amortizaciones.Where(a => a.Cotizacion == cotizacion);
+            }
+
+            var cotizaciones = db.Cotizaciones.Find(cotizacion);
+            ViewBag.cotizaciones = cotizaciones;
+            var personas = db.Personas.Find(persona);
+            ViewBag.personas = personas;
+            var propiedades = db.Propiedades.Find(propiedad);
+            ViewBag.propiedades = propiedades;
+
+            ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
+            ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+            /*** Panel info Cotizacion ***/
+            ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
+            ViewBag.personaTelefono = cotizaciones.Personas.Celular;
+            ViewBag.personaCorreo = cotizaciones.Personas.Email;
+            ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
+            ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
+            ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
+            ViewBag.titulo = cotizaciones.Propiedades.Codigo;
+            ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value, 2);
+            ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value, 2);
+            ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
+            ViewBag.mensualidades = cotizaciones.Parcialidades;
+            ViewBag.porcMensualidades = cotizaciones.PorcentajeMensualidades;
+            ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2);
+            ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value, 2);
+            /*** Panel info Cotizacion ***/
+            ViewBag.idCotizacion = cotizaciones.IdCotizacion;
+
+            return View(amortizaciones.ToList());
+        }
+
+        /**           OFICIAL                   **/
+
+
 
         // GET: Amortizaciones/Details/5
         public ActionResult Details(int? id)
