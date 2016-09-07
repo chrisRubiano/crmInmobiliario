@@ -21,9 +21,13 @@ namespace crmInmobiliario.Controllers
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
         // GET: Cotizaciones
-        public ActionResult Index()
+        public ActionResult Index(int? idPersona)
         {
             var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades).OrderByDescending(c => c.IdCotizacion);
+            if (idPersona.HasValue)
+            {
+                cotizaciones = cotizaciones.Where(c => c.Persona == idPersona.Value).OrderByDescending(c => c.IdCotizacion);
+            }
             return View(cotizaciones.ToList());
         }
 
