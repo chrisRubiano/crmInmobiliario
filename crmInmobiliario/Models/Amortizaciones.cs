@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(AmortizacionMeta))]
+    
     public partial class Amortizaciones
     {
         public int IdAmortizacion { get; set; }
@@ -24,6 +22,7 @@ namespace crmInmobiliario.Models
         public Nullable<System.DateTime> FechaProgramado { get; set; }
         public Nullable<decimal> Importe { get; set; }
         public Nullable<bool> EstaPagado { get; set; }
+        public string Tipo { get; set; }
     
         public virtual TiposPago TiposPago { get; set; }
     }
