@@ -103,7 +103,8 @@ namespace crmInmobiliario.Controllers
         /**           OFICIAL                   **/
         public ActionResult Oficial(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
-            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
+            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.Tipo.Equals("O"));
+                //.Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
 
             if (persona != 0)
             {
@@ -128,7 +129,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             /*** Panel info Cotizacion ***/
-            ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
+           // ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
             ViewBag.personaTelefono = cotizaciones.Personas.Celular;
             ViewBag.personaCorreo = cotizaciones.Personas.Email;
             ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
