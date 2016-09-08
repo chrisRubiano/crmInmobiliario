@@ -49,7 +49,7 @@ namespace crmInmobiliario.Controllers
 
             /*  Checar si existe ya una tabla oficial */
             ViewBag.existeOficial = false;
-            var checaroficial = db.Amortizaciones.AsNoTracking().Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
+            var checaroficial = db.Amortizaciones.AsNoTracking().Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Cotizacion == cotizacion);
             if (checaroficial.Count() > 0)
             {
                 ViewBag.existeOficial = true;
