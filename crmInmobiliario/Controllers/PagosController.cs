@@ -66,6 +66,7 @@ namespace crmInmobiliario.Controllers
                 pagos.Amortizacion = amortizacion.IdAmortizacion;
                 pagos.Persona = amortizacion.Persona;
                 pagos.Propiedad = amortizacion.Propiedad;
+                pagos.Tipo = amortizacion.TipoPago;
 
                 db.Pagos.Add(pagos);
                 db.SaveChanges();
