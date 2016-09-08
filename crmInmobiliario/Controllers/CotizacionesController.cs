@@ -110,6 +110,7 @@ namespace crmInmobiliario.Controllers
                         amortizacion.Importe = enganche / pagosEnganche;
                         amortizacion.TipoPago = 1;
                         amortizacion.FechaProgramado = pago;
+                        amortizacion.Tipo = "C";
 
                         db.Amortizaciones.Add(amortizacion);
                         db.SaveChanges();
@@ -126,6 +127,7 @@ namespace crmInmobiliario.Controllers
                         amortizacion.Importe = pagoMensual;
                         amortizacion.TipoPago = 2;
                         amortizacion.FechaProgramado = pago;
+                        amortizacion.Tipo = "C";
 
                         db.Amortizaciones.Add(amortizacion);
                         db.SaveChanges();
@@ -139,6 +141,7 @@ namespace crmInmobiliario.Controllers
                             amortizacionAnual.Importe = pagosAnuales;
                             amortizacionAnual.TipoPago = 3;
                             amortizacionAnual.FechaProgramado = pago;
+                            amortizacion.Tipo = "C";
 
                             db.Amortizaciones.Add(amortizacionAnual);
                             numPagosAnuales--;
@@ -158,6 +161,7 @@ namespace crmInmobiliario.Controllers
                             amortizacionAnual.Importe = pagosAnuales;
                             amortizacionAnual.TipoPago = 3;
                             amortizacionAnual.FechaProgramado = pago;
+                            amortizacionAnual.Tipo = "C";
                             db.Amortizaciones.Add(amortizacionAnual);
                             db.SaveChanges();
                         }

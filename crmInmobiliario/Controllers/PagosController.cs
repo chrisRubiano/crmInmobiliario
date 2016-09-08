@@ -39,7 +39,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Pagos/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             ViewBag.Amortizacion = new SelectList(db.Amortizaciones, "IdAmortizacion", "IdAmortizacion");
             ViewBag.Cotizacion = new SelectList(db.Cotizaciones, "IdCotizacion", "Vendedor");
@@ -47,6 +47,9 @@ namespace crmInmobiliario.Controllers
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             ViewBag.Tipo = new SelectList(db.TiposPago, "IdTipoPago", "Tipo");
+
+            Amortizaciones amortizacion = db.Amortizaciones.Find(id);
+            ViewBag.importePago = amortizacion.Importe;
             return View();
         }
 
@@ -55,10 +58,15 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe")] Pagos pagos)
+        public ActionResult Create([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe")] Pagos pagos, int id)
         {
             if (ModelState.IsValid)
             {
+                Amortizaciones amortizacion = db.Amortizaciones.Find(id);
+                pagos.Amortizacion = amortizacion.IdAmortizacion;
+                pagos.Persona = amortizacion.Persona;
+                pagos.Propiedad = amortizacion.Propiedad;
+
                 db.Pagos.Add(pagos);
                 db.SaveChanges();
                 return RedirectToAction("Index");
