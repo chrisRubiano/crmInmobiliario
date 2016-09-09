@@ -50,6 +50,7 @@ namespace crmInmobiliario.Controllers
 
             Amortizaciones amortizacion = db.Amortizaciones.Find(id);
             ViewBag.importePago = amortizacion.Importe;
+            ViewBag.idCotizacion = amortizacion.Cotizacion; 
             return View();
         }
 
@@ -67,10 +68,12 @@ namespace crmInmobiliario.Controllers
                 pagos.Persona = amortizacion.Persona;
                 pagos.Propiedad = amortizacion.Propiedad;
                 pagos.Tipo = amortizacion.TipoPago;
+                pagos.Importe = amortizacion.Importe;
+                pagos.FechaPago = DateTime.Today;
 
                 db.Pagos.Add(pagos);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Oficial", "Amortizaciones", new { cotizacion = amortizacion.Cotizacion });
             }
 
             ViewBag.Amortizacion = new SelectList(db.Amortizaciones, "IdAmortizacion", "IdAmortizacion", pagos.Amortizacion);

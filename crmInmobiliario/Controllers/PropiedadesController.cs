@@ -20,9 +20,97 @@ namespace crmInmobiliario.Controllers
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
         // GET: Propiedades
-        public ActionResult Index()
+        public ActionResult Index(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int desarrollo = 0, int categoria = 0)
         {
-            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad).Include(p => p.PropiedadesTipoBanios);
+            //var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad).Include(p => p.PropiedadesTipoBanios);
+
+            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
+
+            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
+            {
+                if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
+                {
+                    if (Terraza != null)
+                    {
+                        if (Terraza == true)
+                        {
+                            propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                        }
+                    }
+
+                    if (Bodega != null)
+                    {
+                        if (Bodega == true)
+                        {
+                            propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                        }
+                    }
+
+                    if (Estacionamiento != null)
+                    {
+                        if (Estacionamiento == true)
+                        {
+                            propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                        }
+                    }
+                }
+            }
+
+            /*--------------*/
+            if (pMenor != null)
+            {
+                propiedades = propiedades.Where(p => p.VentaPrecio > pMenor);
+            }
+            if (pMayor != null)
+            {
+                propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
+            }
+            /*--------------*/
+
+            /*--------------*/
+            if (fLocalMenor != null)
+            {
+                propiedades = propiedades.Where(p => p.FrenteLocal > fLocalMenor);
+            }
+            if (fLocalMayor != null)
+            {
+                propiedades = propiedades.Where(p => p.FrenteLocal < fLocalMayor);
+            }
+            /*--------------*/
+            /*--------------*/
+            if (lLocalMenor != null)
+            {
+                propiedades = propiedades.Where(p => p.LargoLocal > lLocalMenor);
+            }
+            if (lLocalMayor != null)
+            {
+                propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
+            }
+            /*--------------*/
+
+            if (desarrollo != 0)
+            {
+                propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
+            }
+
+            if (categoria != 0)
+            {
+                propiedades = propiedades.Where(p => p.Categoria == categoria);
+            }
+
+            if (!string.IsNullOrEmpty(titulo))
+            {
+                propiedades = propiedades.Where(p => p.Titulo.Contains(titulo));
+            }
+
+            if (!string.IsNullOrEmpty(nivel))
+            {
+                propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
+            }
+
+            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
+            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
+
             return View(propiedades.ToList());
         }
 
