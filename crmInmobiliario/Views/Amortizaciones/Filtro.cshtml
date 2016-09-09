@@ -8,29 +8,25 @@
     <h3>Tabla de Amortización</h3>
 </div>
 <p>
-<div class="col-md-offset-10">
-@if (ViewBag.existeOficial)
-{
-    <button class="btn btn-success" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = ViewBag.cotizacion })'"><i class="fa fa-eye"></i> Ver Tabla Oficial</button>
-}
-else
-{
-    using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <input style="display:none;" id="idCotizacion" name="idCotizacion" value="@ViewBag.IdCotizacion" />
-        <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Generar TAM Oficial</button>
-    }
-}
-
-
-
-
-</div>
+    <div class="col-md-offset-10">
+        @if (ViewBag.existeOficial)
+        {
+            <button class="btn btn-success" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = ViewBag.cotizacion })'"><i class="fa fa-eye"></i> Ver Tabla Oficial</button>
+        }
+        else
+        {
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input style="display:none;" id="idCotizacion" name="idCotizacion" value="@ViewBag.IdCotizacion" />
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Generar TAM Oficial</button>
+            }
+        }
+    </div>
 </p>
 @*<p>
-    <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>
-</p>*@
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>
+    </p>*@
 
 <div class="row">
     <div class="alert alert-success col-md-10 col-md-offset-1">
@@ -67,28 +63,28 @@ else
 
 <div class="row no-gutter">
     @*<div class="col-md-2" style="display:none;">
-        @using (Html.BeginForm("Filtro", "Amortizaciones", FormMethod.Get, new { @class = " panel panel-default" }))
-        {
-            <div class="panel-body panel-info">
-                <div class="form-group">
-                    <label> Persona: </label><div class="">
-                        @Html.DropDownList("Persona", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
+            @using (Html.BeginForm("Filtro", "Amortizaciones", FormMethod.Get, new { @class = " panel panel-default" }))
+            {
+                <div class="panel-body panel-info">
+                    <div class="form-group">
+                        <label> Persona: </label><div class="">
+                            @Html.DropDownList("Persona", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label> Propiedad: </label><div class="">
-                        @Html.DropDownList("Propiedad", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
+                    <div class="form-group">
+                        <label> Propiedad: </label><div class="">
+                            @Html.DropDownList("Propiedad", null, "Todas", htmlAttributes: new { @class = "form-control chosen-select" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <button class="btn btn-primary btn-filtrar left" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
-                </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-filtrar left" type="submit"><i class="fa fa-search-plus"></i> Filtrar</button>
+                    </div>
 
-            </div>
-        }
-    </div>*@
+                </div>
+            }
+        </div>*@
 
     <div class="col-md-10 col-md-offset-1">
         <div class="wrapper" style="height: 500px; overflow-y:auto;">
@@ -97,7 +93,7 @@ else
                     <tr>
                         <th></th>
                         <th>
-                            @Html.DisplayNameFor(model => model.TiposPago.Tipo) 
+                            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.FechaProgramado)
@@ -106,8 +102,8 @@ else
                             @Html.DisplayNameFor(model => model.Importe)
                         </th>
                         @*<th>
-                            @Html.DisplayNameFor(model => model.Cotizacion)
-                        </th>*@
+                                @Html.DisplayNameFor(model => model.Cotizacion)
+                            </th>*@
                     </tr>
                 </thead>
 
@@ -117,8 +113,11 @@ else
                     {
                         <tr class="success">
                             <td>
-                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                                @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                @if (!ViewBag.existeOficial)
+                                {
+                                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                    @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
@@ -138,8 +137,11 @@ else
                     {
                         <tr class="warning">
                             <td>
-                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                                @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                @if (!ViewBag.existeOficial)
+                                {
+                                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                    @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
@@ -159,8 +161,11 @@ else
                     {
                         <tr class="info">
                             <td>
-                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                                @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                @if (!ViewBag.existeOficial)
+                                {
+                                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                    @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
@@ -173,7 +178,7 @@ else
                             </td>
                             @*<td>
                                     @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
-                                </td>*@
+                             </td>*@
                         </tr>
                     }
 
@@ -186,7 +191,7 @@ else
 
 <p>
     <button class="btn btn-info" onclick="window.open('/Reportes/RptCotizacion.aspx?IdCotizacion='+ @ViewBag.cotizacion);return false;"><i class=" fa fa-print"></i> Imprimir</button>
-    </p>
+</p>
 
 
 @section Scripts{
