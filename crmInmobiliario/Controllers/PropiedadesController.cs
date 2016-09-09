@@ -111,7 +111,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
             ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
 
-            return View(propiedades.ToList());
+            return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
 
         public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int desarrollo = 0, int categoria = 0)

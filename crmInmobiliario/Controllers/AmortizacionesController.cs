@@ -67,13 +67,13 @@ namespace crmInmobiliario.Controllers
             ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
             ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
             ViewBag.titulo = cotizaciones.Propiedades.Codigo;
-            ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value,2);
-            ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value,2);
+            ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value, 2);
+            ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value, 2);
             ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
             ViewBag.mensualidades = cotizaciones.Parcialidades;
             ViewBag.porcMensualidades = cotizaciones.PorcentajeMensualidades;
-            ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value-cotizaciones.Enganche.Value),2);
-            ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value,2);
+            ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2);
+            ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value, 2);
             /*** Panel info Cotizacion ***/
             ViewBag.idCotizacion = cotizaciones.IdCotizacion;
 
@@ -104,7 +104,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Oficial(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
             var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.Tipo.Equals("O"));
-                //.Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
+            //.Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O"));
 
             if (persona != 0)
             {
@@ -129,7 +129,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
             ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             /*** Panel info Cotizacion ***/
-           // ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
+            // ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
             ViewBag.personaTelefono = cotizaciones.Personas.Celular;
             ViewBag.personaCorreo = cotizaciones.Personas.Email;
             ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
@@ -235,7 +235,7 @@ namespace crmInmobiliario.Controllers
                     decimal otrosEnganches;
                     var cotizacion = db.Cotizaciones.Find(amortizaciones.Cotizacion);
                     totalEnganche = cotizacion.Enganche.Value;
-                    otrosEnganches = (totalEnganche - amortizaciones.Importe.Value)/ (listaEnganches.Count()-1);
+                    otrosEnganches = (totalEnganche - amortizaciones.Importe.Value) / (listaEnganches.Count() - 1);
 
                     foreach (var item in listaEnganches)
                     {
@@ -247,17 +247,20 @@ namespace crmInmobiliario.Controllers
                     }
                 }
 
-                DateTime nuevaFecha = amortizaciones.FechaProgramado.Value;
-                var listaAmortizaciones = from a in db.Amortizaciones.AsNoTracking() where a.Cotizacion == amortizaciones.Cotizacion select a;
-                listaAmortizaciones = listaAmortizaciones.Where(a => a.IdAmortizacion > amortizaciones.IdAmortizacion).Where(a => a.Tipo == amortizaciones.Tipo);
-
-                foreach (var item in listaAmortizaciones)
+                if (amortizaciones.TipoPago == 2)
                 {
-                    if (item.TipoPago == 2)
+                    DateTime nuevaFecha = amortizaciones.FechaProgramado.Value;
+                    var listaAmortizaciones = from a in db.Amortizaciones.AsNoTracking() where a.Cotizacion == amortizaciones.Cotizacion select a;
+                    listaAmortizaciones = listaAmortizaciones.Where(a => a.IdAmortizacion > amortizaciones.IdAmortizacion).Where(a => a.Tipo == amortizaciones.Tipo);
+
+                    foreach (var item in listaAmortizaciones)
                     {
-                        nuevaFecha = nuevaFecha.AddMonths(1);
-                        item.FechaProgramado = nuevaFecha;
-                        db.Entry(item).State = EntityState.Modified;
+                        if (item.TipoPago == 2)
+                        {
+                            nuevaFecha = nuevaFecha.AddMonths(1);
+                            item.FechaProgramado = nuevaFecha;
+                            db.Entry(item).State = EntityState.Modified;
+                        }
                     }
                 }
                 db.Entry(amortizaciones).State = EntityState.Modified;
@@ -270,7 +273,7 @@ namespace crmInmobiliario.Controllers
                 {
                     return RedirectToAction("Oficial", new { cotizacion = amortizaciones.Cotizacion });
                 }
-                
+
             }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
             return View(amortizaciones);
