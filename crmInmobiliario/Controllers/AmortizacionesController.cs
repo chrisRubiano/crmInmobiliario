@@ -214,7 +214,7 @@ namespace crmInmobiliario.Controllers
                 return HttpNotFound();
             }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
-            ViewBag.Tipo = amortizaciones.TiposPago.Tipo;
+            //ViewBag.Tipo = amortizaciones.TiposPago.Tipo;
             return View(amortizaciones);
         }
 
@@ -223,14 +223,14 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAmortizacion,TipoPago,Persona,Propiedad,Cotizacion,FechaProgramado,Importe,EstaPagado")] Amortizaciones amortizaciones)
+        public ActionResult Edit([Bind(Include = "IdAmortizacion,TipoPago,Persona,Propiedad,Cotizacion,FechaProgramado,Importe,EstaPagado,Tipo")] Amortizaciones amortizaciones)
         {
             if (ModelState.IsValid)
             {
                 if (amortizaciones.TipoPago == 1)
                 {
                     var listaEnganches = from e in db.Amortizaciones.AsNoTracking() where e.TipoPago == 1 select e;
-                    listaEnganches = listaEnganches.Where(e => e.Cotizacion == amortizaciones.Cotizacion);
+                    listaEnganches = listaEnganches.Where(e => e.Cotizacion == amortizaciones.Cotizacion).Where(e => e.Tipo == amortizaciones.Tipo);
                     decimal totalEnganche;
                     decimal otrosEnganches;
                     var cotizacion = db.Cotizaciones.Find(amortizaciones.Cotizacion);
@@ -247,11 +247,9 @@ namespace crmInmobiliario.Controllers
                     }
                 }
 
-
-
                 DateTime nuevaFecha = amortizaciones.FechaProgramado.Value;
                 var listaAmortizaciones = from a in db.Amortizaciones.AsNoTracking() where a.Cotizacion == amortizaciones.Cotizacion select a;
-                listaAmortizaciones = listaAmortizaciones.Where(a => a.IdAmortizacion > amortizaciones.IdAmortizacion);
+                listaAmortizaciones = listaAmortizaciones.Where(a => a.IdAmortizacion > amortizaciones.IdAmortizacion).Where(a => a.Tipo == amortizaciones.Tipo);
 
                 foreach (var item in listaAmortizaciones)
                 {
@@ -264,7 +262,15 @@ namespace crmInmobiliario.Controllers
                 }
                 db.Entry(amortizaciones).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Filtro", new { cotizacion = amortizaciones.Cotizacion });
+                if (amortizaciones.Tipo.Equals("C"))
+                {
+                    return RedirectToAction("Filtro", new { cotizacion = amortizaciones.Cotizacion });
+                }
+                else
+                {
+                    return RedirectToAction("Oficial", new { cotizacion = amortizaciones.Cotizacion });
+                }
+                
             }
             ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
             return View(amortizaciones);

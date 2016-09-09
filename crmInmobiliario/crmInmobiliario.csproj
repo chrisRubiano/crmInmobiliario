@@ -625,6 +625,7 @@
     <Content Include="Views\Personas\ValidarProspecto.cshtml" />
     <Content Include="Views\Personas\ValidacionRealizada.cshtml" />
     <Content Include="Views\Amortizaciones\Oficial.cshtml" />
+    <Content Include="Views\Amortizaciones\prueba.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
