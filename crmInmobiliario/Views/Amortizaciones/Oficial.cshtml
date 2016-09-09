@@ -99,11 +99,11 @@
                     {
                         <tr class="warning">
                             <td>
-                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                                 @if (item.EstaPagado.HasValue)
                                 {
                                     if (!item.EstaPagado.Value)
                                     {
+                                        <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                                         <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
                                     }
 
@@ -143,11 +143,11 @@
                     {
                         <tr class="success">
                             <td>
-                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                                 @if (item.EstaPagado.HasValue)
                                 {
                                     if (!item.EstaPagado.Value)
                                     {
+                                        <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                                         <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
                                     }
 
@@ -188,11 +188,11 @@
                     {
                         <tr class="danger">
                             <td>
-                                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                                 @if (item.EstaPagado.HasValue)
                                 {
                                     if (!item.EstaPagado.Value)
                                     {
+                                        <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
                                         <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
                                     }
 
