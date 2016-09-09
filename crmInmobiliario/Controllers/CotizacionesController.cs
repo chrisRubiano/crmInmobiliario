@@ -99,7 +99,6 @@ namespace crmInmobiliario.Controllers
                     DateTime.TryParse(fechaInicial, out pago);
 
 
-
                     //Enganches
                     for (int i = 0; i < pagosEnganche; i++)
                     {
@@ -132,6 +131,7 @@ namespace crmInmobiliario.Controllers
                         db.Amortizaciones.Add(amortizacion);
                         db.SaveChanges();
                         //Anualidades
+                        pago = pago.AddMonths(1);
                         if (pago.Month == 12 && numPagosAnuales != 0)
                         {
                             Amortizaciones amortizacionAnual = new Amortizaciones();
@@ -141,13 +141,12 @@ namespace crmInmobiliario.Controllers
                             amortizacionAnual.Importe = pagosAnuales;
                             amortizacionAnual.TipoPago = 3;
                             amortizacionAnual.FechaProgramado = pago;
-                            amortizacion.Tipo = "C";
+                            amortizacionAnual.Tipo = "C";
 
                             db.Amortizaciones.Add(amortizacionAnual);
                             numPagosAnuales--;
                             db.SaveChanges();
                         }
-                        pago = pago.AddMonths(1);
                     }
 
                     if (numPagosAnuales != 0)
