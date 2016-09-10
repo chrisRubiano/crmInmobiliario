@@ -114,7 +114,7 @@ namespace crmInmobiliario.Controllers
             return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
 
-        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int desarrollo = 0, int categoria = 0)
+        public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int? pagos, int? montoPagos, int desarrollo = 0, int categoria = 0)
         {
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
@@ -178,6 +178,14 @@ namespace crmInmobiliario.Controllers
             if (lLocalMayor != null)
             {
                 propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
+            }
+            /*--------------*/
+            /*------Filtro nuevo--------*/
+            if (pagos.HasValue && montoPagos.HasValue)
+            {
+                decimal antesEnganche = pagos.Value * montoPagos.Value;
+                decimal precioTotal = antesEnganche / 0.65m;
+                propiedades = propiedades.Where(p => p.VentaPrecio <= precioTotal);
             }
             /*--------------*/
 
