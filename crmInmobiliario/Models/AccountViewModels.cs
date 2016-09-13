@@ -65,6 +65,14 @@ namespace crmInmobiliario.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Rol")]
+        public string UserRoles { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre de usuario")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
