@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using crmInmobiliario.Models;
 using crmInmobiliario.Utilidades;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace crmInmobiliario.Controllers
 {
@@ -15,6 +17,7 @@ namespace crmInmobiliario.Controllers
     public class AspNetUsersController : Controller
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
+        ApplicationDbContext context = new ApplicationDbContext();
 
         // GET: AspNetUsers
         public ActionResult Index()
@@ -51,7 +54,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
+        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,UserRoles")] AspNetUsers aspNetUsers)
         {
             if (ModelState.IsValid)
             {
@@ -84,6 +87,8 @@ namespace crmInmobiliario.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                            .ToList(), "Name", "Name");
             return View(aspNetUsers);
         }
 
@@ -92,14 +97,32 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,UserRoles")] AspNetUsers aspNetUsers)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(aspNetUsers).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(aspNetUsers).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                
             }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
+            }
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                            .ToList(), "Name", "Name");
             return View(aspNetUsers);
         }
 

@@ -24,6 +24,7 @@ namespace crmInmobiliario.Models
         public Nullable<int> Moneda { get; set; }
         public Nullable<decimal> TipoCambio { get; set; }
         public Nullable<decimal> Importe { get; set; }
+        public string ImporteConLetra { get; set; }
     
         public virtual Cotizaciones Cotizaciones { get; set; }
         public virtual Monedas Monedas { get; set; }
