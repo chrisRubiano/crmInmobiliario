@@ -16,9 +16,10 @@ namespace crmInmobiliario.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-
+        ApplicationDbContext context;
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -26,7 +27,7 @@ namespace crmInmobiliario.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
+        
         public ApplicationUserManager UserManager
         {
             get
@@ -142,6 +143,8 @@ namespace crmInmobiliario.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                            .ToList(), "Name", "Name");
             return View();
         }
 
@@ -154,7 +157,7 @@ namespace crmInmobiliario.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
