@@ -79,6 +79,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserRoles" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="CaracteristicasPropiedades">
           <Key>
@@ -295,6 +296,7 @@
           <Property Name="Moneda" Type="int" />
           <Property Name="TipoCambio" Type="money" />
           <Property Name="Importe" Type="money" />
+          <Property Name="ImporteConLetra" Type="varchar" MaxLength="180" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -1450,6 +1452,7 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="Tareas" Relationship="Self.FK_Tareas_AspNetUsers" FromRole="AspNetUsers" ToRole="Tareas" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="UserRoles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CaracteristicasPropiedades">
           <Key>
@@ -1705,6 +1708,7 @@
           <NavigationProperty Name="Personas" Relationship="Self.FK_Pagos_Personas" FromRole="Pagos" ToRole="Personas" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Pagos_Propiedades" FromRole="Pagos" ToRole="Propiedades" />
           <NavigationProperty Name="TiposPago" Relationship="Self.FK_Pagos_TiposPago" FromRole="Pagos" ToRole="TiposPago" />
+          <Property Name="ImporteConLetra" Type="String" MaxLength="180" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -2863,6 +2867,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserRoles" ColumnName="UserRoles" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -3101,6 +3106,7 @@
           <EntitySetMapping Name="Pagos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Pagos">
               <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="ImporteConLetra" ColumnName="ImporteConLetra" />
                 <ScalarProperty Name="IdPago" ColumnName="IdPago" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
