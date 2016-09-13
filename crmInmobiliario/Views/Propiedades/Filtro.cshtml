@@ -5,7 +5,10 @@
 }
 
 <h2>Consulta de Propiedades Disponibles</h2>
-
+@if (ViewBag.manager != null)
+{
+    <h3>@ViewBag.manager</h3>
+}
 
 <p>
     <button class="btn btn-info" id="alternarfiltropropiedades"><i class="fa fa-filter"></i> Ver / Ocultar Filtro</button>

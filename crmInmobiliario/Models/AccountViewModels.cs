@@ -64,7 +64,6 @@ namespace crmInmobiliario.Models
 
     public class RegisterViewModel
     {
-        [Required]
         [Display(Name = "Rol")]
         public string UserRoles { get; set; }
 
