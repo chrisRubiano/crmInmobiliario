@@ -262,19 +262,19 @@ namespace crmInmobiliario.Controllers
                     var duplicado = new Personas();
                     if (personas.Email != null)
                     {
-                        duplicado = db.Personas.Where(p => p.Email == personas.Email || p.Email2 == personas.Email).FirstOrDefault();
+                        duplicado = db.Personas.AsNoTracking().Where(p => p.Email == personas.Email || p.Email2 == personas.Email).FirstOrDefault();
                     }
-                    if (personas.Email2 != null && duplicado.IdPersona == 0)
+                    if (personas.Email2 != null && duplicado == null)
                     {
-                        duplicado = db.Personas.Where(p => p.Email == personas.Email2 || p.Email2 == personas.Email2).FirstOrDefault();
+                        duplicado = db.Personas.AsNoTracking().Where(p => p.Email == personas.Email2 || p.Email2 == personas.Email2).FirstOrDefault();
                     }
 
 
                     if (duplicado != null)
                     {
                         ProspectosIncidencias incidencia = new ProspectosIncidencias();
-                        incidencia.Prospecto = personas.IdPersona;
-                        incidencia.UsuarioRegistro = personas.Usuario;
+                        incidencia.Prospecto = duplicado.IdPersona;
+                        incidencia.UsuarioRegistro = duplicado.Usuario;
                         incidencia.UsuarioIncidencia = User.Identity.GetUserId().ToString();
                         incidencia.FechaRegistro = DateTime.Now;
                         db.ProspectosIncidencias.Add(incidencia);
