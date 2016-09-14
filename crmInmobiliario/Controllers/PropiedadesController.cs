@@ -116,6 +116,12 @@ namespace crmInmobiliario.Controllers
 
         public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int? pagos, int? montoPagos, int desarrollo = 0, int categoria = 0)
         {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            if (usuario.UserRoles == "MANAGER")
+            {
+                ViewBag.manager = "Eres un manager";
+            }
+
 
             var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
 

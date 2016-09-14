@@ -103,6 +103,9 @@ namespace crmInmobiliario.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var original = db.AspNetUsers.AsNoTracking().Where(u => u.Id == aspNetUsers.Id).FirstOrDefault();
+                    aspNetUsers.PasswordHash = original.PasswordHash;
+                    aspNetUsers.SecurityStamp = original.SecurityStamp;
                     db.Entry(aspNetUsers).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
