@@ -272,6 +272,14 @@ namespace crmInmobiliario.Controllers
 
                     if (duplicado != null)
                     {
+                        ProspectosIncidencias incidencia = new ProspectosIncidencias();
+                        incidencia.Prospecto = personas.IdPersona;
+                        incidencia.UsuarioRegistro = personas.Usuario;
+                        incidencia.UsuarioIncidencia = User.Identity.GetUserId().ToString();
+                        incidencia.FechaRegistro = DateTime.Now;
+                        db.ProspectosIncidencias.Add(incidencia);
+                        db.SaveChanges();
+
                         return RedirectToAction("Duplicado", new { id = duplicado.IdPersona });
                     }
                     else

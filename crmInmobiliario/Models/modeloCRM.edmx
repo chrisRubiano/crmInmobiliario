@@ -79,7 +79,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="UserRoles" Type="varchar" MaxLength="1" />
+          <Property Name="UserRoles" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CaracteristicasPropiedades">
           <Key>
@@ -475,6 +475,16 @@
           </Key>
           <Property Name="IdTipoBanio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TipoBanio" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProspectosIncidencias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prospecto" Type="int" />
+          <Property Name="UsuarioRegistro" Type="varchar" MaxLength="256" />
+          <Property Name="UsuarioIncidencia" Type="varchar" MaxLength="256" />
+          <Property Name="FechaRegistro" Type="datetime" />
         </EntityType>
         <EntityType Name="ProspectosPropiedades">
           <Key>
@@ -1171,6 +1181,7 @@
           <EntitySet Name="PropiedadesCategoria" EntityType="Self.PropiedadesCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropiedadesEstatus" EntityType="Self.PropiedadesEstatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropiedadesTipoBanios" EntityType="Self.PropiedadesTipoBanios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProspectosIncidencias" EntityType="Self.ProspectosIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProspectosPropiedades" EntityType="Self.ProspectosPropiedades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tareas" EntityType="Self.Tareas" Schema="dbo" store:Type="Tables" />
@@ -2805,7 +2816,18 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="ProspectosIncidencias" EntityType="CRMINMOBILIARIOModel.ProspectosIncidencias" />
         </EntityContainer>
+        <EntityType Name="ProspectosIncidencias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prospecto" Type="Int32" />
+          <Property Name="UsuarioRegistro" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioIncidencia" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3383,6 +3405,17 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ProspectosIncidencias">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.ProspectosIncidencias">
+              <MappingFragment StoreEntitySet="ProspectosIncidencias">
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="UsuarioIncidencia" ColumnName="UsuarioIncidencia" />
+                <ScalarProperty Name="UsuarioRegistro" ColumnName="UsuarioRegistro" />
+                <ScalarProperty Name="Prospecto" ColumnName="Prospecto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
