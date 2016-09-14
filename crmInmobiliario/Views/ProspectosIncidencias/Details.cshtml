@@ -1,0 +1,50 @@
+﻿@model crmInmobiliario.Models.ProspectosIncidencias
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProspectosIncidencias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Prospecto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prospecto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioIncidencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioIncidencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

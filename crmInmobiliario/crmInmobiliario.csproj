@@ -202,6 +202,7 @@
     <Compile Include="Controllers\PropiedadesCaracteristicasController.cs" />
     <Compile Include="Controllers\PropiedadesCategoriasController.cs" />
     <Compile Include="Controllers\PropiedadesController.cs" />
+    <Compile Include="Controllers\ProspectosIncidenciasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -355,6 +356,9 @@
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PropiedadMeta.cs" />
+    <Compile Include="Models\ProspectosIncidencias.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ProspectosPropiedades.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -631,6 +635,11 @@
     <Content Include="Views\Personas\ValidacionRealizada.cshtml" />
     <Content Include="Views\Amortizaciones\Oficial.cshtml" />
     <Content Include="Views\Amortizaciones\prueba.cshtml" />
+    <Content Include="Views\ProspectosIncidencias\Create.cshtml" />
+    <Content Include="Views\ProspectosIncidencias\Delete.cshtml" />
+    <Content Include="Views\ProspectosIncidencias\Details.cshtml" />
+    <Content Include="Views\ProspectosIncidencias\Edit.cshtml" />
+    <Content Include="Views\ProspectosIncidencias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
