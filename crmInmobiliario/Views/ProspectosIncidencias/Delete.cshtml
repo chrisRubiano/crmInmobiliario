@@ -24,7 +24,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UsuarioRegistro)
+            @Html.DisplayFor(model => model.AspNetUsers.UserName)
         </dd>
 
         <dt>
@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UsuarioIncidencia)
+            @Html.DisplayFor(model => model.AspNetUsers1.UserName)
         </dd>
 
         <dt>
@@ -49,8 +49,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "ProspectosIncidencias")';return false;"><i class="fa fa-chevron-left"></i> Volver a la lista</button>
+            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Eliminar</button>
         </div>
     }
 </div>

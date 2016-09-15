@@ -19,5 +19,9 @@ namespace crmInmobiliario.Models
         public string UsuarioRegistro { get; set; }
         public string UsuarioIncidencia { get; set; }
         public Nullable<System.DateTime> FechaRegistro { get; set; }
+    
+        public virtual AspNetUsers AspNetUsers { get; set; }
+        public virtual AspNetUsers AspNetUsers1 { get; set; }
+        public virtual Personas Personas { get; set; }
     }
 }

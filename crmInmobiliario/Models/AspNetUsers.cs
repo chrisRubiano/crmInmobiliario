@@ -21,6 +21,8 @@ namespace crmInmobiliario.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
             this.Tareas = new HashSet<Tareas>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
+            this.ProspectosIncidencias = new HashSet<ProspectosIncidencias>();
+            this.ProspectosIncidencias1 = new HashSet<ProspectosIncidencias>();
         }
     
         public string Id { get; set; }
@@ -45,5 +47,9 @@ namespace crmInmobiliario.Models
         public virtual ICollection<Tareas> Tareas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProspectosIncidencias> ProspectosIncidencias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProspectosIncidencias> ProspectosIncidencias1 { get; set; }
     }
 }

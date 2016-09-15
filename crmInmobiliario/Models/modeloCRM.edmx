@@ -482,8 +482,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Prospecto" Type="int" />
-          <Property Name="UsuarioRegistro" Type="varchar" MaxLength="256" />
-          <Property Name="UsuarioIncidencia" Type="varchar" MaxLength="256" />
+          <Property Name="UsuarioRegistro" Type="nvarchar" MaxLength="128" />
+          <Property Name="UsuarioIncidencia" Type="nvarchar" MaxLength="128" />
           <Property Name="FechaRegistro" Type="datetime" />
         </EntityType>
         <EntityType Name="ProspectosPropiedades">
@@ -1091,6 +1091,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProspectosIncidencias_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="ProspectosIncidencias" Type="Self.ProspectosIncidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProspectosIncidencias">
+              <PropertyRef Name="UsuarioRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProspectosIncidencias_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="ProspectosIncidencias" Type="Self.ProspectosIncidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProspectosIncidencias">
+              <PropertyRef Name="UsuarioIncidencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProspectosIncidencias_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="0..1" />
+          <End Role="ProspectosIncidencias" Type="Self.ProspectosIncidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="ProspectosIncidencias">
+              <PropertyRef Name="Prospecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProspectosPropiedades_MediosEnterarse">
           <End Role="MediosEnterarse" Type="Self.MediosEnterarse" Multiplicity="0..1" />
           <End Role="ProspectosPropiedades" Type="Self.ProspectosPropiedades" Multiplicity="*" />
@@ -1368,6 +1404,18 @@
             <End Role="PropiedadesCaracteristicasCategorias" EntitySet="PropiedadesCaracteristicasCategorias" />
             <End Role="PropiedadesCaracteristicas" EntitySet="PropiedadesCaracteristicas" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProspectosIncidencias_AspNetUsers" Association="Self.FK_ProspectosIncidencias_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProspectosIncidencias_AspNetUsers1" Association="Self.FK_ProspectosIncidencias_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProspectosIncidencias_Personas" Association="Self.FK_ProspectosIncidencias_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProspectosPropiedades_MediosEnterarse" Association="Self.FK_ProspectosPropiedades_MediosEnterarse">
             <End Role="MediosEnterarse" EntitySet="MediosEnterarse" />
             <End Role="ProspectosPropiedades" EntitySet="ProspectosPropiedades" />
@@ -1464,6 +1512,8 @@
           <NavigationProperty Name="Tareas" Relationship="Self.FK_Tareas_AspNetUsers" FromRole="AspNetUsers" ToRole="Tareas" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <Property Name="UserRoles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProspectosIncidencias" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers" FromRole="AspNetUsers" ToRole="ProspectosIncidencias" />
+          <NavigationProperty Name="ProspectosIncidencias1" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers1" FromRole="AspNetUsers" ToRole="ProspectosIncidencias" />
         </EntityType>
         <EntityType Name="CaracteristicasPropiedades">
           <Key>
@@ -1778,6 +1828,7 @@
           <NavigationProperty Name="PersonasIntereses" Relationship="Self.FK_Personas_PersonasIntereses" FromRole="Personas" ToRole="PersonasIntereses" />
           <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
           <NavigationProperty Name="PersonasValidacion" Relationship="Self.FK_PersonasValidacion_Personas" FromRole="Personas" ToRole="PersonasValidacion" />
+          <NavigationProperty Name="ProspectosIncidencias" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_Personas" FromRole="Personas" ToRole="ProspectosIncidencias" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -2817,6 +2868,18 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="ProspectosIncidencias" EntityType="CRMINMOBILIARIOModel.ProspectosIncidencias" />
+          <AssociationSet Name="FK_ProspectosIncidencias_AspNetUsers" Association="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProspectosIncidencias_AspNetUsers1" Association="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProspectosIncidencias_Personas" Association="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProspectosIncidencias">
           <Key>
@@ -2824,10 +2887,49 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Prospecto" Type="Int32" />
-          <Property Name="UsuarioRegistro" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="UsuarioIncidencia" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioRegistro" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioIncidencia" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers" FromRole="ProspectosIncidencias" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers1" FromRole="ProspectosIncidencias" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_Personas" FromRole="ProspectosIncidencias" ToRole="Personas" />
         </EntityType>
+        <Association Name="FK_ProspectosIncidencias_AspNetUsers">
+          <End Type="CRMINMOBILIARIOModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.ProspectosIncidencias" Role="ProspectosIncidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProspectosIncidencias">
+              <PropertyRef Name="UsuarioRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProspectosIncidencias_AspNetUsers1">
+          <End Type="CRMINMOBILIARIOModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.ProspectosIncidencias" Role="ProspectosIncidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProspectosIncidencias">
+              <PropertyRef Name="UsuarioIncidencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProspectosIncidencias_Personas">
+          <End Type="CRMINMOBILIARIOModel.Personas" Role="Personas" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.ProspectosIncidencias" Role="ProspectosIncidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="ProspectosIncidencias">
+              <PropertyRef Name="Prospecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
