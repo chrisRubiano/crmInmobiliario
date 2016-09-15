@@ -139,11 +139,11 @@ namespace crmInmobiliario.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Notas notas = db.Notas.Find(id);
-            //var persona = notas.Persona;
+            int persona = notas.Persona.Value;
             db.Notas.Remove(notas);
             db.SaveChanges();
             //return Redirect("/Personas/Details/" + persona.ToString());
-            return RedirectToAction("Details", "Personas", new { id = notas.Persona });
+            return RedirectToAction("Details", "Personas", new { id = persona });
         }
 
         protected override void Dispose(bool disposing)

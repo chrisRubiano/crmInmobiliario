@@ -24,6 +24,7 @@ namespace crmInmobiliario.Models
             this.Pagos = new HashSet<Pagos>();
             this.Personas1 = new HashSet<Personas>();
             this.PersonasValidacion = new HashSet<PersonasValidacion>();
+            this.ProspectosIncidencias = new HashSet<ProspectosIncidencias>();
         }
     
         public int IdPersona { get; set; }
@@ -79,5 +80,7 @@ namespace crmInmobiliario.Models
         public virtual PersonasTipo PersonasTipo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonasValidacion> PersonasValidacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProspectosIncidencias> ProspectosIncidencias { get; set; }
     }
 }

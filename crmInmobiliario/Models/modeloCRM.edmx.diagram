@@ -100,6 +100,9 @@
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Tareas_TareasEstatus" ManuallyRouted="false" />
         <AssociationConnector Association="CRMINMOBILIARIOModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.ProspectosIncidencias" Width="1.5" PointX="7.375" PointY="3.75" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_AspNetUsers1" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_Personas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
