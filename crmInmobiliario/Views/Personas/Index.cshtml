@@ -26,6 +26,9 @@
     <tr>
         <th></th>
         <th>
+            @Html.DisplayNameFor(model => model.CodigoPersona)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
@@ -38,6 +41,9 @@
             @Html.DisplayNameFor(model => model.FechaNacimiento)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
@@ -47,69 +53,54 @@
             @Html.DisplayNameFor(model => model.Celular)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MediosContacto.MedioContacto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RazonSocial)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.RFC)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonasTipo.Tipo)
-        </th>
+
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="">
-            <div class="list-inline">
-                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-                <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Asignar Vendedor" onclick="location.href='@Url.Action("Asignar", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-user-plus"></i></button>
-            </div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Paterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Materno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Celular)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MediosContacto.MedioContacto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RazonSocial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RFC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonasGenero.Genero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonasTipo.Tipo)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="">
+                <div class="btn-lista">
+                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                    <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Asignar Vendedor" onclick="location.href='@Url.Action("Asignar", "Personas", new { id = item.IdPersona })';return false;"><i class="fa fa-fw fa-user-plus"></i></button>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Materno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonasGenero.Genero)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RFC)
+            </td>
+
+        </tr>
+    }
 
 </table>
