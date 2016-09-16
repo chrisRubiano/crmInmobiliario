@@ -20,6 +20,11 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
 
         // GET: Personas
         public ActionResult Index(string categoria, string nombre)
@@ -55,6 +60,12 @@ namespace crmInmobiliario.Controllers
             }
 
 
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+            {
+                personas = personas.Where(p => p.Usuario == usuario.Id);
+            }
+
             //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
             return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
@@ -87,6 +98,12 @@ namespace crmInmobiliario.Controllers
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
             }
 
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+            {
+                personas = personas.Where(p => p.Usuario == usuario.Id);
+            }
+
             return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
@@ -106,6 +123,12 @@ namespace crmInmobiliario.Controllers
             {
                 personas = from p in db.Personas select p;
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
+            }
+
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+            {
+                personas = personas.Where(p => p.Usuario == usuario.Id);
             }
 
             return View(personas.OrderByDescending(p => p.IdPersona).ToList());
@@ -128,6 +151,12 @@ namespace crmInmobiliario.Controllers
             {
                 personas = from p in db.Personas select p;
                 personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
+            }
+
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+            {
+                personas = personas.Where(p => p.Usuario == usuario.Id);
             }
 
             return View(personas.OrderByDescending(p => p.IdPersona).ToList());
