@@ -453,13 +453,15 @@ namespace crmInmobiliario.Controllers
             {
                 eliminarNotas(id);
                 eliminarDomicilios(id, 1);
+
+                db.Personas.Remove(personas);
+                db.SaveChanges();
             }
             catch (Exception)
             {
+                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
 
             }
-            db.Personas.Remove(personas);
-            db.SaveChanges();
             if (Categoriap == 1)
             {
                 return RedirectToAction("ListaProspectos");
