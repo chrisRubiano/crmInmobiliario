@@ -23,12 +23,20 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones
         public ActionResult Index(int? idPersona)
         {
-            var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades).OrderByDescending(c => c.IdCotizacion);
+            var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
+
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+
+            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+            {
+                cotizaciones = cotizaciones.Where(c => c.Vendedor == usuario.Id);
+            }
+
             if (idPersona.HasValue)
             {
-                cotizaciones = cotizaciones.Where(c => c.Persona == idPersona.Value).OrderByDescending(c => c.IdCotizacion);
+                cotizaciones = cotizaciones.Where(c => c.Persona == idPersona.Value);
             }
-            return View(cotizaciones.ToList());
+            return View(cotizaciones.OrderByDescending(c => c.IdCotizacion).ToList());
         }
 
         // GET: Cotizaciones/Details/5

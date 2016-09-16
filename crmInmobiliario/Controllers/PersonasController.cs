@@ -459,7 +459,6 @@ namespace crmInmobiliario.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
 
             }
             if (Categoriap == 1)
