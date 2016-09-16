@@ -20,12 +20,18 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
         // GET: Cotizaciones
         public ActionResult Index(int? idPersona)
         {
             var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
 
-            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            var usuario = getUser();
 
             if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
             {
