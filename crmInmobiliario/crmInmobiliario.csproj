@@ -205,12 +205,7 @@
     <Compile Include="Controllers\ProspectosIncidenciasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609131552329_Roles.cs" />
-    <Compile Include="Migrations\201609131552329_Roles.Designer.cs">
-      <DependentUpon>201609131552329_Roles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    </Compile>        
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Amortizaciones.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
@@ -658,9 +653,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609131552329_Roles.resx">
-      <DependentUpon>201609131552329_Roles.cs</DependentUpon>
-    </EmbeddedResource>
+  
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
