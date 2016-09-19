@@ -11,7 +11,9 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ProspectosIncidenciasMeta))]
     public partial class ProspectosIncidencias
     {
         public int Id { get; set; }
