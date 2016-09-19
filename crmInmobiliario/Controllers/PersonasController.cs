@@ -29,45 +29,53 @@ namespace crmInmobiliario.Controllers
         // GET: Personas
         public ActionResult Index(string categoria, string nombre)
         {
-            var nombreCompleto = new List<string>();
-            var nombreQry = from d in db.Personas
-                            orderby d.Paterno
-                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
-            nombreCompleto.AddRange(nombreQry);
-            ViewBag.nombre = new SelectList(nombreCompleto);
-
-
-            var categorias = new List<string>();
-            var categoriaQry = from d in db.PersonasCategoria
-                               orderby d.Categoria
-                               select d.Categoria.ToString();
-
-            categorias.AddRange(categoriaQry.Distinct());
-            ViewBag.categoria = new SelectList(categorias);
-
-            var personas = from p in db.Personas
-                           select p;
-
-            if (!string.IsNullOrEmpty(categoria))
-            {
-                personas = personas.Where(s => s.PersonasCategoria.Categoria.ToString().Contains(categoria));
-            }
-
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                personas = from p in db.Personas select p;
-                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
-            }
-
-
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                personas = personas.Where(p => p.Usuario == usuario.Id);
-            }
+                var nombreCompleto = new List<string>();
+                var nombreQry = from d in db.Personas
+                                orderby d.Paterno
+                                select d.Nombre + " " + d.Paterno + " " + d.Materno;
+                nombreCompleto.AddRange(nombreQry);
+                ViewBag.nombre = new SelectList(nombreCompleto);
 
-            //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
-            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+
+                var categorias = new List<string>();
+                var categoriaQry = from d in db.PersonasCategoria
+                                   orderby d.Categoria
+                                   select d.Categoria.ToString();
+
+                categorias.AddRange(categoriaQry.Distinct());
+                ViewBag.categoria = new SelectList(categorias);
+
+                var personas = from p in db.Personas
+                               select p;
+
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    personas = personas.Where(s => s.PersonasCategoria.Categoria.ToString().Contains(categoria));
+                }
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    personas = from p in db.Personas select p;
+                    personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
+                }
+
+
+                //var usuario = getUser();
+                if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+                {
+                    personas = personas.Where(p => p.Usuario == usuario.Id);
+                }
+
+                //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
+                return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public void Excel(string nombreArchivo)
@@ -82,94 +90,128 @@ namespace crmInmobiliario.Controllers
 
         public ActionResult ListaProspectos(string nombre)
         {
-            var nombreCompleto = new List<string>();
-            var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
-                            orderby d.Paterno
-                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
-            nombreCompleto.AddRange(nombreQry);
-            ViewBag.nombre = new SelectList(nombreCompleto);
-
-            var personas = from p in db.Personas.Where(p => p.Categoria == 1)
-                           select p;
-
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                personas = from p in db.Personas select p;
-                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
-            }
-
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                personas = personas.Where(p => p.Usuario == usuario.Id);
-            }
+                var nombreCompleto = new List<string>();
+                var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
+                                orderby d.Paterno
+                                select d.Nombre + " " + d.Paterno + " " + d.Materno;
+                nombreCompleto.AddRange(nombreQry);
+                ViewBag.nombre = new SelectList(nombreCompleto);
 
-            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+                var personas = from p in db.Personas.Where(p => p.Categoria == 1)
+                               select p;
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    personas = from p in db.Personas select p;
+                    personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
+                }
+
+                //var usuario = getUser();
+                if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+                {
+                    personas = personas.Where(p => p.Usuario == usuario.Id);
+                }
+
+                return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult ListaClientes(string nombre)
         {
-            var nombreCompleto = new List<string>();
-            var nombreQry = from d in db.Personas.Where(p => p.Categoria == 2)
-                            orderby d.Paterno
-                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
-            nombreCompleto.AddRange(nombreQry);
-            ViewBag.nombre = new SelectList(nombreCompleto);
-
-            var personas = from p in db.Personas.Where(p => p.Categoria == 2)
-                           select p;
-
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                personas = from p in db.Personas select p;
-                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
-            }
-
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                personas = personas.Where(p => p.Usuario == usuario.Id);
+                var nombreCompleto = new List<string>();
+                var nombreQry = from d in db.Personas.Where(p => p.Categoria == 2)
+                                orderby d.Paterno
+                                select d.Nombre + " " + d.Paterno + " " + d.Materno;
+                nombreCompleto.AddRange(nombreQry);
+                ViewBag.nombre = new SelectList(nombreCompleto);
+
+                var personas = from p in db.Personas.Where(p => p.Categoria == 2)
+                               select p;
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    personas = from p in db.Personas select p;
+                    personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
+                }
+
+                //var usuario = getUser();
+                if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+                {
+                    personas = personas.Where(p => p.Usuario == usuario.Id);
+                }
+
+                return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
 
         public ActionResult ListaProspectosValidar(string nombre)
         {
-            var nombreCompleto = new List<string>();
-            var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
-                            orderby d.Paterno
-                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
-            nombreCompleto.AddRange(nombreQry);
-            ViewBag.nombre = new SelectList(nombreCompleto);
-
-            var personas = from p in db.Personas.Where(p => p.Categoria == 1).Where(p => p.Validado != true)
-                           select p;
-
-            if (!string.IsNullOrEmpty(nombre))
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                personas = from p in db.Personas select p;
-                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
+                var nombreCompleto = new List<string>();
+                var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
+                                orderby d.Paterno
+                                select d.Nombre + " " + d.Paterno + " " + d.Materno;
+                nombreCompleto.AddRange(nombreQry);
+                ViewBag.nombre = new SelectList(nombreCompleto);
+
+                var personas = from p in db.Personas.Where(p => p.Categoria == 1).Where(p => p.Validado != true)
+                               select p;
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    personas = from p in db.Personas select p;
+                    personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 1);
+                }
+
+                //var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+                if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
+                {
+                    personas = personas.Where(p => p.Usuario == usuario.Id);
+                }
+
+                return View(personas.OrderByDescending(p => p.IdPersona).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
 
-            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
-            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
-            {
-                personas = personas.Where(p => p.Usuario == usuario.Id);
-            }
-
-            return View(personas.OrderByDescending(p => p.IdPersona).ToList());
         }
 
 
         public ActionResult Asignar(int? id)
         {
-            Personas persona = db.Personas.Find(id);
-            ViewBag.Usuario = new SelectList(db.AspNetUsers, "Id", "UserName", persona.Usuario);
-            //ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                Personas persona = db.Personas.Find(id);
+                ViewBag.Usuario = new SelectList(db.AspNetUsers, "Id", "UserName", persona.Usuario);
+                //ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
 
-            return View(persona);
+                return View(persona);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -195,86 +237,124 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Details/5
         public ActionResult Details(int? id, int? categoriap)
         {
-
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
-            VariosModelos vModelos = new VariosModelos();
-            Personas personas = db.Personas.Find(id);
-            if (personas == null)
+                VariosModelos vModelos = new VariosModelos();
+                Personas personas = db.Personas.Find(id);
+                if (personas == null)
+                {
+                    return HttpNotFound();
+                }
+                vModelos.personas = personas;
+
+                var notas = db.Notas.Where(d => d.Persona == id).OrderByDescending(d => d.Fecha);
+                vModelos.notas = notas;
+
+                var domicilios = db.Domicilios.Where(d => d.IdPersona == id).OrderByDescending(d => d.IdDomicilio);
+                vModelos.domicilios = domicilios;
+
+                ViewBag.Categoriap = categoriap;
+                return View(vModelos);
+            }
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            vModelos.personas = personas;
-
-            var notas = db.Notas.Where(d => d.Persona == id).OrderByDescending(d => d.Fecha);
-            vModelos.notas = notas;
-
-            var domicilios = db.Domicilios.Where(d => d.IdPersona == id).OrderByDescending(d => d.IdDomicilio);
-            vModelos.domicilios = domicilios;
-
-            ViewBag.Categoriap = categoriap;
-            return View(vModelos);
         }
 
         // GET: Personas/Details/5
         public ActionResult DetailsProspectoValidar(int? id)
         {
-
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
-            vmPersonaValidacion validacionmodelos = new vmPersonaValidacion();
-            Personas personas = db.Personas.Find(id);
-            if (personas == null)
+                vmPersonaValidacion validacionmodelos = new vmPersonaValidacion();
+                Personas personas = db.Personas.Find(id);
+                if (personas == null)
+                {
+                    return HttpNotFound();
+                }
+                validacionmodelos.personas = personas;
+
+                var validaciones = db.PersonasValidacion.Where(d => d.Persona == id);
+                validacionmodelos.validaciones = validaciones;
+
+                return View(validacionmodelos);
+            }
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            validacionmodelos.personas = personas;
-
-            var validaciones = db.PersonasValidacion.Where(d => d.Persona == id);
-            validacionmodelos.validaciones = validaciones;
-
-            return View(validacionmodelos);
         }
 
-        
+
         public ActionResult ValidacionRealizada()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult Duplicado(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            VariosModelos vModelos = new VariosModelos();
-            Personas personas = db.Personas.Find(id);
-            if (personas == null)
-            {
-                return HttpNotFound();
-            }
-            vModelos.personas = personas;
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                VariosModelos vModelos = new VariosModelos();
+                Personas personas = db.Personas.Find(id);
+                if (personas == null)
+                {
+                    return HttpNotFound();
+                }
+                vModelos.personas = personas;
 
-            return View(vModelos);
+                return View(vModelos);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Personas/Create
         public ActionResult Create(int? categoria)
         {
-            ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
-            ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
-            ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
-            ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
-            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
-            ViewBag.Categoriap = categoria;
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
+                ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
+                ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
+                ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+                ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
+                ViewBag.Categoriap = categoria;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Personas/Create
@@ -346,22 +426,30 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Edit/5
         public ActionResult Edit(int? id, int? categoriap)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Personas personas = db.Personas.Find(id);
-            if (personas == null)
-            {
-                return HttpNotFound();
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Personas personas = db.Personas.Find(id);
+                if (personas == null)
+                {
+                    return HttpNotFound();
+                }
 
-            ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
-            ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
-            ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
-            ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
-            ViewBag.categoriap = categoriap;
-            return View(personas);
+                ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
+                ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+                ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
+                ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+                ViewBag.categoriap = categoriap;
+                return View(personas);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Personas/Edit/5
@@ -404,22 +492,30 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Edit/5
         public ActionResult ValidarProspecto(int? id, int? categoriap)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Personas personas = db.Personas.Find(id);
-            if (personas == null)
-            {
-                return HttpNotFound();
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Personas personas = db.Personas.Find(id);
+                if (personas == null)
+                {
+                    return HttpNotFound();
+                }
 
-            ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
-            ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
-            ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
-            ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
-            ViewBag.categoriap = categoriap;
-            return View(personas);
+                ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
+                ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+                ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
+                ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+                ViewBag.categoriap = categoriap;
+                return View(personas);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
 
@@ -440,7 +536,7 @@ namespace crmInmobiliario.Controllers
                     personas.Categoria = 2;
                     db.Entry(personas).State = EntityState.Modified;
                     db.SaveChanges();
-                   
+
                     return RedirectToAction("ValidacionRealizada");
 
                 }
@@ -459,17 +555,25 @@ namespace crmInmobiliario.Controllers
         // GET: Personas/Delete/5
         public ActionResult Delete(int? id, int categoriap)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Personas personas = db.Personas.Find(id);
+                if (personas == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.categoriap = categoriap;
+                return View(personas);
             }
-            Personas personas = db.Personas.Find(id);
-            if (personas == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.categoriap = categoriap;
-            return View(personas);
         }
 
         // POST: Personas/Delete/5
