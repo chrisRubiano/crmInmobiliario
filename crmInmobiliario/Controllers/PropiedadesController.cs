@@ -19,206 +19,221 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
         // GET: Propiedades
         public ActionResult Index(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int desarrollo = 0, int categoria = 0)
         {
-            //var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad).Include(p => p.PropiedadesTipoBanios);
-
-            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
-
-            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
+                //var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad).Include(p => p.PropiedadesTipoBanios);
+
+                var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
+
+                if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
                 {
-                    if (Terraza != null)
+                    if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
                     {
-                        if (Terraza == true)
+                        if (Terraza != null)
                         {
-                            propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                            if (Terraza == true)
+                            {
+                                propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                            }
                         }
-                    }
 
-                    if (Bodega != null)
-                    {
-                        if (Bodega == true)
+                        if (Bodega != null)
                         {
-                            propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                            if (Bodega == true)
+                            {
+                                propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                            }
                         }
-                    }
 
-                    if (Estacionamiento != null)
-                    {
-                        if (Estacionamiento == true)
+                        if (Estacionamiento != null)
                         {
-                            propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                            if (Estacionamiento == true)
+                            {
+                                propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                            }
                         }
                     }
                 }
-            }
 
-            /*--------------*/
-            if (pMenor != null)
-            {
-                propiedades = propiedades.Where(p => p.VentaPrecio > pMenor);
-            }
-            if (pMayor != null)
-            {
-                propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
-            }
-            /*--------------*/
+                /*--------------*/
+                if (pMenor != null)
+                {
+                    propiedades = propiedades.Where(p => p.VentaPrecio > pMenor);
+                }
+                if (pMayor != null)
+                {
+                    propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
+                }
+                /*--------------*/
 
-            /*--------------*/
-            if (fLocalMenor != null)
-            {
-                propiedades = propiedades.Where(p => p.FrenteLocal > fLocalMenor);
-            }
-            if (fLocalMayor != null)
-            {
-                propiedades = propiedades.Where(p => p.FrenteLocal < fLocalMayor);
-            }
-            /*--------------*/
-            /*--------------*/
-            if (lLocalMenor != null)
-            {
-                propiedades = propiedades.Where(p => p.LargoLocal > lLocalMenor);
-            }
-            if (lLocalMayor != null)
-            {
-                propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
-            }
-            /*--------------*/
+                /*--------------*/
+                if (fLocalMenor != null)
+                {
+                    propiedades = propiedades.Where(p => p.FrenteLocal > fLocalMenor);
+                }
+                if (fLocalMayor != null)
+                {
+                    propiedades = propiedades.Where(p => p.FrenteLocal < fLocalMayor);
+                }
+                /*--------------*/
+                /*--------------*/
+                if (lLocalMenor != null)
+                {
+                    propiedades = propiedades.Where(p => p.LargoLocal > lLocalMenor);
+                }
+                if (lLocalMayor != null)
+                {
+                    propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
+                }
+                /*--------------*/
 
-            if (desarrollo != 0)
-            {
-                propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
+                if (desarrollo != 0)
+                {
+                    propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
+                }
+
+                if (categoria != 0)
+                {
+                    propiedades = propiedades.Where(p => p.Categoria == categoria);
+                }
+
+                if (!string.IsNullOrEmpty(titulo))
+                {
+                    propiedades = propiedades.Where(p => p.Titulo.Contains(titulo));
+                }
+
+                if (!string.IsNullOrEmpty(nivel))
+                {
+                    propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
+                }
+
+                ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
+                ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
+
+                return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
             }
-
-            if (categoria != 0)
+            else
             {
-                propiedades = propiedades.Where(p => p.Categoria == categoria);
+                return RedirectToAction("Index", "Home");
             }
-
-            if (!string.IsNullOrEmpty(titulo))
-            {
-                propiedades = propiedades.Where(p => p.Titulo.Contains(titulo));
-            }
-
-            if (!string.IsNullOrEmpty(nivel))
-            {
-                propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
-            }
-
-            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
-            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
-
-            return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
         }
 
         public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int? pagos, int? montoPagos, int desarrollo = 0, int categoria = 0)
         {
-            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
-            if (usuario.UserRoles == "MANAGER")
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                ViewBag.manager = "Eres un manager";
-            }
 
+                var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
 
-            var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
-
-            if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
-            {
-                if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
+                if (Terraza.HasValue && Bodega.HasValue && Estacionamiento.HasValue)
                 {
-                    if (Terraza != null)
+                    if (Terraza.Value || Bodega.Value || Estacionamiento.Value)
                     {
-                        if (Terraza == true)
+                        if (Terraza != null)
                         {
-                            propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                            if (Terraza == true)
+                            {
+                                propiedades = propiedades.Where(p => p.Terraza == Terraza);
+                            }
                         }
-                    }
 
-                    if (Bodega != null)
-                    {
-                        if (Bodega == true)
+                        if (Bodega != null)
                         {
-                            propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                            if (Bodega == true)
+                            {
+                                propiedades = propiedades.Where(p => p.Bodega == Bodega);
+                            }
                         }
-                    }
 
-                    if (Estacionamiento != null)
-                    {
-                        if (Estacionamiento == true)
+                        if (Estacionamiento != null)
                         {
-                            propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                            if (Estacionamiento == true)
+                            {
+                                propiedades = propiedades.Where(p => p.Estacionamiento == Estacionamiento);
+                            }
                         }
                     }
                 }
-            }
 
-            /*--------------*/
-            if (pMenor != null)
-            {
-                propiedades = propiedades.Where(p => p.VentaPrecio > pMenor);
-            }
-            if (pMayor != null)
-            {
-                propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
-            }
-            /*--------------*/
+                /*--------------*/
+                if (pMenor != null)
+                {
+                    propiedades = propiedades.Where(p => p.VentaPrecio > pMenor);
+                }
+                if (pMayor != null)
+                {
+                    propiedades = propiedades.Where(p => p.VentaPrecio < pMayor);
+                }
+                /*--------------*/
 
-            /*--------------*/
-            if (fLocalMenor != null)
-            {
-                propiedades = propiedades.Where(p => p.FrenteLocal > fLocalMenor);
-            }
-            if (fLocalMayor != null)
-            {
-                propiedades = propiedades.Where(p => p.FrenteLocal < fLocalMayor);
-            }
-            /*--------------*/
-            /*--------------*/
-            if (lLocalMenor != null)
-            {
-                propiedades = propiedades.Where(p => p.LargoLocal > lLocalMenor);
-            }
-            if (lLocalMayor != null)
-            {
-                propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
-            }
-            /*--------------*/
-            /*------Filtro nuevo--------*/
-            if (pagos.HasValue && montoPagos.HasValue)
-            {
-                decimal antesEnganche = pagos.Value * montoPagos.Value;
-                decimal precioTotal = antesEnganche / 0.65m;
-                propiedades = propiedades.Where(p => p.VentaPrecio <= precioTotal);
-            }
-            /*--------------*/
+                /*--------------*/
+                if (fLocalMenor != null)
+                {
+                    propiedades = propiedades.Where(p => p.FrenteLocal > fLocalMenor);
+                }
+                if (fLocalMayor != null)
+                {
+                    propiedades = propiedades.Where(p => p.FrenteLocal < fLocalMayor);
+                }
+                /*--------------*/
+                /*--------------*/
+                if (lLocalMenor != null)
+                {
+                    propiedades = propiedades.Where(p => p.LargoLocal > lLocalMenor);
+                }
+                if (lLocalMayor != null)
+                {
+                    propiedades = propiedades.Where(p => p.LargoLocal < lLocalMayor);
+                }
+                /*--------------*/
+                /*------Filtro nuevo--------*/
+                if (pagos.HasValue && montoPagos.HasValue)
+                {
+                    decimal antesEnganche = pagos.Value * montoPagos.Value;
+                    decimal precioTotal = antesEnganche / 0.65m;
+                    propiedades = propiedades.Where(p => p.VentaPrecio <= precioTotal);
+                }
+                /*--------------*/
 
-            if (desarrollo != 0)
-            {
-                propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
-            }
+                if (desarrollo != 0)
+                {
+                    propiedades = propiedades.Where(p => p.Desarrollo == desarrollo);
+                }
 
-            if (categoria != 0)
-            {
-                propiedades = propiedades.Where(p => p.Categoria == categoria);
-            }
+                if (categoria != 0)
+                {
+                    propiedades = propiedades.Where(p => p.Categoria == categoria);
+                }
 
-            if (!string.IsNullOrEmpty(titulo))
-            {
-                propiedades = propiedades.Where(p => p.Titulo.Contains(titulo));
-            }
+                if (!string.IsNullOrEmpty(titulo))
+                {
+                    propiedades = propiedades.Where(p => p.Titulo.Contains(titulo));
+                }
 
-            if (!string.IsNullOrEmpty(nivel))
-            {
-                propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
-            }
+                if (!string.IsNullOrEmpty(nivel))
+                {
+                    propiedades = propiedades.Where(p => p.Nivel.Contains(nivel));
+                }
 
-            propiedades = propiedades.Where(p => p.Activa == true).Where(p => p.Estatus.Value < 3);
-            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
-            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
-            return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
+                propiedades = propiedades.Where(p => p.Activa == true).Where(p => p.Estatus.Value < 3);
+                ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
+                ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
+                return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
+            }else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
 
@@ -237,60 +252,82 @@ namespace crmInmobiliario.Controllers
         // GET: Propiedades/Details/5
         public ActionResult Details(int? id, bool filtro)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
-            VariosModelos vModelos = new VariosModelos();
-            Propiedades propiedades = db.Propiedades.Find(id);
-            if (propiedades == null)
+                VariosModelos vModelos = new VariosModelos();
+                Propiedades propiedades = db.Propiedades.Find(id);
+                if (propiedades == null)
+                {
+                    return HttpNotFound();
+                }
+                vModelos.propiedades = propiedades;
+
+                var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
+                vModelos.domicilios = domicilios;
+
+                ViewBag.filtro = filtro;
+                ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus");
+
+                return View(vModelos);
+            }else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            vModelos.propiedades = propiedades;
-
-            var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
-            vModelos.domicilios = domicilios;
-
-            ViewBag.filtro = filtro;
-            ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus");
-
-            return View(vModelos);
         }
 
         public ActionResult DetailsFiltro(int? id, bool filtro)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
 
-            VariosModelos vModelos = new VariosModelos();
-            Propiedades propiedades = db.Propiedades.Find(id);
-            if (propiedades == null)
+                VariosModelos vModelos = new VariosModelos();
+                Propiedades propiedades = db.Propiedades.Find(id);
+                if (propiedades == null)
+                {
+                    return HttpNotFound();
+                }
+                vModelos.propiedades = propiedades;
+
+                var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
+                vModelos.domicilios = domicilios;
+
+                ViewBag.filtro = filtro;
+                return View(vModelos);
+            }
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            vModelos.propiedades = propiedades;
-
-            var domicilios = db.Domicilios.Where(d => d.IdPropiedad == id).OrderByDescending(d => d.IdDomicilio);
-            vModelos.domicilios = domicilios;
-
-            ViewBag.filtro = filtro;
-            return View(vModelos);
         }
 
         // GET: Propiedades/Create
         public ActionResult Create()
         {
-            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
-            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
-            ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda");
-            ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado");
-            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
-            ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
+            {
+                ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
+                ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
+                ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda");
+                ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado");
+                ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria");
+                ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
+                return View();
+            }else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Propiedades/Create
@@ -348,24 +385,30 @@ namespace crmInmobiliario.Controllers
         // GET: Propiedades/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Propiedades propiedades = db.Propiedades.Find(id);
+                if (propiedades == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", propiedades.Desarrollo);
+                ViewBag.Edificio = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
+                ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
+                ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
+                ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
+                ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
+                ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus", propiedades.Estatus);
+                ViewBag.IdPropiedad = propiedades.IdPropiedad.ToString();
+                return View(propiedades);
+            }else {
+                return RedirectToAction("Index", "Home");
             }
-            Propiedades propiedades = db.Propiedades.Find(id);
-            if (propiedades == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo", propiedades.Desarrollo);
-            ViewBag.Edificio = new SelectList(db.Edificios, "Idedificio", "Edificio", propiedades.Edificio);
-            ViewBag.Moneda = new SelectList(db.Monedas, "IdMoneda", "Moneda", propiedades.Moneda);
-            ViewBag.Acabados = new SelectList(db.PropiedadesAcabados, "IdAcabado", "Acabado", propiedades.Acabados);
-            ViewBag.Categoria = new SelectList(db.PropiedadesCategoria, "IdCategoria", "Categoria", propiedades.Categoria);
-            ViewBag.TipoBanio = new SelectList(db.PropiedadesTipoBanios, "IdTipoBanio", "TipoBanio");
-            ViewBag.Estatus = new SelectList(db.PropiedadesEstatus, "IdEstatus", "Estatus", propiedades.Estatus);
-            ViewBag.IdPropiedad = propiedades.IdPropiedad.ToString();
-            return View(propiedades);
         }
 
         // POST: Propiedades/Edit/5
@@ -403,16 +446,23 @@ namespace crmInmobiliario.Controllers
         // GET: Propiedades/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Propiedades propiedades = db.Propiedades.Find(id);
-            if (propiedades == null)
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Propiedades propiedades = db.Propiedades.Find(id);
+                if (propiedades == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(propiedades);
+            }else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(propiedades);
         }
 
         // POST: Propiedades/Delete/5

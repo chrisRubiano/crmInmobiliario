@@ -29,35 +29,49 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones
         public ActionResult Index(int? idPersona)
         {
-            var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
-
             var usuario = getUser();
-
-            if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                cotizaciones = cotizaciones.Where(c => c.Vendedor == usuario.Id);
-            }
+                var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
 
-            if (idPersona.HasValue)
-            {
-                cotizaciones = cotizaciones.Where(c => c.Persona == idPersona.Value);
+                if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+                {
+                    cotizaciones = cotizaciones.Where(c => c.Vendedor == usuario.Id);
+                }
+
+                if (idPersona.HasValue)
+                {
+                    cotizaciones = cotizaciones.Where(c => c.Persona == idPersona.Value);
+                }
+                return View(cotizaciones.OrderByDescending(c => c.IdCotizacion).ToList());
             }
-            return View(cotizaciones.OrderByDescending(c => c.IdCotizacion).ToList());
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Cotizaciones/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
+                if (cotizaciones == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(cotizaciones);
             }
-            Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
-            if (cotizaciones == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(cotizaciones);
         }
 
         public void Excel()
@@ -70,10 +84,18 @@ namespace crmInmobiliario.Controllers
 
         public ActionResult Pagos(int idPersona, int idPropiedad)
         {
-            vmCotizacion vmcotizacion = new vmCotizacion();
-            vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
-            vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
-            return View(vmcotizacion);
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                vmCotizacion vmcotizacion = new vmCotizacion();
+                vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
+                vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
+                return View(vmcotizacion);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -202,61 +224,69 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones/Create
         public ActionResult Create(int? idPropiedad, bool? filtro, string nombre, string categoria)
         {
-            vmCotizacion vmcotizacion = new vmCotizacion();
-            Cotizaciones cotizacion = new Cotizaciones();
-            if (idPropiedad.HasValue)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                var propiedad = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
-                cotizacion.Propiedad = idPropiedad.Value;
-                cotizacion.PrecioFinalVenta = propiedad.VentaPrecio;
-                ViewBag.codigo = propiedad.Codigo;
-                vmcotizacion.propiedades = propiedad;
-            }
+                vmCotizacion vmcotizacion = new vmCotizacion();
+                Cotizaciones cotizacion = new Cotizaciones();
+                if (idPropiedad.HasValue)
+                {
+                    var propiedad = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
+                    cotizacion.Propiedad = idPropiedad.Value;
+                    cotizacion.PrecioFinalVenta = propiedad.VentaPrecio;
+                    ViewBag.codigo = propiedad.Codigo;
+                    vmcotizacion.propiedades = propiedad;
+                }
 
-            if (!filtro.HasValue)
+                if (!filtro.HasValue)
+                {
+                    ViewBag.filtro = false;
+                }
+
+                ViewBag.filtro = filtro;
+                vmcotizacion.cotizaciones = cotizacion;
+
+                /*        Personas       */
+                var nombreCompleto = new List<string>();
+                var nombreQry = from d in db.Personas
+                                orderby d.Paterno
+                                select d.Nombre + " " + d.Paterno + " " + d.Materno;
+                nombreCompleto.AddRange(nombreQry);
+                ViewBag.nombre = new SelectList(nombreCompleto);
+
+
+                var categorias = new List<string>();
+                var categoriaQry = from d in db.PersonasCategoria
+                                   orderby d.Categoria
+                                   select d.Categoria.ToString();
+
+                categorias.AddRange(categoriaQry.Distinct());
+                ViewBag.categoria = new SelectList(categorias);
+
+                var personas = from p in db.Personas
+                               select p;
+
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    personas = personas.Where(s => s.PersonasCategoria.Categoria.ToString().Contains(categoria));
+                }
+
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    personas = from p in db.Personas select p;
+                    personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
+                }
+
+                ViewBag.personas = personas;
+                /*      Personas           */
+
+                //ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
+                return View(vmcotizacion);
+            }
+            else
             {
-                ViewBag.filtro = false;
+                return RedirectToAction("Index", "Home");
             }
-
-            ViewBag.filtro = filtro;
-            vmcotizacion.cotizaciones = cotizacion;
-
-            /*        Personas       */
-            var nombreCompleto = new List<string>();
-            var nombreQry = from d in db.Personas
-                            orderby d.Paterno
-                            select d.Nombre + " " + d.Paterno + " " + d.Materno;
-            nombreCompleto.AddRange(nombreQry);
-            ViewBag.nombre = new SelectList(nombreCompleto);
-
-
-            var categorias = new List<string>();
-            var categoriaQry = from d in db.PersonasCategoria
-                               orderby d.Categoria
-                               select d.Categoria.ToString();
-
-            categorias.AddRange(categoriaQry.Distinct());
-            ViewBag.categoria = new SelectList(categorias);
-
-            var personas = from p in db.Personas
-                           select p;
-
-            if (!string.IsNullOrEmpty(categoria))
-            {
-                personas = personas.Where(s => s.PersonasCategoria.Categoria.ToString().Contains(categoria));
-            }
-
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                personas = from p in db.Personas select p;
-                personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
-            }
-
-            ViewBag.personas = personas;
-            /*      Personas           */
-
-            //ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            return View(vmcotizacion);
         }
 
         // POST: Cotizaciones/Create
@@ -305,18 +335,25 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
-            if (cotizaciones == null)
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
+                if (cotizaciones == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto", cotizaciones.Persona);
+                ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", cotizaciones.Propiedad);
+                return View(cotizaciones);
+            }else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto", cotizaciones.Persona);
-            ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", cotizaciones.Propiedad);
-            return View(cotizaciones);
         }
 
         // POST: Cotizaciones/Edit/5
@@ -342,16 +379,24 @@ namespace crmInmobiliario.Controllers
         // GET: Cotizaciones/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
+                if (cotizaciones == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(cotizaciones);
             }
-            Cotizaciones cotizaciones = db.Cotizaciones.Find(id);
-            if (cotizaciones == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(cotizaciones);
         }
 
         // POST: Cotizaciones/Delete/5
