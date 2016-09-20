@@ -50,10 +50,16 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Activo,Descuento,CajonesEstacionamiento,ERP,FechaEntrega")] Desarrollos desarrollos)
+        public ActionResult Create([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Activo,Descuento,CajonesEstacionamiento,ERP,FechaEntrega")] Desarrollos desarrollos, HttpPostedFileBase imgLogo)
         {
             if (ModelState.IsValid)
             {
+                if (imgLogo != null && imgLogo.ContentLength > 0)
+                {
+                    desarrollos.Logo = new byte[imgLogo.ContentLength];
+                    imgLogo.InputStream.Read(desarrollos.Logo, 0, imgLogo.ContentLength);
+                }
+
                 desarrollos.Activo = true;
                 db.Desarrollos.Add(desarrollos);
                 db.SaveChanges();
@@ -97,10 +103,16 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Activo,Descuento,CajonesEstacionamiento,ERP,FechaEntrega")] Desarrollos desarrollos)
+        public ActionResult Edit([Bind(Include = "IdDesarrollo,Desarrollo,Clave,Activo,Descuento,CajonesEstacionamiento,ERP,FechaEntrega")] Desarrollos desarrollos, HttpPostedFileBase imgLogo)
         {
             if (ModelState.IsValid)
             {
+                if (imgLogo != null && imgLogo.ContentLength > 0)
+                {
+                    desarrollos.Logo = new byte[imgLogo.ContentLength];
+                    imgLogo.InputStream.Read(desarrollos.Logo, 0, imgLogo.ContentLength);
+                }
+
                 db.Entry(desarrollos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
