@@ -27,7 +27,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 return View(db.DocumentosCategoria.ToList());
             }
@@ -41,7 +41,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
                 {

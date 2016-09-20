@@ -25,7 +25,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 return View(db.ProspectosIncidencias.Include(p => p.Personas).Include(p => p.AspNetUsers).ToList());
             }
