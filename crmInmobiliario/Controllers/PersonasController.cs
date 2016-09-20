@@ -30,7 +30,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index(string categoria, string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas
@@ -91,7 +91,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaProspectos(string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
@@ -126,7 +126,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaClientes(string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas.Where(p => p.Categoria == 2)
@@ -163,7 +163,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaProspectosValidar(string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
@@ -238,7 +238,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id, int? categoriap)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
                 {
@@ -272,7 +272,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult DetailsProspectoValidar(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
                 {
@@ -302,7 +302,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ValidacionRealizada()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 return View();
             }
@@ -315,7 +315,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Duplicado(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
                 {
