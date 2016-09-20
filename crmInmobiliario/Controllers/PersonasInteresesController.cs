@@ -17,34 +17,64 @@ namespace crmInmobiliario.Controllers
 
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
         // GET: PersonasIntereses
         public ActionResult Index()
         {
-            var intereses = from i in db.PersonasIntereses
-                         select i;
-            return View(intereses.OrderBy(i => i.Interes).ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var intereses = from i in db.PersonasIntereses
+                                select i;
+                return View(intereses.OrderBy(i => i.Interes).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             
         }
 
         // GET: PersonasIntereses/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PersonasIntereses personasIntereses = db.PersonasIntereses.Find(id);
+                if (personasIntereses == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(personasIntereses);
             }
-            PersonasIntereses personasIntereses = db.PersonasIntereses.Find(id);
-            if (personasIntereses == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(personasIntereses);
         }
 
         // GET: PersonasIntereses/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: PersonasIntereses/Create
@@ -77,16 +107,24 @@ namespace crmInmobiliario.Controllers
         // GET: PersonasIntereses/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PersonasIntereses personasIntereses = db.PersonasIntereses.Find(id);
+                if (personasIntereses == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(personasIntereses);
             }
-            PersonasIntereses personasIntereses = db.PersonasIntereses.Find(id);
-            if (personasIntereses == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(personasIntereses);
         }
 
         // POST: PersonasIntereses/Edit/5
@@ -108,16 +146,24 @@ namespace crmInmobiliario.Controllers
         // GET: PersonasIntereses/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PersonasIntereses personasIntereses = db.PersonasIntereses.Find(id);
+                if (personasIntereses == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(personasIntereses);
             }
-            PersonasIntereses personasIntereses = db.PersonasIntereses.Find(id);
-            if (personasIntereses == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(personasIntereses);
         }
 
         // POST: PersonasIntereses/Delete/5

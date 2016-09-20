@@ -16,35 +16,65 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
+
         // GET: AspNetRoles
         public ActionResult Index()
         {
-
-            var roles = from r in db.AspNetRoles
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var roles = from r in db.AspNetRoles
                             select r;
-            return View(roles.OrderBy(r => r.Name).ToList());
+                return View(roles.OrderBy(r => r.Name).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             
         }
 
         // GET: AspNetRoles/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+                if (aspNetRoles == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetRoles);
             }
-            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
-            if (aspNetRoles == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(aspNetRoles);
         }
 
         // GET: AspNetRoles/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: AspNetRoles/Create
@@ -76,16 +106,24 @@ namespace crmInmobiliario.Controllers
         // GET: AspNetRoles/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+                if (aspNetRoles == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetRoles);
             }
-            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
-            if (aspNetRoles == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(aspNetRoles);
         }
 
         // POST: AspNetRoles/Edit/5
@@ -107,16 +145,24 @@ namespace crmInmobiliario.Controllers
         // GET: AspNetRoles/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+                if (aspNetRoles == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetRoles);
             }
-            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
-            if (aspNetRoles == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(aspNetRoles);
         }
 
         // POST: AspNetRoles/Delete/5

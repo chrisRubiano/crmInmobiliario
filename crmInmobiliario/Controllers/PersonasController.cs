@@ -30,7 +30,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index(string categoria, string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas
@@ -91,7 +91,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaProspectos(string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)
@@ -126,7 +126,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaClientes(string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas.Where(p => p.Categoria == 2)
@@ -238,7 +238,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id, int? categoriap)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
                 {

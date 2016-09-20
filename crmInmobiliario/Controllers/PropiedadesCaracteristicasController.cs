@@ -17,26 +17,49 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
+
         // GET: PropiedadesCaracteristicas
         public ActionResult Index()
         {
-            var propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Include(p => p.PropiedadesCaracteristicasCategorias).OrderByDescending(p => p.IdCaracteristica);
-            return View(propiedadesCaracteristicas.ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Include(p => p.PropiedadesCaracteristicasCategorias).OrderByDescending(p => p.IdCaracteristica);
+                return View(propiedadesCaracteristicas.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: PropiedadesCaracteristicas/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PropiedadesCaracteristicas propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Find(id);
+                if (propiedadesCaracteristicas == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(propiedadesCaracteristicas);
             }
-            PropiedadesCaracteristicas propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Find(id);
-            if (propiedadesCaracteristicas == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(propiedadesCaracteristicas);
         }
 
         public void Excel()
@@ -70,8 +93,16 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesCaracteristicas/Create
         public ActionResult Create()
         {
-            ViewBag.Categoria = new SelectList(db.PropiedadesCaracteristicasCategorias, "IdCategoria", "Categoria");
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                ViewBag.Categoria = new SelectList(db.PropiedadesCaracteristicasCategorias, "IdCategoria", "Categoria");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: PropiedadesCaracteristicas/Create
@@ -95,17 +126,25 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesCaracteristicas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PropiedadesCaracteristicas propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Find(id);
+                if (propiedadesCaracteristicas == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Categoria = new SelectList(db.PropiedadesCaracteristicasCategorias, "IdCategoria", "Categoria", propiedadesCaracteristicas.Categoria);
+                return View(propiedadesCaracteristicas);
             }
-            PropiedadesCaracteristicas propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Find(id);
-            if (propiedadesCaracteristicas == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.Categoria = new SelectList(db.PropiedadesCaracteristicasCategorias, "IdCategoria", "Categoria", propiedadesCaracteristicas.Categoria);
-            return View(propiedadesCaracteristicas);
         }
 
         // POST: PropiedadesCaracteristicas/Edit/5
@@ -128,16 +167,24 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesCaracteristicas/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PropiedadesCaracteristicas propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Find(id);
+                if (propiedadesCaracteristicas == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(propiedadesCaracteristicas);
             }
-            PropiedadesCaracteristicas propiedadesCaracteristicas = db.PropiedadesCaracteristicas.Find(id);
-            if (propiedadesCaracteristicas == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(propiedadesCaracteristicas);
         }
 
         // POST: PropiedadesCaracteristicas/Delete/5

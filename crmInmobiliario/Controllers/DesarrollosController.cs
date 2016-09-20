@@ -18,31 +18,62 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
+
         // GET: Desarrollos
         public ActionResult Index()
         {
-            return View(db.Desarrollos.OrderByDescending(d => d.IdDesarrollo).ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View(db.Desarrollos.OrderByDescending(d => d.IdDesarrollo).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Desarrollos/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Desarrollos desarrollos = db.Desarrollos.Find(id);
+                if (desarrollos == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(desarrollos);
             }
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            if (desarrollos == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(desarrollos);
         }
 
         // GET: Desarrollos/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Desarrollos/Create
@@ -80,16 +111,24 @@ namespace crmInmobiliario.Controllers
         // GET: Desarrollos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Desarrollos desarrollos = db.Desarrollos.Find(id);
+                if (desarrollos == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(desarrollos);
             }
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            if (desarrollos == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(desarrollos);
         }
 
         // POST: Desarrollos/Edit/5
@@ -111,16 +150,24 @@ namespace crmInmobiliario.Controllers
         // GET: Desarrollos/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Desarrollos desarrollos = db.Desarrollos.Find(id);
+                if (desarrollos == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(desarrollos);
             }
-            Desarrollos desarrollos = db.Desarrollos.Find(id);
-            if (desarrollos == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(desarrollos);
         }
 
         // POST: Desarrollos/Delete/5
