@@ -77,6 +77,24 @@
             @Html.DisplayFor(model => model.FechaEntrega)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+
+        <dd>
+            @if (Model.Logo == null)
+            {
+                <img src="#" alt="Logo" class="img-thumbnail" />
+            }
+            else
+            {
+                var base64 = Convert.ToBase64String(Model.Logo);
+
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                <img src="@imgSrc" alt="Logo" class="img-thumbnail" />
+            }
+        </dd>
+
 
     </dl>
 
