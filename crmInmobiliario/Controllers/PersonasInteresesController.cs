@@ -27,7 +27,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 var intereses = from i in db.PersonasIntereses
                                 select i;
@@ -44,7 +44,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 if (id == null)
                 {

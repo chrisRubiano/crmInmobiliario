@@ -30,7 +30,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index(int? idPersona)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
 
@@ -55,7 +55,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 if (id == null)
                 {

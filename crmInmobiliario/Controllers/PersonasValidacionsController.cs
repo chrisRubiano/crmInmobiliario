@@ -26,7 +26,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 var personasValidacion = db.PersonasValidacion.Include(p => p.DocumentosCategoria).Include(p => p.Personas);
                 return View(personasValidacion.ToList());
@@ -41,7 +41,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 if (id == null)
                 {
