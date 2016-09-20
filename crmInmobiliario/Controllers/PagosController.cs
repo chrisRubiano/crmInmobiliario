@@ -27,7 +27,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 var pagos = db.Pagos.Include(p => p.Cotizaciones).Include(p => p.Monedas).Include(p => p.Personas).Include(p => p.Propiedades).Include(p => p.TiposPago);
                 return View(pagos.ToList());
@@ -42,7 +42,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT")
             {
                 if (id == null)
                 {
