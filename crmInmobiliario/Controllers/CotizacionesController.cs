@@ -87,6 +87,12 @@ namespace crmInmobiliario.Controllers
             var usuario = getUser();
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
+
+                if (usuario.UserRoles == "VENTAS")
+                {
+                    ViewBag.rolUsuario = "VENTAS";
+                }
+
                 vmCotizacion vmcotizacion = new vmCotizacion();
                 vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
                 vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
