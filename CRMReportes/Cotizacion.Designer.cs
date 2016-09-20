@@ -72,6 +72,7 @@ namespace CRMReportes
             this.textBox12 = new Telerik.Reporting.TextBox();
             this.textBox13 = new Telerik.Reporting.TextBox();
             this.dsCotizacion = new Telerik.Reporting.SqlDataSource();
+            this.pictureBox1 = new Telerik.Reporting.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // textBox34
@@ -143,7 +144,8 @@ namespace CRMReportes
             this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox1,
             this.barcode1,
-            this.textBox4});
+            this.textBox4,
+            this.pictureBox1});
             this.pageHeaderSection1.Name = "pageHeaderSection1";
             this.pageHeaderSection1.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
             this.pageHeaderSection1.Style.BorderWidth.Bottom = Telerik.Reporting.Drawing.Unit.Pixel(1D);
@@ -641,6 +643,15 @@ namespace CRMReportes
             new Telerik.Reporting.SqlDataSourceParameter("@IdCotizacion", System.Data.DbType.Int32, "= Parameters.IdCotizacion.Value")});
             this.dsCotizacion.SelectCommand = resources.GetString("dsCotizacion.SelectCommand");
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.pictureBox1.MimeType = "";
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4D), Telerik.Reporting.Drawing.Unit.Cm(2.7999999523162842D));
+            this.pictureBox1.Sizing = Telerik.Reporting.Drawing.ImageSizeMode.ScaleProportional;
+            this.pictureBox1.Value = "= Fields.Logo";
+            // 
             // Cotizacion
             // 
             this.DataSource = this.dsCotizacion;
@@ -711,5 +722,6 @@ namespace CRMReportes
         private Telerik.Reporting.TextBox textBox28;
         private Telerik.Reporting.TextBox textBox30;
         public Telerik.Reporting.SqlDataSource dsAmortizaciones;
+        private Telerik.Reporting.PictureBox pictureBox1;
     }
 }

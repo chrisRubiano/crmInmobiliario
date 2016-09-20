@@ -34,6 +34,9 @@
         <th>
             @Html.DisplayNameFor(model => model.FechaEntrega)
         </th>
+        <th>
+
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -77,6 +80,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FechaEntrega)
             </td>
+            <td>
+                @{
+                    if (item.Logo == null)
+                    {
+                        <img src="#" alt="Logo" class="img-thumbnail" />
+                    }
+                    else
+                    {
+                        var base64 = Convert.ToBase64String(item.Logo);
+
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@imgSrc" alt="Logo" class="size-image  img-thumbnail" />
+                    }
+                }
+            </td>
+
+
 
         </tr>
     }

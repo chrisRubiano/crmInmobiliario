@@ -132,7 +132,7 @@ WHERE (Amortizaciones.Cotizacion = @IdCotizacion)</value>
   <data name="dsCotizacion.SelectCommand" xml:space="preserve">
     <value>SELECT Cotizaciones.IdCotizacion, dbo.PadLeft(Cotizaciones.IdCotizacion, '0', 5) AS CodigoCotizacion, Desarrollos.Desarrollo, Propiedades.IdPropiedad, Propiedades.Titulo, Propiedades.VentaPrecio, Propiedades.Codigo, Propiedades.Bodega, Propiedades.M2Bodega, 
              Propiedades.FrenteLocal, Propiedades.LargoLocal, Propiedades.Nivel, Propiedades.Estacionamiento, Propiedades.CajonesEstacionamiento, Personas.Nombre, Personas.Paterno, Personas.Materno, Personas.RFC, Personas.Email, Personas.Email2, Personas.Telefono, 
-             Personas.Celular, Cotizaciones.FechaCotizacion, Cotizaciones.PrecioFinalVenta, Cotizaciones.PorcentajeEnganche, Cotizaciones.Enganche, Cotizaciones.Parcialidades, Cotizaciones.PorcentajeMensualidades, Cotizaciones.PagoMensual
+             Personas.Celular, Cotizaciones.FechaCotizacion, Cotizaciones.PrecioFinalVenta, Cotizaciones.PorcentajeEnganche, Cotizaciones.Enganche, Cotizaciones.Parcialidades, Cotizaciones.PorcentajeMensualidades, Cotizaciones.PagoMensual, Desarrollos.Logo
 FROM   Desarrollos RIGHT OUTER JOIN
              Propiedades ON Desarrollos.IdDesarrollo = Propiedades.Desarrollo RIGHT OUTER JOIN
              Cotizaciones ON Propiedades.IdPropiedad = Cotizaciones.Propiedad LEFT OUTER JOIN
