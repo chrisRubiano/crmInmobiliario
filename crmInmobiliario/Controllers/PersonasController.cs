@@ -163,7 +163,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaProspectosValidar(string nombre)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
             {
                 var nombreCompleto = new List<string>();
                 var nombreQry = from d in db.Personas.Where(p => p.Categoria == 1)

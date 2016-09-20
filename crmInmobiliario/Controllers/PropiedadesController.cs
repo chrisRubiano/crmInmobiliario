@@ -29,7 +29,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int desarrollo = 0, int categoria = 0)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
                 //var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).OrderByDescending(p => p.IdPropiedad).Include(p => p.PropiedadesTipoBanios);
 
@@ -131,14 +131,8 @@ namespace crmInmobiliario.Controllers
         public ActionResult Filtro(Boolean? Terraza, Boolean? Bodega, Boolean? Estacionamiento, string titulo, string nivel, int? pMenor, int? pMayor, int? fLocalMenor, int? fLocalMayor, int? lLocalMenor, int? lLocalMayor, int? pagos, int? montoPagos, int desarrollo = 0, int categoria = 0)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
-                var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
-                if (usuario.UserRoles == "MANAGER")
-                {
-                    ViewBag.manager = "Eres un manager";
-                }
-
 
                 var propiedades = db.Propiedades.Include(p => p.Desarrollos).Include(p => p.Edificios).Include(p => p.Monedas).Include(p => p.PropiedadesAcabados).Include(p => p.PropiedadesCategoria).Include(p => p.PropiedadesTipoBanios);
 
@@ -259,7 +253,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id, bool filtro)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
                 if (id == null)
                 {
@@ -290,7 +284,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult DetailsFiltro(int? id, bool filtro)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
                 if (id == null)
                 {
@@ -321,7 +315,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create()
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
                 ViewBag.Desarrollo = new SelectList(db.Desarrollos, "IdDesarrollo", "Desarrollo");
                 ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
@@ -392,7 +386,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Edit(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
                 if (id == null)
                 {
@@ -453,7 +447,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Delete(int? id)
         {
             var usuario = getUser();
-            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "ARQUITECTOS")
             {
                 if (id == null)
                 {
