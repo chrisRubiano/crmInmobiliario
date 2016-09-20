@@ -67,7 +67,6 @@ namespace crmInmobiliario.Models
         [Display(Name = "Rol")]
         public string UserRoles { get; set; }
 
-        [Required]
         [Display(Name = "Nombre de usuario")]
         public string UserName { get; set; }
 
