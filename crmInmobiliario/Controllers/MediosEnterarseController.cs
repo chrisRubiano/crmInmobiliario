@@ -18,33 +18,63 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
         // GET: MediosEnterarse
         public ActionResult Index()
         {
-            var medios = from m in db.MediosEnterarse
-                         select m;
-            return View(medios.OrderBy(m => m.Medio).ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var medios = from m in db.MediosEnterarse
+                             select m;
+                return View(medios.OrderBy(m => m.Medio).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: MediosEnterarse/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                MediosEnterarse mediosEnterarse = db.MediosEnterarse.Find(id);
+                if (mediosEnterarse == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(mediosEnterarse);
             }
-            MediosEnterarse mediosEnterarse = db.MediosEnterarse.Find(id);
-            if (mediosEnterarse == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(mediosEnterarse);
         }
 
         // GET: MediosEnterarse/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: MediosEnterarse/Create
@@ -76,16 +106,23 @@ namespace crmInmobiliario.Controllers
         // GET: MediosEnterarse/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MediosEnterarse mediosEnterarse = db.MediosEnterarse.Find(id);
-            if (mediosEnterarse == null)
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                MediosEnterarse mediosEnterarse = db.MediosEnterarse.Find(id);
+                if (mediosEnterarse == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(mediosEnterarse);
+            }else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(mediosEnterarse);
         }
 
         // POST: MediosEnterarse/Edit/5
@@ -107,16 +144,24 @@ namespace crmInmobiliario.Controllers
         // GET: MediosEnterarse/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                MediosEnterarse mediosEnterarse = db.MediosEnterarse.Find(id);
+                if (mediosEnterarse == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(mediosEnterarse);
             }
-            MediosEnterarse mediosEnterarse = db.MediosEnterarse.Find(id);
-            if (mediosEnterarse == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(mediosEnterarse);
         }
 
         // POST: MediosEnterarse/Delete/5

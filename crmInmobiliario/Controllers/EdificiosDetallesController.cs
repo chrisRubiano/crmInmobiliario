@@ -15,34 +15,64 @@ namespace crmInmobiliario.Controllers
     public class EdificiosDetallesController : Controller
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
 
         // GET: EdificiosDetalles
         public ActionResult Index()
         {
-            var edificiosDetalle = db.EdificiosDetalle.Include(e => e.Edificios);
-            return View(edificiosDetalle.ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var edificiosDetalle = db.EdificiosDetalle.Include(e => e.Edificios);
+                return View(edificiosDetalle.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: EdificiosDetalles/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
+                if (edificiosDetalle == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(edificiosDetalle);
             }
-            EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
-            if (edificiosDetalle == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(edificiosDetalle);
         }
 
         // GET: EdificiosDetalles/Create
         public ActionResult Create()
         {
-            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: EdificiosDetalles/Create
@@ -74,17 +104,25 @@ namespace crmInmobiliario.Controllers
         // GET: EdificiosDetalles/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
+                if (edificiosDetalle == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
+                return View(edificiosDetalle);
             }
-            EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
-            if (edificiosDetalle == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.Edificio = new SelectList(db.Edificios, "IdEdificio", "Edificio", edificiosDetalle.Edificio);
-            return View(edificiosDetalle);
         }
 
         // POST: EdificiosDetalles/Edit/5
@@ -107,16 +145,24 @@ namespace crmInmobiliario.Controllers
         // GET: EdificiosDetalles/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
+                if (edificiosDetalle == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(edificiosDetalle);
             }
-            EdificiosDetalle edificiosDetalle = db.EdificiosDetalle.Find(id);
-            if (edificiosDetalle == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(edificiosDetalle);
         }
 
         // POST: EdificiosDetalles/Delete/5

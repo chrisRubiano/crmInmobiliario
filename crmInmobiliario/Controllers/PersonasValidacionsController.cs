@@ -16,45 +16,74 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
         // GET: PersonasValidacions
         public ActionResult Index()
         {
-            var personasValidacion = db.PersonasValidacion.Include(p => p.DocumentosCategoria).Include(p => p.Personas);
-            return View(personasValidacion.ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var personasValidacion = db.PersonasValidacion.Include(p => p.DocumentosCategoria).Include(p => p.Personas);
+                return View(personasValidacion.ToList());
+            }else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
 
         // GET: PersonasValidacions/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
+                if (personasValidacion == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(personasValidacion);
             }
-            PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
-            if (personasValidacion == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(personasValidacion);
         }
 
         // GET: PersonasValidacions/Create
         public ActionResult Create(int? IdPersona)
         {
-            var personas = (from p in db.Personas
-                           select new SelectListItem
-                           {
-                               Text = p.Paterno + " " + p.Materno + " " + p.Nombre,
-                               Value = p.IdPersona.ToString()
-                           }).ToList();
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var personas = (from p in db.Personas
+                                select new SelectListItem
+                                {
+                                    Text = p.Paterno + " " + p.Materno + " " + p.Nombre,
+                                    Value = p.IdPersona.ToString()
+                                }).ToList();
 
-            ViewBag.Persona = new SelectList(personas, "Value", "Text", IdPersona);
-            ViewBag.IdPersona = IdPersona;
+                ViewBag.Persona = new SelectList(personas, "Value", "Text", IdPersona);
+                ViewBag.IdPersona = IdPersona;
 
-            ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria");
+                ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria");
 
-            return View();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: PersonasValidacions/Create
@@ -81,19 +110,27 @@ namespace crmInmobiliario.Controllers
         // GET: PersonasValidacions/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
+                if (personasValidacion == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria", personasValidacion.CategoriaDocumento);
+                ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", personasValidacion.Persona);
+                ViewBag.IdPersona = personasValidacion.Persona;
+                return View(personasValidacion);
             }
-            PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
-            if (personasValidacion == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.CategoriaDocumento = new SelectList(db.DocumentosCategoria, "IdCategoria", "Categoria", personasValidacion.CategoriaDocumento);
-            ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", personasValidacion.Persona);
-            ViewBag.IdPersona = personasValidacion.Persona;
-            return View(personasValidacion);
         }
 
         // POST: PersonasValidacions/Edit/5
@@ -118,19 +155,27 @@ namespace crmInmobiliario.Controllers
         // GET: PersonasValidacions/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
+                if (personasValidacion == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.IdPersona = personasValidacion.Persona;
+
+                return View(personasValidacion);
             }
-            PersonasValidacion personasValidacion = db.PersonasValidacion.Find(id);
-            if (personasValidacion == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-
-            ViewBag.IdPersona = personasValidacion.Persona;
-
-            return View(personasValidacion);
         }
 
         // POST: PersonasValidacions/Delete/5

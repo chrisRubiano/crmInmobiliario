@@ -15,69 +15,90 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
         // GET: Amortizaciones
         public ActionResult Index()
         {
-            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago);
-            return View(amortizaciones.ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago);
+                return View(amortizaciones.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         /**           Filtro                    **/
         public ActionResult Filtro(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
-            var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("C"));
-
-            if (persona != 0)
+            var usuario = getUser();
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
-                amortizaciones = amortizaciones.Where(a => a.Persona == persona);
+                var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("C"));
+
+                if (persona != 0)
+                {
+                    amortizaciones = amortizaciones.Where(a => a.Persona == persona);
+                }
+                if (propiedad != 0)
+                {
+                    amortizaciones = amortizaciones.Where(a => a.Propiedad == propiedad);
+                }
+                if (cotizacion != 0)
+                {
+                    amortizaciones = amortizaciones.Where(a => a.Cotizacion == cotizacion);
+                }
+
+                var cotizaciones = db.Cotizaciones.Find(cotizacion);
+                ViewBag.cotizaciones = cotizaciones;
+                var personas = db.Personas.Find(persona);
+                ViewBag.personas = personas;
+                var propiedades = db.Propiedades.Find(propiedad);
+                ViewBag.propiedades = propiedades;
+
+                /*  Checar si existe ya una tabla oficial */
+                ViewBag.existeOficial = false;
+                var checaroficial = db.Amortizaciones.AsNoTracking().Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Cotizacion == cotizacion);
+                if (checaroficial.Count() > 0)
+                {
+                    ViewBag.existeOficial = true;
+                }
+                //
+
+
+                ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
+                ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
+                /*** Panel info Cotizacion ***/
+                ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
+                ViewBag.personaTelefono = cotizaciones.Personas.Celular;
+                ViewBag.personaCorreo = cotizaciones.Personas.Email;
+                ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
+                ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
+                ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
+                ViewBag.titulo = cotizaciones.Propiedades.Codigo;
+                ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value, 2);
+                ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value, 2);
+                ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
+                ViewBag.mensualidades = cotizaciones.Parcialidades;
+                ViewBag.porcMensualidades = cotizaciones.PorcentajeMensualidades;
+                ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2);
+                ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value, 2);
+                /*** Panel info Cotizacion ***/
+                ViewBag.idCotizacion = cotizaciones.IdCotizacion;
+
+                return View(amortizaciones.ToList());
             }
-            if (propiedad != 0)
+            else
             {
-                amortizaciones = amortizaciones.Where(a => a.Propiedad == propiedad);
+                return RedirectToAction("Index", "Home");
             }
-            if (cotizacion != 0)
-            {
-                amortizaciones = amortizaciones.Where(a => a.Cotizacion == cotizacion);
-            }
-
-            var cotizaciones = db.Cotizaciones.Find(cotizacion);
-            ViewBag.cotizaciones = cotizaciones;
-            var personas = db.Personas.Find(persona);
-            ViewBag.personas = personas;
-            var propiedades = db.Propiedades.Find(propiedad);
-            ViewBag.propiedades = propiedades;
-
-            /*  Checar si existe ya una tabla oficial */
-            ViewBag.existeOficial = false;
-            var checaroficial = db.Amortizaciones.AsNoTracking().Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Cotizacion == cotizacion);
-            if (checaroficial.Count() > 0)
-            {
-                ViewBag.existeOficial = true;
-            }
-            //
-
-
-            ViewBag.persona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
-            /*** Panel info Cotizacion ***/
-            ViewBag.personaNombre = cotizaciones.Personas.NombreCompleto;
-            ViewBag.personaTelefono = cotizaciones.Personas.Celular;
-            ViewBag.personaCorreo = cotizaciones.Personas.Email;
-            ViewBag.cotizacion = cotizaciones.IdCotizacion.ToString().PadLeft(5, '0');
-            ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
-            ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
-            ViewBag.titulo = cotizaciones.Propiedades.Codigo;
-            ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value, 2);
-            ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value, 2);
-            ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
-            ViewBag.mensualidades = cotizaciones.Parcialidades;
-            ViewBag.porcMensualidades = cotizaciones.PorcentajeMensualidades;
-            ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2);
-            ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value, 2);
-            /*** Panel info Cotizacion ***/
-            ViewBag.idCotizacion = cotizaciones.IdCotizacion;
-
-            return View(amortizaciones.ToList());
         }
 
 
@@ -156,27 +177,43 @@ namespace crmInmobiliario.Controllers
         // GET: Amortizaciones/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
+                if (amortizaciones == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(amortizaciones);
             }
-            Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
-            if (amortizaciones == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(amortizaciones);
         }
 
         // GET: Amortizaciones/Create
         public ActionResult Create(int? idCotizacion)
         {
-            if (idCotizacion.HasValue && idCotizacion != 0)
+            var usuario = getUser();
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
-                ViewBag.Cotizacion = idCotizacion;
+                if (idCotizacion.HasValue && idCotizacion != 0)
+                {
+                    ViewBag.Cotizacion = idCotizacion;
+                }
+                ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo");
+                return View();
             }
-            ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo");
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Amortizaciones/Create
@@ -204,18 +241,26 @@ namespace crmInmobiliario.Controllers
         // GET: Amortizaciones/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
+                if (amortizaciones == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
+                //ViewBag.Tipo = amortizaciones.TiposPago.Tipo;
+                return View(amortizaciones);
             }
-            Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
-            if (amortizaciones == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
-            //ViewBag.Tipo = amortizaciones.TiposPago.Tipo;
-            return View(amortizaciones);
         }
 
         // POST: Amortizaciones/Edit/5
@@ -282,16 +327,24 @@ namespace crmInmobiliario.Controllers
         // GET: Amortizaciones/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
+                if (amortizaciones == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(amortizaciones);
             }
-            Amortizaciones amortizaciones = db.Amortizaciones.Find(id);
-            if (amortizaciones == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(amortizaciones);
         }
 
         // POST: Amortizaciones/Delete/5

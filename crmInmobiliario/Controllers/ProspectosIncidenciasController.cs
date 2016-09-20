@@ -14,11 +14,25 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
+
         // GET: ProspectosIncidencias
         public ActionResult Index()
         {
-
-            return View(db.ProspectosIncidencias.Include(p => p.Personas).Include(p => p.AspNetUsers).ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View(db.ProspectosIncidencias.Include(p => p.Personas).Include(p => p.AspNetUsers).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         //// GET: ProspectosIncidencias/Details/5
@@ -93,16 +107,24 @@ namespace crmInmobiliario.Controllers
         // GET: ProspectosIncidencias/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ProspectosIncidencias prospectosIncidencias = db.ProspectosIncidencias.Find(id);
+                if (prospectosIncidencias == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(prospectosIncidencias);
             }
-            ProspectosIncidencias prospectosIncidencias = db.ProspectosIncidencias.Find(id);
-            if (prospectosIncidencias == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(prospectosIncidencias);
         }
 
         // POST: ProspectosIncidencias/Delete/5

@@ -19,34 +19,65 @@ namespace crmInmobiliario.Controllers
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
         ApplicationDbContext context = new ApplicationDbContext();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
+
         // GET: AspNetUsers
         public ActionResult Index()
         {
-            var usuarios = from u in db.AspNetUsers
-                            select u;
-            return View(usuarios.OrderBy(u => u.UserName).ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                var usuarios = from u in db.AspNetUsers
+                               select u;
+                return View(usuarios.OrderBy(u => u.UserName).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
             
         }
 
         // GET: AspNetUsers/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+                if (aspNetUsers == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUsers);
             }
-            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
-            if (aspNetUsers == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(aspNetUsers);
         }
 
         // GET: AspNetUsers/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: AspNetUsers/Create
@@ -78,18 +109,26 @@ namespace crmInmobiliario.Controllers
         // GET: AspNetUsers/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+                if (aspNetUsers == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                                .ToList(), "Name", "Name");
+                return View(aspNetUsers);
             }
-            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
-            if (aspNetUsers == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                            .ToList(), "Name", "Name");
-            return View(aspNetUsers);
         }
 
         // POST: AspNetUsers/Edit/5
@@ -132,16 +171,24 @@ namespace crmInmobiliario.Controllers
         // GET: AspNetUsers/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+                if (aspNetUsers == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUsers);
             }
-            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
-            if (aspNetUsers == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(aspNetUsers);
         }
 
         // POST: AspNetUsers/Delete/5

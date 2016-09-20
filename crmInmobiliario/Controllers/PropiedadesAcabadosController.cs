@@ -17,25 +17,48 @@ namespace crmInmobiliario.Controllers
     {
         private CRMINMOBILIARIOEntities3 db = new CRMINMOBILIARIOEntities3();
 
+        public AspNetUsers getUser()
+        {
+            var usuario = db.AspNetUsers.Where(a => a.UserName == this.User.Identity.Name).FirstOrDefault();
+            return usuario;
+        }
+
+
         // GET: PropiedadesAcabados
         public ActionResult Index()
         {
-            return View(db.PropiedadesAcabados.OrderByDescending(p => p.IdAcabado).ToList());
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View(db.PropiedadesAcabados.OrderByDescending(p => p.IdAcabado).ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: PropiedadesAcabados/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PropiedadesAcabados propiedadesAcabados = db.PropiedadesAcabados.Find(id);
+                if (propiedadesAcabados == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(propiedadesAcabados);
             }
-            PropiedadesAcabados propiedadesAcabados = db.PropiedadesAcabados.Find(id);
-            if (propiedadesAcabados == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(propiedadesAcabados);
         }
 
         public void Excel()
@@ -69,7 +92,15 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesAcabados/Create
         public ActionResult Create()
         {
-            return View();
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: PropiedadesAcabados/Create
@@ -92,16 +123,24 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesAcabados/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PropiedadesAcabados propiedadesAcabados = db.PropiedadesAcabados.Find(id);
+                if (propiedadesAcabados == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(propiedadesAcabados);
             }
-            PropiedadesAcabados propiedadesAcabados = db.PropiedadesAcabados.Find(id);
-            if (propiedadesAcabados == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(propiedadesAcabados);
         }
 
         // POST: PropiedadesAcabados/Edit/5
@@ -123,16 +162,24 @@ namespace crmInmobiliario.Controllers
         // GET: PropiedadesAcabados/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var usuario = getUser();
+            if (usuario.UserRoles == "ARQUITECTOS" || usuario.UserRoles == "DIR-GENERAL")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                PropiedadesAcabados propiedadesAcabados = db.PropiedadesAcabados.Find(id);
+                if (propiedadesAcabados == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(propiedadesAcabados);
             }
-            PropiedadesAcabados propiedadesAcabados = db.PropiedadesAcabados.Find(id);
-            if (propiedadesAcabados == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(propiedadesAcabados);
         }
 
         // POST: PropiedadesAcabados/Delete/5
