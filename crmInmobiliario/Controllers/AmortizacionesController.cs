@@ -93,7 +93,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2);
                 ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value, 2);
                 /*** Panel info Cotizacion ***/
-                ViewBag.idCotizacion = cotizaciones.IdCotizacion;
+                ViewBag.IdCotizacion = cotizaciones.IdCotizacion;
 
                 return View(amortizaciones.ToList());
             }
