@@ -3,12 +3,14 @@
 @{
     ViewBag.Title = "Tabla de Amortizaciones";
 }
-
+<br />
 <div class="alert alert-info" role="alert">
     <h3>Tabla de Amortización</h3>
 </div>
+
 <p>
     <div class="col-md-offset-10">
+
         @if (ViewBag.existeOficial)
         {
             <button class="btn btn-success" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = ViewBag.cotizacion })'"><i class="fa fa-eye"></i> Ver Tabla Oficial</button>
@@ -23,14 +25,12 @@
             }
         }
     </div>
+
 </p>
-@*<p>
-        <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Amortizaciones", new { idCotizacion = 2 })'"><i class="fa fa-user-plus"></i> Agregar Pago</button>
-    </p>*@
 
 <div class="row">
     <div class="alert alert-success col-md-10 col-md-offset-1">
-        <div class="row alert-info pb-15">
+        <div class="row  pb-15">
             <div class="col-md-4 text-center">
                 <i class="fa fa-user"></i> @ViewBag.personaNombre
             </div>
@@ -188,7 +188,9 @@
 </div>
 
 <p>
-    <button class="btn btn-info" onclick="window.open('/Reportes/RptCotizacion.aspx?IdCotizacion='+ @ViewBag.cotizacion);return false;"><i class=" fa fa-print"></i> Imprimir</button>
+    @{ string server = System.Configuration.ConfigurationManager.AppSettings["Server"].ToString(); }
+    @{ string appName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString(); }
+   <button class="btn btn-info" onclick="window.open('@server/@appName/Reportes/RptCotizacion.aspx?IdCotizacion='+  @ViewBag.IdCotizacion);return false;"><i class=" fa fa-print"></i> Imprimir</button>
 </p>
 
 
