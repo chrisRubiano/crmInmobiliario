@@ -354,6 +354,7 @@ namespace crmInmobiliario.Controllers
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
+                ViewBag.MedioEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
                 ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
                 ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
                 ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
@@ -426,10 +427,12 @@ namespace crmInmobiliario.Controllers
             }
 
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+            ViewBag.MedioEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
             ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
+            ViewBag.Categoriap = categoria;
             return View(personas);
         }
 

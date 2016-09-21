@@ -44,9 +44,16 @@ namespace crmInmobiliario.Models
         [Display(Name = "Interés")]
         public Nullable<int> Interes { get; set; }
 
+        [Display(Name = "Especifique interés")]
+        [DataType(DataType.MultilineText)]
+        public string InteresEspecifique { get; set; }
 
         [Display(Name = "Código")]
         public string CodigoPersona { get; set; }
+
+        [Display(Name = "Giro de la empresa")]
+        [DataType(DataType.MultilineText)]
+        public string Giro { get; set; }
 
         public string nombreCompleto()
         {

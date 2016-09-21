@@ -43,7 +43,9 @@ namespace crmInmobiliario.Models
         public string Email2 { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
+        [Display(Name = "Medio de Contacto")]
         public Nullable<int> MedioContacto { get; set; }
+        [Display(Name = "Interés")]
         public Nullable<int> Interes { get; set; }
         public string InteresEspecifique { get; set; }
         public string Giro { get; set; }
