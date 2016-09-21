@@ -30,6 +30,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var usuarios = from u in db.AspNetUsers
@@ -47,6 +48,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(string id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
@@ -70,6 +72,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create()
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
@@ -112,6 +115,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Edit(string id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
@@ -174,6 +178,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Delete(string id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)

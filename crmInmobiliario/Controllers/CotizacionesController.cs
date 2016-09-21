@@ -30,6 +30,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index(int? idPersona)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var cotizaciones = db.Cotizaciones.Include(c => c.Personas).Include(c => c.Propiedades);
@@ -55,6 +56,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
@@ -85,6 +87,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Pagos(int idPersona, int idPropiedad)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
 
@@ -231,6 +234,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create(int? idPropiedad, bool? filtro, string nombre, string categoria)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 vmCotizacion vmcotizacion = new vmCotizacion();
@@ -342,6 +346,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Edit(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
@@ -386,6 +391,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Delete(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)

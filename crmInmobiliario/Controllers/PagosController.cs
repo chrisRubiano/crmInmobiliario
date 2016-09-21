@@ -27,6 +27,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index()
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var pagos = db.Pagos.Include(p => p.Cotizaciones).Include(p => p.Monedas).Include(p => p.Personas).Include(p => p.Propiedades).Include(p => p.TiposPago);
@@ -42,6 +43,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
@@ -65,6 +67,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create(int id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
                 ViewBag.Amortizacion = new SelectList(db.Amortizaciones, "IdAmortizacion", "IdAmortizacion");
@@ -128,6 +131,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Edit(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
@@ -179,6 +183,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Delete(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)

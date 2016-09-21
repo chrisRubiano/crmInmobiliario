@@ -30,6 +30,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Index(string categoria, string nombre)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
@@ -91,6 +92,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaProspectos(string nombre)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
@@ -126,6 +128,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaClientes(string nombre)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
@@ -163,6 +166,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ListaProspectosValidar(string nombre)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 var nombreCompleto = new List<string>();
@@ -200,6 +204,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Asignar(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 Personas persona = db.Personas.Find(id);
@@ -238,6 +243,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Details(int? id, int? categoriap)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
@@ -272,6 +278,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult DetailsProspectoValidar(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
@@ -302,6 +309,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ValidacionRealizada()
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "LEGAL" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 return View();
@@ -315,6 +323,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Duplicado(int? id)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
@@ -341,6 +350,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Create(int? categoria)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
@@ -427,6 +437,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Edit(int? id, int? categoriap)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
@@ -493,6 +504,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult ValidarProspecto(int? id, int? categoriap)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "LEGAL")
             {
                 if (id == null)
@@ -556,6 +568,7 @@ namespace crmInmobiliario.Controllers
         public ActionResult Delete(int? id, int categoriap)
         {
             var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
