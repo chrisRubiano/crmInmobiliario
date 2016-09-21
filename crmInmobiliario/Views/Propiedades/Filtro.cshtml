@@ -166,7 +166,14 @@
                         <td class="">
                             <div class="btn-lista">
                                 <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("DetailsFiltro", "Propiedades", new { id = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                                <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Crear Cotización" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-money"></i></button>
+                                @if (ViewBag.rol == "ARQUITECTOS")
+                                {
+                                    /**/
+                                }
+                                else
+                                {
+                                    <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Crear Cotización" onclick="location.href='@Url.Action("Create", "Cotizaciones", new { idPropiedad = item.IdPropiedad, filtro = true })';return false;"><i class="fa fa-money"></i></button>
+                                }
                             </div>
                         </td>
                         <td>
@@ -214,8 +221,8 @@
             }
         });
 
-        $(document).ready(function(){ 
-            $('#alternarfiltropropiedades').on('click',function(){
+        $(document).ready(function () {
+            $('#alternarfiltropropiedades').on('click', function () {
                 $('#filtropropiedades').toggle();
             });
         });
