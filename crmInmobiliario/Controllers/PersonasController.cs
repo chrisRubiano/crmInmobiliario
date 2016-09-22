@@ -453,7 +453,7 @@ namespace crmInmobiliario.Controllers
                     return HttpNotFound();
                 }
 
-                //ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
+                ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
                 ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
                 ViewBag.MediosEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio", personas.MediosEnterarse);
                 ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
@@ -499,7 +499,7 @@ namespace crmInmobiliario.Controllers
                 ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
             }
 
-            //ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
+            ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
             ViewBag.MediosEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
