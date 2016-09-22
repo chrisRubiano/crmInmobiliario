@@ -22,6 +22,12 @@ namespace crmInmobiliario.Controllers
             context = new ApplicationDbContext();
         }
 
+        public ActionResult PermisoDenegado()
+        {
+
+            return View();
+        }
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
