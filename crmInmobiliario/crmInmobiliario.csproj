@@ -223,6 +223,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bitacora.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CaracteristicasPropiedades.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>

@@ -12,16 +12,14 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProspectosIncidencias
+    public partial class Bitacora
     {
-        public int Id { get; set; }
-        public Nullable<int> Prospecto { get; set; }
-        public string UsuarioRegistro { get; set; }
-        public string UsuarioIncidencia { get; set; }
-        public Nullable<System.DateTime> FechaRegistro { get; set; }
-    
-        public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual AspNetUsers AspNetUsers1 { get; set; }
-        public virtual Personas Personas { get; set; }
+        public int IdBitacora { get; set; }
+        public string Evento { get; set; }
+        public Nullable<System.DateTime> FechaHora { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
+        public string Usuario { get; set; }
+        public string IP { get; set; }
+        public Nullable<int> TipoEvento { get; set; }
     }
 }
