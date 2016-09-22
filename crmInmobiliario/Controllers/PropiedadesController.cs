@@ -125,7 +125,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -234,7 +234,7 @@ namespace crmInmobiliario.Controllers
                 return View(propiedades.OrderByDescending(p => p.IdPropiedad).ToList());
             }else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -280,7 +280,7 @@ namespace crmInmobiliario.Controllers
                 return View(vModelos);
             }else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -311,7 +311,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -331,7 +331,7 @@ namespace crmInmobiliario.Controllers
                 return View();
             }else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -413,7 +413,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.IdPropiedad = propiedades.IdPropiedad.ToString();
                 return View(propiedades);
             }else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -468,7 +468,7 @@ namespace crmInmobiliario.Controllers
                 return View(propiedades);
             }else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
