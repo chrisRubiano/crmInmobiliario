@@ -636,6 +636,7 @@
     <Content Include="Views\ProspectosIncidencias\Details.cshtml" />
     <Content Include="Views\ProspectosIncidencias\Edit.cshtml" />
     <Content Include="Views\ProspectosIncidencias\Index.cshtml" />
+    <Content Include="Views\Account\PermisoDenegado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -48,7 +48,8 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
