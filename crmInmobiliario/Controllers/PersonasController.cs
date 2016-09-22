@@ -354,7 +354,7 @@ namespace crmInmobiliario.Controllers
             if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto");
-                ViewBag.MedioEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
+                ViewBag.MediosEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
                 ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
                 ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
                 ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
@@ -373,7 +373,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,Interes,CategoriaInteres,Usuario,FechaRegistro")] Personas personas, int categoria)
+        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC")] Personas personas, int categoria)
         {
             try
             {
@@ -427,7 +427,7 @@ namespace crmInmobiliario.Controllers
             }
 
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
-            ViewBag.MedioEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
+            ViewBag.MediosEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
@@ -453,10 +453,12 @@ namespace crmInmobiliario.Controllers
                     return HttpNotFound();
                 }
 
-                ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
+                //ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
                 ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+                ViewBag.MediosEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio", personas.MediosEnterarse);
                 ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
                 ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+                ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes", personas.Interes);
                 ViewBag.categoriap = categoriap;
                 return View(personas);
             }
@@ -471,7 +473,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro,RFC")] Personas personas, int? categoriap)
+        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC")] Personas personas, int? categoriap)
         {
             try
             {
@@ -497,9 +499,13 @@ namespace crmInmobiliario.Controllers
                 ModelState.AddModelError("", "No es posible guardar los cambios, intente mas tarde. Si los problemas persisten favor de contactarse con un adminsitrador");
             }
 
+            //ViewBag.Categoria = new SelectList(db.PersonasCategoria, "IdCategoria", "Categoria", personas.Categoria);
             ViewBag.MedioContacto = new SelectList(db.MediosContacto, "IdMedioContacto", "MedioContacto", personas.MedioContacto);
+            ViewBag.MediosEnterarse = new SelectList(db.MediosEnterarse, "IdMedio", "Medio");
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
+            ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+            ViewBag.categoriap = categoriap;
             return View(personas);
         }
 

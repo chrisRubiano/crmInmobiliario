@@ -81,6 +81,18 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="UserRoles" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Evento" Type="varchar(max)" />
+          <Property Name="FechaHora" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="IP" Type="varchar" MaxLength="20" />
+          <Property Name="TipoEvento" Type="int" />
+        </EntityType>
         <EntityType Name="CaracteristicasPropiedades">
           <Key>
             <PropertyRef Name="IdCaracteristicaPropiedad" />
@@ -1183,6 +1195,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CaracteristicasPropiedades" EntityType="Self.CaracteristicasPropiedades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configuraciones" EntityType="Self.Configuraciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consecutivos" EntityType="Self.Consecutivos" Schema="dbo" store:Type="Tables" />
@@ -2880,6 +2893,7 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
           </AssociationSet>
+          <EntitySet Name="Bitacora" EntityType="CRMINMOBILIARIOModel.Bitacora" />
         </EntityContainer>
         <EntityType Name="ProspectosIncidencias">
           <Key>
@@ -2930,6 +2944,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Evento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaHora" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEvento" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3515,6 +3541,19 @@
                 <ScalarProperty Name="UsuarioRegistro" ColumnName="UsuarioRegistro" />
                 <ScalarProperty Name="Prospecto" ColumnName="Prospecto" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bitacora">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Bitacora">
+              <MappingFragment StoreEntitySet="Bitacora">
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Evento" ColumnName="Evento" />
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
