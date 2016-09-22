@@ -34,7 +34,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -58,7 +58,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -73,7 +73,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -124,7 +124,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
@@ -164,7 +164,7 @@ namespace crmInmobiliario.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PermisoDenegado", "Account");
             }
         }
 
