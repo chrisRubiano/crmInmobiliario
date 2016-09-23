@@ -24,7 +24,7 @@ namespace crmInmobiliario.Models
 
         [Display(Name = "Fecha de Nacimiento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
 
         [Required]
