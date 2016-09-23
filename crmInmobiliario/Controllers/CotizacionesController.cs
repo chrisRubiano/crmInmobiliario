@@ -100,6 +100,9 @@ namespace crmInmobiliario.Controllers
                 vmCotizacion vmcotizacion = new vmCotizacion();
                 vmcotizacion.propiedades = db.Propiedades.Where(p => p.IdPropiedad == idPropiedad).FirstOrDefault();
                 vmcotizacion.personas = db.Personas.Where(p => p.IdPersona == idPersona).FirstOrDefault();
+
+                var desarrollo = db.Desarrollos.Where(d => d.IdDesarrollo == vmcotizacion.propiedades.Desarrollo).FirstOrDefault();
+                ViewBag.descuento = decimal.ToInt32(desarrollo.Descuento.Value);
                 return View(vmcotizacion);
             }
             else
@@ -110,7 +113,7 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int pagosEnganche = 1, int numPagosAnuales = 1, int pagosAnuales = 0)
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int pagosEnganche = 1, int numPagosAnuales = 1, int pagosAnuales = 0, int descuento = 0)
         {
 
             if (string.IsNullOrEmpty(fechaInicial))
@@ -129,7 +132,8 @@ namespace crmInmobiliario.Controllers
                     Cotizaciones cotizaciones = new Cotizaciones();
                     vmcotizacion.cotizaciones.Vendedor = User.Identity.GetUserId().ToString();
                     vmcotizacion.cotizaciones.FechaCotizacion = DateTime.Now;
-                    vmcotizacion.cotizaciones.PrecioFinalVenta = vmcotizacion.propiedades.VentaPrecio.Value;
+                    decimal precioFinalDescto = vmcotizacion.propiedades.VentaPrecio.Value - vmcotizacion.propiedades.VentaPrecio.Value*(((decimal)descuento) / 100);
+                    vmcotizacion.cotizaciones.PrecioFinalVenta = precioFinalDescto;
 
                     cotizaciones = vmcotizacion.cotizaciones;
                     db.Cotizaciones.Add(cotizaciones);

@@ -133,6 +133,7 @@
           <Property Name="PorcentajeMensualidades" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PagoMensual" Type="money" />
           <Property Name="Vendedor" Type="nvarchar" MaxLength="128" />
+          <Property Name="Descuento" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Desarrollos">
           <Key>
@@ -1573,6 +1574,7 @@
           <NavigationProperty Name="Personas" Relationship="Self.FK_Cotizaciones_Personas1" FromRole="Cotizaciones" ToRole="Personas" />
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Cotizaciones_Propiedades" FromRole="Cotizaciones" ToRole="Propiedades" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK_Pagos_Cotizaciones" FromRole="Cotizaciones" ToRole="Pagos" />
+          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Desarrollos">
           <Key>
@@ -3064,6 +3066,7 @@
           <EntitySetMapping Name="Cotizaciones">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Cotizaciones">
               <MappingFragment StoreEntitySet="Cotizaciones">
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdCotizacion" ColumnName="IdCotizacion" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />
                 <ScalarProperty Name="Persona" ColumnName="Persona" />

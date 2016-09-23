@@ -31,6 +31,7 @@ namespace crmInmobiliario.Models
         public Nullable<decimal> PorcentajeMensualidades { get; set; }
         public Nullable<decimal> PagoMensual { get; set; }
         public string Vendedor { get; set; }
+        public Nullable<decimal> Descuento { get; set; }
     
         public virtual Personas Personas { get; set; }
         public virtual Propiedades Propiedades { get; set; }

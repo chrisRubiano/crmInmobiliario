@@ -6,10 +6,10 @@
 
 <h2>Registrar</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Persona</h4>
         <hr />
@@ -17,7 +17,7 @@
         <div class="form-group" style="display:none;">
             @Html.LabelFor(model => model.Tipo, "Tipo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Tipo", null, htmlAttributes: new { @class = "form-control chosen-select", @onchange="change(this)" })
+                @Html.DropDownList("Tipo", null, htmlAttributes: new { @class = "form-control chosen-select", @onchange = "change(this)" })
                 @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -129,6 +129,14 @@
             </div>
         </div>
 
+        <div class="form-group" id="referencia">
+            @Html.LabelFor(model => model.Referencia, "Referencia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Referencia", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Referencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Interes, "Interes", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -153,10 +161,10 @@
             </div>
         </div>
 
-       @if (ViewBag.categoria == 2)
-       {
-        
-       }
+        @if (ViewBag.categoria == 2)
+        {
+
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -178,12 +186,22 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         $(document).ready(function () {
             document.getElementById("pMoral").style.display = "none";
+            document.getElementById("referencia").style.display = "none";
+
+            $('#MediosEnterarse').click(function () {
+                if ($('#MediosEnterarse option:selected').val() == 4) {
+                    $('#referencia').show("fast");
+                } else {
+                    $('#referencia').hide("fast");
+                }
+            });
         });
     </script>
+    @Scripts.Render("~/bundles/jqueryval")
 
     <script>
 
