@@ -13,6 +13,7 @@
 /// <reference path="globalize/relative-time.js" />
 /// <reference path="globalize/unit.js" />
 /// <reference path="jquery.floatthead.min.js" />
+/// <reference path="jquery.formatcurrency-1.4.0.js" />
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-2.2.4.js" />

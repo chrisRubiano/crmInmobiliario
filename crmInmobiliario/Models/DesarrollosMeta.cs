@@ -12,7 +12,7 @@ namespace crmInmobiliario.Models
         [StringLength(150)]
         public string Desarrollo { get; set; }
 
-        [Required(ErrorMessage = "Debe Caoturar la Clave del Desarrollo")]
+        [Required(ErrorMessage = "Debe Capturar la Clave del Desarrollo")]
         [StringLength(2)]
         public string Clave { get; set; }
     

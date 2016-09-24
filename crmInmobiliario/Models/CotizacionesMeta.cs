@@ -25,6 +25,7 @@ namespace crmInmobiliario.Models
         [Display(Name = "Precio Final de Venta")]
         [Required(ErrorMessage = "Debe capturar un Precio de Venta")]
         [DataType(DataType.Currency)]
+        ////[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PrecioFinalVenta { get; set; }
        
         [Display(Name = "% Enganche")]
@@ -35,6 +36,7 @@ namespace crmInmobiliario.Models
 
         [DataType(DataType.Currency)]
         [Required]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> Enganche { get; set; }
 
         [Range(1, 24,
@@ -47,6 +49,7 @@ namespace crmInmobiliario.Models
         [Display(Name = "Pago Mensual")]
         [DataType(DataType.Currency)]
         [Required]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PagoMensual { get; set; }
         public string Vendedor { get; set; }
 

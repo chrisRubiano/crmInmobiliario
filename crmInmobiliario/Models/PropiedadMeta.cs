@@ -21,6 +21,7 @@ namespace crmInmobiliario.Models
 
         [Display(Name = "Precio de venta")]
         [DataType(DataType.Currency)]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> VentaPrecio { get; set; }
 
         public string Titulo { get; set; }
@@ -29,6 +30,7 @@ namespace crmInmobiliario.Models
 
         [Display(Name = "Precio de estacionamiento")]
         [DataType(DataType.Currency)]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PrecioEstacionamiento { get; set; }
 
         [Display(Name = "Cajones de Estacionamiento")]        
@@ -41,6 +43,7 @@ namespace crmInmobiliario.Models
         [Required]
         [Display(Name = "Precio m² de interiores")]
         [DataType(DataType.Currency)]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PrecioM2Interiores { get; set; }
         public Nullable<bool> Terraza { get; set; }
 
@@ -49,6 +52,7 @@ namespace crmInmobiliario.Models
 
         [Display(Name = "Precio m² de Terraza")]
         [DataType(DataType.Currency)]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PrecioM2Terraza { get; set; }
         public Nullable<bool> Bodega { get; set; }
 
@@ -57,6 +61,7 @@ namespace crmInmobiliario.Models
 
         [Display(Name = "Precio m² de bodega")]
         [DataType(DataType.Currency)]
+        //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PrecioM2Bodega { get; set; }
 
         [Required]

@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
         public Nullable<System.DateTime> FechaProgramado { get; set; }
 
         [DataType(DataType.Currency)]
+        ////[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> Importe { get; set; }
 
         [Display(Name = "Está Pagado")]
