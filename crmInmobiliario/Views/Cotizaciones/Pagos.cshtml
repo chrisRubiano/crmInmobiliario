@@ -214,7 +214,8 @@
 
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.Enganche, htmlAttributes: new { @class = "control-label" })
-                    <div class="">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
                         @Html.EditorFor(model => model.cotizaciones.Enganche, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "enganche" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.Enganche, "", new { @class = "text-danger" })
                     </div>
@@ -256,8 +257,9 @@
 
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.PagoMensual, htmlAttributes: new { @class = "control-label" })
-                    <div class="">
-                        @Html.EditorFor(model => model.cotizaciones.PagoMensual, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "pagoMensual" } })
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        @Html.EditorFor(model => model.cotizaciones.PagoMensual, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "pagoMensual", data_val = "false" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.PagoMensual, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -286,8 +288,10 @@
 
                 <div class="form-group col-md-4 pb-15">
                     <label class="control-label">Pagos Anuales</label>
-                    <div class="">
+                    <div class="input-group">
+                        <span class="input-group-addon">#</span>
                         @Html.TextBox("numPagosAnuales", null, htmlAttributes: new { @class = "form-control", @style = "max-width: 60px;", @id = "numPagosAnuales" })
+                        <span class="input-group-addon">$</span>
                         @Html.TextBox("pagosAnuales", null, htmlAttributes: new { @class = "form-control", @id = "pagosAnuales" })
                     </div>
                 </div>
@@ -368,6 +372,7 @@
                                                     ) /
                                                     $('#parcialidades').val()
                                                     );
+                //$("#pagoMensual").formatCurrency();
             });
 
             $("#numPagosAnuales").keyup(function () {

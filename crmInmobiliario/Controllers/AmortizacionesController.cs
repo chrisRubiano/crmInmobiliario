@@ -85,13 +85,13 @@ namespace crmInmobiliario.Controllers
                 ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
                 ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
                 ViewBag.titulo = cotizaciones.Propiedades.Codigo;
-                ViewBag.precio = Math.Round(cotizaciones.PrecioFinalVenta.Value, 2);
-                ViewBag.enganche = Math.Round(cotizaciones.Enganche.Value, 2);
+                ViewBag.precio = String.Format("{0:C}",Math.Round(cotizaciones.PrecioFinalVenta.Value, 2));
+                ViewBag.enganche = String.Format("{0:C}", Math.Round(cotizaciones.Enganche.Value, 2));
                 ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
                 ViewBag.mensualidades = cotizaciones.Parcialidades;
                 ViewBag.porcMensualidades = cotizaciones.PorcentajeMensualidades;
-                ViewBag.parcialidades = Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2);
-                ViewBag.pagoMensual = Math.Round(cotizaciones.PagoMensual.Value, 2);
+                ViewBag.parcialidades = String.Format("{0:C}", Math.Round((cotizaciones.PrecioFinalVenta.Value - cotizaciones.Enganche.Value), 2));
+                ViewBag.pagoMensual = String.Format("{0:C}", Math.Round(cotizaciones.PagoMensual.Value, 2));
                 /*** Panel info Cotizacion ***/
                 ViewBag.IdCotizacion = cotizaciones.IdCotizacion;
 
