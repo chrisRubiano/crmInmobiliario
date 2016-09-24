@@ -206,8 +206,9 @@
             <div class="form-inline">
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.PorcentajeEnganche, htmlAttributes: new { @class = "control-label" })
-                    <div class="">
+                    <div class="input-group">
                         @Html.EditorFor(model => model.cotizaciones.PorcentajeEnganche, new { htmlAttributes = new { @class = "form-control", @id = "porcentajeEnganche", @type="number", @min="30" } })
+                        <span class="input-group-addon">%</span>
                         @Html.ValidationMessageFor(model => model.cotizaciones.PorcentajeEnganche, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -225,7 +226,8 @@
                 {
                     <div class="form-group col-md-4 pb-15">
                         <label class="control-label">Pagos de enganche</label>
-                        <div class="">
+                        <div class="input-group">
+                            <span class="input-group-addon">#</span>
                             @Html.TextBox("pagosEnganche", null, htmlAttributes: new { @class = "form-control", @id = "pagosEnganche", @type = "number", @max = "3" })
                         </div>
                     </div>
@@ -234,7 +236,8 @@
                 {
                     <div class="form-group col-md-4 pb-15">
                         <label class="control-label">Pagos de enganche</label>
-                        <div class="">
+                        <div class="input-group">
+                            <span class="input-group-addon">#</span>
                             @Html.TextBox("pagosEnganche", null, htmlAttributes: new { @class = "form-control", @id = "pagosEnganche", @type = "number", @max = "5" })
                         </div>
                     </div>
@@ -249,8 +252,9 @@
 
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.PorcentajeMensualidades, htmlAttributes: new { @class = "control-label" })
-                    <div class="">
+                    <div class="input-group">
                         @Html.EditorFor(model => model.cotizaciones.PorcentajeMensualidades, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true", @id = "porcentajeMensualidades" } })
+                        <span class="input-group-addon">%</span>
                         @Html.ValidationMessageFor(model => model.cotizaciones.PorcentajeMensualidades, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -266,7 +270,8 @@
 
                 <div class="form-group col-md-4 pb-15">
                     @Html.LabelFor(model => model.cotizaciones.Parcialidades, htmlAttributes: new { @class = "control-label" })
-                    <div class="">
+                    <div class="input-group">
+                        <span class="input-group-addon">#</span>
                         @Html.EditorFor(model => model.cotizaciones.Parcialidades, new { htmlAttributes = new { @class = "form-control", @id = "parcialidades" } })
                         @Html.ValidationMessageFor(model => model.cotizaciones.Parcialidades, "", new { @class = "text-danger" })
                     </div>
@@ -274,8 +279,9 @@
 
                 <div class="form-group col-md-4 pb-15">
                     <label class="control-label">Porcentaje de descuento</label>
-                    <div class="">
+                    <div class="input-group">
                         @Html.TextBox("descuento", null, htmlAttributes: new { @class = "form-control", @id = "descuento", @max="" + ViewBag.descuento, @type="number" })
+                        <span class="input-group-addon">%</span>
                     </div>
                 </div>
 
