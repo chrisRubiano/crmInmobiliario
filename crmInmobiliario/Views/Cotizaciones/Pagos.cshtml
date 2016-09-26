@@ -327,12 +327,12 @@
             $('#porcentajeMensualidades').val(100 - $('#porcentajeEnganche').val());
             $('#enganche').val((($('#porcentajeEnganche').val()) * ($('#precioFinalVenta').val())) / 100 );
             $('#pagoMensual').val(
-                                                    ($('#precioFinalVenta').val() -
+                                                    parseFloat(($('#precioFinalVenta').val() -
                                                     $('#enganche').val() -
                                                     ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
                                                     ) /
                                                     $('#parcialidades').val()
-                                                    );
+                                                    ).toFixed(2).toString());
             $('#fechaInicial').val(new Date().toDateInputValue());
 
 
@@ -340,10 +340,12 @@
                 $('#enganche').val((($(this).val()) * ($('#precioFinalVenta').val())) / 100 );
                 $('#porcentajeMensualidades').val(100 - ($(this).val()));
                 $('#pagoMensual').val(
-                                                    ($('#precioFinalVenta').val() -
-                                                    $('#enganche').val()) /
+                                                    parseFloat(($('#precioFinalVenta').val() -
+                                                    $('#enganche').val() -
+                                                    ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
+                                                    ) /
                                                     $('#parcialidades').val()
-                                                    );
+                                                    ).toFixed(2).toString());
             });
 
             $("#pagosEnganche").keyup(function () {
@@ -356,33 +358,33 @@
                 //$('#enganche').val((($("#porcentajeEnganche").val()) * ($('#precioFinalVenta').val())) / 100);
                 //$('#porcentajeMensualidades').val(100 - ($("#porcentajeEnganche").val()));
                 $('#pagoMensual').val(
-                                                    ($('#precioFinalVenta').val() -
+                                                    parseFloat(($('#precioFinalVenta').val() -
                                                     $('#enganche').val() -
                                                     ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
                                                     ) /
                                                     $('#parcialidades').val()
-                                                    );
+                                                    ).toFixed(2).toString());
             });
 
             $("#pagosAnuales").keyup(function () {
                 $('#pagoMensual').val(
-                                                    ($('#precioFinalVenta').val() -
+                                                    parseFloat(($('#precioFinalVenta').val() -
                                                     $('#enganche').val() -
                                                     ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
                                                     ) /
                                                     $('#parcialidades').val()
-                                                    );
+                                                    ).toFixed(2).toString());
                 //$("#pagoMensual").formatCurrency();
             });
 
             $("#numPagosAnuales").keyup(function () {
                 $('#pagoMensual').val(
-                                                    ($('#precioFinalVenta').val() -
+                                                    parseFloat(($('#precioFinalVenta').val() -
                                                     $('#enganche').val() -
                                                     ($('#pagosAnuales').val() * $('#numPagosAnuales').val())
                                                     ) /
                                                     $('#parcialidades').val()
-                                                    );
+                                                    ).toFixed(2).toString());
             });
 
         });
