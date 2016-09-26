@@ -31,28 +31,34 @@ namespace crmInmobiliario.Models
         [Display(Name = "Precio de estacionamiento")]
         [DataType(DataType.Currency)]
         //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> PrecioEstacionamiento { get; set; }
 
-        [Display(Name = "Cajones de Estacionamiento")]        
+        [Display(Name = "Cajones de Estacionamiento")]
+        [Range(0, int.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<int> CajonesEstacionamiento { get; set; }
 
         [Required]
         [Display(Name = "Interiores (m²)")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> M2Interiores { get; set; }
 
         [Required]
         [Display(Name = "Precio m² de interiores")]
         [DataType(DataType.Currency)]
         //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> PrecioM2Interiores { get; set; }
         public Nullable<bool> Terraza { get; set; }
 
         [Display(Name = "Terraza (m²)")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> M2Terraza { get; set; }
 
         [Display(Name = "Precio m² de Terraza")]
         [DataType(DataType.Currency)]
         //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> PrecioM2Terraza { get; set; }
         public Nullable<bool> Bodega { get; set; }
 
@@ -61,15 +67,18 @@ namespace crmInmobiliario.Models
 
         [Display(Name = "Precio m² de bodega")]
         [DataType(DataType.Currency)]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> PrecioM2Bodega { get; set; }
 
         [Required]
         [Display(Name = "Frente del local")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> FrenteLocal { get; set; }
 
         [Required]
         [Display(Name = "Largo del local")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> LargoLocal { get; set; }
         public Nullable<int> Acabados { get; set; }
 
@@ -81,9 +90,11 @@ namespace crmInmobiliario.Models
         public string Nivel { get; set; }
 
         [Display(Name = "Tipo de Baños")]
+        [Range(0, int.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<int> TipoBanio { get; set; }
 
         [Display(Name = "Num de Baños")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<double> NumBanios { get; set; }
 
 
