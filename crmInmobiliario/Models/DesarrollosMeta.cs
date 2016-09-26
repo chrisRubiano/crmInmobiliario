@@ -16,12 +16,13 @@ namespace crmInmobiliario.Models
         [StringLength(2)]
         public string Clave { get; set; }
     
-        
         [Required(ErrorMessage = "Debe Capturar el % de Descuento Máximo")]
-        [Display(Name = "% Descuento")]        
+        [Display(Name = "% Descuento")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> Descuento { get; set; }
         
         [Display(Name = "Cajones de Estacionamiento")]
+        [Range(0, int.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<int> CajonesEstacionamiento { get; set; }
 
         [Display(Name = "Fecha de Entrega")]

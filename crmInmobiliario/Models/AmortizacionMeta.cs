@@ -14,6 +14,7 @@ namespace crmInmobiliario.Models
         public Nullable<System.DateTime> FechaProgramado { get; set; }
 
         [DataType(DataType.Currency)]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero válido")]
         ////[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
         public Nullable<decimal> Importe { get; set; }
 

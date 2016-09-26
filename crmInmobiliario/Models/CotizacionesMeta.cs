@@ -17,15 +17,18 @@ namespace crmInmobiliario.Models
         [Display(Name = "Prospecto / Cliente")]
         [Required(ErrorMessage = "Debe seleccionar un Cliente / Prospecto")]
         public Nullable<int> Persona { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de Cotización")]
         public Nullable<System.DateTime> FechaCotizacion { get; set; }
+
         [Display(Name = "Precio Final de Venta")]
         [Required(ErrorMessage = "Debe capturar un Precio de Venta")]
         [DataType(DataType.Currency)]
         ////[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> PrecioFinalVenta { get; set; }
        
         [Display(Name = "% Enganche")]
@@ -43,13 +46,17 @@ namespace crmInmobiliario.Models
             ErrorMessage = "Debe ser máxim0 24 parcialidades")]
         [Required]
         public Nullable<int> Parcialidades { get; set; }
+
         [Display(Name = "% Mensualidades")]
         [Required]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> PorcentajeMensualidades { get; set; }
+
         [Display(Name = "Pago Mensual")]
         [DataType(DataType.Currency)]
         [Required]
         //[RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> PagoMensual { get; set; }
         public string Vendedor { get; set; }
 

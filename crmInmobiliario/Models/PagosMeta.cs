@@ -16,6 +16,7 @@
         public Nullable<int> Moneda { get; set; }
         public Nullable<decimal> TipoCambio { get; set; }
         [DataType(DataType.Currency)]
+        [Range(0, float.MaxValue, ErrorMessage = "Por favor escriba un numero valido")]
         public Nullable<decimal> Importe { get; set; }
         public string ImporteConLetra { get; set; }
 
