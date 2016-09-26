@@ -78,7 +78,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.Tipo = new SelectList(db.TiposPago, "IdTipoPago", "Tipo");
 
                 Amortizaciones amortizacion = db.Amortizaciones.Find(id);
-                ViewBag.importePago = amortizacion.Importe;
+                ViewBag.importePago = String.Format("{0:C}", amortizacion.Importe);
                 ViewBag.idCotizacion = amortizacion.Cotizacion;
                 return View();
             }

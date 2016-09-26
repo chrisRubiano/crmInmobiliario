@@ -312,6 +312,7 @@
     <Compile Include="Models\Pagos.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PagosMeta.cs" />
     <Compile Include="Models\Paises.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>

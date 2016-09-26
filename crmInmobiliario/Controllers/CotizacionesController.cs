@@ -113,7 +113,7 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int pagosEnganche = 1, int numPagosAnuales = 1, int pagosAnuales = 0, int descuento = 0)
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int pagosEnganche = 1, int numPagosAnuales = 1, decimal pagosAnuales = 0, int descuento = 0)
         {
 
             if (string.IsNullOrEmpty(fechaInicial))
