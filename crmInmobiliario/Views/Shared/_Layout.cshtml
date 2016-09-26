@@ -7,7 +7,7 @@
     <link href="~/Content/chosen.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
-    
+
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -23,52 +23,66 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Ventas
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href='@Url.Action("ListaProspectos", "Personas")'><i class="fa fa-user"></i> Prospectos</a></li>
-                            <li><a href='@Url.Action("ListaClientes", "Personas")'><i class="fa fa-user"></i> Clientes</a></li>
-                            <li role="separator" class="divider"></li>  
-                            <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
-                        </ul>
-                    </li>
+                    @if (ViewBag.rol == "VENTAS" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR" || ViewBag.rol == "ARQUITECTOS")
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Ventas
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (ViewBag.rol == "VENTAS" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
+                                {
+                                    <li><a href='@Url.Action("ListaProspectos", "Personas")'><i class="fa fa-user"></i> Prospectos</a></li>
+                                    <li><a href='@Url.Action("ListaClientes", "Personas")'><i class="fa fa-user"></i> Clientes</a></li>
+                                    <li role="separator" class="divider"></li>
+                                }
+                                @if (ViewBag.rol == "VENTAS" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR" || ViewBag.rol == "ARQUITECTOS")
+                                {
+                                    <li><a href='@Url.Action("Filtro", "Propiedades")'><i class="fa fa-search"></i> Consulta de Propiedades</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    @if (ViewBag.rol == "LEGAL" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Formalizacion
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href='@Url.Action("ListaProspectosValidar", "Personas")'><i class="fa fa-users"></i> Validación</a></li>
+
+                            </ul>
+                        </li>
+                    }
+                    @if (ViewBag.rol == "VENTAS" || ViewBag.rol == "TESORERIA" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Cobranza
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Registrar Pago</a></li>
+                            </ul>
+                        </li>
+                    }
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Formalizacion
+                            Administración
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href='@Url.Action("ListaProspectosValidar", "Personas")'><i class="fa fa-users"></i> Validación</a></li>
-                            
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Cobranza
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Registrar Pago</a></li>                            
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                             Administración
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href='@Url.Action("Index", "Desarrollos")'><i class="fa fa-building"></i> Desarrollos</a></li>                            
+                            <li><a href='@Url.Action("Index", "Desarrollos")'><i class="fa fa-building"></i> Desarrollos</a></li>
                             <li><a href='@Url.Action("Index", "Propiedades")'><i class="fa fa-thumb-tack"></i> Propiedades</a></li>
-                            <li role="separator" class="divider"></li>  
-                            <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Cotizaciones</a></li>                            
-                            <li role="separator" class="divider"></li>  
-                            <li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Reasignación de Prospecto/Clientes a Vendedor@s</a></li>                          
+                            <li role="separator" class="divider"></li>
+                            <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Cotizaciones</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Reasignación de Prospecto/Clientes a Vendedor@s</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "AspNetUsers")'><i class="fa fa-user"></i> Usuarios</a></li>
                             <li><a href='@Url.Action("Index", "AspNetRoles")'><i class="fa fa-key"></i> Roles de Usuario</a></li>
@@ -82,7 +96,7 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>                            
+                            <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>
                             <li><a href='@Url.Action("Index", "PropiedadesCategorias")'><i class="fa fa-magic"></i> Categorias de Propiedades</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "MediosEnterarse")'><i class="fa fa-magic"></i> Medios de Enterarse</a></li>
@@ -91,10 +105,10 @@
                             <li><a href='@Url.Action("Index", "PersonasIntereses")'><i class="fa fa-magic"></i> Interes sobre la Propiedad</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "DocumentosCategorias")'><i class="fa fa-file-text-o"></i> Categorías de Documentos</a></li>
-                            
-                            
+
+
                         </ul>
-                    </li>                    
+                    </li>
                     <!--li>@Html.ActionLink("Home", "Index", "Home")</li-->
                     <!--li>@Html.ActionLink("About", "About", "Home")</li-->
                     <!--li>@Html.ActionLink("Contact", "Contact", "Home")</li-->
@@ -129,10 +143,10 @@
             </div>
             <div class="row">
                 <div class="col-xs-offset-3 col-xs-6 text-center">
-                    <i class="fa fa-copyright"></i><p class="inline"> @DateTime.Now.Year - Quantium Desarrollos <br/> Powered by CAHE  | Consultores Asociados de Hermosillo</p>
+                    <i class="fa fa-copyright"></i><p class="inline"> @DateTime.Now.Year - Quantium Desarrollos <br /> Powered by CAHE  | Consultores Asociados de Hermosillo</p>
                     <img class="inline logo" src="~/Content/Img/CAHElogo.jpg" alt="logo" />
                 </div>
-             </div>
+            </div>
         </footer>
     </div>
 
