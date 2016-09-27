@@ -76,6 +76,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre");
                 ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
                 ViewBag.Tipo = new SelectList(db.TiposPago, "IdTipoPago", "Tipo");
+                ViewBag.FormaPago = new SelectList(db.FormasPago, "IdFormaPago", "FormaPago");
 
                 Amortizaciones amortizacion = db.Amortizaciones.Find(id);
                 ViewBag.importePago = String.Format("{0:C}", amortizacion.Importe);
@@ -93,7 +94,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe")] Pagos pagos, int id)
+        public ActionResult Create([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe,FormaPago")] Pagos pagos, int id)
         {
             if (ModelState.IsValid)
             {
@@ -162,7 +163,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe")] Pagos pagos)
+        public ActionResult Edit([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe,FormaPago")] Pagos pagos)
         {
             if (ModelState.IsValid)
             {

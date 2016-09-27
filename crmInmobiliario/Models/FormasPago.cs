@@ -12,24 +12,20 @@ namespace crmInmobiliario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Edificios
+    public partial class FormasPago
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Edificios()
+        public FormasPago()
         {
-            this.EdificiosDetalle = new HashSet<EdificiosDetalle>();
-            this.Propiedades = new HashSet<Propiedades>();
+            this.Pagos = new HashSet<Pagos>();
         }
     
-        public int IdEdificio { get; set; }
-        public Nullable<int> Desarrollo { get; set; }
-        public string Edificio { get; set; }
-        public Nullable<int> Niveles { get; set; }
+        public int IdFormaPago { get; set; }
+        public string FormaPago { get; set; }
+        public string ERP { get; set; }
+        public string ERP2 { get; set; }
     
-        public virtual Desarrollos Desarrollos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EdificiosDetalle> EdificiosDetalle { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Propiedades> Propiedades { get; set; }
+        public virtual ICollection<Pagos> Pagos { get; set; }
     }
 }

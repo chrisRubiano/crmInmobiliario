@@ -274,6 +274,9 @@
     <Compile Include="Models\Estados.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormasPago.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Fotografias.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
