@@ -73,5 +73,6 @@ namespace crmInmobiliario.Models
         public virtual DbSet<TiposPago> TiposPago { get; set; }
         public virtual DbSet<ProspectosIncidencias> ProspectosIncidencias { get; set; }
         public virtual DbSet<Bitacora> Bitacora { get; set; }
+        public virtual DbSet<FormasPago> FormasPago { get; set; }
     }
 }

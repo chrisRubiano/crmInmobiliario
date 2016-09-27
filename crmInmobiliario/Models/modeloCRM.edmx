@@ -242,6 +242,15 @@
           <Property Name="Estado" Type="varchar" MaxLength="100" />
           <Property Name="Abreviacion" Type="varchar" MaxLength="5" />
         </EntityType>
+        <EntityType Name="FormasPago">
+          <Key>
+            <PropertyRef Name="IdFormaPago" />
+          </Key>
+          <Property Name="IdFormaPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormaPago" Type="varchar" MaxLength="50" />
+          <Property Name="ERP" Type="varchar" MaxLength="50" />
+          <Property Name="ERP2" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Fotografias">
           <Key>
             <PropertyRef Name="IdFotografia" />
@@ -308,6 +317,7 @@
           <Property Name="FechaPago" Type="date" />
           <Property Name="Moneda" Type="int" />
           <Property Name="TipoCambio" Type="money" />
+          <Property Name="FormaPago" Type="int" />
           <Property Name="Importe" Type="money" />
           <Property Name="ImporteConLetra" Type="varchar" MaxLength="180" StoreGeneratedPattern="Computed" />
         </EntityType>
@@ -852,6 +862,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Pagos_FormasPago">
+          <End Role="FormasPago" Type="Self.FormasPago" Multiplicity="0..1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="FormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pagos_Monedas">
           <End Role="Monedas" Type="Self.Monedas" Multiplicity="0..1" />
           <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
@@ -1210,6 +1232,7 @@
           <EntitySet Name="Edificios" EntityType="Self.Edificios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EdificiosDetalle" EntityType="Self.EdificiosDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormasPago" EntityType="Self.FormasPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fotografias" EntityType="Self.Fotografias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediosContacto" EntityType="Self.MediosContacto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediosEnterarse" EntityType="Self.MediosEnterarse" Schema="dbo" store:Type="Tables" />
@@ -1332,6 +1355,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Pagos_Cotizaciones" Association="Self.FK_Pagos_Cotizaciones">
             <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_FormasPago" Association="Self.FK_Pagos_FormasPago">
+            <End Role="FormasPago" EntitySet="FormasPago" />
             <End Role="Pagos" EntitySet="Pagos" />
           </AssociationSet>
           <AssociationSet Name="FK_Pagos_Monedas" Association="Self.FK_Pagos_Monedas">
@@ -1785,6 +1812,8 @@
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Pagos_Propiedades" FromRole="Pagos" ToRole="Propiedades" />
           <NavigationProperty Name="TiposPago" Relationship="Self.FK_Pagos_TiposPago" FromRole="Pagos" ToRole="TiposPago" />
           <Property Name="ImporteConLetra" Type="String" MaxLength="180" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FormaPago" Type="Int32" />
+          <NavigationProperty Name="FormasPago" Relationship="CRMINMOBILIARIOModel.FK_Pagos_FormasPago" FromRole="Pagos" ToRole="FormasPago" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -2896,6 +2925,11 @@
             <End Role="ProspectosIncidencias" EntitySet="ProspectosIncidencias" />
           </AssociationSet>
           <EntitySet Name="Bitacora" EntityType="CRMINMOBILIARIOModel.Bitacora" />
+          <EntitySet Name="FormasPago" EntityType="CRMINMOBILIARIOModel.FormasPago" />
+          <AssociationSet Name="FK_Pagos_FormasPago" Association="CRMINMOBILIARIOModel.FK_Pagos_FormasPago">
+            <End Role="FormasPago" EntitySet="FormasPago" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProspectosIncidencias">
           <Key>
@@ -2958,6 +2992,28 @@
           <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TipoEvento" Type="Int32" />
         </EntityType>
+        <EntityType Name="FormasPago">
+          <Key>
+            <PropertyRef Name="IdFormaPago" />
+          </Key>
+          <Property Name="IdFormaPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormaPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ERP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ERP2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pagos" Relationship="CRMINMOBILIARIOModel.FK_Pagos_FormasPago" FromRole="FormasPago" ToRole="Pagos" />
+        </EntityType>
+        <Association Name="FK_Pagos_FormasPago">
+          <End Type="CRMINMOBILIARIOModel.FormasPago" Role="FormasPago" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Pagos" Role="Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormasPago">
+              <PropertyRef Name="IdFormaPago" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="FormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3259,6 +3315,7 @@
           <EntitySetMapping Name="Pagos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Pagos">
               <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
                 <ScalarProperty Name="ImporteConLetra" ColumnName="ImporteConLetra" />
                 <ScalarProperty Name="IdPago" ColumnName="IdPago" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
@@ -3557,6 +3614,16 @@
                 <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
                 <ScalarProperty Name="Evento" ColumnName="Evento" />
                 <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormasPago">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.FormasPago">
+              <MappingFragment StoreEntitySet="FormasPago">
+                <ScalarProperty Name="ERP2" ColumnName="ERP2" />
+                <ScalarProperty Name="ERP" ColumnName="ERP" />
+                <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

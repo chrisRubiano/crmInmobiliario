@@ -173,7 +173,14 @@ namespace crmInmobiliario.Controllers
                 /*** Panel info Cotizacion ***/
                 ViewBag.idCotizacion = cotizaciones.IdCotizacion;
 
-                return View(amortizaciones.ToList());
+                if (amortizaciones.Count() >= 1)
+                {
+                    return View(amortizaciones.ToList());
+                }else
+                {
+                    return RedirectToAction("Index", "Cotizaciones");
+                }
+                
             }
             else
             {
