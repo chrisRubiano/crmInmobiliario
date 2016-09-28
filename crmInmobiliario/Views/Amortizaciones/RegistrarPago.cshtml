@@ -1,0 +1,207 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Amortizaciones>
+@{
+    ViewBag.Title = "Registrar Pago";
+}
+
+<h2>Registrar Pago</h2>
+
+<div>
+    <p>
+        @using (Html.BeginForm("RegistrarPago", "Amortizaciones", FormMethod.Get, new { @class = "form-inline" }))
+            {
+            <input type="hidden" value="True" name="filtro" />
+                <div class="form-group">
+                    <label for="nombre"> Nombre:</label> @Html.DropDownList("nombre", null, htmlAttributes: new { @class = "form-control chosen-select" })
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                </div>
+        }
+    </p>
+</div>
+@if (Model != null)
+{
+    <div class="row no-gutter">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="wrapper" style="height: 500px; overflow-y:auto;">
+                <table class="table table-hover table-condensed">
+                    <thead class="header">
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FechaProgramado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Importe)
+                            </th>
+                            <th>
+                                Pagado
+                            </th>
+                            <th>
+                                    @Html.DisplayNameFor(model => model.Cotizacion)
+                                </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                {
+                    if (item.TipoPago == 1)
+                    {
+                            <tr class="warning">
+                                <td>
+                                    @if (item.EstaPagado.HasValue)
+                                    {
+                                        if (!item.EstaPagado.Value)
+                                        {
+                                            <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                                        }
+
+                                    }
+                                    @{ string server = System.Configuration.ConfigurationManager.AppSettings["Server"].ToString(); }
+                                    @{ string appName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString(); }
+                                    <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Imprimir" onclick="window.open('@server/@appName/Reportes/RptReciboPago.aspx?IdAmortizacion='+ @Html.DisplayFor(modelItem => item.IdAmortizacion));return false;"><i class="fa fa-fw fa-print"></i></button>
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaProgramado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Importe)
+                                </td>
+                                <td>
+                                    @if (item.EstaPagado.HasValue)
+                                    {
+                                        if (item.EstaPagado.Value)
+                                        {
+                                            <i class="fa fa-check-circle text-success text-center"></i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times-circle text-danger text-center"></i>
+                                    }
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
+                                    </td>
+                            </tr>
+                                        }
+                                        else if (item.TipoPago == 2)
+                                        {
+                                            <tr class="success">
+                                                <td>
+                                                    @if (item.EstaPagado.HasValue)
+                                                    {
+                                                        if (!item.EstaPagado.Value)
+                                                        {
+                                                            <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                                                        }
+
+                                                    }
+                                                    <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Imprimir" onclick="window.open('/Reportes/RptReciboPago.aspx?IdAmortizacion='+ @Html.DisplayFor(modelItem => item.IdAmortizacion));return false;"><i class="fa fa-fw fa-print"></i></button>
+
+                                                    @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.FechaProgramado)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Importe)
+
+                                                </td>
+                                                <td>
+                                                    @if (item.EstaPagado.HasValue)
+                                                    {
+                                                        if (item.EstaPagado.Value)
+                                                        {
+                                                            <i class="fa fa-check-circle text-success text-center"></i>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-times-circle text-danger text-center"></i>
+                                                    }
+                                                </td>
+                                                <td>
+                                                        @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
+                                                    </td>
+                                            </tr>
+                                        }
+                                        else if (item.TipoPago == 3)
+                                        {
+                                            <tr class="danger">
+                                                <td>
+                                                    @if (item.EstaPagado.HasValue)
+                                                    {
+                                                        if (!item.EstaPagado.Value)
+                                                        {
+                                                            <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                                                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                                                        }
+
+                                                    }
+                                                    <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Imprimir" onclick="window.open('/Reportes/RptReciboPago.aspx?IdAmortizacion='+ @Html.DisplayFor(modelItem => item.IdAmortizacion));return false;"><i class="fa fa-fw fa-print"></i></button>
+                                                    @*<button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>*@
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.FechaProgramado)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Importe)
+                                                </td>
+                                                <td>
+                                                    @if (item.EstaPagado.HasValue)
+                                                    {
+                                                        if (item.EstaPagado.Value)
+                                                        {
+                                                            <i class="fa fa-check-circle text-success text-center"></i>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-times-circle text-danger text-center"></i>
+                                                    }
+                                                </td>
+                                                <td>
+                                                        @Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')
+                                                    </td>
+                                            </tr>
+                                            }
+                                        }
+                </table>
+            </div>
+        </div>
+    </div>
+
+                                        }
+
+@section Scripts{
+
+    <script>
+        var $table = $('.wrapper table');
+
+
+
+        $table.floatThead({
+            //useAbsolutePositioning: true,
+            scrollContainer: function ($table) {
+                return $table.closest('.wrapper');
+            }
+        });
+
+    </script>
+}

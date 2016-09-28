@@ -27,7 +27,7 @@
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Ventas
+                                <i class="fa fa-money"></i> Ventas
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -49,7 +49,7 @@
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Formalizacion
+                                <i class="fa fa-gavel"></i> Formalizacion
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -62,11 +62,11 @@
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Cobranza
+                               <i class="fa fa-credit-card-alt"></i> Cobranza
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Registrar Pago</a></li>
+                                <li><a href='@Url.Action("RegistrarPago", "Amortizaciones")'><i class="fa fa-file-text-o"></i> Registrar Pago</a></li>
                             </ul>
                         </li>
                     }
@@ -75,7 +75,7 @@
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Administración
+                                <i class="fa fa-edit"></i> Administración
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -86,21 +86,17 @@
                                 @if (ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "ARQUITECTOS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
                                 {
                                     <li><a href='@Url.Action("Index", "Propiedades")'><i class="fa fa-thumb-tack"></i> Propiedades</a></li>
+                                    <li role="separator" class="divider"></li>
                                 }
-                                <li role="separator" class="divider"></li>
                                 @if (ViewBag.rol == "VENTAS" || ViewBag.rol == "TESORERIA" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
                                 {
                                     <li><a href='@Url.Action("Index", "Cotizaciones")'><i class="fa fa-file-text-o"></i> Cotizaciones</a></li>
                                 }
-                                <li role="separator" class="divider"></li>
                                 @if (ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
                                 {
+                                    <li role="separator" class="divider"></li>
                                     <li><a href='@Url.Action("Index", "Personas")'><i class="fa fa-users"></i> Reasignación de Prospecto/Clientes a Vendedor@s</a></li>
-                                }
-                                <li role="separator" class="divider"></li>
-                                @if (true)
-                                {
-
+                                    <li role="separator" class="divider"></li>
                                 }
                                  @if (ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR") {
                                 <li><a href='@Url.Action("Index", "AspNetUsers")'><i class="fa fa-user"></i> Usuarios</a></li>
@@ -111,10 +107,10 @@
                             </ul>
                         </li>
                     }
-                    @if (ViewBag.rol == "ARQUITECTOS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "LEGAL" || ViewBag.rol == "VENTAS") {
+                    @if (ViewBag.rol == "ARQUITECTOS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR" || ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "LEGAL") {
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Configuración
+                           <i class="fa fa-cog"></i> Configuración
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
@@ -122,15 +118,15 @@
                             <li><a href='@Url.Action("Index", "PropiedadesAcabados")'><i class="fa fa-magic"></i> Acabados</a></li>
                             <li><a href='@Url.Action("Index", "PropiedadesCategorias")'><i class="fa fa-magic"></i> Categorias de Propiedades</a></li>
                             }
-                            <li role="separator" class="divider"></li>
                             @if (ViewBag.rol == "GERENTE-VENTAS" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
                             {
+                            <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "MediosEnterarse")'><i class="fa fa-magic"></i> Medios de Enterarse</a></li>
                             <li><a href='@Url.Action("Index", "MediosContacto")'><i class="fa fa-magic"></i> Medios de Contacto</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "PersonasIntereses")'><i class="fa fa-magic"></i> Interes sobre la Propiedad</a></li>
-                            }
                             <li role="separator" class="divider"></li>
+                            }
                             @if (ViewBag.rol == "LEGAL" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR") {
                             <li><a href='@Url.Action("Index", "DocumentosCategorias")'><i class="fa fa-file-text-o"></i> Categorías de Documentos</a></li>
                             }
