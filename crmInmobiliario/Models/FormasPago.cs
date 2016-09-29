@@ -13,7 +13,10 @@ namespace crmInmobiliario.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ad52d6bf7ad00a1cfaedb00f952f1256c5aee59
     [MetadataType(typeof(FormasPagoMeta))]
     public partial class FormasPago
     {

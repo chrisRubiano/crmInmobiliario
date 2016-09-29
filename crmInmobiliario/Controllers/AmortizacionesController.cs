@@ -204,7 +204,7 @@ namespace crmInmobiliario.Controllers
                 {
                     try
                     {
-                        var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == nombre).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
+                        var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == nombre).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
                         //amortizaciones.GroupBy(a => a.Cotizacion,(key,g)=>g.OrderBy(a => a.FechaProgramado).FirstOrDefault()).FirstOrDefault();
 
                      //   amortizaciones.GroupBy(
