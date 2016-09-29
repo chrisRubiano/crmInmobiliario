@@ -85,7 +85,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.fechaCotizacion = cotizaciones.FechaCotizacion.Value.ToString("MM/dd/yy");
                 ViewBag.nombre = cotizaciones.Personas.NombreCompleto;
                 ViewBag.titulo = cotizaciones.Propiedades.Codigo;
-                ViewBag.precio = String.Format("{0:C}",Math.Round(cotizaciones.PrecioFinalVenta.Value, 2));
+                ViewBag.precio = String.Format("{0:C}", Math.Round(cotizaciones.PrecioFinalVenta.Value, 2));
                 ViewBag.enganche = String.Format("{0:C}", Math.Round(cotizaciones.Enganche.Value, 2));
                 ViewBag.porcEnganche = cotizaciones.PorcentajeEnganche;
                 ViewBag.mensualidades = cotizaciones.Parcialidades;
@@ -176,11 +176,12 @@ namespace crmInmobiliario.Controllers
                 if (amortizaciones.Count() >= 1)
                 {
                     return View(amortizaciones.ToList());
-                }else
+                }
+                else
                 {
                     return RedirectToAction("Index", "Cotizaciones");
                 }
-                
+
             }
             else
             {
@@ -190,6 +191,49 @@ namespace crmInmobiliario.Controllers
 
         /**           OFICIAL                   **/
 
+
+        /***  REGISTRAR PAGO  ***/
+        public ActionResult RegistrarPago(int? nombre) //se llama nombre por convencion pero es la ID de la persona
+        {
+            var usuario = getUser();
+            ViewBag.rol = usuario.UserRoles;
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
+            {
+                ViewBag.nombre = new SelectList(db.Personas, "IdPersona", "NombreCompleto");
+                if (nombre != null)
+                {
+                    try
+                    {
+                        var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == nombre).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
+                        //amortizaciones.GroupBy(a => a.Cotizacion,(key,g)=>g.OrderBy(a => a.FechaProgramado).FirstOrDefault()).FirstOrDefault();
+
+                     //   amortizaciones.GroupBy(
+                     //    x => x.Propiedad,
+                     //    (x, y) => new
+                     //    {
+                     //        Key = x,
+                     //        Value = y.OrderBy(z => z.FechaProgramado).FirstOrDefault()
+                     //    }
+                     //);
+
+                        return View(amortizaciones.ToList());
+                    }
+                    catch (Exception)
+                    {
+                        return View();
+                    }
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return RedirectToAction("PermisoDenegado", "Account");
+            }
+        }
+        /***  REGISTRAR PAGO  ***/
 
 
         // GET: Amortizaciones/Details/5
