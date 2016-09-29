@@ -125,10 +125,16 @@
                             <li><a href='@Url.Action("Index", "MediosContacto")'><i class="fa fa-magic"></i> Medios de Contacto</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "PersonasIntereses")'><i class="fa fa-magic"></i> Interes sobre la Propiedad</a></li>
-                            <li role="separator" class="divider"></li>
                             }
-                            @if (ViewBag.rol == "LEGAL" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR") {
+                            @if (ViewBag.rol == "LEGAL" || ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" || ViewBag.rol == "CONTRALOR")
+                            {
+                                <li role="separator" class="divider"></li>
                             <li><a href='@Url.Action("Index", "DocumentosCategorias")'><i class="fa fa-file-text-o"></i> Categorías de Documentos</a></li>
+                            }
+                            @if (ViewBag.rol == "DIR-GENERAL" || ViewBag.rol == "COORDINADOR-DIVISION-SOFT" )
+                            {
+                                <li role="separator" class="divider"></li>
+                                <li><a href='@Url.Action("Index", "FormasPago")'><i class="fa fa-file-text-o"></i> Formas de Pago</a></li>
                             }
                         </ul>
                     </li>

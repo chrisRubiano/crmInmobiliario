@@ -189,6 +189,7 @@
     <Compile Include="Controllers\DomiciliosController.cs" />
     <Compile Include="Controllers\EdificiosController.cs" />
     <Compile Include="Controllers\EdificiosDetallesController.cs" />
+    <Compile Include="Controllers\FormasPagoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MediosContactoController.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Models\FormasPago.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormasPagoMeta.cs" />
     <Compile Include="Models\Fotografias.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
@@ -661,6 +663,11 @@
     <Content Include="Views\ProspectosIncidencias\Index.cshtml" />
     <Content Include="Views\Account\PermisoDenegado.cshtml" />
     <Content Include="Views\Amortizaciones\RegistrarPago.cshtml" />
+    <Content Include="Views\FormasPago\Create.cshtml" />
+    <Content Include="Views\FormasPago\Delete.cshtml" />
+    <Content Include="Views\FormasPago\Details.cshtml" />
+    <Content Include="Views\FormasPago\Edit.cshtml" />
+    <Content Include="Views\FormasPago\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
