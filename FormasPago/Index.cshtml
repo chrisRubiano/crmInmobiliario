@@ -1,0 +1,50 @@
+﻿@model IEnumerable<crmInmobiliario.Models.FormasPago>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Formas de Pago</h2>
+
+<p>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "FormasPago")'"><i class="fa fa-user-plus"></i> Registrar Forma de Pago</button>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "FormasPago")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ERP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ERP2)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="">
+            <div class="list-inline">
+                <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "FormasPago", new { id = item.IdFormaPago })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "FormasPago", new { id = item.IdFormaPago })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "FormasPago", new { id = item.IdFormaPago })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormaPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ERP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ERP2)
+        </td>
+        
+    </tr>
+}
+
+</table>

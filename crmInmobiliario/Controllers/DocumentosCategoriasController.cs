@@ -100,7 +100,7 @@ namespace crmInmobiliario.Controllers
             var model = db.DocumentosCategoria.ToList();
 
             Export export = new Export();
-            export.ToExcel(Response, model, "CategoriaDocumentos");
+            export.ToExcel(Response, model, "Categoria de Documentos");
         }
 
 
