@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="textBox42.Value" xml:space="preserve">
+    <value>AVISO DE PRIVACIDAD. XXXXX, S.A.P.I. de C.V., hace de su conocimiento que, de conformidad con la LEY FEDERAL DE PROTECCIÓN DE DATOS EN POSECIÓN DE LOS PARTICULARES del Instituto Federal de Acceso a la Información Pública (IFAI), sus datos personales declarados en el presente Formato de Identificación y Conocimiento del Cliente, el cual puede incluir datos sensibles, SE MANTENDRÁ CLASIFICADOS COMO INFORMACIÓN CONFIDENCIAL y serán utilizados para dar cumplimiento a la Ley Federal para la Prevención e Identificación de Operaciones con Recursos de Procedencia Ilícita, físicamente al integrar el expediente de indentificación respectivo, electrónicamente en parte o toda esta información podrá ser capturada en el sistema informático que esta Sociedad Mercantil utilice para los fines establecidos en la citada Ley, y en cualquiera de estas formas podrán ser consultadas por Autoridades competentes única y exclusivamente en caso de ser expresamente requeridos. En consecuencia, sus datos personales no serán transferidos a terceros para fines distintos a los mencionados, salvaguardando la privacidad de los mismos.
+
+Asimismo, con la firma que figura en el presente formato, Usted manifiesta darse por enterado del Aviso de Privacidad de datos personales y otorga su consentimiento para el tratamiento descrito en el parrafo anterior respecto de la información que declare en este documento, pudiendo ejercer el derecho de acceso, rectificación, cancelación y oposición, así como la revocación del consentimiento sobre el tratamiento de sus datos personales, cuando resulte procedente y que bajo tales circunstancias deberá efectuarse por escrito.</value>
+  </data>
+  <metadata name="dsPersonas.ParameterValues" xml:space="preserve">
+    <value>{"@IdPersona":"5"}</value>
+  </metadata>
+  <data name="dsPersonas.SelectCommand" xml:space="preserve">
+    <value>SELECT PersonasCategoria.Categoria, PersonasTipo.Tipo, Personas.Nombre, Personas.Paterno, Personas.Materno, PersonasGenero.Genero, Personas.FechaNacimiento, Personas.RFC, Personas.Email, Personas.Email2, Personas.Telefono, Personas.Celular, 
+             Personas.CodigoPersona, Personas.IdPersona, CASE WHEN Domicilios.NumInterior IS NOT NULL 
+             THEN Domicilios.Calle + ' Num Ext ' + Domicilios.NumExterior + ' Num Int ' + Domicilios.NumInterior ELSE Domicilios.Calle + ' Num Ext ' + Domicilios.NumExterior END AS Calle, Domicilios.Colonia, Domicilios.CP, Municipios.Municipio, Paises.Pais, Estados.Estado
+FROM   Paises INNER JOIN
+             Domicilios ON Paises.IdPais = Domicilios.Pais LEFT OUTER JOIN
+             Estados ON Domicilios.Estado = Estados.IdEstado LEFT OUTER JOIN
+             Municipios ON Domicilios.Municipio = Municipios.IdMunicipio RIGHT OUTER JOIN
+             Personas ON Domicilios.IdPersona = Personas.IdPersona AND Domicilios.Categoria = 1 LEFT OUTER JOIN
+             PersonasCategoria ON Personas.Categoria = PersonasCategoria.IdCategoria LEFT OUTER JOIN
+             PersonasTipo ON Personas.Tipo = PersonasTipo.IdTipoPersona LEFT OUTER JOIN
+             PersonasGenero ON Personas.Genero = PersonasGenero.IdGenero
+WHERE (Personas.IdPersona = @IdPersona)</value>
+  </data>
+</root>
