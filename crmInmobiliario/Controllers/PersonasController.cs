@@ -208,7 +208,7 @@ namespace crmInmobiliario.Controllers
             if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL")
             {
                 Personas persona = db.Personas.Find(id);
-                ViewBag.Usuario = new SelectList(db.AspNetUsers, "Id", "UserName", persona.Usuario);
+                ViewBag.Usuario = new SelectList(db.AspNetUsers.Where(u => u.UserRoles == "VENTAS"), "Id", "UserName", persona.Usuario);
                 //ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
 
                 return View(persona);

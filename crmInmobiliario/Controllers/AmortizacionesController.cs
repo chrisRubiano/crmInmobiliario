@@ -36,7 +36,7 @@ namespace crmInmobiliario.Controllers
             }
         }
 
-        /**           Filtro                    **/
+        /**           Filtro (TAM)                    **/
         public ActionResult Filtro(int persona = 0, int propiedad = 0, int cotizacion = 0)
         {
             var usuario = getUser();
@@ -204,18 +204,8 @@ namespace crmInmobiliario.Controllers
                 {
                     try
                     {
+                        //Agrupa las amortizaciones de un solo usuario y trae la primera de cada cotizacion
                         var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == nombre).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
-                        //amortizaciones.GroupBy(a => a.Cotizacion,(key,g)=>g.OrderBy(a => a.FechaProgramado).FirstOrDefault()).FirstOrDefault();
-
-                     //   amortizaciones.GroupBy(
-                     //    x => x.Propiedad,
-                     //    (x, y) => new
-                     //    {
-                     //        Key = x,
-                     //        Value = y.OrderBy(z => z.FechaProgramado).FirstOrDefault()
-                     //    }
-                     //);
-
                         return View(amortizaciones.ToList());
                     }
                     catch (Exception)
@@ -225,7 +215,8 @@ namespace crmInmobiliario.Controllers
                 }
                 else
                 {
-                    return View();
+                    var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
+                    return View(amortizaciones.ToList());
                 }
             }
             else
@@ -303,11 +294,11 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Amortizaciones/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, bool? oficial)
         {
             var usuario = getUser();
             ViewBag.rol = usuario.UserRoles;
-            if (usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "TESORERIA" || usuario.UserRoles == "DIR-GENERAL")
             {
                 if (id == null)
                 {
@@ -319,6 +310,14 @@ namespace crmInmobiliario.Controllers
                     return HttpNotFound();
                 }
                 ViewBag.TipoPago = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", amortizaciones.TipoPago);
+                if (oficial.HasValue)
+                {
+                    ViewBag.oficial = oficial;
+                }
+                else
+                {
+                    ViewBag.oficial = false;
+                }
                 //ViewBag.Tipo = amortizaciones.TiposPago.Tipo;
                 return View(amortizaciones);
             }

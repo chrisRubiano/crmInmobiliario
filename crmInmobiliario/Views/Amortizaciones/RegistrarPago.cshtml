@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<crmInmobiliario.Models.Amortizaciones>
 @{
-    ViewBag.Title = "Registrar Pago";
+    ViewBag.Title = "Lista de pagos";
 }
 
-<h2>Registrar Pago</h2>
+<h2>Lista de pagos</h2>
+<h4>próximos a vencer</h4>
 
 <div class="col-md-10 col-md-offset-1">
     <p>
@@ -55,6 +56,7 @@
                                         {
                                             @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>*@
                                             <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                                            <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Ver Cotización" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.Cotizacion })';return false;"><i class="fa fa-fw fa-file-text"></i></button>
                                         }
 
                                     }
@@ -87,6 +89,7 @@
                                                         {
                                                             @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>*@
                                                             <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                                                            <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Ver Cotización" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.Cotizacion })';return false;"><i class="fa fa-fw fa-file-text"></i></button>
                                                         }
 
                                                     }
@@ -118,6 +121,7 @@
                                                         {
                                                             @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Amortizaciones", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>*@
                                                             <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Pagar" onclick="location.href='@Url.Action("Create", "Pagos", new { id = item.IdAmortizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                                                            <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Ver Cotización" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.Cotizacion })';return false;"><i class="fa fa-fw fa-file-text"></i></button>
                                                         }
 
                                                     }
