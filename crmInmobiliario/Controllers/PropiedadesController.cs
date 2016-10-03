@@ -200,6 +200,10 @@ namespace crmInmobiliario.Controllers
                 }
                 /*--------------*/
                 /*------Filtro nuevo--------*/
+                /*
+                 Filtrar propiedades con X monto mensual (mensualidad =< X), 35% de enganche y X meses;
+                 debe mostrar las propiedades que cumplan con esas condiciones
+                 */
                 if (pagos.HasValue && montoPagos.HasValue)
                 {
                     decimal antesEnganche = pagos.Value * montoPagos.Value;
