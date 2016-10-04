@@ -560,6 +560,25 @@ namespace crmInmobiliario.Controllers
                     db.Entry(personas).State = EntityState.Modified;
                     db.SaveChanges();
 
+                    /*
+                     Generar una TAM oficial por cada TAM del prospecto al momento de ser validado
+                     */
+                    var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.Persona == personas.IdPersona);
+                    if (amortizaciones!=null)
+                    {
+                        foreach (var amortizacion in amortizaciones)
+                        {
+                            Amortizaciones oficial = new Amortizaciones();
+                            oficial = amortizacion;
+                            oficial.Tipo = "O";
+                            db.Amortizaciones.Add(oficial);
+                        }
+                        db.SaveChanges();
+                    }
+                    /*-------------------------------------*/
+
+
+
                     return RedirectToAction("ValidacionRealizada");
 
                 }
