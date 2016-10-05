@@ -26,6 +26,10 @@
         <th>
             Prospecto / Cliente
         </th>
+
+        <th>
+            Vendedor
+        </th>
         
     </tr>
 
@@ -58,7 +62,9 @@
             @Html.DisplayFor(modelItem => item.Personas.Nombre) @Html.DisplayFor(modelItem => item.Personas.Paterno) @Html.DisplayFor(modelItem => item.Personas.Materno)
         </td>
         
-        
+        <td>
+            @Html.DisplayFor(modelItem => item.Vendedor)
+        </td>
         
     </tr>
 }

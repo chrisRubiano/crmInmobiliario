@@ -107,6 +107,9 @@
                 @* Nuevo Filtro *@
                 <div class="form-group">
                     <div class="row">
+                        <label class="text-muted text-center">Suponiendo un enganche del 35% <i class="fa fa-hand-o-down"></i></label>
+                    </div>
+                    <div class="row">
                         <label class="col-md-4">Pagos: </label><div class="col-md-2"></div><label class="col-md-6">Monto: </label>
                     </div>
                     <div class="row no-gutter">
@@ -186,13 +189,16 @@
                             @Html.DisplayFor(modelItem => item.Nivel)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.M2Interiores)
+                            @Html.DisplayFor(modelItem => item.M2Interiores)<br />
+                            @Html.DisplayFor(modelItem => item.PrecioM2Interiores)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.M2Terraza)
+                            @Html.DisplayFor(modelItem => item.M2Terraza)<br />
+                            @Html.DisplayFor(modelItem => item.PrecioM2Terraza)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.M2Bodega)
+                            @Html.DisplayFor(modelItem => item.M2Bodega)<br />
+                            @Html.DisplayFor(modelItem => item.PrecioM2Bodega)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FrenteLocal)
