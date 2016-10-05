@@ -359,6 +359,7 @@ namespace crmInmobiliario.Controllers
                 ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero");
                 ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo");
                 ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+                ViewBag.EstadoCivil = new SelectList(db.EstadoCivil, "IdEstadoCivil", "EstadoCivil1");
                 ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
                 ViewBag.Categoriap = categoria;
                 return View();
@@ -374,7 +375,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC, Referencia")] Personas personas, int categoria)
+        public ActionResult Create([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC,Referencia,CURP,LugarNacimiento,Ocupacion,EstadoCivil")] Personas personas, int categoria)
         {
             try
             {
@@ -433,6 +434,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+            ViewBag.EstadoCivil = new SelectList(db.EstadoCivil, "IdEstadoCivil", "EstadoCivil1");
             ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
             ViewBag.Categoriap = categoria;
             return View(personas);
@@ -461,6 +463,8 @@ namespace crmInmobiliario.Controllers
                 ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
                 ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
                 ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes", personas.Interes);
+                ViewBag.EstadoCivil = new SelectList(db.EstadoCivil, "IdEstadoCivil", "EstadoCivil1");
+                ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
                 ViewBag.categoriap = categoriap;
                 return View(personas);
             }
@@ -475,7 +479,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC")] Personas personas, int? categoriap)
+        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC,CURP,LugarNacimiento,Ocupacion,EstadoCivil,")] Personas personas, int? categoriap)
         {
             try
             {
@@ -507,6 +511,8 @@ namespace crmInmobiliario.Controllers
             ViewBag.Genero = new SelectList(db.PersonasGenero, "IdGenero", "Genero", personas.Genero);
             ViewBag.Tipo = new SelectList(db.PersonasTipo, "IdTipoPersona", "Tipo", personas.Tipo);
             ViewBag.Interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
+            ViewBag.EstadoCivil = new SelectList(db.EstadoCivil, "IdEstadoCivil", "EstadoCivil1");
+            ViewBag.CategoriaInteres = new SelectList(db.PropiedadesCategoria, "IdTipoPropiedad", "CategoriaPropiedad");
             ViewBag.categoriap = categoriap;
             return View(personas);
         }

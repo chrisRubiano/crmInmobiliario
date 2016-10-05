@@ -272,6 +272,9 @@
     </Compile>
     <Compile Include="Models\EdificiosMeta.cs" />
     <Compile Include="Models\EdificioYDetalle.cs" />
+    <Compile Include="Models\EstadoCivil.cs">
+      <DependentUpon>modeloCRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Estados.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
