@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(Persona))]
+    
     public partial class Personas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -60,6 +58,10 @@ namespace crmInmobiliario.Models
         public string NombreCompleto2 { get; set; }
         public string CodigoPersona { get; set; }
         public string NombreCompletoCodigo { get; set; }
+        public string CURP { get; set; }
+        public string LugarNacimiento { get; set; }
+        public string Ocupacion { get; set; }
+        public Nullable<int> EstadoCivil { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cotizaciones> Cotizaciones { get; set; }
@@ -84,5 +86,6 @@ namespace crmInmobiliario.Models
         public virtual ICollection<PersonasValidacion> PersonasValidacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProspectosIncidencias> ProspectosIncidencias { get; set; }
+        public virtual EstadoCivil EstadoCivil1 { get; set; }
     }
 }
