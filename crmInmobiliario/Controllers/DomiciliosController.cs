@@ -103,8 +103,10 @@ namespace crmInmobiliario.Controllers
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado");
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio");
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais");
+            ViewBag.Categoria = new SelectList(db.DomiciliosCategoria, "IdCategoria", "Categoria");
+
             //ViewBag.IdPersona = new SelectList(db.Personas, "IdPersona", "Nombre");
-            
+
             ViewBag.TipoDomicilio = tipoDom;
             ViewBag.IdPropiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo");
             Domicilios domicilios = new Domicilios();
@@ -132,7 +134,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdDomicilio,TipoDomicilio,IdPersona,IdPropiedad,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,Longitud,Latitud")] Domicilios domicilios, int idPersona, int tipo)
+        public ActionResult Create([Bind(Include = "IdDomicilio,TipoDomicilio,IdPersona,IdPropiedad,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,Longitud,Latitud,Categoria")] Domicilios domicilios, int idPersona, int tipo)
         {
             if (ModelState.IsValid)
             {
@@ -167,6 +169,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", domicilios.Estado);
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", domicilios.Municipio);
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", domicilios.Pais);
+            ViewBag.Categoria = new SelectList(db.DomiciliosCategoria, "IdCategoria", "Categoria");
             //ViewBag.IdPersona = new SelectList(db.Personas, "IdPersona", "Nombre", domicilios.IdPersona);
             ViewBag.IdPropiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", domicilios.IdPropiedad);
             return View(domicilios);
@@ -187,6 +190,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.TipoDomicilio = new SelectList(db.DomiciliosTipo, "IdTipoDomicilio", "TipoDomicilio", domicilios.TipoDomicilio);
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", domicilios.Estado);
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", domicilios.Municipio);
+            ViewBag.Categoria = new SelectList(db.DomiciliosCategoria, "IdCategoria", "Categoria", domicilios.Categoria);
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", domicilios.Pais);
             ViewBag.tipo = tipo;
             if (categoriap!=null)
@@ -201,7 +205,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdDomicilio,TipoDomicilio,IdPersona,IdPropiedad,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,Longitud,Latitud")] Domicilios domicilios, int idPersona, int tipo)
+        public ActionResult Edit([Bind(Include = "IdDomicilio,TipoDomicilio,IdPersona,IdPropiedad,Calle,NumExterior,NumInterior,EntreEsquina,YCalle,Colonia,CP,Localidad,Municipio,Estado,Pais,Longitud,Latitud,Categoria")] Domicilios domicilios, int idPersona, int tipo)
         {
             if (ModelState.IsValid)
             {
@@ -235,6 +239,7 @@ namespace crmInmobiliario.Controllers
             ViewBag.Estado = new SelectList(db.Estados, "IdEstado", "Estado", domicilios.Estado);
             ViewBag.Municipio = new SelectList(db.Municipios, "IdMunicipio", "Municipio", domicilios.Municipio);
             ViewBag.Pais = new SelectList(db.Paises, "IdPais", "Pais", domicilios.Pais);
+            ViewBag.Categoria = new SelectList(db.DomiciliosCategoria, "IdCategoria", "Categoria", domicilios.Categoria);
             ViewBag.IdPersona = new SelectList(db.Personas, "IdPersona", "Nombre", domicilios.IdPersona);
             ViewBag.IdPropiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", domicilios.IdPropiedad);
             return View(domicilios);

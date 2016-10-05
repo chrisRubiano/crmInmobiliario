@@ -44,6 +44,31 @@
         <dd>
             @Html.DisplayFor(model => model.personas.FechaNacimiento)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.LugarNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.LugarNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.Ocupacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.Ocupacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.EstadoCivil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.EstadoCivil1.EstadoCivil1)
+        </dd>
+
         <hr />
         <dt>
             @Html.DisplayNameFor(model => model.personas.Email)
@@ -76,6 +101,23 @@
         <dd>
             @Html.DisplayFor(model => model.personas.Celular)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.CURP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.CURP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personas.RFC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personas.RFC)
+        </dd>
+
         <hr />
         <dt>
             @Html.DisplayNameFor(model => model.personas.MedioContacto)
@@ -186,11 +228,19 @@
                 <dd>
                     @Html.DisplayFor(model => d.YCalle)
                 </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => d.Categoria)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => d.DomiciliosCategoria.Categoria)
+                </dd>
+
                 <dt>
                     <div class="btn-group" role="group">
-                        <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                        <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                        <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = 0 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                        <button class="btn btn-primary btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Edit", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                        <button class="btn btn-success btn-tblsolc inline" title="Editar" onclick="location.href='@Url.Action("Details", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                        <button class="btn btn-danger btn-tblsolc inline" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Domicilios", new { id = @d.IdDomicilio, idPersona = Model.personas.IdPersona, categoriap = ViewBag.categoriap, tipo = Model.personas.Categoria })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
                     </div>
                 </dt>
                 <dd></dd>
