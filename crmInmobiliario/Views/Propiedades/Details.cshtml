@@ -91,7 +91,7 @@
                 @Html.DisplayNameFor(model => model.propiedades.Acabados)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.propiedades.Acabados)
+                @Html.DisplayFor(model => model.propiedades.PropiedadesAcabados.Acabado)
             </dd>
 
             <dt>
@@ -119,6 +119,14 @@
                 <dd>
                     @Html.DisplayFor(model => model.propiedades.M2Interiores)
                 </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.propiedades.PrecioM2Interiores)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.propiedades.PrecioM2Interiores)
+                </dd>
+
                 <hr />
                 <dt>
                     @Html.DisplayNameFor(model => model.propiedades.Terraza)

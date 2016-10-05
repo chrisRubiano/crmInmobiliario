@@ -324,7 +324,7 @@ namespace crmInmobiliario.Controllers
         {
             var usuario = getUser();
             ViewBag.rol = usuario.UserRoles;
-            if (usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
+            if (usuario.UserRoles == "VENTAS" || usuario.UserRoles == "GERENTE-VENTAS" || usuario.UserRoles == "DIR-GENERAL" || usuario.UserRoles == "COORDINADOR-DIVISION-SOFT" || usuario.UserRoles == "CONTRALOR")
             {
                 if (id == null)
                 {

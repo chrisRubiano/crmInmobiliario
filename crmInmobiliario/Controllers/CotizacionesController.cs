@@ -44,6 +44,21 @@ namespace crmInmobiliario.Controllers
                 {
                     cotizaciones = cotizaciones.Where(c => c.Persona == idPersona.Value);
                 }
+
+                foreach (var cotizacion in cotizaciones)
+                {
+                    var vendedor = new AspNetUsers();
+                    vendedor = db.AspNetUsers.Where(u => u.Id == cotizacion.Vendedor).FirstOrDefault();
+                    if (vendedor != null)
+                    {
+                        cotizacion.Vendedor = vendedor.UserName;
+                    }else
+                    {
+                        cotizacion.Vendedor = "vendedor eliminado";
+                    }
+                    
+                }
+
                 return View(cotizaciones.OrderByDescending(c => c.IdCotizacion).ToList());
             }
             else
@@ -290,6 +305,10 @@ namespace crmInmobiliario.Controllers
                 {
                     personas = from p in db.Personas select p;
                     personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
+                }
+                if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
+                {
+                    personas = personas.Where(p => p.Usuario == usuario.Id);
                 }
 
                 ViewBag.personas = personas;
