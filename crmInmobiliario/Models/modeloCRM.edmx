@@ -234,6 +234,13 @@
           <Property Name="M2" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Desarrollo" Type="varchar" MaxLength="150" StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="EstadoCivil">
+          <Key>
+            <PropertyRef Name="IdEstadoCivil" />
+          </Key>
+          <Property Name="IdEstadoCivil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EstadoCivil" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Estados">
           <Key>
             <PropertyRef Name="IdEstado" />
@@ -363,6 +370,10 @@
           <Property Name="NombreCompleto2" Type="varchar" MaxLength="302" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="CodigoPersona" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" />
           <Property Name="NombreCompletoCodigo" Type="varchar" MaxLength="317" StoreGeneratedPattern="Computed" />
+          <Property Name="CURP" Type="varchar" MaxLength="18" />
+          <Property Name="LugarNacimiento" Type="varchar" MaxLength="150" />
+          <Property Name="Ocupacion" Type="varchar" MaxLength="150" />
+          <Property Name="EstadoCivil" Type="int" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -922,6 +933,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Personas_EstadoCivil">
+          <End Role="EstadoCivil" Type="Self.EstadoCivil" Multiplicity="0..1" />
+          <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="IdEstadoCivil" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="EstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Personas_MediosContacto">
           <End Role="MediosContacto" Type="Self.MediosContacto" Multiplicity="0..1" />
           <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
@@ -1231,6 +1254,7 @@
           <EntitySet Name="DomiciliosTipo" EntityType="Self.DomiciliosTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Edificios" EntityType="Self.Edificios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EdificiosDetalle" EntityType="Self.EdificiosDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoCivil" EntityType="Self.EstadoCivil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormasPago" EntityType="Self.FormasPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fotografias" EntityType="Self.Fotografias" Schema="dbo" store:Type="Tables" />
@@ -1376,6 +1400,10 @@
           <AssociationSet Name="FK_Pagos_TiposPago" Association="Self.FK_Pagos_TiposPago">
             <End Role="TiposPago" EntitySet="TiposPago" />
             <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personas_EstadoCivil" Association="Self.FK_Personas_EstadoCivil">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
           <AssociationSet Name="FK_Personas_MediosContacto" Association="Self.FK_Personas_MediosContacto">
             <End Role="MediosContacto" EntitySet="MediosContacto" />
@@ -1873,6 +1901,11 @@
           <NavigationProperty Name="PersonasTipo" Relationship="Self.FK_Personas_PersonasTipo" FromRole="Personas" ToRole="PersonasTipo" />
           <NavigationProperty Name="PersonasValidacion" Relationship="Self.FK_PersonasValidacion_Personas" FromRole="Personas" ToRole="PersonasValidacion" />
           <NavigationProperty Name="ProspectosIncidencias" Relationship="CRMINMOBILIARIOModel.FK_ProspectosIncidencias_Personas" FromRole="Personas" ToRole="ProspectosIncidencias" />
+          <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="LugarNacimiento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Ocupacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoCivil" Type="Int32" />
+          <NavigationProperty Name="EstadoCivil1" Relationship="CRMINMOBILIARIOModel.FK_Personas_EstadoCivil" FromRole="Personas" ToRole="EstadoCivil" />
         </EntityType>
         <EntityType Name="PersonasCategoria">
           <Key>
@@ -2930,6 +2963,11 @@
             <End Role="FormasPago" EntitySet="FormasPago" />
             <End Role="Pagos" EntitySet="Pagos" />
           </AssociationSet>
+          <EntitySet Name="EstadoCivil" EntityType="CRMINMOBILIARIOModel.EstadoCivil" />
+          <AssociationSet Name="FK_Personas_EstadoCivil" Association="CRMINMOBILIARIOModel.FK_Personas_EstadoCivil">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProspectosIncidencias">
           <Key>
@@ -3011,6 +3049,26 @@
             </Principal>
             <Dependent Role="Pagos">
               <PropertyRef Name="FormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EstadoCivil">
+          <Key>
+            <PropertyRef Name="IdEstadoCivil" />
+          </Key>
+          <Property Name="IdEstadoCivil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EstadoCivil1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personas" Relationship="CRMINMOBILIARIOModel.FK_Personas_EstadoCivil" FromRole="EstadoCivil" ToRole="Personas" />
+        </EntityType>
+        <Association Name="FK_Personas_EstadoCivil">
+          <End Type="CRMINMOBILIARIOModel.EstadoCivil" Role="EstadoCivil" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Personas" Role="Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="IdEstadoCivil" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="EstadoCivil" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3341,6 +3399,10 @@
           <EntitySetMapping Name="Personas">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Personas">
               <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+                <ScalarProperty Name="Ocupacion" ColumnName="Ocupacion" />
+                <ScalarProperty Name="LugarNacimiento" ColumnName="LugarNacimiento" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
@@ -3624,6 +3686,14 @@
                 <ScalarProperty Name="ERP" ColumnName="ERP" />
                 <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
                 <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoCivil">
+            <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.EstadoCivil">
+              <MappingFragment StoreEntitySet="EstadoCivil">
+                <ScalarProperty Name="EstadoCivil1" ColumnName="EstadoCivil" />
+                <ScalarProperty Name="IdEstadoCivil" ColumnName="IdEstadoCivil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
