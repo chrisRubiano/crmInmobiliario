@@ -27,7 +27,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Personas
-        public ActionResult Index(string categoria, string nombre)
+        public ActionResult Index(string categoria, string nombre, string codigo)
         {
             var usuario = getUser();
             ViewBag.rol = usuario.UserRoles;
@@ -63,6 +63,11 @@ namespace crmInmobiliario.Controllers
                     personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre);
                 }
 
+                if (!string.IsNullOrEmpty(codigo))
+                {
+                    personas = personas.Where(p => p.CodigoPersona == codigo);
+                }
+
 
                 //var usuario = getUser();
                 if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las cotizaciones registradas por ellos
@@ -71,6 +76,8 @@ namespace crmInmobiliario.Controllers
                 }
 
                 //var personas = db.Personas.Include(p => p.Estados).Include(p => p.MediosContacto).Include(p => p.Municipios).Include(p => p.Paises).Include(p => p.PersonasGenero).Include(p => p.PersonasTipo);
+                ViewBag.codigo = new SelectList(db.Personas, "CodigoPersona", "CodigoPersona");
+
                 return View(personas.OrderByDescending(p => p.IdPersona).ToList());
             }
             else
@@ -125,7 +132,7 @@ namespace crmInmobiliario.Controllers
             }
         }
 
-        public ActionResult ListaClientes(string nombre)
+        public ActionResult ListaClientes(string nombre, string codigo)
         {
             var usuario = getUser();
             ViewBag.rol = usuario.UserRoles;
@@ -147,12 +154,18 @@ namespace crmInmobiliario.Controllers
                     personas = personas.Where(s => s.Nombre + " " + s.Paterno + " " + s.Materno == nombre && s.Categoria == 2);
                 }
 
+                if (!string.IsNullOrEmpty(codigo))
+                {
+                    personas = personas.Where(p => p.CodigoPersona == codigo);
+                }
+
                 //var usuario = getUser();
                 if (usuario.UserRoles == "VENTAS") //para que los vendedores solo vean las personas registradas por ellos
                 {
                     personas = personas.Where(p => p.Usuario == usuario.Id);
                 }
-
+                //Categoría 1 es prospecto y 2 es cliente
+                ViewBag.codigo = new SelectList(db.Personas.Where(p => p.Categoria == 2), "CodigoPersona", "CodigoPersona");
                 return View(personas.OrderByDescending(p => p.IdPersona).ToList());
             }
             else

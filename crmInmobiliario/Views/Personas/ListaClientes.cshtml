@@ -17,6 +17,9 @@
             <label for="nombre"> Nombre:</label> @Html.DropDownList("nombre", null, "Todos", new { @class = "form-control chosen-select" })
         </div>
         <div class="form-group">
+            <label for="codigo"> Código:</label> @Html.DropDownList("codigo", null, "Todos", new { @class = "form-control chosen-select" })
+        </div>
+        <div class="form-group">
             <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
         </div>
     }
