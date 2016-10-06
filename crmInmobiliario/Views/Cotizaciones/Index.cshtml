@@ -5,70 +5,102 @@
 }
 
 <h2>Cotizaciones</h2>
-
 <p>
     @*<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Cotizaciones")'"><i class="fa fa-user-plus"></i> Crear Cotización</button>*@
     <button class="btn btn-info" onclick="location.href='@Url.Action("Excel", "Cotizaciones")'"><i class="fa fa-file-excel-o"></i> Exportar a Excel</button>
 </p>
-<table class="table">
-    <tr>
-        <th></th>
-        <th>
-            Num Cotización
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaCotizacion)
-        </th>
-        <th>
-            Propiedad
-        </th>
-        
-        <th>
-            Prospecto / Cliente
-        </th>
-
-        <th>
-            Vendedor
-        </th>
-        
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td class="">
-            <div class="list-inline">
-                @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>*@
-                <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones (Cotizacion)" onclick="location.href='@Url.Action("Filtro", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-dollar"></i></button>
-                <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones (Oficial)" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
-                @{ string server = System.Configuration.ConfigurationManager.AppSettings["Server"].ToString(); }
-                @{ string appName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString(); }
-                <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Imprimir" onclick="window.open('@server/@appName/Reportes/RptCotizacion.aspx?IdCotizacion='+ @Html.DisplayFor(modelItem => item.IdCotizacion));return false;"><i class="fa fa-fw fa-print"></i></button>
-            </div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCotizacion).ToString().PadLeft(5,'0')
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaCotizacion)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Propiedades.Codigo)  ( @Html.DisplayFor(modelItem => item.Propiedades.Titulo) )
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Personas.Nombre) @Html.DisplayFor(modelItem => item.Personas.Paterno) @Html.DisplayFor(modelItem => item.Personas.Materno)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Vendedor)
-        </td>
-        
-    </tr>
+@using (Html.BeginForm("Index", "Cotizaciones", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group col-md-3">
+        <label class="col-md-12" for="nombre"> Cliente:</label> @Html.DropDownList("persona", null, "Todos", new { @class = "form-control chosen-select" })
+    </div>
+    <div class="form-group col-md-3">
+        <label class="col-md-12" for="nombre"> Propiedad:</label> @Html.DropDownList("propiedad", null, "Todas", new { @class = "form-control chosen-select" })
+    </div>
+    <div class="form-group col-md-3">
+        <label class="col-md-12" for="nombre"> Vendedor:</label> @Html.DropDownList("idVendedor", null, "Todos", new { @class = "form-control chosen-select" })
+    </div>
+    <div class="form-group col-md-3">
+        <label class="col-md-12" for="nombre"> Fecha:</label> <input class="form-control" name="fecha" type="date" />
+    </div>
+    <div class="form-group col-md-3">
+        <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
+    </div>
 }
+<div class="wrapper" style="height: 800px; overflow-y:auto;">
+    <table class="table table-hover table-condensed">
+        <thead class="header">
+            <tr>
+                <th></th>
+                <th>
+                    Num Cotización
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaCotizacion)
+                </th>
+                <th>
+                    Propiedad
+                </th>
 
-</table>
+                <th>
+                    Prospecto / Cliente
+                </th>
 
+                <th>
+                    Vendedor
+                </th>
 
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="">
+                    <div class="list-inline">
+                        @*<button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                            <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                            <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Cotizaciones", new { id = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>*@
+                        <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones (Cotizacion)" onclick="location.href='@Url.Action("Filtro", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-dollar"></i></button>
+                        <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones (Oficial)" onclick="location.href='@Url.Action("Oficial", "Amortizaciones", new { cotizacion = item.IdCotizacion })';return false;"><i class="fa fa-fw fa-money"></i></button>
+                        @{ string server = System.Configuration.ConfigurationManager.AppSettings["Server"].ToString(); }
+                        @{ string appName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString(); }
+                        <button class="btn btn-info btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Imprimir" onclick="window.open('@server/@appName/Reportes/RptCotizacion.aspx?IdCotizacion='+ @Html.DisplayFor(modelItem => item.IdCotizacion));return false;"><i class="fa fa-fw fa-print"></i></button>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCotizacion).ToString().PadLeft(5, '0')
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCotizacion)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Propiedades.Codigo)  ( @Html.DisplayFor(modelItem => item.Propiedades.Titulo) )
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Personas.Nombre) @Html.DisplayFor(modelItem => item.Personas.Paterno) @Html.DisplayFor(modelItem => item.Personas.Materno)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vendedor)
+                </td>
+
+            </tr>
+                            }
+    </table>
+</div>
+
+@section Scripts{
+
+    <script>
+        var $table = $('.wrapper table');
+
+        $table.floatThead({
+            //useAbsolutePositioning: true,
+            scrollContainer: function ($table) {
+                return $table.closest('.wrapper');
+            }
+        });
+    </script>
+}
