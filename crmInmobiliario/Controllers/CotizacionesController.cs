@@ -27,7 +27,7 @@ namespace crmInmobiliario.Controllers
         }
 
         // GET: Cotizaciones
-        public ActionResult Index(int? idPersona)
+        public ActionResult Index(int? idPersona, int? persona, int? propiedad, string idVendedor = "", string fecha = "")
         {
             var usuario = getUser();
             ViewBag.rol = usuario.UserRoles;
@@ -59,6 +59,39 @@ namespace crmInmobiliario.Controllers
                     
                 }
 
+                /*------------Espacio para filtros--------------*/
+
+                if (persona!=null) //por nombre de persona
+                {
+                    cotizaciones = cotizaciones.Where(c => c.Persona == persona);
+                }
+
+                if (propiedad!=null)//por codigo de propiedad
+                {
+                    cotizaciones = cotizaciones.Where(c => c.Propiedad == propiedad);
+                }
+
+                if (idVendedor.Length > 1)
+                {
+                    cotizaciones = cotizaciones.Where(c => c.Vendedor == idVendedor);
+                }
+
+                if (fecha.Length > 0)
+                {
+                    DateTime fechaCotizacion;
+                    DateTime.TryParse(fecha, out fechaCotizacion);
+                    cotizaciones = cotizaciones.Where(c => 
+                        c.FechaCotizacion.Value.Year == fechaCotizacion.Year &&
+                        c.FechaCotizacion.Value.Month == fechaCotizacion.Month &&
+                        c.FechaCotizacion.Value.Day == fechaCotizacion.Day);
+                }
+
+                /*------------Espacio para filtros--------------*/
+
+
+                ViewBag.persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto");
+                ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Codigo");
+                ViewBag.idVendedor = new SelectList(db.AspNetUsers, "Id", "UserName");
                 return View(cotizaciones.OrderByDescending(c => c.IdCotizacion).ToList());
             }
             else
