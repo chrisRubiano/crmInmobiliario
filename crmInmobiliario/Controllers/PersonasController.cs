@@ -647,6 +647,7 @@ namespace crmInmobiliario.Controllers
             try
             {
                 eliminarNotas(id);
+                eliminarIncidencias(id);
                 eliminarDomicilios(id, 1);
 
                 db.Personas.Remove(personas);
@@ -712,6 +713,16 @@ namespace crmInmobiliario.Controllers
             }
             db.SaveChanges();
 
+        }
+
+        public void eliminarIncidencias(int id)
+        {
+            IEnumerable<ProspectosIncidencias> listaIncidencias = db.ProspectosIncidencias.Where(i => i.Prospecto == id);
+            foreach (var item in listaIncidencias)
+            {
+                db.ProspectosIncidencias.Remove(item);
+            }
+            db.SaveChanges();
         }
 
 

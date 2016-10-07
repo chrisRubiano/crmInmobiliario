@@ -88,10 +88,32 @@ namespace crmInmobiliario.Controllers
 
                 /*------------Espacio para filtros--------------*/
 
+                if (usuario.UserRoles == "VENTAS")
+                {
 
-                ViewBag.persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto");
-                ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Codigo");
-                ViewBag.idVendedor = new SelectList(db.AspNetUsers, "Id", "UserName");
+                    ViewBag.persona = new SelectList(db.Personas.Where(p => p.Usuario == usuario.Id), "IdPersona", "NombreCompleto");
+
+                    var cotizacionesFiltro = db.Cotizaciones.AsNoTracking().Where(c => c.Vendedor == usuario.Id);
+                    List<Propiedades> propiedades = new List<Propiedades>();
+                    foreach (var cotizacion in cotizacionesFiltro)
+                    {
+                        var propiedadCot = db.Propiedades.Where(p => p.IdPropiedad == cotizacion.Propiedad).FirstOrDefault();
+                        if (!propiedades.Contains(propiedadCot))
+                        {
+                            propiedades.Add(propiedadCot);
+                        }
+                    }
+
+                    ViewBag.propiedad = new SelectList(propiedades, "IdPropiedad", "Codigo");
+                    //ViewBag.idVendedor = new SelectList(db.AspNetUsers, "Id", "UserName");
+                }
+                else
+                {
+                    ViewBag.persona = new SelectList(db.Personas, "IdPersona", "NombreCompleto");
+                    ViewBag.propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Codigo");
+                    ViewBag.idVendedor = new SelectList(db.AspNetUsers, "Id", "UserName");
+                }
+
                 return View(cotizaciones.OrderByDescending(c => c.IdCotizacion).ToList());
             }
             else
