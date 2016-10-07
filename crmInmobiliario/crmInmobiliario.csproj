@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AmortizacionesController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\ConsultaClienteController.cs" />
     <Compile Include="Controllers\CotizacionesController.cs" />
     <Compile Include="Controllers\DesarrollosController.cs" />
     <Compile Include="Controllers\DocumentosCategoriasController.cs" />
@@ -671,6 +672,7 @@
     <Content Include="Views\FormasPago\Details.cshtml" />
     <Content Include="Views\FormasPago\Edit.cshtml" />
     <Content Include="Views\FormasPago\Index.cshtml" />
+    <Content Include="Views\ConsultaCliente\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

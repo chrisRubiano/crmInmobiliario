@@ -1,0 +1,85 @@
+﻿@model IEnumerable<crmInmobiliario.Models.Amortizaciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "ConsultaCliente", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group col-md-6">
+        <label class="col-md-12" for="rfc"> RFC:</label> <input class="form-control" name="rfc" />
+    </div>
+    <div class="form-group col-md-6">
+        <label class="col-md-12" for="id"> ID:</label> <input class="form-control" name="id" />
+    </div>
+    <div class="form-group col-md-3">
+        <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Propiedad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cotizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaProgramado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaPagado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Propiedad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cotizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaProgramado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Importe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaPagado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdAmortizacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdAmortizacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdAmortizacion })
+        </td>
+    </tr>
+}
+
+</table>
