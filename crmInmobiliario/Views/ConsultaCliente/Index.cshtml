@@ -1,85 +1,190 @@
 ﻿@model IEnumerable<crmInmobiliario.Models.Amortizaciones>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta de pagos";
 }
 
-<h2>Index</h2>
+<h2>Consultar pagos</h2>
 
 @using (Html.BeginForm("Index", "ConsultaCliente", FormMethod.Get, new { @class = "form-inline" }))
 {
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
         <label class="col-md-12" for="rfc"> RFC:</label> <input class="form-control" name="rfc" />
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
         <label class="col-md-12" for="id"> ID:</label> <input class="form-control" name="id" />
     </div>
     <div class="form-group col-md-3">
-        <button class="btn btn-primary btn-filtrar" type="submit"><i class="fa fa-search"></i> Buscar</button>
+        <button class="btn btn-primary btn-filtrar" style="margin-top:22px" type="submit"><i class="fa fa-search"></i> Buscar</button>
     </div>
+    if (Model.Count() != 0)
+    {
+                <div class="col-md-3 panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <label> Nombre:  </label> @ViewBag.nombre
+                </div>
+                <div class="row">
+                    <label> RFC:  </label> @ViewBag.rfc
+                </div>
+                <div class="row">
+                    <label> Código:  </label> @ViewBag.codigo
+                </div>
+            </div>
+        </div>
+    }
+}
+@if (Model != null)
+{
+    <div class="row no-gutter">
+        <div class="col-md-12">
+            <div class="wrapper" style="height: 500px; overflow-y:auto;">
+                <table class="table table-hover table-condensed">
+                    <thead class="header">
+                        <tr>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.Cotizacion)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.TiposPago.Tipo)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.FechaProgramado)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.EstaPagado)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.Importe)
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        if (item.TipoPago == 1)
+                        {
+                            <tr class="warning">
+                                <td class="text-center">
+                                    <strong>@Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')</strong>
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.FechaProgramado)
+                                </td>
+                                <td class="text-center">
+                                    @if (item.EstaPagado.HasValue)
+                                    {
+                                        if (item.EstaPagado.Value)
+                                        {
+                                            <i class="fa fa-check-circle text-success text-center"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-times-circle text-danger text-center"></i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times-circle text-danger text-center"></i>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Importe)
+                                </td>
+                            </tr>
+                        }
+                        else if (item.TipoPago == 2)
+                        {
+                            <tr class="success">
+                                <td class="text-center">
+                                    <strong>@Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')</strong>
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.FechaProgramado)
+                                </td>
+                                <td class="text-center">
+                                    @if (item.EstaPagado.HasValue)
+                                    {
+                                        if (item.EstaPagado.Value)
+                                        {
+                                            <i class="fa fa-check-circle text-success text-center"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-times-circle text-danger text-center"></i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times-circle text-danger text-center"></i>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Importe)
+                                </td>
+                            </tr>
+                        }
+                        else if (item.TipoPago == 3)
+                        {
+                            <tr class="danger">
+                                <td class="text-center">
+                                    <strong>@Html.DisplayFor(modelItem => item.Cotizacion).ToString().PadLeft(5, '0')</strong>
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.FechaProgramado)
+                                </td>
+                                <td class="text-center">
+                                    @if (item.EstaPagado.HasValue)
+                                    {
+                                        if (item.EstaPagado.Value)
+                                        {
+                                            <i class="fa fa-check-circle text-success text-center"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-times-circle text-danger text-center"></i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times-circle text-danger text-center"></i>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Importe)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Persona)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Propiedad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cotizacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaProgramado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Importe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstaPagado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TiposPago.Tipo)
-        </th>
-        <th></th>
-    </tr>
+@section Scripts{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Persona)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Propiedad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cotizacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaProgramado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Importe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstaPagado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TiposPago.Tipo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdAmortizacion }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdAmortizacion }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdAmortizacion })
-        </td>
-    </tr>
+    <script>
+        var $table = $('.wrapper table');
+
+
+
+        $table.floatThead({
+            //useAbsolutePositioning: true,
+            scrollContainer: function ($table) {
+                return $table.closest('.wrapper');
+            }
+        });
+
+    </script>
 }
-
-</table>
