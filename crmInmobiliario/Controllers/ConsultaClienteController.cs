@@ -15,12 +15,25 @@ namespace crmInmobiliario.Controllers
         {
             if (!string.IsNullOrWhiteSpace(rfc) && id.HasValue)
             {
-                var amortizaciones = db.Amortizaciones.Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == id);
-                return View(amortizaciones);
+                var persona = db.Personas.Where(p => p.IdPersona == id).FirstOrDefault();
+                if (persona.RFC == rfc)
+                {
+                    var amortizaciones = db.Amortizaciones.Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == id);
+
+                    ViewBag.nombre = persona.NombreCompleto;
+                    ViewBag.rfc = persona.RFC;
+                    ViewBag.codigo = persona.CodigoPersona;
+
+                    return View(amortizaciones);
+                }else
+                {
+                    var amortizaciones = db.Amortizaciones.Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == id).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
+                    return View(amortizaciones);
+                }
             }
             else
             {
-                var amortizaciones = db.Amortizaciones.Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == id).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
+                var amortizaciones = db.Amortizaciones.Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == id).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
                 return View(amortizaciones);
             }
         }
