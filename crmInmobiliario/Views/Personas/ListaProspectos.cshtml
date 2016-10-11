@@ -21,87 +21,104 @@
         </div>
     }
 </p>
-<table class="table table-hover table-condensed">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.CodigoPersona)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Paterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Materno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Celular)
-        </th>        
-        <th>
-            @Html.DisplayNameFor(model => model.RFC)
-        </th>
-        
-        
-    </tr>
+<div class="wrapper" style="height: 800px; overflow-y:auto;">
+    <table class="table table-hover table-condensed">
+        <thead class="header">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodigoPersona)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Paterno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Materno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaNacimiento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonasGenero.Genero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Celular)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RFC)
+                </th>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td class="">
-                <div class="btn-lista">
-                    <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
-                    <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
-                    <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones" onclick="location.href='@Url.Action("Index", "Cotizaciones", new { idPersona = item.IdPersona })';return false;"><i class="fa fa-fw fa-dollar"></i></button>
-                    <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
-                </div>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoPersona)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Paterno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Materno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaNacimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonasGenero.Genero)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Celular)
-            </td>            
-            <td>
-                @Html.DisplayFor(modelItem => item.RFC)
-            </td>
-            
-        </tr>
-    }
 
-</table>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td class="">
+                    <div class="btn-lista">
+                        <button class="btn btn-primary btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Editar" onclick="location.href='@Url.Action("Edit", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-pencil"></i></button>
+                        <button class="btn btn-success btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Detalles" onclick="location.href='@Url.Action("Details", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-eye"></i></button>
+                        <button class="btn btn-warning btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Tabla de Amortizaciones" onclick="location.href='@Url.Action("Index", "Cotizaciones", new { idPersona = item.IdPersona })';return false;"><i class="fa fa-fw fa-dollar"></i></button>
+                        <button class="btn btn-danger btn-tblsolc inline" data-toggle="tooltip" data-placement="right" title="Eliminar" onclick="location.href='@Url.Action("Delete", "Personas", new { id = item.IdPersona, categoriap = 1 })';return false;"><i class="fa fa-fw fa-trash-o"></i></button>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoPersona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonasGenero.Genero)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RFC)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+@section Scripts{
+
+    <script>
+        var $table = $('.wrapper table');
+
+        $table.floatThead({
+            //useAbsolutePositioning: true,
+            scrollContainer: function ($table) {
+                return $table.closest('.wrapper');
+            }
+        });
+
+    </script>
+}
