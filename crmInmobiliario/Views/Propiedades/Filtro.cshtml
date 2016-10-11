@@ -189,14 +189,26 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.M2Interiores)<br />
                             @Html.DisplayFor(modelItem => item.PrecioM2Interiores)
+                            @if (item.M2Interiores == null)
+                            {
+                                <i class="fa fa-times-circle text-danger text-center"></i>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.M2Terraza)<br />
                             @Html.DisplayFor(modelItem => item.PrecioM2Terraza)
+                            @if (item.M2Terraza == null)
+                            {
+                                <i class="fa fa-times-circle text-danger text-center"></i>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.M2Bodega)<br />
                             @Html.DisplayFor(modelItem => item.PrecioM2Bodega)
+                            @if (item.M2Bodega == null)
+                            {
+                                <i class="fa fa-times-circle text-danger text-center"></i>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FrenteLocal)

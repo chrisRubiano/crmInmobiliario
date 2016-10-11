@@ -11,7 +11,9 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(DomiciliosMeta))]
     public partial class Domicilios
     {
         public int IdDomicilio { get; set; }
