@@ -134,6 +134,7 @@
           <Property Name="PagoMensual" Type="money" />
           <Property Name="Vendedor" Type="nvarchar" MaxLength="128" />
           <Property Name="Descuento" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Interes" Type="int" />
         </EntityType>
         <EntityType Name="Desarrollos">
           <Key>
@@ -622,6 +623,18 @@
             </Principal>
             <Dependent Role="Cotizaciones">
               <PropertyRef Name="Persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotizaciones_PersonasIntereses">
+          <End Role="PersonasIntereses" Type="Self.PersonasIntereses" Multiplicity="0..1" />
+          <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonasIntereses">
+              <PropertyRef Name="IdInteres" />
+            </Principal>
+            <Dependent Role="Cotizaciones">
+              <PropertyRef Name="Interes" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1301,6 +1314,10 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="Cotizaciones" EntitySet="Cotizaciones" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cotizaciones_PersonasIntereses" Association="Self.FK_Cotizaciones_PersonasIntereses">
+            <End Role="PersonasIntereses" EntitySet="PersonasIntereses" />
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cotizaciones_Propiedades" Association="Self.FK_Cotizaciones_Propiedades">
             <End Role="Propiedades" EntitySet="Propiedades" />
             <End Role="Cotizaciones" EntitySet="Cotizaciones" />
@@ -1630,6 +1647,8 @@
           <NavigationProperty Name="Propiedades" Relationship="Self.FK_Cotizaciones_Propiedades" FromRole="Cotizaciones" ToRole="Propiedades" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK_Pagos_Cotizaciones" FromRole="Cotizaciones" ToRole="Pagos" />
           <Property Name="Descuento" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Interes" Type="Int32" />
+          <NavigationProperty Name="PersonasIntereses" Relationship="CRMINMOBILIARIOModel.FK_Cotizaciones_PersonasIntereses" FromRole="Cotizaciones" ToRole="PersonasIntereses" />
         </EntityType>
         <EntityType Name="Desarrollos">
           <Key>
@@ -1932,6 +1951,7 @@
           <Property Name="IdInteres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Interes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Personas_PersonasIntereses" FromRole="PersonasIntereses" ToRole="Personas" />
+          <NavigationProperty Name="Cotizaciones" Relationship="CRMINMOBILIARIOModel.FK_Cotizaciones_PersonasIntereses" FromRole="PersonasIntereses" ToRole="Cotizaciones" />
         </EntityType>
         <EntityType Name="PersonasTipo">
           <Key>
@@ -2968,6 +2988,10 @@
             <End Role="EstadoCivil" EntitySet="EstadoCivil" />
             <End Role="Personas" EntitySet="Personas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cotizaciones_PersonasIntereses" Association="CRMINMOBILIARIOModel.FK_Cotizaciones_PersonasIntereses">
+            <End Role="PersonasIntereses" EntitySet="PersonasIntereses" />
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProspectosIncidencias">
           <Key>
@@ -3069,6 +3093,18 @@
             </Principal>
             <Dependent Role="Personas">
               <PropertyRef Name="EstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotizaciones_PersonasIntereses">
+          <End Type="CRMINMOBILIARIOModel.PersonasIntereses" Role="PersonasIntereses" Multiplicity="0..1" />
+          <End Type="CRMINMOBILIARIOModel.Cotizaciones" Role="Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonasIntereses">
+              <PropertyRef Name="IdInteres" />
+            </Principal>
+            <Dependent Role="Cotizaciones">
+              <PropertyRef Name="Interes" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3180,6 +3216,7 @@
           <EntitySetMapping Name="Cotizaciones">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Cotizaciones">
               <MappingFragment StoreEntitySet="Cotizaciones">
+                <ScalarProperty Name="Interes" ColumnName="Interes" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdCotizacion" ColumnName="IdCotizacion" />
                 <ScalarProperty Name="Propiedad" ColumnName="Propiedad" />

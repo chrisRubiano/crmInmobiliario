@@ -11,7 +11,9 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(CotizacionesMeta))]
     public partial class Cotizaciones
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,10 +34,12 @@ namespace crmInmobiliario.Models
         public Nullable<decimal> PagoMensual { get; set; }
         public string Vendedor { get; set; }
         public Nullable<decimal> Descuento { get; set; }
+        public Nullable<int> Interes { get; set; }
     
         public virtual Personas Personas { get; set; }
         public virtual Propiedades Propiedades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+        public virtual PersonasIntereses PersonasIntereses { get; set; }
     }
 }

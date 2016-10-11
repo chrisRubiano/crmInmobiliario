@@ -108,6 +108,7 @@
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Pagos_FormasPago" />
         <EntityTypeShape EntityType="CRMINMOBILIARIOModel.EstadoCivil" Width="1.5" PointX="13.375" PointY="15.875" />
         <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Personas_EstadoCivil" />
+        <AssociationConnector Association="CRMINMOBILIARIOModel.FK_Cotizaciones_PersonasIntereses" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
