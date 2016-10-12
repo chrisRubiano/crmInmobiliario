@@ -184,7 +184,7 @@ namespace crmInmobiliario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int pagosEnganche = 1, int numPagosAnuales = 1, decimal pagosAnuales = 0, int descuento = 0)
+        public ActionResult Pagos(vmCotizacion vmcotizacion, int idPersona, int idPropiedad, string fechaInicial, int interes, int pagosEnganche = 1, int numPagosAnuales = 1, decimal pagosAnuales = 0, int descuento = 0)
         {
 
             if (string.IsNullOrEmpty(fechaInicial))
@@ -205,6 +205,8 @@ namespace crmInmobiliario.Controllers
                     vmcotizacion.cotizaciones.FechaCotizacion = DateTime.Now;
                     decimal precioFinalDescto = vmcotizacion.propiedades.VentaPrecio.Value - vmcotizacion.propiedades.VentaPrecio.Value*(((decimal)descuento) / 100);
                     vmcotizacion.cotizaciones.PrecioFinalVenta = precioFinalDescto;
+                    vmcotizacion.cotizaciones.Descuento = descuento;
+                    vmcotizacion.cotizaciones.Interes = interes;
 
                     cotizaciones = vmcotizacion.cotizaciones;
                     db.Cotizaciones.Add(cotizaciones);
