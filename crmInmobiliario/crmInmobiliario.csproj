@@ -359,9 +359,11 @@
     <Compile Include="Models\PropiedadesCategoria.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PropiedadesCategoriaMeta.cs" />
     <Compile Include="Models\PropiedadesEstatus.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PropiedadesTipoBanioMeta.cs" />
     <Compile Include="Models\PropiedadesTipoBanios.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>

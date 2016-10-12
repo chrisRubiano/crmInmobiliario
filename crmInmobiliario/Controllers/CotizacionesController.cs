@@ -173,6 +173,7 @@ namespace crmInmobiliario.Controllers
 
                 var desarrollo = db.Desarrollos.Where(d => d.IdDesarrollo == vmcotizacion.propiedades.Desarrollo).FirstOrDefault();
                 ViewBag.descuento = decimal.ToInt32(desarrollo.Descuento.Value);
+                ViewBag.interes = new SelectList(db.PersonasIntereses, "IdInteres", "Interes");
                 return View(vmcotizacion);
             }
             else
