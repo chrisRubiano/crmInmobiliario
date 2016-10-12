@@ -492,7 +492,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC,CURP,LugarNacimiento,Ocupacion,EstadoCivil,")] Personas personas, int? categoriap)
+        public ActionResult Edit([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,MediosEnterarse,Interes,CategoriaInteres,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC,CURP,LugarNacimiento,Ocupacion,EstadoCivil")] Personas personas, int? categoriap)
         {
             try
             {
@@ -566,7 +566,7 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ValidarProspecto([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro,RFC")] Personas personas, int? categoriap)
+        public ActionResult ValidarProspecto([Bind(Include = "IdPersona,Tipo,Categoria,Nombre,Paterno,Materno,Genero,FechaNacimiento,Email,Email2,Telefono,Celular,MedioContacto,UsuarioUA,FechaUA,Usuario,FechaRegistro,InteresEspecifique,Giro,RFC,CURP,LugarNacimiento,Ocupacion,EstadoCivil")] Personas personas, int? categoriap)
         {
             try
             {
