@@ -94,11 +94,24 @@ namespace crmInmobiliario.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe,FormaPago")] Pagos pagos, int id)
+        public ActionResult Create([Bind(Include = "IdPago,Tipo,Propiedad,Persona,Cotizacion,Amortizacion,FechaPago,Moneda,TipoCambio,Importe,FormaPago,Efectivo,Transferencia,Cheque")] Pagos pagos, int id)
         {
-            if (ModelState.IsValid)
+            if (!pagos.Transferencia.HasValue)
             {
-                Amortizaciones amortizacion = db.Amortizaciones.Find(id);
+                pagos.Transferencia = 0;
+            }
+            if (!pagos.Efectivo.HasValue)
+            {
+                pagos.Efectivo = 0;
+            }
+            if (!pagos.Cheque.HasValue)
+            {
+                pagos.Cheque = 0;
+            }
+            Amortizaciones amortizacion = db.Amortizaciones.Find(id);
+            if (ModelState.IsValid && pagos.Efectivo.Value+pagos.Transferencia.Value+pagos.Cheque.Value == amortizacion.Importe.Value)
+            {
+                //Amortizaciones amortizacion = db.Amortizaciones.Find(id);
                 pagos.Amortizacion = amortizacion.IdAmortizacion;
                 pagos.Persona = amortizacion.Persona;
                 pagos.Propiedad = amortizacion.Propiedad;
@@ -117,6 +130,9 @@ namespace crmInmobiliario.Controllers
             ViewBag.Persona = new SelectList(db.Personas, "IdPersona", "Nombre", pagos.Persona);
             ViewBag.Propiedad = new SelectList(db.Propiedades, "IdPropiedad", "Titulo", pagos.Propiedad);
             ViewBag.Tipo = new SelectList(db.TiposPago, "IdTipoPago", "Tipo", pagos.Tipo);
+
+            ViewBag.importePago = String.Format("{0:C}", amortizacion.Importe);
+            ViewBag.idCotizacion = amortizacion.Cotizacion;
             return View(pagos);
         }
 
