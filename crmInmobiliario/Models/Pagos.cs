@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(PagosMeta))]
+    
     public partial class Pagos
     {
         public int IdPago { get; set; }
@@ -28,6 +26,11 @@ namespace crmInmobiliario.Models
         public Nullable<decimal> Importe { get; set; }
         public string ImporteConLetra { get; set; }
         public Nullable<int> FormaPago { get; set; }
+        public Nullable<decimal> Efectivo { get; set; }
+        public Nullable<decimal> Transferencia { get; set; }
+        public Nullable<decimal> Cheque { get; set; }
+        public string UsuarioUA { get; set; }
+        public Nullable<System.DateTime> FechaUA { get; set; }
     
         public virtual Cotizaciones Cotizaciones { get; set; }
         public virtual Monedas Monedas { get; set; }
