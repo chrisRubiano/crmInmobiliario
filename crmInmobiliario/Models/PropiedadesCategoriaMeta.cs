@@ -13,7 +13,8 @@ namespace crmInmobiliario.Models
     {
         public int IdCategoria { get; set; }
         public string Categoria { get; set; }
-        [Required, StringLength(1)]
+        [Required]
+        [StringLength(1, ErrorMessage = "La clave debe ser un solo caractér")]
         public string Clave { get; set; }
         public Nullable<bool> Activo { get; set; }
 

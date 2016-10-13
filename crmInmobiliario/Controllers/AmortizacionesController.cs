@@ -206,7 +206,7 @@ namespace crmInmobiliario.Controllers
                     {
                         //Agrupa las amortizaciones de un solo usuario y trae la primera de cada cotizacion
                         var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).Where(a => a.Persona == nombre).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
-                        return View(amortizaciones.ToList());
+                        return View(amortizaciones.ToList().OrderBy(a => a.FechaProgramado));
                     }
                     catch (Exception)
                     {
@@ -216,7 +216,7 @@ namespace crmInmobiliario.Controllers
                 else
                 {
                     var amortizaciones = db.Amortizaciones.Include(a => a.TiposPago).Where(a => a.EstaPagado.Value == false).Where(a => a.Tipo.Equals("O")).GroupBy(a => a.Cotizacion, (key, g) => g.OrderBy(a => a.FechaProgramado).FirstOrDefault());
-                    return View(amortizaciones.ToList());
+                    return View(amortizaciones.ToList().OrderBy(a => a.FechaProgramado));
                 }
             }
             else
