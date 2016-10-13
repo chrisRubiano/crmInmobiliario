@@ -10,6 +10,7 @@ namespace crmInmobiliario.Models
     {
         public int IdPropiedad { get; set; }
 
+        [Required]
         public Nullable<int> Desarrollo { get; set; }
         public Nullable<int> Edificio { get; set; }
 
