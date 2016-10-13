@@ -327,6 +327,7 @@
     <Compile Include="Models\Paises.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\Personas.cs">
       <DependentUpon>modeloCRM.tt</DependentUpon>
     </Compile>

@@ -11,9 +11,7 @@ namespace crmInmobiliario.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(PropiedadesTipoBanioMeta))]
+    
     public partial class PropiedadesTipoBanios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
