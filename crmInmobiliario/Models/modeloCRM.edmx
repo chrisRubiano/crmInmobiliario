@@ -328,6 +328,11 @@
           <Property Name="FormaPago" Type="int" />
           <Property Name="Importe" Type="money" />
           <Property Name="ImporteConLetra" Type="varchar" MaxLength="180" StoreGeneratedPattern="Computed" />
+          <Property Name="Efectivo" Type="money" />
+          <Property Name="Transferencia" Type="money" />
+          <Property Name="Cheque" Type="money" />
+          <Property Name="UsuarioUA" Type="nvarchar" MaxLength="128" />
+          <Property Name="FechaUA" Type="datetime" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -1861,6 +1866,11 @@
           <Property Name="ImporteConLetra" Type="String" MaxLength="180" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="FormaPago" Type="Int32" />
           <NavigationProperty Name="FormasPago" Relationship="CRMINMOBILIARIOModel.FK_Pagos_FormasPago" FromRole="Pagos" ToRole="FormasPago" />
+          <Property Name="Efectivo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Transferencia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cheque" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UsuarioUA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FechaUA" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -3410,6 +3420,11 @@
           <EntitySetMapping Name="Pagos">
             <EntityTypeMapping TypeName="CRMINMOBILIARIOModel.Pagos">
               <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="FechaUA" ColumnName="FechaUA" />
+                <ScalarProperty Name="UsuarioUA" ColumnName="UsuarioUA" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="Transferencia" ColumnName="Transferencia" />
+                <ScalarProperty Name="Efectivo" ColumnName="Efectivo" />
                 <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
                 <ScalarProperty Name="ImporteConLetra" ColumnName="ImporteConLetra" />
                 <ScalarProperty Name="IdPago" ColumnName="IdPago" />
